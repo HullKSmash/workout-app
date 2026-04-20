@@ -141,7 +141,8 @@ export default function WorkoutApp() {
       {screen === "select" && (
         <div style={styles.screenContainer}>
           <div style={styles.selectContent}>
-            <h1 style={styles.selectTitle}>Choose a Workout</h1>
+            <h1 style={styles.appTitle}>SetGo</h1>
+            <p style={styles.selectSubtitle}>Choose a workout</p>
             <div style={styles.workoutList}>
               {WORKOUTS.map((workout, i) => {
                 const stepCount = flattenWorkout(workout).length;
@@ -396,13 +397,20 @@ const styles = {
     padding: "48px 24px",
   },
 
-  selectTitle: {
+  appTitle: {
     fontFamily: "'Outfit', sans-serif",
-    fontSize: 28,
-    fontWeight: 700,
-    letterSpacing: "-0.02em",
-    color: colors.text,
-    marginBottom: 32,
+    fontSize: 36,
+    fontWeight: 800,
+    letterSpacing: "-0.03em",
+    color: colors.accent,
+    margin: "0 0 4px 0",
+  },
+
+  selectSubtitle: {
+    fontSize: 16,
+    color: colors.textSecondary,
+    fontWeight: 300,
+    margin: "0 0 32px 0",
   },
 
   workoutList: {
