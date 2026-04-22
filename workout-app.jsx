@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { WORKOUTS, REST_DURATION } from "./workout-data";
+import { WORKOUTS } from "./workouts";
 
 // ─── Flatten workout into linear step list ──────────────────────────────────
 function flattenWorkout(workout) {
@@ -29,7 +29,7 @@ export default function WorkoutApp() {
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [showEndConfirm, setShowEndConfirm] = useState(false);
-  const [timerSeconds, setTimerSeconds] = useState(REST_DURATION);
+  const [timerSeconds, setTimerSeconds] = useState(0);
   const [fadeClass, setFadeClass] = useState("step-enter");
 
   const steps = useMemo(
@@ -42,7 +42,7 @@ export default function WorkoutApp() {
   // Reset timer when landing on a rest step
   useEffect(() => {
     if (screen === "workout" && currentExercise?.isRest) {
-      setTimerSeconds(REST_DURATION);
+      setTimerSeconds(currentExercise.repCount);
     }
   }, [currentStep, screen, currentExercise?.isRest]);
 
@@ -130,7 +130,8 @@ export default function WorkoutApp() {
     return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
 
-  const timerProgress = timerSeconds / REST_DURATION;
+  const restDuration = currentExercise?.isRest ? currentExercise.repCount : 0;
+  const timerProgress = restDuration > 0 ? timerSeconds / restDuration : 0;
 
   // ─── Render ─────────────────────────────────────────────────────────────
   return (
