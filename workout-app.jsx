@@ -1,5 +1,13 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { WORKOUTS } from "./workouts";
+import { resolveVariant } from "./variants";
+
+const variant = resolveVariant();
+const visibleWorkouts = variant.audiences
+  ? WORKOUTS.filter((w) =>
+      w.audiences?.some((a) => variant.audiences.includes(a))
+    )
+  : WORKOUTS;
 
 // ─── Flatten workout into linear step list ──────────────────────────────────
 function flattenWorkout(workout) {
@@ -142,10 +150,10 @@ export default function WorkoutApp() {
       {screen === "select" && (
         <div style={styles.screenContainer}>
           <div style={styles.selectContent}>
-            <h1 style={styles.appTitle}>SetGo</h1>
-            <p style={styles.selectSubtitle}>Choose a workout</p>
+            <h1 style={styles.appTitle}>{variant.brandName}</h1>
+            <p style={styles.selectSubtitle}>{variant.tagline}</p>
             <div style={styles.workoutList}>
-              {WORKOUTS.map((workout, i) => {
+              {visibleWorkouts.map((workout, i) => {
                 const stepCount = flattenWorkout(workout).length;
                 return (
                   <button
@@ -362,9 +370,8 @@ const colors = {
   surface: "#FFFFFF",
   text: "#2D2A26",
   textSecondary: "#8A8279",
-  accent: "#E85D3A",
-  accentHover: "#D14E2D",
-  accentLight: "#FFF0EC",
+  accent: variant.accent,
+  accentLight: variant.accentLight,
   border: "#E8E4E0",
   progressBg: "#E8E4E0",
   success: "#3AAE6F",

@@ -1,5 +1,6 @@
 export default {
   name: "Leg Day",
+  audiences: ["lift"],
   circuits: [
     {
       phase: "Plyometric Warmup",

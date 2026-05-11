@@ -1,5 +1,6 @@
 export default {
   name: "Runner Strength Main 2",
+  audiences: ["run"],
   circuits: [
     {
       phase: "Plyometric Warm Up",

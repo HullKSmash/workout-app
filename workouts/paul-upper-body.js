@@ -1,5 +1,6 @@
 export default {
   name: "Paul Upper Body",
+  audiences: ["lift"],
   circuits: [
     {
       phase: "Circuit",
