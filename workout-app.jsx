@@ -1,13 +1,17 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { WORKOUTS } from "./workouts";
-import { resolveVariant } from "./variants";
+import { VARIANTS, resolveVariant } from "./variants";
 
 const variant = resolveVariant();
-const visibleWorkouts = variant.audiences
-  ? WORKOUTS.filter((w) =>
+const isDefaultVariant = variant.audiences === null;
+const visibleWorkouts = isDefaultVariant
+  ? []
+  : WORKOUTS.filter((w) =>
       w.audiences?.some((a) => variant.audiences.includes(a))
-    )
-  : WORKOUTS;
+    );
+const variantLinks = Object.entries(VARIANTS)
+  .filter(([, v]) => v.audiences !== null)
+  .map(([key, v]) => ({ key, ...v }));
 
 // ─── Flatten workout into linear step list ──────────────────────────────────
 function flattenWorkout(workout) {
@@ -153,21 +157,32 @@ export default function WorkoutApp() {
             <h1 style={styles.appTitle}>{variant.brandName}</h1>
             <p style={styles.selectSubtitle}>{variant.tagline}</p>
             <div style={styles.workoutList}>
-              {visibleWorkouts.map((workout, i) => {
-                const stepCount = flattenWorkout(workout).length;
-                return (
-                  <button
-                    key={i}
-                    style={styles.workoutCard}
-                    onClick={() => handleSelectWorkout(workout)}
-                  >
-                    <span style={styles.workoutCardName}>{workout.name}</span>
-                    <span style={styles.workoutCardMeta}>
-                      {stepCount} exercises · {workout.circuits.length} circuits
-                    </span>
-                  </button>
-                );
-              })}
+              {isDefaultVariant
+                ? variantLinks.map((v) => (
+                    <a
+                      key={v.key}
+                      href={`?variant=${v.key}`}
+                      style={{ ...styles.workoutCard, ...styles.variantLink }}
+                    >
+                      <span style={styles.workoutCardName}>{v.brandName}</span>
+                      <span style={styles.workoutCardMeta}>{v.tagline}</span>
+                    </a>
+                  ))
+                : visibleWorkouts.map((workout, i) => {
+                    const stepCount = flattenWorkout(workout).length;
+                    return (
+                      <button
+                        key={i}
+                        style={styles.workoutCard}
+                        onClick={() => handleSelectWorkout(workout)}
+                      >
+                        <span style={styles.workoutCardName}>{workout.name}</span>
+                        <span style={styles.workoutCardMeta}>
+                          {stepCount} exercises · {workout.circuits.length} circuits
+                        </span>
+                      </button>
+                    );
+                  })}
             </div>
           </div>
         </div>
@@ -442,6 +457,11 @@ const styles = {
     gap: 4,
     transition: "border-color 0.2s, box-shadow 0.2s",
     WebkitTapHighlightColor: "transparent",
+  },
+
+  variantLink: {
+    textDecoration: "none",
+    color: "inherit",
   },
 
   workoutCardName: {

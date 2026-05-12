@@ -3,22 +3,22 @@
 export const VARIANTS = {
   default: {
     brandName: "SetGo",
-    tagline: "Choose a workout",
-    audiences: null, // null = show all workouts
+    tagline: "Pick your program",
+    audiences: null, // null = show variant links instead of workouts
     accent: "#E85D3A",
     accentLight: "#FFF0EC",
   },
   run: {
-    brandName: "Run Strong",
+    brandName: "Runner Strength",
     tagline: "Strength work for faster miles",
     audiences: ["run"],
     accent: "#E85D3A",
     accentLight: "#FFF0EC",
   },
-  lift: {
-    brandName: "SetGo Lift",
+  paul: {
+    brandName: "Paul Strength",
     tagline: "Pick it up, put it down",
-    audiences: ["lift"],
+    audiences: ["paul"],
     accent: "#2D6BD1",
     accentLight: "#EAF1FC",
   },
@@ -26,7 +26,7 @@ export const VARIANTS = {
 
 const HOSTNAME_PREFIXES = {
   "run.": "run",
-  "lift.": "lift",
+  "paul.": "paul",
 };
 
 export function resolveVariant() {
