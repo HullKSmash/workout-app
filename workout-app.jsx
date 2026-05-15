@@ -16,22 +16,34 @@ const variantLinks = Object.entries(VARIANTS)
 // ─── Flatten workout into linear step list ──────────────────────────────────
 function flattenWorkout(workout) {
   const steps = [];
-  workout.circuits.forEach((circuit, circuitIndex) => {
-    for (let round = 0; round < circuit.repeatCount; round++) {
-      circuit.exercises.forEach((exercise, exerciseIndex) => {
-        steps.push({
-          ...exercise,
-          isRest: exercise.name === "Rest",
-          phase: circuit.phase,
-          circuitIndex,
-          round: round + 1,
-          totalRounds: circuit.repeatCount,
-          exerciseIndex,
-          totalExercisesInCircuit: circuit.exercises.length,
+  const totalPhases = workout.phases.length;
+
+  workout.phases.forEach((phase, phaseIndex) => {
+    const phaseSteps = [];
+    phase.circuits.forEach((circuit) => {
+      for (let round = 0; round < circuit.repeatCount; round++) {
+        circuit.exercises.forEach((exercise) => {
+          phaseSteps.push({
+            ...exercise,
+            isRest: exercise.name === "Rest",
+            phaseName: phase.name,
+            phaseIndex,
+            totalPhases,
+            round: round + 1,
+            totalRounds: circuit.repeatCount,
+          });
         });
+      }
+    });
+    phaseSteps.forEach((step, i) => {
+      steps.push({
+        ...step,
+        stepInPhase: i + 1,
+        totalStepsInPhase: phaseSteps.length,
       });
-    }
+    });
   });
+
   return steps;
 }
 
@@ -178,7 +190,7 @@ export default function WorkoutApp() {
                       >
                         <span style={styles.workoutCardName}>{workout.name}</span>
                         <span style={styles.workoutCardMeta}>
-                          {stepCount} exercises · {workout.circuits.length} circuits
+                          {stepCount} exercises · {workout.phases.length} phases
                         </span>
                       </button>
                     );
@@ -194,7 +206,7 @@ export default function WorkoutApp() {
           <div style={styles.landingContent}>
             <h1 style={styles.workoutTitle}>{selectedWorkout.name}</h1>
             <p style={styles.workoutSubtitle}>
-              {totalSteps} exercises · {selectedWorkout.circuits.length} circuits
+              {totalSteps} exercises · {selectedWorkout.phases.length} phases
             </p>
             <button style={styles.startButton} onClick={handleStart}>
               Start Workout
@@ -212,23 +224,38 @@ export default function WorkoutApp() {
       {/* ── Workout Page ─────────────────────────────────────────────── */}
       {screen === "workout" && currentExercise && (
         <div style={styles.screenContainer}>
-          {/* Progress bar */}
+          {/* Segmented progress bar — one segment per phase */}
           <div style={styles.progressBarContainer}>
-            <div
-              style={{
-                ...styles.progressBarFill,
-                width: `${((currentStep + 1) / totalSteps) * 100}%`,
-              }}
-            />
+            {Array.from({ length: currentExercise.totalPhases }).map((_, i) => {
+              let fill = 0;
+              if (i < currentExercise.phaseIndex) fill = 1;
+              else if (i === currentExercise.phaseIndex) {
+                fill =
+                  currentExercise.stepInPhase /
+                  currentExercise.totalStepsInPhase;
+              }
+              return (
+                <div key={i} style={styles.progressBarSegment}>
+                  <div
+                    style={{
+                      ...styles.progressBarFill,
+                      width: `${fill * 100}%`,
+                    }}
+                  />
+                </div>
+              );
+            })}
           </div>
 
-          {/* Phase + progress text */}
+          {/* Phase + in-phase progress text */}
           <div style={styles.progressRow}>
-            {currentExercise.phase && (
-              <span style={styles.phaseLabel}>{currentExercise.phase}</span>
-            )}
+            <span style={styles.phaseLabel}>
+              Phase {currentExercise.phaseIndex + 1} of{" "}
+              {currentExercise.totalPhases} · {currentExercise.phaseName}
+            </span>
             <span style={styles.progressText}>
-              {currentStep + 1} of {totalSteps}
+              {currentExercise.stepInPhase} of{" "}
+              {currentExercise.totalStepsInPhase}
             </span>
           </div>
 
@@ -534,16 +561,25 @@ const styles = {
 
   // ── Progress ─────────────────────────────────────────────────────
   progressBarContainer: {
-    height: 4,
-    background: colors.progressBg,
+    display: "flex",
+    gap: 4,
+    padding: "0 4px",
     width: "100%",
     flexShrink: 0,
+    marginTop: 4,
+  },
+
+  progressBarSegment: {
+    flex: 1,
+    height: 4,
+    background: colors.progressBg,
+    borderRadius: 2,
+    overflow: "hidden",
   },
 
   progressBarFill: {
     height: "100%",
     background: colors.accent,
-    borderRadius: "0 4px 4px 0",
     transition: "width 0.4s ease",
   },
 
