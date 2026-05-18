@@ -1,5 +1,5 @@
 export default {
-  "name": "Rider Strength Main 1",
+  "name": "Rider Strength Main 3",
   "audiences": [
     "equestrian"
   ],
@@ -33,15 +33,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Reverse fly",
+              "name": "Y scaption",
               "repCount": "6-8"
             },
             {
-              "name": "Squat and press",
+              "name": "Hamstring bridge",
               "repCount": "6-8"
             },
             {
-              "name": "Row and kickback",
+              "name": "Row",
               "repCount": "6-8"
             }
           ]
@@ -55,7 +55,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Squat and forward reach",
+              "name": "Front to side raise",
               "repCount": "6-8"
             }
           ]
@@ -64,11 +64,11 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Transverse lunge, left",
+              "name": "Static lunge, left",
               "repCount": "6-8"
             },
             {
-              "name": "Transverse lunge, right",
+              "name": "Static lunge, right",
               "repCount": "6-8"
             }
           ]
@@ -77,7 +77,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Squat and forward reach",
+              "name": "Front to side raise",
               "repCount": "6-8"
             }
           ]
@@ -91,7 +91,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Sumo squat",
+              "name": "Plié squat",
               "repCount": "6-8"
             }
           ]
@@ -113,7 +113,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Sumo squat",
+              "name": "Plié squat",
               "repCount": "6-8"
             }
           ]
