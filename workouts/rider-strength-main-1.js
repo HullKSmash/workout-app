@@ -8,7 +8,7 @@ export default {
       "name": "Warm Up",
       "circuits": [
         {
-          "repeatCount": 2,
+          "repeatCount": 1,
           "exercises": [
             {
               "name": "Standing cat/cow",
@@ -16,11 +16,11 @@ export default {
             },
             {
               "name": "Standing twist",
-              "repCount": "6-8"
+              "repCount": "5-10 per side"
             },
             {
               "name": "Jump squat stabilization",
-              "repCount": 4
+              "repCount": "5-10"
             }
           ]
         }
@@ -33,8 +33,8 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Plank twist",
-              "repCount": "4 per side"
+              "name": "Reverse fly",
+              "repCount": "6-8"
             },
             {
               "name": "Squat and press",
@@ -64,11 +64,11 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Side lunge and curl, left",
+              "name": "Transverse lunge, left",
               "repCount": "6-8"
             },
             {
-              "name": "Side lunge and curl, right",
+              "name": "Transverse lunge, right",
               "repCount": "6-8"
             }
           ]
@@ -91,7 +91,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "RDL/reverse fly",
+              "name": "Goblet squat",
               "repCount": "6-8"
             }
           ]
@@ -100,11 +100,11 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Reverse lunge w/ knee up, left",
+              "name": "Single leg RDL, left",
               "repCount": "6-8"
             },
             {
-              "name": "Reverse lunge w/ knee up, right",
+              "name": "Single leg RDL, right",
               "repCount": "6-8"
             }
           ]
@@ -113,7 +113,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "RDL/reverse fly",
+              "name": "Goblet squat",
               "repCount": "6-8"
             }
           ]
