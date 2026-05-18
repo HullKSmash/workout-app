@@ -23,7 +23,7 @@ export const VARIANTS = {
     accentLight: "#EAF1FC",
   },
   equestrian: {
-    brandName: "Ride Strong",
+    brandName: "Equestrian Strength",
     tagline: "Strong riding starts on the ground",
     audiences: ["equestrian"],
     accent: "#355E3B",
