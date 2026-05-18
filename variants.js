@@ -22,11 +22,19 @@ export const VARIANTS = {
     accent: "#2D6BD1",
     accentLight: "#EAF1FC",
   },
+  equestrian: {
+    brandName: "Ride Strong",
+    tagline: "Strong riding starts on the ground",
+    audiences: ["equestrian"],
+    accent: "#355E3B",
+    accentLight: "#EAF2EC",
+  },
 };
 
 const HOSTNAME_PREFIXES = {
   "run.": "run",
   "paul.": "paul",
+  "equestrian.": "equestrian",
 };
 
 export function resolveVariant() {
