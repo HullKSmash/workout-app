@@ -902,7 +902,7 @@ const styles = {
   },
 
   modifierPanel: {
-    background: colors.bg,
+    background: colors.surface,
     borderRadius: 12,
     padding: "12px 14px",
     marginTop: 8,
