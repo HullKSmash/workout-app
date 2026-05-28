@@ -350,7 +350,7 @@ export default function WorkoutApp() {
                     pointerEvents: showModifier ? "none" : "auto",
                   }}>
                     <span>Too hard? Too easy?</span>
-                    <span style={{ fontSize: 12, marginTop: 3 }}>See modification options.</span>
+                    <span style={{ fontSize: 12, marginTop: 3 }}>Tap to see options.</span>
                   </div>
                   <div style={{
                     ...styles.modifierPanel,
