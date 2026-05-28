@@ -336,15 +336,26 @@ export default function WorkoutApp() {
                   </div>
                 )}
 
-                {/* Modifier panel */}
+                {/* Modifier block — fixed space, crossfades between label and panel */}
                 <div
-                  style={styles.modifierToggle}
+                  style={{
+                    ...styles.modifierBlock,
+                    background: showModifier ? colors.surface : "#F7F5F2",
+                  }}
                   onClick={() => setShowModifier((v) => !v)}
                 >
-                  Make it easier or harder {showModifier ? "▴" : "▾"}
-                </div>
-                {showModifier && (
-                  <div style={styles.modifierPanel}>
+                  <div style={{
+                    ...styles.modifierToggleLabel,
+                    opacity: showModifier ? 0 : 1,
+                    pointerEvents: showModifier ? "none" : "auto",
+                  }}>
+                    Make it easier or harder ▾
+                  </div>
+                  <div style={{
+                    ...styles.modifierPanel,
+                    opacity: showModifier ? 1 : 0,
+                    pointerEvents: showModifier ? "auto" : "none",
+                  }}>
                     <div style={styles.modifierRow}>
                       <span style={{ ...styles.modifierBadge, ...styles.modifierBadgeEasier }}>
                         Easier
@@ -353,7 +364,7 @@ export default function WorkoutApp() {
                         {currentExercise.easier || MODIFIER_DEFAULTS.easier}
                       </span>
                     </div>
-                    <div style={{ ...styles.modifierRow, marginTop: 8 }}>
+                    <div style={{ ...styles.modifierRow, marginTop: 10 }}>
                       <span style={{ ...styles.modifierBadge, ...styles.modifierBadgeHarder }}>
                         Harder
                       </span>
@@ -362,7 +373,7 @@ export default function WorkoutApp() {
                       </span>
                     </div>
                   </div>
-                )}
+                </div>
               </div>
             )}
           </div>
@@ -890,25 +901,48 @@ const styles = {
   },
 
   // ── Modifier Panel ───────────────────────────────────────────
-  modifierToggle: {
-    marginTop: 16,
+  modifierBlock: {
+    width: "100%",
+    maxWidth: 320,
+    minHeight: 108,
+    position: "relative",
+    cursor: "pointer",
+    WebkitTapHighlightColor: "transparent",
+    userSelect: "none",
+    borderRadius: 12,
+    border: `1.5px solid ${colors.border}`,
+    marginTop: 4,
+    transition: "background 0.15s ease",
+  },
+
+  modifierToggleLabel: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     fontSize: 13,
     fontWeight: 500,
     color: colors.textSecondary,
-    cursor: "pointer",
-    padding: "6px 0",
-    WebkitTapHighlightColor: "transparent",
-    userSelect: "none",
+    transition: "opacity 0.15s ease",
   },
 
   modifierPanel: {
-    background: colors.surface,
-    borderRadius: 12,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     padding: "12px 14px",
-    marginTop: 8,
-    width: "100%",
-    maxWidth: 320,
-    textAlign: "left",
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
+    justifyContent: "center",
+    borderRadius: 12,
+    transition: "opacity 0.15s ease",
   },
 
   modifierRow: {
