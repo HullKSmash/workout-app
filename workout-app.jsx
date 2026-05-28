@@ -349,7 +349,8 @@ export default function WorkoutApp() {
                     opacity: showModifier ? 0 : 1,
                     pointerEvents: showModifier ? "none" : "auto",
                   }}>
-                    Make it easier or harder ▾
+                    <span>Too hard? Too easy?</span>
+                    <span style={{ fontSize: 12, marginTop: 3 }}>See modification options.</span>
                   </div>
                   <div style={{
                     ...styles.modifierPanel,
@@ -922,6 +923,7 @@ const styles = {
     right: 0,
     bottom: 0,
     display: "flex",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     fontSize: 13,
@@ -975,6 +977,7 @@ const styles = {
     fontSize: 12,
     color: colors.text,
     lineHeight: 1.5,
+    textAlign: "left",
   },
 
   // ── Complete ─────────────────────────────────────────────────────
