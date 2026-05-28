@@ -13,6 +13,12 @@ const variantLinks = Object.entries(VARIANTS)
   .filter(([, v]) => v.audiences !== null)
   .map(([key, v]) => ({ key, ...v }));
 
+// ─── Modifier defaults ───────────────────────────────────────────────────────
+const MODIFIER_DEFAULTS = {
+  easier: "Reduce your range of motion or use only body weight",
+  harder: "Slow the motion down, increase your range of motion, or add more weight",
+};
+
 // ─── Flatten workout into linear step list ──────────────────────────────────
 function flattenWorkout(workout) {
   const steps = [];
@@ -55,6 +61,7 @@ export default function WorkoutApp() {
   const [showEndConfirm, setShowEndConfirm] = useState(false);
   const [timerSeconds, setTimerSeconds] = useState(0);
   const [fadeClass, setFadeClass] = useState("step-enter");
+  const [showModifier, setShowModifier] = useState(false);
 
   const steps = useMemo(
     () => (selectedWorkout ? flattenWorkout(selectedWorkout) : []),
@@ -96,6 +103,11 @@ export default function WorkoutApp() {
       handleNext();
     }
   }, [timerSeconds]);
+
+  // Collapse modifier panel when exercise changes
+  useEffect(() => {
+    setShowModifier(false);
+  }, [currentStep]);
 
   const animateTransition = useCallback((callback) => {
     setFadeClass("step-exit");
