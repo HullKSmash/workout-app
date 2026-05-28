@@ -861,6 +861,60 @@ const styles = {
     WebkitTapHighlightColor: "transparent",
   },
 
+  // ── Modifier Panel ───────────────────────────────────────────
+  modifierToggle: {
+    marginTop: 16,
+    fontSize: 13,
+    fontWeight: 500,
+    color: colors.textSecondary,
+    cursor: "pointer",
+    padding: "6px 0",
+    WebkitTapHighlightColor: "transparent",
+    userSelect: "none",
+  },
+
+  modifierPanel: {
+    background: "#F7F5F2",
+    borderRadius: 12,
+    padding: "12px 14px",
+    marginTop: 8,
+    width: "100%",
+    maxWidth: 320,
+    textAlign: "left",
+  },
+
+  modifierRow: {
+    display: "flex",
+    alignItems: "flex-start",
+    gap: 8,
+  },
+
+  modifierBadge: {
+    fontSize: 11,
+    fontWeight: 600,
+    padding: "2px 8px",
+    borderRadius: 20,
+    flexShrink: 0,
+    whiteSpace: "nowrap",
+    marginTop: 1,
+  },
+
+  modifierBadgeEasier: {
+    background: "#EAF1FC",
+    color: "#2D6BD1",
+  },
+
+  modifierBadgeHarder: {
+    background: "#FFF0EC",
+    color: "#E85D3A",
+  },
+
+  modifierText: {
+    fontSize: 12,
+    color: "#555",
+    lineHeight: 1.5,
+  },
+
   // ── Complete ─────────────────────────────────────────────────────
   completeContent: {
     flex: 1,
