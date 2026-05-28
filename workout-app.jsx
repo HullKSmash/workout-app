@@ -335,6 +335,34 @@ export default function WorkoutApp() {
                     {currentExercise.totalRounds}
                   </div>
                 )}
+
+                {/* Modifier panel */}
+                <div
+                  style={styles.modifierToggle}
+                  onClick={() => setShowModifier((v) => !v)}
+                >
+                  Make it easier or harder {showModifier ? "▴" : "▾"}
+                </div>
+                {showModifier && (
+                  <div style={styles.modifierPanel}>
+                    <div style={styles.modifierRow}>
+                      <span style={{ ...styles.modifierBadge, ...styles.modifierBadgeEasier }}>
+                        Easier
+                      </span>
+                      <span style={styles.modifierText}>
+                        {currentExercise.easier || MODIFIER_DEFAULTS.easier}
+                      </span>
+                    </div>
+                    <div style={{ ...styles.modifierRow, marginTop: 8 }}>
+                      <span style={{ ...styles.modifierBadge, ...styles.modifierBadgeHarder }}>
+                        Harder
+                      </span>
+                      <span style={styles.modifierText}>
+                        {currentExercise.harder || MODIFIER_DEFAULTS.harder}
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>
