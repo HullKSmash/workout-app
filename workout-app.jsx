@@ -874,7 +874,7 @@ const styles = {
   },
 
   modifierPanel: {
-    background: "#F7F5F2",
+    background: colors.bg,
     borderRadius: 12,
     padding: "12px 14px",
     marginTop: 8,
@@ -911,7 +911,7 @@ const styles = {
 
   modifierText: {
     fontSize: 12,
-    color: "#555",
+    color: colors.text,
     lineHeight: 1.5,
   },
 
