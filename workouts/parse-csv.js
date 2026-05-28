@@ -1,7 +1,7 @@
 /**
  * Parses a workout CSV string into the { name, phases } format.
  *
- * Expected CSV columns: Phase, Circuit, Rounds, Exercise, RepCount
+ * Expected CSV columns: Phase, Circuit, Rounds, Exercise, RepCount, Easier, Harder
  * - Phase only appears on the first row of each phase group.
  * - Circuit/Rounds only appear on the first row of each circuit.
  * - Rest rows (Exercise = "Rest") become their own single-round circuit.
@@ -13,7 +13,7 @@
  *       {
  *         name,
  *         circuits: [
- *           { repeatCount, exercises: [{ name, repCount }, ...] },
+ *           { repeatCount, exercises: [{ name, repCount, easier?, harder? }, ...] },
  *           ...
  *         ],
  *       },
@@ -30,7 +30,7 @@ export function parseWorkoutCsv(csvString, workoutName) {
   let currentCircuit = null;
   let currentRounds = 1;
 
-  for (const [phaseName, circuit, rounds, exercise, repCount] of rows) {
+  for (const [phaseName, circuit, rounds, exercise, repCount, easier, harder] of rows) {
     if (phaseName) {
       currentPhase = { name: phaseName, circuits: [] };
       phases.push(currentPhase);
@@ -51,12 +51,12 @@ export function parseWorkoutCsv(csvString, workoutName) {
       } else {
         currentCircuit = {
           repeatCount: currentRounds,
-          exercises: [{ name: exercise, repCount: rep }],
+          exercises: [buildExercise(exercise, rep, easier, harder)],
         };
         currentPhase.circuits.push(currentCircuit);
       }
     } else {
-      currentCircuit.exercises.push({ name: exercise, repCount: rep });
+      currentCircuit.exercises.push(buildExercise(exercise, rep, easier, harder));
     }
   }
 
@@ -82,4 +82,12 @@ function parseCsvLine(line) {
   }
   fields.push(current.trim());
   return fields;
+}
+
+/** Builds an exercise object, omitting easier/harder when blank. */
+function buildExercise(name, repCount, easier, harder) {
+  const obj = { name, repCount };
+  if (easier) obj.easier = easier;
+  if (harder) obj.harder = harder;
+  return obj;
 }
