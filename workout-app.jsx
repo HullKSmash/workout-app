@@ -50,6 +50,8 @@ function flattenWorkout(workout) {
     });
   });
 
+  while (steps.length > 0 && steps[steps.length - 1].isRest) steps.pop();
+
   return steps;
 }
 
