@@ -324,10 +324,20 @@ export default function WorkoutApp() {
 
                 <h2 style={styles.exerciseName}>{currentExercise.name}</h2>
                 <div style={styles.repBadge}>
-                  <span style={styles.repNumber}>
-                    {currentExercise.repCount}
-                  </span>
-                  <span style={styles.repLabel}>reps</span>
+                  {(() => {
+                    const raw = String(currentExercise.repCount);
+                    const qualifierMatch = raw.match(/^(.+?)\s+(per side|each side|each arm|each leg)$/i);
+                    const number = qualifierMatch ? qualifierMatch[1] : raw;
+                    const qualifier = qualifierMatch ? qualifierMatch[2] : null;
+                    return (
+                      <>
+                        <span style={styles.repNumber}>{number}</span>
+                        {qualifier && (
+                          <span style={styles.repQualifier}>{qualifier}</span>
+                        )}
+                      </>
+                    );
+                  })()}
                 </div>
 
                 {/* Circuit / Round info */}
@@ -702,8 +712,8 @@ const styles = {
 
   repBadge: {
     display: "flex",
-    alignItems: "baseline",
-    gap: 6,
+    flexDirection: "column",
+    alignItems: "center",
     background: colors.accentLight,
     borderRadius: 14,
     padding: "12px 28px",
@@ -718,11 +728,13 @@ const styles = {
     lineHeight: 1,
   },
 
-  repLabel: {
-    fontSize: 16,
+  repQualifier: {
+    fontSize: 13,
     fontWeight: 500,
     color: colors.accent,
-    opacity: 0.8,
+    opacity: 0.75,
+    marginTop: 4,
+    letterSpacing: "0.02em",
   },
 
   roundInfo: {
