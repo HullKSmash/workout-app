@@ -15,12 +15,16 @@ export default {
               "repCount": "6-8"
             },
             {
-              "name": "RDL/row/kickback",
-              "repCount": "6-8"
+              "name": "Superman sweeps",
+              "repCount": "6-8",
+              "easier": "Bend your elbows; decrease your range of motion",
+              "harder": "Hold a weight in each hand"
             },
             {
-              "name": "Superman pull downs",
-              "repCount": "10-15"
+              "name": "Pike push up",
+              "repCount": "6-8",
+              "easier": "Hold a pike; do plank or knee push ups",
+              "harder": "Walk your feet closer to your hands; do a weighted shoulder press instead"
             }
           ]
         }
@@ -33,11 +37,11 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Reverse fly",
+              "name": "Bent over row",
               "repCount": "6-8"
             },
             {
-              "name": "Lat pull over",
+              "name": "Chest press",
               "repCount": "6-8"
             }
           ]
@@ -51,11 +55,11 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Overhead squat",
+              "name": "Chin lifts",
               "repCount": "6-8"
             },
             {
-              "name": "Butterfly thrust",
+              "name": "Lat pull over",
               "repCount": "6-8"
             }
           ]
@@ -74,6 +78,24 @@ export default {
             },
             {
               "name": "Seated up & overs",
+              "repCount": "6-8 per side"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Superset 4",
+      "circuits": [
+        {
+          "repeatCount": 3,
+          "exercises": [
+            {
+              "name": "Butterfly thrust",
+              "repCount": "8-10"
+            },
+            {
+              "name": "Suitcase squat",
               "repCount": "6-8"
             }
           ]

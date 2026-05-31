@@ -17,7 +17,7 @@ export default {
               "harder": "Hold your press overhead throughout the squat"
             },
             {
-              "name": "Superman pull down",
+              "name": "RDL/row/kickback",
               "repCount": "8-12"
             },
             {
@@ -59,7 +59,7 @@ export default {
               "repCount": "6-8"
             },
             {
-              "name": "Bench press",
+              "name": "Hammer curls",
               "repCount": "6-8"
             }
           ]
@@ -68,6 +68,24 @@ export default {
     },
     {
       "name": "Superset 3",
+      "circuits": [
+        {
+          "repeatCount": 1,
+          "exercises": [
+            {
+              "name": "Alternating side lunge",
+              "repCount": ""
+            },
+            {
+              "name": "Suitcase squat",
+              "repCount": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Superset 4",
       "circuits": [
         {
           "repeatCount": 3,
