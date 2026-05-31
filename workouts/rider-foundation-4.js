@@ -1,5 +1,5 @@
 export default {
-  "name": "Rider Strength Main 4",
+  "name": "Rider Foundation 4",
   "audiences": [
     "equestrian"
   ],

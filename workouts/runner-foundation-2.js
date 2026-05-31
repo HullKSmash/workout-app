@@ -1,5 +1,5 @@
 export default {
-  name: "Runner Strength Main 4",
+  name: "Runner Foundation 2",
   audiences: [
     "run"
   ],
@@ -42,11 +42,11 @@ export default {
           repeatCount: 2,
           exercises: [
             {
-              name: "Bird Dogs, Left Arm/Right Leg",
+              name: "Unilateral Calf Raise & Curl, Left",
               repCount: "8-10",
             },
             {
-              name: "Bird Dogs, Right Arm/Left Leg",
+              name: "Unilateral Calf Raise & Curl, Right",
               repCount: "8-10",
             }
           ],
@@ -78,12 +78,12 @@ export default {
           repeatCount: 2,
           exercises: [
             {
-              name: "Single Leg Calf Raise, Left",
-              repCount: "8-10",
+              name: "Side Lying Leg Lift, Left",
+              repCount: "6-10",
             },
             {
-              name: "Single Leg Calf Raise, Right",
-              repCount: "8-10",
+              name: "Side Lying Leg Lift, Right",
+              repCount: "6-10",
             }
           ],
         },
@@ -115,11 +115,11 @@ export default {
           exercises: [
             {
               name: "Single Leg Glute Bridge, Left",
-              repCount: "8-10",
+              repCount: "10-12",
             },
             {
               name: "Single Leg Glute Bridge, Right",
-              repCount: "8-10",
+              repCount: "10-12",
             }
           ],
         },

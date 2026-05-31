@@ -1,5 +1,5 @@
 export default {
-  name: "Runner Strength Main 3",
+  name: "Runner Foundation 1",
   audiences: [
     "run"
   ],
@@ -30,18 +30,32 @@ export default {
       name: "Superset 1",
       circuits: [
         {
+          repeatCount: 1,
+          exercises: [
+            {
+              name: "RDL & Row",
+              repCount: "8-10",
+            }
+          ],
+        },
+        {
           repeatCount: 2,
           exercises: [
             {
-              name: "Superman Sweep Back",
-              repCount: "8-12",
+              name: "Bird Dogs, Left Arm/Right Leg",
+              repCount: "8-10",
             },
             {
-              name: "Calf Raise & Curl",
-              repCount: "10-12",
-            },
+              name: "Bird Dogs, Right Arm/Left Leg",
+              repCount: "8-10",
+            }
+          ],
+        },
+        {
+          repeatCount: 1,
+          exercises: [
             {
-              name: "Suitcase Squat",
+              name: "RDL & Row",
               repCount: "8-10",
             }
           ],
@@ -56,7 +70,7 @@ export default {
           exercises: [
             {
               name: "Hamstring Bridge",
-              repCount: "10-15",
+              repCount: "8-10",
             }
           ],
         },
@@ -69,7 +83,7 @@ export default {
             },
             {
               name: "Curtsy Lunge, Right",
-              repCount: "8-10",
+              repCount: "10-15",
             }
           ],
         },
@@ -78,7 +92,7 @@ export default {
           exercises: [
             {
               name: "Hamstring Bridge",
-              repCount: "10-15",
+              repCount: "8-10",
             }
           ],
         }
@@ -100,11 +114,11 @@ export default {
           repeatCount: 2,
           exercises: [
             {
-              name: "Single Leg RDL, Left",
+              name: "Glute Arcs, Left",
               repCount: "8-10",
             },
             {
-              name: "Single Leg RDL, Right",
+              name: "Glute Arcs, Right",
               repCount: "8-10",
             }
           ],

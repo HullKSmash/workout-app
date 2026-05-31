@@ -1,5 +1,5 @@
 export default {
-  "name": "Rider Strength Main 2",
+  "name": "Rider Foundation 1",
   "audiences": [
     "equestrian"
   ],
@@ -15,12 +15,12 @@ export default {
               "repCount": "6-8"
             },
             {
-              "name": "Squat twist",
+              "name": "Standing twist",
               "repCount": "5-10 per side"
             },
             {
-              "name": "Single leg forward hops",
-              "repCount": "8 per side"
+              "name": "Jump squat stabilization",
+              "repCount": "5-10"
             }
           ]
         }
@@ -33,15 +33,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Suitcase squat",
+              "name": "Reverse fly",
               "repCount": "6-8"
             },
             {
-              "name": "RDL",
+              "name": "Squat and press",
               "repCount": "6-8"
             },
             {
-              "name": "Alternating shoulder press",
+              "name": "Row and kickback",
               "repCount": "6-8"
             }
           ]
@@ -55,7 +55,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Alternating row w/ top hold",
+              "name": "Squat and forward reach",
               "repCount": "6-8"
             }
           ]
@@ -64,11 +64,11 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Lying leg lift, left",
+              "name": "Transverse lunge, left",
               "repCount": "6-8"
             },
             {
-              "name": "Lying leg lift, right",
+              "name": "Transverse lunge, right",
               "repCount": "6-8"
             }
           ]
@@ -77,7 +77,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Alternating row w/ top hold",
+              "name": "Squat and forward reach",
               "repCount": "6-8"
             }
           ]
@@ -91,8 +91,8 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Alternating curtsy lunge",
-              "repCount": "6-8 per side"
+              "name": "Sumo squat",
+              "repCount": "6-8"
             }
           ]
         },
@@ -100,11 +100,11 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Single leg glute bridge/chest press hold, left",
+              "name": "Single leg RDL, left",
               "repCount": "6-8"
             },
             {
-              "name": "Single leg glute bridge/chest press hold, right",
+              "name": "Single leg RDL, right",
               "repCount": "6-8"
             }
           ]
@@ -113,8 +113,8 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Alternating curtsy lunge",
-              "repCount": "6-8 per side"
+              "name": "Sumo squat",
+              "repCount": "6-8"
             }
           ]
         }
@@ -127,16 +127,16 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Dead bugs",
+              "name": "Russian twist",
               "repCount": "10-20"
             },
             {
-              "name": "Plank pikes",
+              "name": "Plank toe taps",
               "repCount": "10-20"
             },
             {
-              "name": "Diagonal sit ups",
-              "repCount": "5-10 per side"
+              "name": "Adductor crosses",
+              "repCount": "10-20"
             }
           ]
         }

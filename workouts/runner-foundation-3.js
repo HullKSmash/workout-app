@@ -1,5 +1,5 @@
 export default {
-  name: "Runner Strength Main 2",
+  name: "Runner Foundation 3",
   audiences: [
     "run"
   ],
@@ -11,15 +11,15 @@ export default {
           repeatCount: 2,
           exercises: [
             {
-              name: "Runner Hop, Left",
-              repCount: "8-10",
+              name: "Single Leg Pogos, Left",
+              repCount: "10-20",
             },
             {
-              name: "Runner Hop, Right",
-              repCount: "8-10",
+              name: "Single Leg Pogos, Right",
+              repCount: "10-21",
             },
             {
-              name: "Lateral Line Jumps",
+              name: "Squat Jumps",
               repCount: "8-10",
             }
           ],
@@ -30,32 +30,18 @@ export default {
       name: "Superset 1",
       circuits: [
         {
-          repeatCount: 1,
-          exercises: [
-            {
-              name: "Row & Kickback",
-              repCount: "8-10",
-            }
-          ],
-        },
-        {
           repeatCount: 2,
           exercises: [
             {
-              name: "Unilateral Calf Raise & Curl, Left",
-              repCount: "8-10",
+              name: "Superman Sweep Back",
+              repCount: "8-12",
             },
             {
-              name: "Unilateral Calf Raise & Curl, Right",
-              repCount: "8-10",
-            }
-          ],
-        },
-        {
-          repeatCount: 1,
-          exercises: [
+              name: "Calf Raise & Curl",
+              repCount: "10-12",
+            },
             {
-              name: "Row & Kickback",
+              name: "Suitcase Squat",
               repCount: "8-10",
             }
           ],
@@ -69,8 +55,8 @@ export default {
           repeatCount: 1,
           exercises: [
             {
-              name: "Romanian Dead Lift",
-              repCount: "8-10",
+              name: "Hamstring Bridge",
+              repCount: "10-15",
             }
           ],
         },
@@ -78,12 +64,12 @@ export default {
           repeatCount: 2,
           exercises: [
             {
-              name: "Side Lying Leg Lift, Left",
-              repCount: "6-10",
+              name: "Curtsy Lunge, Left",
+              repCount: "8-10",
             },
             {
-              name: "Side Lying Leg Lift, Right",
-              repCount: "6-10",
+              name: "Curtsy Lunge, Right",
+              repCount: "8-10",
             }
           ],
         },
@@ -91,8 +77,8 @@ export default {
           repeatCount: 1,
           exercises: [
             {
-              name: "Romanian Dead Lift",
-              repCount: "8-10",
+              name: "Hamstring Bridge",
+              repCount: "10-15",
             }
           ],
         }
@@ -105,8 +91,8 @@ export default {
           repeatCount: 1,
           exercises: [
             {
-              name: "Sumo Goblet Squat",
-              repCount: "8-10",
+              name: "Banded Crab Walks",
+              repCount: "8-10 per side",
             }
           ],
         },
@@ -114,12 +100,12 @@ export default {
           repeatCount: 2,
           exercises: [
             {
-              name: "Single Leg Glute Bridge, Left",
-              repCount: "10-12",
+              name: "Single Leg RDL, Left",
+              repCount: "8-10",
             },
             {
-              name: "Single Leg Glute Bridge, Right",
-              repCount: "10-12",
+              name: "Single Leg RDL, Right",
+              repCount: "8-10",
             }
           ],
         },
@@ -127,8 +113,8 @@ export default {
           repeatCount: 1,
           exercises: [
             {
-              name: "Sumo Goblet Squat",
-              repCount: "8-10",
+              name: "Banded Crab Walks",
+              repCount: "8-10 per side",
             }
           ],
         }
@@ -141,16 +127,16 @@ export default {
           repeatCount: 2,
           exercises: [
             {
-              name: "Hip Dip Planks",
-              repCount: "10-12",
+              name: "Lying Adductor Crosses",
+              repCount: "10-20",
             },
             {
-              name: "Toe Taps",
-              repCount: "10-12",
+              name: "Russian Twist",
+              repCount: "10-20",
             },
             {
-              name: "Dead Bugs",
-              repCount: "6-10 per side",
+              name: "Plank Pike",
+              repCount: "10-20",
             }
           ],
         }

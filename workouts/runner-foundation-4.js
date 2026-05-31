@@ -1,5 +1,5 @@
 export default {
-  name: "Runner Strength Main 1",
+  name: "Runner Foundation 4",
   audiences: [
     "run"
   ],
@@ -11,15 +11,15 @@ export default {
           repeatCount: 2,
           exercises: [
             {
-              name: "Single Leg Pogos, Left",
-              repCount: "10-20",
+              name: "Runner Hop, Left",
+              repCount: "8-10",
             },
             {
-              name: "Single Leg Pogos, Right",
-              repCount: "10-21",
+              name: "Runner Hop, Right",
+              repCount: "8-10",
             },
             {
-              name: "Squat Jumps",
+              name: "Lateral Line Jumps",
               repCount: "8-10",
             }
           ],
@@ -33,7 +33,7 @@ export default {
           repeatCount: 1,
           exercises: [
             {
-              name: "RDL & Row",
+              name: "Row & Kickback",
               repCount: "8-10",
             }
           ],
@@ -55,7 +55,7 @@ export default {
           repeatCount: 1,
           exercises: [
             {
-              name: "RDL & Row",
+              name: "Row & Kickback",
               repCount: "8-10",
             }
           ],
@@ -69,7 +69,7 @@ export default {
           repeatCount: 1,
           exercises: [
             {
-              name: "Hamstring Bridge",
+              name: "Romanian Dead Lift",
               repCount: "8-10",
             }
           ],
@@ -78,12 +78,12 @@ export default {
           repeatCount: 2,
           exercises: [
             {
-              name: "Curtsy Lunge, Left",
+              name: "Single Leg Calf Raise, Left",
               repCount: "8-10",
             },
             {
-              name: "Curtsy Lunge, Right",
-              repCount: "10-15",
+              name: "Single Leg Calf Raise, Right",
+              repCount: "8-10",
             }
           ],
         },
@@ -91,7 +91,7 @@ export default {
           repeatCount: 1,
           exercises: [
             {
-              name: "Hamstring Bridge",
+              name: "Romanian Dead Lift",
               repCount: "8-10",
             }
           ],
@@ -105,8 +105,8 @@ export default {
           repeatCount: 1,
           exercises: [
             {
-              name: "Banded Crab Walks",
-              repCount: "8-10 per side",
+              name: "Sumo Goblet Squat",
+              repCount: "8-10",
             }
           ],
         },
@@ -114,11 +114,11 @@ export default {
           repeatCount: 2,
           exercises: [
             {
-              name: "Glute Arcs, Left",
+              name: "Single Leg Glute Bridge, Left",
               repCount: "8-10",
             },
             {
-              name: "Glute Arcs, Right",
+              name: "Single Leg Glute Bridge, Right",
               repCount: "8-10",
             }
           ],
@@ -127,8 +127,8 @@ export default {
           repeatCount: 1,
           exercises: [
             {
-              name: "Banded Crab Walks",
-              repCount: "8-10 per side",
+              name: "Sumo Goblet Squat",
+              repCount: "8-10",
             }
           ],
         }
@@ -141,16 +141,16 @@ export default {
           repeatCount: 2,
           exercises: [
             {
-              name: "Lying Adductor Crosses",
-              repCount: "10-20",
+              name: "Hip Dip Planks",
+              repCount: "10-12",
             },
             {
-              name: "Russian Twist",
-              repCount: "10-20",
+              name: "Toe Taps",
+              repCount: "10-12",
             },
             {
-              name: "Plank Pike",
-              repCount: "10-20",
+              name: "Dead Bugs",
+              repCount: "6-10 per side",
             }
           ],
         }
