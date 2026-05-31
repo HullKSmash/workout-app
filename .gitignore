@@ -1,3 +1,9 @@
 node_modules
 dist
 .vercel
+docs/
+
+# Claude Code: ignore machine-local config, but keep shared skills + launch config
+.claude/*
+!.claude/skills/
+!.claude/launch.json
