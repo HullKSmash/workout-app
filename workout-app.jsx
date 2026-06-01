@@ -1,9 +1,11 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { WORKOUTS } from "./workouts";
 import { VARIANTS, resolveVariant } from "./variants";
+import { RIDER_STRENGTH_SCHEDULE } from "./workouts/rider-strength-schedule.js";
 
 const variant = resolveVariant();
 const isDefaultVariant = variant.audiences === null;
+const isEquestrian = variant.audiences?.includes("equestrian") ?? false;
 const visibleWorkouts = isDefaultVariant
   ? []
   : WORKOUTS.filter((w) =>
@@ -57,8 +59,10 @@ function flattenWorkout(workout) {
 
 // ─── Main App ───────────────────────────────────────────────────────────────
 export default function WorkoutApp() {
-  const [screen, setScreen] = useState("select"); // select | landing | workout | complete
+  const [screen, setScreen] = useState(isEquestrian ? "schedule" : "select"); // schedule | select | landing | workout | complete
   const [selectedWorkout, setSelectedWorkout] = useState(null);
+  const [expandedWeek, setExpandedWeek] = useState(null);
+  const [guideOpen, setGuideOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [showEndConfirm, setShowEndConfirm] = useState(false);
   const [timerSeconds, setTimerSeconds] = useState(0);
@@ -124,6 +128,10 @@ export default function WorkoutApp() {
     setScreen("landing");
   };
 
+  const handleBackFromLanding = () => {
+    setScreen(isEquestrian ? "schedule" : "select");
+  };
+
   const handleStart = () => {
     setCurrentStep(0);
     setScreen("workout");
@@ -150,7 +158,7 @@ export default function WorkoutApp() {
 
   const confirmEnd = () => {
     setShowEndConfirm(false);
-    setScreen("select");
+    setScreen(isEquestrian ? "schedule" : "select");
   };
 
   const cancelEnd = () => {
@@ -158,7 +166,7 @@ export default function WorkoutApp() {
   };
 
   const handleBackToStart = () => {
-    setScreen("select");
+    setScreen(isEquestrian ? "schedule" : "select");
   };
 
   // ─── Timer display formatting ───────────────────────────────────────────
@@ -176,12 +184,104 @@ export default function WorkoutApp() {
     <div style={styles.appContainer}>
       <style>{cssAnimations}</style>
 
+      {/* ── Schedule ─────────────────────────────────────────────────── */}
+      {screen === "schedule" && (
+        <div style={styles.screenContainer}>
+          <div style={styles.scheduleContent}>
+            <h1 style={styles.appTitle}>{variant.brandName}</h1>
+            <p style={styles.selectSubtitle}>{variant.tagline}</p>
+
+            {/* Program guide collapsible */}
+            <div style={styles.guideCard}>
+              <button
+                style={styles.guideToggle}
+                onClick={() => setGuideOpen((v) => !v)}
+              >
+                <div style={styles.guideToggleLeft}>
+                  <span style={styles.guideIcon}>📋</span>
+                  <div>
+                    <div style={styles.guideTitle}>How to Use This Program</div>
+                    <div style={styles.guideSubtitle}>Schedule, weight guidance, and technique</div>
+                  </div>
+                </div>
+                <span style={styles.guideChevron}>{guideOpen ? "∧" : "∨"}</span>
+              </button>
+              {guideOpen && (
+                <div style={styles.guideBody}>
+                  <p style={styles.guidePlaceholder}>Program guide coming soon.</p>
+                </div>
+              )}
+            </div>
+
+            {/* Week list */}
+            <div style={styles.scheduleSectionLabel}>12-WEEK PROGRAM</div>
+            <div style={styles.weekList}>
+              {RIDER_STRENGTH_SCHEDULE.weeks.map(({ week, theme, workouts }) => {
+                const isOpen = expandedWeek === week;
+                return (
+                  <div key={week} style={{ ...styles.weekCard, ...(isOpen ? styles.weekCardOpen : {}) }}>
+                    <button
+                      style={styles.weekHeader}
+                      onClick={() => setExpandedWeek(isOpen ? null : week)}
+                    >
+                      <div>
+                        <div style={styles.weekTitle}>Week {week}</div>
+                        <div style={styles.weekTheme}>{theme}</div>
+                      </div>
+                      <span style={styles.weekChevron}>{isOpen ? "∧" : "∨"}</span>
+                    </button>
+                    {isOpen && (
+                      <div style={styles.weekWorkouts}>
+                        {workouts.map((workout, i) => {
+                          const stepCount = flattenWorkout(workout).length;
+                          return (
+                            <button
+                              key={i}
+                              style={{
+                                ...styles.weekWorkoutRow,
+                                ...(i < workouts.length - 1 ? styles.weekWorkoutRowBorder : {}),
+                              }}
+                              onClick={() => handleSelectWorkout(workout)}
+                            >
+                              <div>
+                                <div style={styles.weekWorkoutName}>{workout.name}</div>
+                                <div style={styles.weekWorkoutMeta}>
+                                  {workout.phases.length} phases · {stepCount} exercises
+                                </div>
+                              </div>
+                              <span style={styles.weekWorkoutArrow}>›</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* View all workouts link */}
+            <button style={styles.viewAllLink} onClick={() => setScreen("select")}>
+              View all workouts
+            </button>
+            <button style={{ ...styles.viewAllLink, marginTop: 0 }} onClick={() => window.location.href = '/'}>
+              Choose a different program
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* ── Workout Selection ────────────────────────────────────────── */}
       {screen === "select" && (
         <div style={styles.screenContainer}>
           <div style={styles.selectContent}>
             <h1 style={styles.appTitle}>{variant.brandName}</h1>
             <p style={styles.selectSubtitle}>{variant.tagline}</p>
+            {isEquestrian && (
+              <button style={styles.backToScheduleLink} onClick={() => setScreen("schedule")}>
+                ← Back to schedule
+              </button>
+            )}
             <div style={styles.workoutList}>
               {isDefaultVariant
                 ? variantLinks.map((v) => (
@@ -227,7 +327,7 @@ export default function WorkoutApp() {
             </button>
             <button
               style={styles.backLink}
-              onClick={() => setScreen("select")}
+              onClick={handleBackFromLanding}
             >
               Choose a different workout
             </button>
@@ -525,6 +625,19 @@ const styles = {
     color: colors.textSecondary,
     fontWeight: 300,
     margin: "0 0 32px 0",
+  },
+
+  backToScheduleLink: {
+    fontFamily: "'DM Sans', sans-serif",
+    background: "none",
+    border: "none",
+    color: colors.textSecondary,
+    fontSize: 14,
+    fontWeight: 500,
+    cursor: "pointer",
+    padding: "4px 0 20px",
+    alignSelf: "flex-start",
+    WebkitTapHighlightColor: "transparent",
   },
 
   workoutList: {
@@ -992,6 +1105,208 @@ const styles = {
     color: colors.text,
     lineHeight: 1.5,
     textAlign: "left",
+  },
+
+  // ── Schedule ─────────────────────────────────────────────────────
+  scheduleContent: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "48px 24px 32px",
+    width: "100%",
+    boxSizing: "border-box",
+  },
+
+  guideCard: {
+    width: "100%",
+    maxWidth: 400,
+    background: colors.accentLight,
+    borderRadius: 16,
+    marginBottom: 28,
+    overflow: "hidden",
+  },
+
+  guideToggle: {
+    fontFamily: "'DM Sans', sans-serif",
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "16px 20px",
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    WebkitTapHighlightColor: "transparent",
+    textAlign: "left",
+  },
+
+  guideToggleLeft: {
+    display: "flex",
+    alignItems: "flex-start",
+    gap: 12,
+  },
+
+  guideIcon: {
+    fontSize: 18,
+    lineHeight: 1,
+    marginTop: 2,
+    flexShrink: 0,
+  },
+
+  guideTitle: {
+    fontFamily: "'Outfit', sans-serif",
+    fontSize: 16,
+    fontWeight: 700,
+    color: colors.accent,
+    textAlign: "left",
+  },
+
+  guideSubtitle: {
+    fontSize: 13,
+    color: colors.textSecondary,
+    fontWeight: 400,
+    marginTop: 2,
+    textAlign: "left",
+  },
+
+  guideChevron: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    flexShrink: 0,
+    marginLeft: 8,
+  },
+
+  guideBody: {
+    padding: "0 20px 16px",
+  },
+
+  guidePlaceholder: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    margin: 0,
+    fontStyle: "italic",
+  },
+
+  scheduleSectionLabel: {
+    width: "100%",
+    maxWidth: 400,
+    fontSize: 11,
+    fontWeight: 700,
+    letterSpacing: "0.1em",
+    color: colors.textSecondary,
+    textTransform: "uppercase",
+    marginBottom: 12,
+  },
+
+  weekList: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
+    width: "100%",
+    maxWidth: 400,
+  },
+
+  weekCard: {
+    background: colors.surface,
+    border: `1.5px solid ${colors.border}`,
+    borderRadius: 16,
+    overflow: "hidden",
+  },
+
+  weekCardOpen: {
+    border: `1.5px solid ${colors.accent}`,
+  },
+
+  weekHeader: {
+    fontFamily: "'DM Sans', sans-serif",
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "16px 20px",
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    WebkitTapHighlightColor: "transparent",
+    textAlign: "left",
+  },
+
+  weekTitle: {
+    fontFamily: "'Outfit', sans-serif",
+    fontSize: 20,
+    fontWeight: 700,
+    color: colors.text,
+    lineHeight: 1.2,
+  },
+
+  weekTheme: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    fontWeight: 400,
+    marginTop: 2,
+  },
+
+  weekChevron: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    flexShrink: 0,
+  },
+
+  weekWorkouts: {
+    borderTop: `1px solid ${colors.border}`,
+  },
+
+  weekWorkoutRow: {
+    fontFamily: "'DM Sans', sans-serif",
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "14px 20px",
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    WebkitTapHighlightColor: "transparent",
+    textAlign: "left",
+  },
+
+  weekWorkoutRowBorder: {
+    borderBottom: `1px solid ${colors.border}`,
+  },
+
+  weekWorkoutName: {
+    fontFamily: "'Outfit', sans-serif",
+    fontSize: 16,
+    fontWeight: 700,
+    color: colors.text,
+  },
+
+  weekWorkoutMeta: {
+    fontSize: 13,
+    color: colors.textSecondary,
+    fontWeight: 400,
+    marginTop: 2,
+  },
+
+  weekWorkoutArrow: {
+    fontSize: 18,
+    color: colors.textSecondary,
+    flexShrink: 0,
+    marginLeft: 8,
+  },
+
+  viewAllLink: {
+    fontFamily: "'DM Sans', sans-serif",
+    background: "none",
+    border: "none",
+    color: colors.textSecondary,
+    fontSize: 14,
+    fontWeight: 500,
+    cursor: "pointer",
+    marginTop: 24,
+    padding: 8,
+    WebkitTapHighlightColor: "transparent",
   },
 
   // ── Complete ─────────────────────────────────────────────────────
