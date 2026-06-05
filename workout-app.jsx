@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { WORKOUTS } from "./workouts";
 import { VARIANTS, resolveVariant } from "./variants";
 import { RIDER_STRENGTH_SCHEDULE } from "./workouts/rider-strength-schedule.js";
+import { slotId, loadProgress, saveProgress, clearProgress } from "./workouts/progress.js";
 
 const variant = resolveVariant();
 const isDefaultVariant = variant.audiences === null;
@@ -57,11 +58,45 @@ function flattenWorkout(workout) {
   return steps;
 }
 
+// ─── Schedule progress helpers ──────────────────────────────────────────────
+const TOTAL_SLOTS = RIDER_STRENGTH_SCHEDULE.weeks.reduce(
+  (sum, w) => sum + w.workouts.length,
+  0
+);
+
+// Count completed slots within a single week.
+function weekDoneCount(week, progress) {
+  return week.workouts.reduce(
+    (n, _, i) => n + (progress[slotId(week.week, i)] ? 1 : 0),
+    0
+  );
+}
+
+// First week that isn't fully complete (where the user "is"). Falls back to the
+// last week once everything is done.
+function firstIncompleteWeek(progress) {
+  const weeks = RIDER_STRENGTH_SCHEDULE.weeks;
+  const found = weeks.find((w) => weekDoneCount(w, progress) < w.workouts.length);
+  return (found || weeks[weeks.length - 1]).week;
+}
+
+// Total completed slots across the whole program.
+function totalDoneCount(progress) {
+  return RIDER_STRENGTH_SCHEDULE.weeks.reduce(
+    (sum, w) => sum + weekDoneCount(w, progress),
+    0
+  );
+}
+
 // ─── Main App ───────────────────────────────────────────────────────────────
 export default function WorkoutApp() {
   const [screen, setScreen] = useState(isEquestrian ? "schedule" : "select"); // schedule | select | landing | workout | complete
   const [selectedWorkout, setSelectedWorkout] = useState(null);
-  const [expandedWeek, setExpandedWeek] = useState(null);
+  const [selectedSlot, setSelectedSlot] = useState(null); // schedule slot id for the open workout, or null (e.g. opened from "View all")
+  const [completed, setCompleted] = useState(loadProgress);
+  const [expandedWeek, setExpandedWeek] = useState(() =>
+    isEquestrian ? firstIncompleteWeek(loadProgress()) : null
+  );
   const [guideOpen, setGuideOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [showEndConfirm, setShowEndConfirm] = useState(false);
@@ -123,9 +158,27 @@ export default function WorkoutApp() {
     }, 200);
   }, []);
 
-  const handleSelectWorkout = (workout) => {
+  const handleSelectWorkout = (workout, slot = null) => {
     setSelectedWorkout(workout);
+    setSelectedSlot(slot);
     setScreen("landing");
+  };
+
+  // Toggle a schedule slot's completion and persist immediately.
+  const toggleSlot = (slot) => {
+    setCompleted((prev) => {
+      const next = { ...prev };
+      if (next[slot]) delete next[slot];
+      else next[slot] = true;
+      saveProgress(next);
+      return next;
+    });
+  };
+
+  const handleResetProgress = () => {
+    clearProgress();
+    setCompleted({});
+    setExpandedWeek(isEquestrian ? RIDER_STRENGTH_SCHEDULE.weeks[0].week : null);
   };
 
   const handleBackFromLanding = () => {
@@ -140,6 +193,8 @@ export default function WorkoutApp() {
 
   const handleNext = () => {
     if (currentStep >= totalSteps - 1) {
+      // Auto-mark the schedule slot complete on finishing the last step.
+      if (selectedSlot && !completed[selectedSlot]) toggleSlot(selectedSlot);
       setScreen("complete");
     } else {
       animateTransition(() => setCurrentStep((s) => s + 1));
@@ -179,6 +234,11 @@ export default function WorkoutApp() {
   const restDuration = currentExercise?.isRest ? currentExercise.repCount : 0;
   const timerProgress = restDuration > 0 ? timerSeconds / restDuration : 0;
 
+  // ─── Schedule progress summary (derived) ────────────────────────────────
+  const doneTotal = totalDoneCount(completed);
+  const currentWeek = firstIncompleteWeek(completed);
+  const programComplete = doneTotal >= TOTAL_SLOTS;
+
   // ─── Render ─────────────────────────────────────────────────────────────
   return (
     <div style={styles.appContainer}>
@@ -214,12 +274,25 @@ export default function WorkoutApp() {
             </div>
 
             {/* Week list */}
-            <div style={styles.scheduleSectionLabel}>12-WEEK PROGRAM</div>
+            <div style={styles.scheduleSectionLabel}>
+              {programComplete
+                ? "Program complete"
+                : `Week ${currentWeek} of ${RIDER_STRENGTH_SCHEDULE.weeks.length}`}
+            </div>
             <div style={styles.weekList}>
               {RIDER_STRENGTH_SCHEDULE.weeks.map(({ week, theme, workouts }) => {
                 const isOpen = expandedWeek === week;
+                const doneInWeek = weekDoneCount({ week, workouts }, completed);
+                const weekFull = doneInWeek === workouts.length;
                 return (
-                  <div key={week} style={{ ...styles.weekCard, ...(isOpen ? styles.weekCardOpen : {}) }}>
+                  <div
+                    key={week}
+                    style={{
+                      ...styles.weekCard,
+                      ...(weekFull ? styles.weekCardDone : {}),
+                      ...(isOpen ? styles.weekCardOpen : {}),
+                    }}
+                  >
                     <button
                       style={styles.weekHeader}
                       onClick={() => setExpandedWeek(isOpen ? null : week)}
@@ -228,29 +301,62 @@ export default function WorkoutApp() {
                         <div style={styles.weekTitle}>Week {week}</div>
                         <div style={styles.weekTheme}>{theme}</div>
                       </div>
-                      <span style={styles.weekChevron}>{isOpen ? "∧" : "∨"}</span>
+                      <div style={styles.weekHeaderRight}>
+                        <span
+                          style={{
+                            ...styles.weekCount,
+                            ...(weekFull ? styles.weekCountDone : {}),
+                          }}
+                        >
+                          {weekFull ? "✓ done" : `${doneInWeek}/${workouts.length}`}
+                        </span>
+                        <span style={styles.weekChevron}>{isOpen ? "∧" : "∨"}</span>
+                      </div>
                     </button>
                     {isOpen && (
                       <div style={styles.weekWorkouts}>
                         {workouts.map((workout, i) => {
                           const stepCount = flattenWorkout(workout).length;
+                          const id = slotId(week, i);
+                          const isDone = !!completed[id];
                           return (
-                            <button
+                            <div
                               key={i}
                               style={{
                                 ...styles.weekWorkoutRow,
                                 ...(i < workouts.length - 1 ? styles.weekWorkoutRowBorder : {}),
                               }}
-                              onClick={() => handleSelectWorkout(workout)}
                             >
-                              <div>
-                                <div style={styles.weekWorkoutName}>{workout.name}</div>
-                                <div style={styles.weekWorkoutMeta}>
-                                  {workout.phases.length} phases · {stepCount} exercises
+                              <button
+                                style={{
+                                  ...styles.checkCircle,
+                                  ...(isDone ? styles.checkCircleDone : {}),
+                                }}
+                                onClick={() => toggleSlot(id)}
+                                aria-label={isDone ? "Mark as not done" : "Mark as done"}
+                              >
+                                {isDone ? "✓" : ""}
+                              </button>
+                              <button
+                                style={styles.weekWorkoutOpen}
+                                onClick={() => handleSelectWorkout(workout, id)}
+                              >
+                                <div>
+                                  <div
+                                    style={{
+                                      ...styles.weekWorkoutName,
+                                      ...(isDone ? styles.weekWorkoutNameDone : {}),
+                                    }}
+                                  >
+                                    {workout.name}
+                                  </div>
+                                  <div style={styles.weekWorkoutMeta}>
+                                    {workout.phases.length} phases · {stepCount} exercises
+                                  </div>
                                 </div>
-                              </div>
-                              <span style={styles.weekWorkoutArrow}>›</span>
-                            </button>
+                                <span style={styles.weekWorkoutArrow}>›</span>
+                              </button>
+                            </div>
                           );
                         })}
                       </div>
@@ -267,6 +373,14 @@ export default function WorkoutApp() {
             <button style={{ ...styles.viewAllLink, marginTop: 0 }} onClick={() => window.location.href = '/'}>
               Choose a different program
             </button>
+            {doneTotal > 0 && (
+              <button
+                style={{ ...styles.viewAllLink, marginTop: 0, color: colors.textSecondary, opacity: 0.7 }}
+                onClick={handleResetProgress}
+              >
+                Reset progress
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -1207,6 +1321,24 @@ const styles = {
     maxWidth: 400,
   },
 
+  weekHeaderRight: {
+    display: "flex",
+    alignItems: "center",
+    gap: 12,
+    flexShrink: 0,
+  },
+
+  weekCount: {
+    fontSize: 13,
+    fontWeight: 700,
+    color: colors.textSecondary,
+    fontVariantNumeric: "tabular-nums",
+  },
+
+  weekCountDone: {
+    color: colors.success,
+  },
+
   weekCard: {
     background: colors.surface,
     border: `1.5px solid ${colors.border}`,
@@ -1216,6 +1348,12 @@ const styles = {
 
   weekCardOpen: {
     border: `1.5px solid ${colors.accent}`,
+  },
+
+  weekCardDone: {
+    background: colors.bg,
+    borderColor: colors.border,
+    opacity: 0.62,
   },
 
   weekHeader: {
@@ -1258,12 +1396,48 @@ const styles = {
   },
 
   weekWorkoutRow: {
-    fontFamily: "'DM Sans', sans-serif",
     width: "100%",
     display: "flex",
     alignItems: "center",
+    paddingLeft: 16,
+  },
+
+  weekWorkoutRowBorder: {
+    borderBottom: `1px solid ${colors.border}`,
+  },
+
+  checkCircle: {
+    flexShrink: 0,
+    width: 24,
+    height: 24,
+    borderRadius: "50%",
+    border: `2px solid ${colors.border}`,
+    background: colors.surface,
+    color: "#fff",
+    fontSize: 14,
+    fontWeight: 700,
+    lineHeight: 1,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "pointer",
+    padding: 0,
+    WebkitTapHighlightColor: "transparent",
+  },
+
+  checkCircleDone: {
+    background: colors.success,
+    border: `2px solid ${colors.success}`,
+  },
+
+  weekWorkoutOpen: {
+    fontFamily: "'DM Sans', sans-serif",
+    flex: 1,
+    minWidth: 0,
+    display: "flex",
+    alignItems: "center",
     justifyContent: "space-between",
-    padding: "14px 20px",
+    padding: "14px 20px 14px 12px",
     background: "none",
     border: "none",
     cursor: "pointer",
@@ -1271,15 +1445,16 @@ const styles = {
     textAlign: "left",
   },
 
-  weekWorkoutRowBorder: {
-    borderBottom: `1px solid ${colors.border}`,
-  },
-
   weekWorkoutName: {
     fontFamily: "'Outfit', sans-serif",
     fontSize: 16,
     fontWeight: 700,
     color: colors.text,
+  },
+
+  weekWorkoutNameDone: {
+    color: colors.textSecondary,
+    textDecoration: "line-through",
   },
 
   weekWorkoutMeta: {
