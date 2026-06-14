@@ -12,5 +12,6 @@ import riderSymmetryAndBalance1 from "./rider-symmetry-and-balance-1.js";
 import riderSymmetryAndBalance2 from "./rider-symmetry-and-balance-2.js";
 import riderBuild1 from "./rider-build-1.js";
 import riderBuild2 from "./rider-build-2.js";
+import riderAlternatingSupersets from "./rider-alternating-supersets.js";
 
-export const WORKOUTS = [legDay, paulUpperBody, riderFoundation1, riderFoundation2, riderFoundation3, riderFoundation4, riderSymmetryAndBalance1, riderSymmetryAndBalance2, riderBuild1, riderBuild2, runnerFoundation1, runnerFoundation2, runnerFoundation3, runnerFoundation4];
+export const WORKOUTS = [legDay, paulUpperBody, riderFoundation1, riderFoundation2, riderFoundation3, riderFoundation4, riderSymmetryAndBalance1, riderSymmetryAndBalance2, riderBuild1, riderBuild2, riderAlternatingSupersets, runnerFoundation1, runnerFoundation2, runnerFoundation3, runnerFoundation4];

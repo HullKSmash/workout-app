@@ -9,8 +9,8 @@
     },
     {
       "name": "app",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeExecutable": "/bin/bash",
+      "runtimeArgs": ["-c", "export PATH='/Users/katie/.nvm/versions/node/v24.16.0/bin:$PATH' && node ./node_modules/.bin/vite"],
       "port": 5173
     }
   ]
