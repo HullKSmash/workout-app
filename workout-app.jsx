@@ -392,7 +392,27 @@ export default function WorkoutApp() {
               )}
             </div>
 
-            {/* Guidance & Tips card — added in Task 6 */}
+            {/* Guidance & Tips card */}
+            <div style={styles.guideCard}>
+              <button
+                style={styles.guideToggle}
+                onClick={() => setGuideOpen((v) => !v)}
+              >
+                <div style={styles.guideToggleLeft}>
+                  <span style={styles.guideIcon}>📋</span>
+                  <div>
+                    <div style={styles.guideTitle}>Guidance &amp; Tips</div>
+                    <div style={styles.guideSubtitle}>How to use this library</div>
+                  </div>
+                </div>
+                <span style={styles.guideChevron}>{guideOpen ? "∧" : "∨"}</span>
+              </button>
+              {guideOpen && (
+                <div style={styles.guideBody}>
+                  <p style={styles.guidePlaceholder}>Guidance coming soon.</p>
+                </div>
+              )}
+            </div>
 
             {/* Footer link to 12-week program */}
             <button
