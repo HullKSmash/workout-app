@@ -236,7 +236,7 @@ export default function WorkoutApp() {
   };
 
   const handleBackFromLanding = () => {
-    setScreen(isEquestrian ? "schedule" : "select");
+    setScreen(isEquestrian ? "library" : "select");
   };
 
   const handleStart = () => {
@@ -273,7 +273,7 @@ export default function WorkoutApp() {
 
   const confirmEnd = () => {
     setShowEndConfirm(false);
-    setScreen(isEquestrian ? "schedule" : "select");
+    setScreen(isEquestrian ? "library" : "select");
   };
 
   const cancelEnd = () => {
@@ -281,7 +281,7 @@ export default function WorkoutApp() {
   };
 
   const handleBackToStart = () => {
-    setScreen(isEquestrian ? "schedule" : "select");
+    setScreen(isEquestrian ? "library" : "select");
   };
 
   // ─── Timer display formatting ───────────────────────────────────────────
@@ -456,7 +456,7 @@ export default function WorkoutApp() {
                 <div style={styles.guideToggleLeft}>
                   <span style={styles.guideIcon}>📋</span>
                   <div>
-                    <div style={styles.guideTitle}>How to Use This Program</div>
+                    <div style={styles.guideTitle}>Guidance &amp; Tips</div>
                     <div style={styles.guideSubtitle}>Schedule, weight guidance, and technique</div>
                   </div>
                 </div>
@@ -587,11 +587,6 @@ export default function WorkoutApp() {
           <div style={styles.selectContent}>
             <h1 style={styles.appTitle}>{variant.brandName}</h1>
             <p style={styles.selectSubtitle}>{variant.tagline}</p>
-            {isEquestrian && (
-              <button style={styles.backToScheduleLink} onClick={() => setScreen("schedule")}>
-                ← Back to schedule
-              </button>
-            )}
             <div style={styles.workoutList}>
               {isDefaultVariant
                 ? variantLinks.map((v) => (
