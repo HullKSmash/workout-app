@@ -613,7 +613,38 @@ export default function WorkoutApp() {
       {screen === "landing" && selectedWorkout && (
         <div style={styles.screenContainer}>
           <div style={styles.landingContent}>
+            {selectedWorkout.difficulty && (
+              <div
+                style={{
+                  ...styles.diffBadge,
+                  borderColor: DIFFICULTY_COLORS[selectedWorkout.difficulty],
+                  color:
+                    selectedWorkout.difficulty === "easier"
+                      ? "#166534"
+                      : selectedWorkout.difficulty === "moderate"
+                      ? "#92400e"
+                      : "#7f1d1d",
+                  background:
+                    selectedWorkout.difficulty === "easier"
+                      ? "#f0fdf4"
+                      : selectedWorkout.difficulty === "moderate"
+                      ? "#fffbeb"
+                      : "#fef2f2",
+                }}
+              >
+                <span
+                  style={{
+                    ...styles.diffBadgePip,
+                    background: DIFFICULTY_COLORS[selectedWorkout.difficulty],
+                  }}
+                />
+                {DIFFICULTY_LABELS[selectedWorkout.difficulty]}
+              </div>
+            )}
             <h1 style={styles.workoutTitle}>{selectedWorkout.name}</h1>
+            {selectedWorkout.description && (
+              <p style={styles.workoutDescription}>{selectedWorkout.description}</p>
+            )}
             <p style={styles.workoutSubtitle}>
               {totalSteps} exercises · {selectedWorkout.phases.length} phases
             </p>
@@ -985,6 +1016,30 @@ const styles = {
     justifyContent: "center",
     padding: "48px 24px",
     textAlign: "center",
+  },
+
+  diffBadge: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 6,
+    padding: "4px 12px",
+    borderRadius: 20,
+    border: "1.5px solid",
+    fontSize: 12,
+    fontWeight: 700,
+    alignSelf: "flex-start",
+    marginBottom: 4,
+  },
+  diffBadgePip: {
+    width: 7,
+    height: 7,
+    borderRadius: "50%",
+  },
+  workoutDescription: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    lineHeight: 1.5,
+    marginBottom: 4,
   },
 
   workoutTitle: {
