@@ -308,8 +308,8 @@ export default function WorkoutApp() {
       {screen === "library" && (
         <div style={styles.screenContainer}>
           <div style={styles.libraryContent}>
-            <h1 style={styles.appTitle}>{variant.brandName}</h1>
-            <p style={styles.selectSubtitle}>{variant.tagline}</p>
+            <h1 style={{ ...styles.appTitle, textAlign: "center" }}>{variant.brandName}</h1>
+            <p style={{ ...styles.selectSubtitle, textAlign: "center" }}>{variant.tagline}</p>
 
             {/* Weekly tracker */}
             <div style={styles.trackerRow}>
@@ -379,7 +379,7 @@ export default function WorkoutApp() {
             </div>
 
             {/* Workout list */}
-            <div style={styles.workoutList}>
+            <div style={{ ...styles.workoutList, maxWidth: "none" }}>
               {libraryWorkouts.length === 0 ? (
                 <p style={styles.libraryEmptyState}>
                   No difficulty selected — tap a filter above to show workouts.
