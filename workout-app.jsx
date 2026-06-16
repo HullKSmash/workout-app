@@ -144,6 +144,15 @@ export default function WorkoutApp() {
   // Total dots shown: goal minimum, or actual count if over goal.
   const weeklyDots = Math.max(WEEK_GOAL, weeklyCount);
 
+  const weeklyProgressMessage =
+    weeklyCount >= WEEK_GOAL
+      ? "Weekly goal hit! Keep going if you feel strong!"
+      : weeklyCount === 2
+      ? "2 done this week. Shoot for one more!"
+      : weeklyCount === 1
+      ? "1 done this week. Shoot for 2 more!"
+      : null;
+
   const totalSteps = steps.length;
   const currentExercise = steps[currentStep];
 
@@ -870,8 +879,31 @@ export default function WorkoutApp() {
             <p style={styles.completeSubtitle}>
               Great work finishing {selectedWorkout.name}
             </p>
+
+            {isEquestrian && weeklyProgressMessage && (
+              <div style={styles.weeklyProgressBlock}>
+                <div style={styles.trackerDots}>
+                  {Array.from({ length: Math.max(WEEK_GOAL, weeklyCount) }).map(
+                    (_, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          ...styles.trackerDot,
+                          ...(i < weeklyCount ? styles.trackerDotFilled : {}),
+                          cursor: "default",
+                        }}
+                      >
+                        {i < weeklyCount ? "✓" : ""}
+                      </div>
+                    )
+                  )}
+                </div>
+                <p style={styles.weeklyProgressMsg}>{weeklyProgressMessage}</p>
+              </div>
+            )}
+
             <button style={styles.startButton} onClick={handleBackToStart}>
-              Back to Start
+              Back to Library
             </button>
           </div>
         </div>
@@ -1889,6 +1921,24 @@ const styles = {
   },
 
   // ── Complete ─────────────────────────────────────────────────────
+  weeklyProgressBlock: {
+    background: "#f0fdf4",
+    border: "1px solid #bbf7d0",
+    borderRadius: 12,
+    padding: "14px 16px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: 10,
+    width: "100%",
+  },
+  weeklyProgressMsg: {
+    fontSize: 13,
+    fontWeight: 600,
+    color: "#166534",
+    textAlign: "center",
+    lineHeight: 1.4,
+  },
   completeContent: {
     flex: 1,
     display: "flex",
