@@ -140,6 +140,10 @@ export default function WorkoutApp() {
       );
   }, [activeFilters]);
 
+  const WEEK_GOAL = 3;
+  // Total dots shown: goal minimum, or actual count if over goal.
+  const weeklyDots = Math.max(WEEK_GOAL, weeklyCount);
+
   const totalSteps = steps.length;
   const currentExercise = steps[currentStep];
 
@@ -292,7 +296,46 @@ export default function WorkoutApp() {
             <h1 style={styles.appTitle}>{variant.brandName}</h1>
             <p style={styles.selectSubtitle}>{variant.tagline}</p>
 
-            {/* Weekly tracker — added in Task 5 */}
+            {/* Weekly tracker */}
+            <div style={styles.trackerRow}>
+              <div style={styles.trackerLabel}>
+                This week
+                <span style={styles.trackerSubLabel}>Resets Monday</span>
+              </div>
+              <div style={styles.trackerDots}>
+                {Array.from({ length: weeklyDots }).map((_, i) => {
+                  const filled = i < weeklyCount;
+                  return (
+                    <button
+                      key={i}
+                      aria-label={filled ? "Remove one workout" : "Add one workout"}
+                      style={{
+                        ...styles.trackerDot,
+                        ...(filled ? styles.trackerDotFilled : {}),
+                      }}
+                      onClick={() => {
+                        const next = filled ? weeklyCount - 1 : weeklyCount + 1;
+                        setWeeklyCount(next);
+                        saveThisWeekCount(next);
+                      }}
+                    >
+                      {filled ? "✓" : ""}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Goal-hit banner */}
+            {weeklyCount >= WEEK_GOAL && (
+              <div style={styles.goalBanner}>
+                <span style={styles.goalBannerIcon}>🌿</span>
+                <span style={styles.goalBannerText}>
+                  Weekly goal hit! Keep going if you feel strong!
+                </span>
+              </div>
+            )}
+
             {/* Filter chips */}
             <div style={styles.chipBar}>
               {ALL_DIFFICULTIES.map((d) => {
@@ -1389,6 +1432,71 @@ const styles = {
     color: colors.border,
     fontWeight: 300,
     alignSelf: "center",
+  },
+  trackerRow: {
+    display: "flex",
+    alignItems: "center",
+    gap: 12,
+    background: colors.surface,
+    borderRadius: 12,
+    padding: "12px 14px",
+    boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
+  },
+  trackerLabel: {
+    flex: 1,
+    fontSize: 14,
+    fontWeight: 700,
+    color: colors.text,
+    display: "flex",
+    flexDirection: "column",
+    gap: 2,
+  },
+  trackerSubLabel: {
+    fontSize: 11,
+    fontWeight: 400,
+    color: colors.textSecondary,
+  },
+  trackerDots: {
+    display: "flex",
+    gap: 6,
+    alignItems: "center",
+  },
+  trackerDot: {
+    width: 26,
+    height: 26,
+    borderRadius: "50%",
+    border: `2px solid ${colors.border}`,
+    background: colors.surface,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: 12,
+    fontWeight: 700,
+    color: "transparent",
+    cursor: "pointer",
+    padding: 0,
+  },
+  trackerDotFilled: {
+    background: colors.accent,
+    borderColor: colors.accent,
+    color: "#fff",
+  },
+  goalBanner: {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    background: "#f0fdf4",
+    border: "1px solid #bbf7d0",
+    borderRadius: 10,
+    padding: "10px 14px",
+  },
+  goalBannerIcon: {
+    fontSize: 16,
+  },
+  goalBannerText: {
+    fontSize: 13,
+    fontWeight: 600,
+    color: "#166534",
   },
   chipBar: {
     display: "flex",
