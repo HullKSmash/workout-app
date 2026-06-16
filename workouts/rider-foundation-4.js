@@ -3,6 +3,8 @@ export default {
   "audiences": [
     "equestrian"
   ],
+  "difficulty": "moderate",
+  "description": "Upper pulling and single-leg stability for balanced strength",
   "phases": [
     {
       "name": "Warm Up",

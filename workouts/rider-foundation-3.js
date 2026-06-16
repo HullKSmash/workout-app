@@ -3,6 +3,8 @@ export default {
   "audiences": [
     "equestrian"
   ],
+  "difficulty": "moderate",
+  "description": "Hip hinge and posterior chain loading for riding power",
   "phases": [
     {
       "name": "Warm Up",

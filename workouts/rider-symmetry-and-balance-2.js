@@ -3,6 +3,8 @@ export default {
   "audiences": [
     "equestrian"
   ],
+  "difficulty": "moderate",
+  "description": "Lateral movement and proprioceptive training for rider stability",
   "phases": [
     {
       "name": "Activation",

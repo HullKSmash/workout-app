@@ -3,6 +3,8 @@ export default {
   "audiences": [
     "equestrian"
   ],
+  "difficulty": "harder",
+  "description": "High-volume hypertrophy training to build serious riding strength",
   "phases": [
     {
       "name": "Compound",

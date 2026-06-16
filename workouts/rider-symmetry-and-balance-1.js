@@ -3,6 +3,8 @@ export default {
   "audiences": [
     "equestrian"
   ],
+  "difficulty": "moderate",
+  "description": "Isolated unilateral work to enforce symmetrical strength and neural activation",
   "phases": [
     {
       "name": "Activation",

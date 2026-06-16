@@ -3,6 +3,8 @@ export default {
   "audiences": [
     "equestrian"
   ],
+  "difficulty": "easier",
+  "description": "A second angle on foundational compound movements",
   "phases": [
     {
       "name": "Warm Up",

@@ -3,6 +3,8 @@ export default {
   "audiences": [
     "equestrian"
   ],
+  "difficulty": "easier",
+  "description": "Full-body compound strength to build your base",
   "phases": [
     {
       "name": "Warm Up",

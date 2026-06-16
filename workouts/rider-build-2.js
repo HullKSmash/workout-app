@@ -3,6 +3,8 @@ export default {
   "audiences": [
     "equestrian"
   ],
+  "difficulty": "harder",
+  "description": "Progressive overload targeting the posterior chain and upper back",
   "phases": [
     {
       "name": "Compound",
