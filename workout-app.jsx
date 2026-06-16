@@ -190,6 +190,15 @@ export default function WorkoutApp() {
     }, 200);
   }, []);
 
+  const toggleFilter = (difficulty) => {
+    setActiveFilters((prev) => {
+      const next = new Set(prev);
+      if (next.has(difficulty)) next.delete(difficulty);
+      else next.add(difficulty);
+      return next;
+    });
+  };
+
   const handleSelectWorkout = (workout, slot = null) => {
     setSelectedWorkout(workout);
     setSelectedSlot(slot);
@@ -284,7 +293,32 @@ export default function WorkoutApp() {
             <p style={styles.selectSubtitle}>{variant.tagline}</p>
 
             {/* Weekly tracker — added in Task 5 */}
-            {/* Filter chips — added in Task 4 */}
+            {/* Filter chips */}
+            <div style={styles.chipBar}>
+              {ALL_DIFFICULTIES.map((d) => {
+                const active = activeFilters.has(d);
+                return (
+                  <button
+                    key={d}
+                    style={{
+                      ...styles.chip,
+                      ...(active ? styles.chipActive[d] : styles.chipInactive),
+                    }}
+                    onClick={() => toggleFilter(d)}
+                  >
+                    <span
+                      style={{
+                        ...styles.chipPip,
+                        background: active
+                          ? DIFFICULTY_COLORS[d]
+                          : colors.textSecondary,
+                      }}
+                    />
+                    {DIFFICULTY_LABELS[d]}
+                  </button>
+                );
+              })}
+            </div>
 
             {/* Workout list */}
             <div style={styles.workoutList}>
@@ -1355,6 +1389,51 @@ const styles = {
     color: colors.border,
     fontWeight: 300,
     alignSelf: "center",
+  },
+  chipBar: {
+    display: "flex",
+    gap: 8,
+    flexWrap: "wrap",
+  },
+  chip: {
+    display: "flex",
+    alignItems: "center",
+    gap: 6,
+    padding: "6px 12px",
+    borderRadius: 20,
+    fontSize: 13,
+    fontWeight: 700,
+    cursor: "pointer",
+    border: "1.5px solid",
+    letterSpacing: 0.2,
+  },
+  chipActive: {
+    easier: {
+      borderColor: "#22c55e",
+      color: "#166534",
+      background: "#f0fdf4",
+    },
+    moderate: {
+      borderColor: "#d97706",
+      color: "#92400e",
+      background: "#fffbeb",
+    },
+    harder: {
+      borderColor: "#ef4444",
+      color: "#7f1d1d",
+      background: "#fef2f2",
+    },
+  },
+  chipInactive: {
+    borderColor: colors.border,
+    color: colors.textSecondary,
+    background: colors.surface,
+  },
+  chipPip: {
+    width: 7,
+    height: 7,
+    borderRadius: "50%",
+    flexShrink: 0,
   },
   libraryEmptyState: {
     fontSize: 14,
