@@ -249,6 +249,12 @@ export default function WorkoutApp() {
     if (currentStep >= totalSteps - 1) {
       // Auto-mark the schedule slot complete on finishing the last step.
       if (selectedSlot && !completed[selectedSlot]) toggleSlot(selectedSlot);
+      // Increment weekly count for the library tracker.
+      if (isEquestrian) {
+        const next = weeklyCount + 1;
+        setWeeklyCount(next);
+        saveThisWeekCount(next);
+      }
       setScreen("complete");
     } else {
       animateTransition(() => setCurrentStep((s) => s + 1));
