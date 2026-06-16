@@ -17,18 +17,28 @@ export function getCurrentWeekKey() {
   monday.setDate(now.getDate() + daysToMonday);
   monday.setHours(0, 0, 0, 0);
 
-  const year = monday.getFullYear();
-  // Jan 4 is always in ISO week 1
+  // ISO week year is determined by the Thursday of the week (Monday + 3 days)
+  const thursday = new Date(monday);
+  thursday.setDate(monday.getDate() + 3);
+  const year = thursday.getFullYear();
+
+  // First day of the ISO year is the Monday of the week that contains Jan 4
   const jan4 = new Date(year, 0, 4);
-  const weekNum = Math.ceil(
-    ((monday - jan4) / 86400000 + jan4.getDay() + 1) / 7
-  );
+  const jan4Day = jan4.getDay() || 7; // Make Sunday = 7
+  const isoYearStart = new Date(jan4);
+  isoYearStart.setDate(jan4.getDate() - (jan4Day - 1)); // Back to Monday
+
+  const weekNum =
+    Math.round((monday - isoYearStart) / (7 * 24 * 60 * 60 * 1000)) + 1;
   return `${year}-W${String(weekNum).padStart(2, "0")}`;
 }
 
 function loadAllCounts() {
   try {
-    return JSON.parse(localStorage.getItem(KEY) || "{}");
+    const parsed = JSON.parse(localStorage.getItem(KEY) || "{}");
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed)
+      ? parsed
+      : {};
   } catch {
     return {};
   }
