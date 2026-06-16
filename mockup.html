@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Equestrian Strength — Program Mockup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #FAF8F5;
+      --surface: #FFFFFF;
+      --text: #2D2A26;
+      --text-secondary: #8A8279;
+      --accent: #355E3B;
+      --accent-light: #EAF2EC;
+      --border: #E8E4E0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    .screen {
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 0 0 40px;
+    }
+
+    /* ── Header ──────────────────────────────────────────────────────── */
+    .header {
+      padding: 48px 24px 24px;
+      text-align: center;
+    }
+
+    .brand {
+      font-family: 'Outfit', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .tagline {
+      font-size: 16px;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+
+    /* ── Program Guide ───────────────────────────────────────────────── */
+    .guide-section {
+      margin: 0 24px 24px;
+    }
+
+    .guide-card {
+      background: var(--accent-light);
+      border: 1.5px solid #C4DCC7;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .guide-toggle {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      gap: 12px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .guide-toggle-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .guide-icon {
+      margin-top: 2px;
+    }
+
+    .guide-icon {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .guide-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+      text-align: left;
+    }
+
+    .guide-subtitle {
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .guide-chevron {
+      font-size: 18px;
+      color: var(--accent);
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    .guide-chevron.open {
+      transform: rotate(180deg);
+    }
+
+    .guide-body {
+      display: none;
+      padding: 0 20px 20px;
+      border-top: 1.5px solid #C4DCC7;
+    }
+
+    .guide-body.open {
+      display: block;
+    }
+
+    .guide-placeholder {
+      padding-top: 16px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ── Section heading ─────────────────────────────────────────────── */
+    .section-label {
+      padding: 0 24px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    /* ── Week Accordion ──────────────────────────────────────────────── */
+    .week-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 24px;
+    }
+
+    .week-item {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .week-item.open {
+      border-color: var(--accent);
+    }
+
+    .week-toggle {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      text-align: left;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .week-left {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .week-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .week-item.open .week-label {
+      color: var(--accent);
+    }
+
+    .week-focus {
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+
+    .week-chevron {
+      font-size: 18px;
+      color: var(--text-secondary);
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    .week-item.open .week-chevron {
+      transform: rotate(180deg);
+      color: var(--accent);
+    }
+
+    .week-workouts {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1.5px solid var(--border);
+    }
+
+    .week-item.open .week-workouts {
+      display: flex;
+    }
+
+    .workout-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: 'DM Sans', sans-serif;
+      text-align: left;
+      width: 100%;
+      border-bottom: 1px solid var(--border);
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.15s;
+    }
+
+    .workout-row:last-child {
+      border-bottom: none;
+    }
+
+    .workout-row:active {
+      background: var(--accent-light);
+    }
+
+    .workout-row-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .workout-row-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .workout-row-meta {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+
+    .workout-row-arrow {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* ── "More weeks" placeholder ────────────────────────────────────── */
+    .more-weeks {
+      text-align: center;
+      padding: 16px 24px 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 300;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="screen">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="brand">Equestrian Strength</div>
+      <div class="tagline">Strong riding starts on the ground</div>
+    </div>
+
+    <!-- Program Guide (collapsible) -->
+    <div class="guide-section">
+      <div class="guide-card">
+        <button class="guide-toggle" onclick="toggleGuide()">
+          <div class="guide-toggle-left">
+            <span class="guide-icon">📋</span>
+            <div>
+              <div class="guide-title">How to Use This Program</div>
+              <div class="guide-subtitle" id="guide-hint">Schedule, weight guidance, and technique</div>
+            </div>
+          </div>
+          <span class="guide-chevron" id="guide-chevron">&#8964;</span>
+        </button>
+        <div class="guide-body" id="guide-body">
+          <div class="guide-placeholder">
+            Program guide content will appear here — overview of the 12-week structure, how to use the workouts, equipment needed, progression guidelines, etc.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Week list -->
+    <div class="section-label">12-Week Program</div>
+    <div class="week-list">
+
+      <!-- Week 1 — open by default to show the pattern -->
+      <div class="week-item open" id="week-1">
+        <button class="week-toggle" onclick="toggleWeek('week-1')">
+          <div class="week-left">
+            <span class="week-label">Week 1</span>
+            <span class="week-focus">Foundation</span>
+          </div>
+          <span class="week-chevron">&#8964;</span>
+        </button>
+        <div class="week-workouts">
+          <button class="workout-row">
+            <div class="workout-row-left">
+              <span class="workout-row-name">Main 1</span>
+              <span class="workout-row-meta">5 phases · 18 exercises</span>
+            </div>
+            <span class="workout-row-arrow">›</span>
+          </button>
+          <button class="workout-row">
+            <div class="workout-row-left">
+              <span class="workout-row-name">Main 2</span>
+              <span class="workout-row-meta">5 phases · 16 exercises</span>
+            </div>
+            <span class="workout-row-arrow">›</span>
+          </button>
+          <button class="workout-row">
+            <div class="workout-row-left">
+              <span class="workout-row-name">Main 3</span>
+              <span class="workout-row-meta">5 phases · 17 exercises</span>
+            </div>
+            <span class="workout-row-arrow">›</span>
+          </button>
+          <button class="workout-row">
+            <div class="workout-row-left">
+              <span class="workout-row-name">Main 4</span>
+              <span class="workout-row-meta">5 phases · 15 exercises</span>
+            </div>
+            <span class="workout-row-arrow">›</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Week 2 -->
+      <div class="week-item" id="week-2">
+        <button class="week-toggle" onclick="toggleWeek('week-2')">
+          <div class="week-left">
+            <span class="week-label">Week 2</span>
+            <span class="week-focus">Foundation</span>
+          </div>
+          <span class="week-chevron">&#8964;</span>
+        </button>
+        <div class="week-workouts">
+          <button class="workout-row">
+            <div class="workout-row-left">
+              <span class="workout-row-name">Main 1</span>
+              <span class="workout-row-meta">5 phases</span>
+            </div>
+            <span class="workout-row-arrow">›</span>
+          </button>
+          <button class="workout-row">
+            <div class="workout-row-left">
+              <span class="workout-row-name">Main 2</span>
+              <span class="workout-row-meta">5 phases</span>
+            </div>
+            <span class="workout-row-arrow">›</span>
+          </button>
+          <button class="workout-row">
+            <div class="workout-row-left">
+              <span class="workout-row-name">Main 3</span>
+              <span class="workout-row-meta">5 phases</span>
+            </div>
+            <span class="workout-row-arrow">›</span>
+          </button>
+          <button class="workout-row">
+            <div class="workout-row-left">
+              <span class="workout-row-name">Main 4</span>
+              <span class="workout-row-meta">5 phases</span>
+            </div>
+            <span class="workout-row-arrow">›</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Week 3 -->
+      <div class="week-item" id="week-3">
+        <button class="week-toggle" onclick="toggleWeek('week-3')">
+          <div class="week-left">
+            <span class="week-label">Week 3</span>
+            <span class="week-focus">Build</span>
+          </div>
+          <span class="week-chevron">&#8964;</span>
+        </button>
+        <div class="week-workouts">
+          <button class="workout-row"><div class="workout-row-left"><span class="workout-row-name">Main 1</span><span class="workout-row-meta">5 phases</span></div><span class="workout-row-arrow">›</span></button>
+          <button class="workout-row"><div class="workout-row-left"><span class="workout-row-name">Main 2</span><span class="workout-row-meta">5 phases</span></div><span class="workout-row-arrow">›</span></button>
+          <button class="workout-row"><div class="workout-row-left"><span class="workout-row-name">Main 3</span><span class="workout-row-meta">5 phases</span></div><span class="workout-row-arrow">›</span></button>
+          <button class="workout-row"><div class="workout-row-left"><span class="workout-row-name">Main 4</span><span class="workout-row-meta">5 phases</span></div><span class="workout-row-arrow">›</span></button>
+        </div>
+      </div>
+
+      <!-- Week 4 (deload example) -->
+      <div class="week-item" id="week-4">
+        <button class="week-toggle" onclick="toggleWeek('week-4')">
+          <div class="week-left">
+            <span class="week-label">Week 4</span>
+            <span class="week-focus">Deload</span>
+          </div>
+          <span class="week-chevron">&#8964;</span>
+        </button>
+        <div class="week-workouts">
+          <button class="workout-row"><div class="workout-row-left"><span class="workout-row-name">Main 1</span><span class="workout-row-meta">5 phases</span></div><span class="workout-row-arrow">›</span></button>
+          <button class="workout-row"><div class="workout-row-left"><span class="workout-row-name">Main 2</span><span class="workout-row-meta">5 phases</span></div><span class="workout-row-arrow">›</span></button>
+          <button class="workout-row"><div class="workout-row-left"><span class="workout-row-name">Main 3</span><span class="workout-row-meta">5 phases</span></div><span class="workout-row-arrow">›</span></button>
+          <button class="workout-row"><div class="workout-row-left"><span class="workout-row-name">Main 4</span><span class="workout-row-meta">5 phases</span></div><span class="workout-row-arrow">›</span></button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="more-weeks">Weeks 5–12 continue below…</div>
+
+  </div>
+
+  <script>
+    function toggleGuide() {
+      const body = document.getElementById('guide-body');
+      const chevron = document.getElementById('guide-chevron');
+      const hint = document.getElementById('guide-hint');
+      const isOpen = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      chevron.classList.toggle('open', !isOpen);
+      hint.textContent = isOpen ? 'Schedule, weight guidance, and technique' : 'Schedule, weight guidance, and technique';
+    }
+
+    function toggleWeek(id) {
+      const item = document.getElementById(id);
+      item.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

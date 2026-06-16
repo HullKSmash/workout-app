@@ -986,19 +986,6 @@ const styles = {
     margin: "0 0 32px 0",
   },
 
-  backToScheduleLink: {
-    fontFamily: "'DM Sans', sans-serif",
-    background: "none",
-    border: "none",
-    color: colors.textSecondary,
-    fontSize: 14,
-    fontWeight: 500,
-    cursor: "pointer",
-    padding: "4px 0 20px",
-    alignSelf: "flex-start",
-    WebkitTapHighlightColor: "transparent",
-  },
-
   workoutList: {
     display: "flex",
     flexDirection: "column",

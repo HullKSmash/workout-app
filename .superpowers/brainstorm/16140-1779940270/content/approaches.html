@@ -1,0 +1,290 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Outfit:wght@700;800&display=swap');
+
+  body { background: #f4f4f0; }
+
+  .page-intro {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    border: 2px solid #E8E4E0;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .card:hover { border-color: #aaa; }
+  .card.selected { border-color: #355E3B; box-shadow: 0 0 0 3px #EAF2EC; }
+
+  .card-header {
+    padding: 20px 24px 14px;
+    border-bottom: 1px solid #f0ede8;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .card-letter {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: #EAF2EC;
+    color: #355E3B;
+    font-weight: 700;
+    font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .card-title { font-size: 17px; font-weight: 600; color: #2D2A26; margin: 0 0 4px; }
+  .card-desc { font-size: 13px; color: #8A8279; font-weight: 400; line-height: 1.5; margin: 0; }
+
+  .card-body { padding: 16px 24px 20px; }
+
+  /* Phone mockup */
+  .phone {
+    font-family: 'DM Sans', sans-serif;
+    background: #FAF8F5;
+    border-radius: 20px;
+    border: 1.5px solid #E8E4E0;
+    padding: 20px 18px 16px;
+    max-width: 300px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .phone-progress {
+    height: 4px; background: #E8E4E0; border-radius: 2px; overflow: hidden; margin-bottom: 12px;
+  }
+  .phone-progress-fill { height: 100%; width: 60%; background: #355E3B; border-radius: 2px; }
+
+  .phone-phase {
+    font-size: 10px; font-weight: 600; color: #355E3B; text-transform: uppercase; letter-spacing: 0.06em;
+    margin-bottom: 16px;
+  }
+
+  .phone-img {
+    width: 100%; height: 90px; background: #E8E4E0; border-radius: 10px; margin-bottom: 14px;
+    display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 12px;
+  }
+
+  .phone-name {
+    font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 700; color: #2D2A26;
+    text-align: center; margin-bottom: 12px; letter-spacing: -0.02em;
+  }
+
+  .phone-reps {
+    display: flex; align-items: baseline; gap: 5px;
+    background: #EAF2EC; border-radius: 10px; padding: 8px 20px;
+    justify-content: center; margin: 0 auto 14px; width: fit-content;
+  }
+  .phone-rep-num { font-family: 'Outfit', sans-serif; font-size: 30px; font-weight: 800; color: #355E3B; line-height: 1; }
+  .phone-rep-label { font-size: 13px; font-weight: 500; color: #355E3B; opacity: 0.8; }
+
+  /* ── Option A: toggle chips ── */
+  .chips { display: flex; gap: 8px; justify-content: center; margin-bottom: 4px; }
+  .chip {
+    font-size: 11px; font-weight: 500; padding: 5px 10px; border-radius: 20px;
+    border: 1.5px solid #E8E4E0; background: #fff; color: #8A8279; cursor: pointer;
+    display: flex; align-items: center; gap: 4px; transition: all 0.15s;
+  }
+  .chip.easier { border-color: #6BB3F0; color: #2D6BD1; background: #EAF1FC; }
+  .chip-hint {
+    font-size: 11px; color: #2D6BD1; background: #EAF1FC; border-radius: 8px;
+    padding: 7px 10px; text-align: center; line-height: 1.4; margin-bottom: 4px;
+  }
+
+  /* ── Option B: always-visible ── */
+  .tip-row {
+    display: flex; align-items: flex-start; gap: 6px;
+    font-size: 11px; color: #8A8279; line-height: 1.4; margin-bottom: 6px;
+    padding: 0 4px;
+  }
+  .tip-icon { font-size: 13px; flex-shrink: 0; margin-top: -1px; }
+  .tip-label { font-weight: 600; margin-right: 2px; }
+
+  /* ── Option C: collapsible drawer ── */
+  .modify-toggle {
+    display: flex; align-items: center; justify-content: center; gap: 4px;
+    font-size: 11px; font-weight: 500; color: #8A8279;
+    border-top: 1px solid #F0EDE8; padding-top: 10px; margin-top: 2px;
+    cursor: pointer;
+  }
+  .modify-panel {
+    background: #F7F5F2; border-radius: 10px; padding: 10px 12px; margin-top: 8px;
+  }
+  .modify-row { display: flex; align-items: flex-start; gap: 6px; font-size: 11px; line-height: 1.4; }
+  .modify-row + .modify-row { margin-top: 7px; }
+  .modify-badge {
+    font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 20px;
+    flex-shrink: 0; margin-top: 0px;
+    white-space: nowrap;
+  }
+  .badge-easier { background: #EAF1FC; color: #2D6BD1; }
+  .badge-harder { background: #FFF0EC; color: #E85D3A; }
+
+  .phone-nav {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    margin-top: 14px;
+    border-top: 1px solid #F0EDE8;
+    padding-top: 12px;
+  }
+  .phone-nav-prev {
+    font-size: 12px; font-weight: 600; padding: 8px 14px; border-radius: 10px;
+    border: 1.5px solid #E8E4E0; background: #fff; color: #2D2A26;
+  }
+  .phone-nav-end { font-size: 11px; color: #8A8279; }
+  .phone-nav-next {
+    font-size: 12px; font-weight: 600; padding: 8px 14px; border-radius: 10px;
+    border: none; background: #355E3B; color: #fff;
+  }
+
+  .tradeoffs {
+    display: flex; gap: 12px; margin-top: 16px;
+  }
+  .tradeoff-box {
+    flex: 1; font-size: 12px; line-height: 1.5; color: #666;
+    background: #FAF8F5; border-radius: 8px; padding: 10px 12px;
+  }
+  .tradeoff-box strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .tradeoff-box.pros strong { color: #355E3B; }
+  .tradeoff-box.cons strong { color: #E85D3A; }
+</style>
+
+<h2 class="page-intro">How should easier/harder hints appear?</h2>
+<p class="subtitle" style="text-align:center;margin-bottom:28px;">Click to select the approach you prefer. Each shows a mini preview of the exercise screen.</p>
+
+<div class="cards">
+
+  <!-- Option A -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-header">
+      <div class="letter">A</div>
+      <div>
+        <p class="card-title">Toggle chips — tap to reveal</p>
+        <p class="card-desc">Two small pill buttons below the rep badge. Tap "Easier" or "Harder" to expand the tip inline. Out of the way until needed.</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="phone">
+        <div class="phone-progress"><div class="phone-progress-fill"></div></div>
+        <div class="phone-phase">Superset 1 · 3 of 9</div>
+        <div class="phone-img">[ exercise image ]</div>
+        <div class="phone-name">Single Leg RDL</div>
+        <div class="phone-reps">
+          <span class="phone-rep-num">6-8</span>
+          <span class="phone-rep-label">reps</span>
+        </div>
+        <!-- Chips: one expanded -->
+        <div class="chips">
+          <div class="chip easier">↓ Easier</div>
+          <div class="chip">↑ Harder</div>
+        </div>
+        <div class="chip-hint">Touch your raised foot down for balance support</div>
+        <div class="phone-nav">
+          <div class="phone-nav-prev">← Prev</div>
+          <div class="phone-nav-end">End</div>
+          <div class="phone-nav-next">Next →</div>
+        </div>
+      </div>
+      <div class="tradeoffs">
+        <div class="tradeoff-box pros"><strong>Works well</strong>Hidden by default — doesn't clutter. User taps only when they need it.</div>
+        <div class="tradeoff-box cons"><strong>Watch out</strong>Users must know to look for the chips. May feel slightly interactive/techy.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option B -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-header">
+      <div class="letter">B</div>
+      <div>
+        <p class="card-title">Always-visible subtle tips</p>
+        <p class="card-desc">Easier and harder hints sit quietly below the rep badge, always readable when they exist — no tapping needed. Styled in muted text so they don't compete with the exercise name.</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="phone">
+        <div class="phone-progress"><div class="phone-progress-fill"></div></div>
+        <div class="phone-phase">Superset 1 · 3 of 9</div>
+        <div class="phone-img">[ exercise image ]</div>
+        <div class="phone-name">Single Leg RDL</div>
+        <div class="phone-reps">
+          <span class="phone-rep-num">6-8</span>
+          <span class="phone-rep-label">reps</span>
+        </div>
+        <div class="tip-row">
+          <span class="tip-icon">↓</span>
+          <span><span class="tip-label">Easier:</span> Touch your raised foot down for balance support</span>
+        </div>
+        <div class="tip-row">
+          <span class="tip-icon">↑</span>
+          <span><span class="tip-label">Harder:</span> Hold a dumbbell in the opposite hand</span>
+        </div>
+        <div class="phone-nav">
+          <div class="phone-nav-prev">← Prev</div>
+          <div class="phone-nav-end">End</div>
+          <div class="phone-nav-next">Next →</div>
+        </div>
+      </div>
+      <div class="tradeoffs">
+        <div class="tradeoff-box pros"><strong>Works well</strong>Zero friction — glanceable. No extra tap needed. Simple to implement.</div>
+        <div class="tradeoff-box cons"><strong>Watch out</strong>Always present on screen even if rarely used. Adds visual weight to busy exercises.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option C -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-header">
+      <div class="letter">C</div>
+      <div>
+        <p class="card-title">Collapsible "Modify" section</p>
+        <p class="card-desc">A "Modify intensity ▾" link lives quietly at the bottom of the exercise card. Tapping it slides open a panel showing both options. Tap again to collapse.</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="phone">
+        <div class="phone-progress"><div class="phone-progress-fill"></div></div>
+        <div class="phone-phase">Superset 1 · 3 of 9</div>
+        <div class="phone-img">[ exercise image ]</div>
+        <div class="phone-name">Single Leg RDL</div>
+        <div class="phone-reps">
+          <span class="phone-rep-num">6-8</span>
+          <span class="phone-rep-label">reps</span>
+        </div>
+        <!-- Expanded state shown here -->
+        <div class="modify-toggle">Modify intensity ▾</div>
+        <div class="modify-panel">
+          <div class="modify-row">
+            <span class="modify-badge badge-easier">Easier</span>
+            <span style="color:#555;font-size:11px;">Touch your raised foot down for balance support</span>
+          </div>
+          <div class="modify-row">
+            <span class="modify-badge badge-harder">Harder</span>
+            <span style="color:#555;font-size:11px;">Hold a dumbbell in the opposite hand</span>
+          </div>
+        </div>
+        <div class="phone-nav">
+          <div class="phone-nav-prev">← Prev</div>
+          <div class="phone-nav-end">End</div>
+          <div class="phone-nav-next">Next →</div>
+        </div>
+      </div>
+      <div class="tradeoffs">
+        <div class="tradeoff-box pros"><strong>Works well</strong>Neatly contained — both options visible at once. Clear labeling. Panel resets on exercise change.</div>
+        <div class="tradeoff-box cons"><strong>Watch out</strong>Requires one tap to open. Text "Modify intensity" may feel too formal for this app's tone.</div>
+      </div>
+    </div>
+  </div>
+
+</div>

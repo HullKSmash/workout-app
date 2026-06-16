@@ -1,0 +1,3 @@
+{"type":"server-started","port":60286,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:60286","screen_dir":"/Users/katie/code/workout-app/.superpowers/brainstorm/54815-1781487312/content","state_dir":"/Users/katie/code/workout-app/.superpowers/brainstorm/54815-1781487312/state"}
+{"type":"screen-added","file":"/Users/katie/code/workout-app/.superpowers/brainstorm/54815-1781487312/content/library-screen.html"}
+{"type":"server-stopped","reason":"idle timeout"}

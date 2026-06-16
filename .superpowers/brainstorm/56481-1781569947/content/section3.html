@@ -1,0 +1,141 @@
+<h2>Section 3 — Data model &amp; UX changes</h2>
+<p class="subtitle">What changes under the hood and in navigation to support the library model</p>
+
+<style>
+  .section { margin-bottom: 28px; }
+  .section h3 { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+  .section p { font-size: 12px; color: #555; line-height: 1.6; margin-bottom: 8px; }
+
+  .code-block {
+    background: #1e1e1e; color: #d4d4d4; border-radius: 10px;
+    padding: 14px 16px; font-family: monospace; font-size: 11px;
+    line-height: 1.6; overflow-x: auto;
+  }
+  .code-block .key { color: #9cdcfe; }
+  .code-block .string { color: #ce9178; }
+  .code-block .comment { color: #6a9955; }
+  .code-block .new { color: #4ec9b0; }
+  .code-block .tag { color: #569cd6; }
+
+  .change-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .change-col h4 { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+
+  .flow {
+    display: flex; flex-direction: column; gap: 0;
+    max-width: 420px;
+  }
+  .flow-step {
+    background: white; border: 1.5px solid #e0ddd9; border-radius: 10px;
+    padding: 10px 14px; font-size: 11px; color: #333; font-weight: 600;
+  }
+  .flow-arrow {
+    text-align: center; color: #bbb; font-size: 14px; padding: 2px 0;
+    line-height: 1;
+  }
+  .flow-step.removed { background: #fff5f5; border-color: #fca5a5; color: #991b1b; text-decoration: line-through; opacity: 0.6; }
+  .flow-step.changed { background: #fffbeb; border-color: #fcd34d; color: #78350f; }
+  .flow-step.new-step { background: #f0fdf4; border-color: #86efac; color: #166534; }
+  .flow-step.unchanged { background: white; }
+  .flow-note { font-size: 9px; font-weight: 400; color: #888; margin-top: 2px; }
+
+  .storage-box {
+    background: #1e1e1e; color: #d4d4d4; border-radius: 10px;
+    padding: 14px 16px; font-family: monospace; font-size: 11px;
+    line-height: 1.7;
+  }
+  .storage-box .comment { color: #6a9955; }
+  .storage-box .key { color: #9cdcfe; }
+  .storage-box .val { color: #b5cea8; }
+  .storage-box .str { color: #ce9178; }
+
+  .pill {
+    display: inline-block; padding: 2px 8px; border-radius: 20px;
+    font-size: 10px; font-weight: 700; margin-right: 4px;
+  }
+  .pill-green { background: #f0fdf4; color: #166534; border: 1px solid #86efac; }
+  .pill-yellow { background: #fffbeb; color: #92400e; border: 1px solid #fcd34d; }
+  .pill-amber { background: #fff7ed; color: #9a3412; border: 1px solid #fdba74; }
+  .pill-red { background: #fef2f2; color: #7f1d1d; border: 1px solid #fca5a5; }
+  .pill-gray { background: #f5f5f5; color: #555; border: 1px solid #ddd; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+</style>
+
+<div class="section">
+  <h3>1. Workout file — two new fields</h3>
+  <p>Each equestrian workout gets <code>difficulty</code> and <code>description</code> added. Everything else stays the same.</p>
+  <div class="change-grid">
+    <div>
+      <div class="change-col"><h4>Before</h4></div>
+      <div class="code-block">
+export default {<br>
+&nbsp;&nbsp;<span class="key">"name"</span>: <span class="string">"Foundation 1"</span>,<br>
+&nbsp;&nbsp;<span class="key">"audiences"</span>: [<span class="string">"equestrian"</span>],<br>
+&nbsp;&nbsp;<span class="key">"phases"</span>: [ ... ]<br>
+};
+      </div>
+    </div>
+    <div>
+      <div class="change-col"><h4>After</h4></div>
+      <div class="code-block">
+export default {<br>
+&nbsp;&nbsp;<span class="key">"name"</span>: <span class="string">"Foundation 1"</span>,<br>
+&nbsp;&nbsp;<span class="key">"audiences"</span>: [<span class="string">"equestrian"</span>],<br>
+&nbsp;&nbsp;<span class="new">"difficulty"</span>: <span class="string">"easier"</span>,<br>
+&nbsp;&nbsp;<span class="new">"description"</span>: <span class="string">"Full-body compound strength to build your base"</span>,<br>
+&nbsp;&nbsp;<span class="key">"phases"</span>: [ ... ]<br>
+};
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:10px;">Difficulty values: <span class="pill pill-green">easier</span> <span class="pill pill-amber">moderate</span> <span class="pill pill-red">harder</span> — you assign these to all 11 equestrian workouts.</p>
+</div>
+
+<div class="two-col">
+  <div class="section">
+    <h3>2. Navigation flow</h3>
+    <p>What changes at each step of the equestrian journey.</p>
+    <div class="flow">
+      <div class="flow-step new-step">Library screen <div class="flow-note">New default. Was: 12-week schedule.</div></div>
+      <div class="flow-arrow">↓ tap a workout card</div>
+      <div class="flow-step changed">Landing screen <div class="flow-note">Same screen + difficulty badge + description.</div></div>
+      <div class="flow-arrow">↓ tap Start</div>
+      <div class="flow-step unchanged">Workout screen <div class="flow-note">Unchanged.</div></div>
+      <div class="flow-arrow">↓ finish last exercise</div>
+      <div class="flow-step changed">Complete screen <div class="flow-note">+ weekly progress note. Back → library.</div></div>
+      <div class="flow-arrow">↓ tap Back to library</div>
+      <div class="flow-step new-step">Library screen <div class="flow-note">Dot count updated.</div></div>
+    </div>
+    <br>
+    <p><strong>Removed:</strong> "Back to schedule" link on the all-workouts screen.<br>
+    <strong>Kept:</strong> Schedule accessible via footer link on library.</p>
+  </div>
+
+  <div class="section">
+    <h3>3. localStorage — two coexisting keys</h3>
+    <p>The old schedule key is untouched. The library adds a new weekly-count key.</p>
+    <div class="storage-box">
+      <span class="comment">// Existing — schedule slots (unchanged)</span><br>
+      <span class="key">riderStrength.completed</span><br>
+      <span style="color:#888;">→ { "w1-0": true, "w3-2": true }</span><br>
+      <br>
+      <span class="comment">// New — library weekly counts</span><br>
+      <span class="key">equestrian.weeklyCount</span><br>
+      <span style="color:#888;">→ {</span><br>
+      &nbsp;&nbsp;<span class="str">"2026-W24"</span>: <span class="val">3</span>,<br>
+      &nbsp;&nbsp;<span class="str">"2026-W25"</span>: <span class="val">1</span><br>
+      <span style="color:#888;">}</span>
+    </div>
+    <br>
+    <p>Week key = ISO week of the Monday that started it.<br>Resets automatically — old weeks just don't show in the UI.</p>
+
+    <br>
+    <h3>4. Removed from library screen</h3>
+    <ul style="font-size:12px; color:#555; line-height:2; padding-left:16px;">
+      <li>"How to Use This Program" collapsible card</li>
+      <li>"Back to schedule" navigation link</li>
+      <li>"Reset progress" button</li>
+    </ul>
+  </div>
+</div>

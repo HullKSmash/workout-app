@@ -1,0 +1,5 @@
+{"type":"server-started","port":59074,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:59074","screen_dir":"/Users/katie/code/workout-app/.superpowers/brainstorm/23244-1779989551/content","state_dir":"/Users/katie/code/workout-app/.superpowers/brainstorm/23244-1779989551/state"}
+{"type":"screen-added","file":"/Users/katie/code/workout-app/.superpowers/brainstorm/23244-1779989551/content/modifier-fixed-space.html"}
+{"type":"screen-added","file":"/Users/katie/code/workout-app/.superpowers/brainstorm/23244-1779989551/content/modifier-fixed-space-v2.html"}
+{"type":"screen-added","file":"/Users/katie/code/workout-app/.superpowers/brainstorm/23244-1779989551/content/modifier-fixed-space-v3.html"}
+{"type":"server-stopped","reason":"idle timeout"}

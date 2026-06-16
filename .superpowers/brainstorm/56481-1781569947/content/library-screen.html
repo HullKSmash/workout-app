@@ -1,0 +1,236 @@
+<h2>Library screen — detailed mockup</h2>
+<p class="subtitle">Two states: mid-week (1 workout done) and goal-hit (4 done). Questions at bottom.</p>
+
+<style>
+  .phone {
+    background: #f5f3f0;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 2px solid #d0cdc9;
+    font-family: 'DM Sans', sans-serif;
+    width: 240px;
+    font-size: 11px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  }
+  .phone-header {
+    background: white;
+    padding: 14px 14px 10px;
+    border-bottom: 1px solid #eee;
+  }
+  .app-title { font-size: 14px; font-weight: 700; color: #1a1a1a; margin: 0 0 2px; }
+  .app-tagline { font-size: 9px; color: #888; margin: 0; }
+
+  .tracker-row {
+    background: white;
+    padding: 10px 14px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .tracker-label { font-size: 9px; color: #666; font-weight: 600; flex: 1; line-height: 1.3; }
+  .tracker-label span { display: block; font-size: 8px; color: #aaa; font-weight: 400; margin-top: 1px; }
+  .dots { display: flex; gap: 5px; align-items: center; }
+  .dot {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 2px solid #ddd; background: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; color: transparent; font-weight: 700;
+  }
+  .dot.done { background: #355E3B; border-color: #355E3B; color: white; }
+
+  .chip-bar { display: flex; gap: 5px; padding: 8px 10px; background: white; border-bottom: 1px solid #eee; }
+  .chip {
+    padding: 4px 9px; border-radius: 20px; font-size: 8.5px; font-weight: 700;
+    border: 1.5px solid; display: flex; align-items: center; gap: 4px;
+  }
+  .chip-easier  { border-color: #22c55e; color: #166534; background: #f0fdf4; }
+  .chip-moderate{ border-color: #d97706; color: #92400e; background: #fffbeb; }
+  .chip-harder  { border-color: #ef4444; color: #7f1d1d; background: #fef2f2; }
+  .chip-pip { width: 6px; height: 6px; border-radius: 50%; }
+
+  .workout-list { padding: 6px 8px; display: flex; flex-direction: column; gap: 5px; }
+  .workout-card {
+    background: white; border-radius: 10px; padding: 9px 11px;
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  }
+  .diff-pip { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; margin-top: 1px; }
+  .workout-info { flex: 1; }
+  .workout-name { font-weight: 700; color: #1a1a1a; font-size: 10px; margin-bottom: 2px; }
+  .workout-desc { font-size: 8px; color: #888; line-height: 1.35; }
+  .workout-arrow { color: #ccc; font-size: 14px; font-weight: 300; }
+  .diff-divider {
+    font-size: 8px; font-weight: 700; color: #bbb; letter-spacing: 0.6px;
+    text-transform: uppercase; padding: 2px 2px 0;
+  }
+  .goal-banner {
+    background: #f0fdf4; border-bottom: 1px solid #bbf7d0;
+    padding: 6px 14px; display: flex; align-items: center; gap: 6px;
+  }
+  .goal-text { font-size: 8.5px; color: #166534; font-weight: 600; flex: 1; }
+  .phone-footer { padding: 12px 14px 14px; text-align: center; }
+  .footer-link { font-size: 8.5px; color: #355E3B; text-decoration: underline; line-height: 1.4; }
+
+  .split { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; align-items: flex-start; }
+  .split-col { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .split-label { font-size: 12px; font-weight: 600; color: #555; text-align: center; }
+</style>
+
+<div class="split">
+
+  <!-- State 1: 1 done mid-week -->
+  <div class="split-col">
+    <div class="split-label">Mid-week (1 of 3 done)</div>
+    <div class="phone">
+      <div class="phone-header">
+        <div class="app-title">Equestrian Strength</div>
+        <div class="app-tagline">Strong riding starts on the ground</div>
+      </div>
+      <div class="tracker-row">
+        <div class="tracker-label">This week<span>Resets Monday</span></div>
+        <div class="dots">
+          <div class="dot done">✓</div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+      <div class="chip-bar">
+        <div class="chip chip-easier"><span class="chip-pip" style="background:#22c55e;"></span>Easier</div>
+        <div class="chip chip-moderate"><span class="chip-pip" style="background:#d97706;"></span>Moderate</div>
+        <div class="chip chip-harder"><span class="chip-pip" style="background:#ef4444;"></span>Harder</div>
+      </div>
+      <div class="workout-list">
+        <div class="diff-divider">Easier</div>
+        <div class="workout-card">
+          <div class="diff-pip" style="background:#22c55e;"></div>
+          <div class="workout-info">
+            <div class="workout-name">Foundation 1</div>
+            <div class="workout-desc">Full-body compound strength to build your base</div>
+          </div>
+          <div class="workout-arrow">›</div>
+        </div>
+        <div class="workout-card">
+          <div class="diff-pip" style="background:#22c55e;"></div>
+          <div class="workout-info">
+            <div class="workout-name">Foundation 2</div>
+            <div class="workout-desc">A fresh angle on foundational movement patterns</div>
+          </div>
+          <div class="workout-arrow">›</div>
+        </div>
+        <div class="diff-divider">Moderate</div>
+        <div class="workout-card">
+          <div class="diff-pip" style="background:#d97706;"></div>
+          <div class="workout-info">
+            <div class="workout-name">Foundation 3</div>
+            <div class="workout-desc">Hip hinge emphasis &amp; posterior chain loading</div>
+          </div>
+          <div class="workout-arrow">›</div>
+        </div>
+        <div class="workout-card">
+          <div class="diff-pip" style="background:#d97706;"></div>
+          <div class="workout-info">
+            <div class="workout-name">Symmetry &amp; Balance 1</div>
+            <div class="workout-desc">Isolated unilateral work for symmetrical strength</div>
+          </div>
+          <div class="workout-arrow">›</div>
+        </div>
+        <div class="diff-divider">Harder</div>
+        <div class="workout-card">
+          <div class="diff-pip" style="background:#ef4444;"></div>
+          <div class="workout-info">
+            <div class="workout-name">Build 1</div>
+            <div class="workout-desc">High-volume hypertrophy for serious strength gains</div>
+          </div>
+          <div class="workout-arrow">›</div>
+        </div>
+      </div>
+      <div class="phone-footer">
+        <div class="footer-link">Looking for more structure?<br>Follow a 12-week program here!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- State 2: 4 done, goal hit -->
+  <div class="split-col">
+    <div class="split-label">Goal hit (4 done this week!)</div>
+    <div class="phone">
+      <div class="phone-header">
+        <div class="app-title">Equestrian Strength</div>
+        <div class="app-tagline">Strong riding starts on the ground</div>
+      </div>
+      <div class="tracker-row">
+        <div class="tracker-label">This week<span>Resets Monday</span></div>
+        <div class="dots">
+          <div class="dot done">✓</div>
+          <div class="dot done">✓</div>
+          <div class="dot done">✓</div>
+          <div class="dot done">✓</div>
+        </div>
+      </div>
+      <div class="goal-banner">
+        <span style="font-size:11px;">🌿</span>
+        <div class="goal-text">Weekly goal hit — great work!</div>
+      </div>
+      <div class="chip-bar">
+        <div class="chip chip-easier"><span class="chip-pip" style="background:#22c55e;"></span>Easier</div>
+        <div class="chip chip-moderate"><span class="chip-pip" style="background:#d97706;"></span>Moderate</div>
+        <div class="chip chip-harder"><span class="chip-pip" style="background:#ef4444;"></span>Harder</div>
+      </div>
+      <div class="workout-list">
+        <div class="diff-divider">Easier</div>
+        <div class="workout-card">
+          <div class="diff-pip" style="background:#22c55e;"></div>
+          <div class="workout-info">
+            <div class="workout-name">Foundation 1</div>
+            <div class="workout-desc">Full-body compound strength to build your base</div>
+          </div>
+          <div class="workout-arrow">›</div>
+        </div>
+        <div class="workout-card">
+          <div class="diff-pip" style="background:#22c55e;"></div>
+          <div class="workout-info">
+            <div class="workout-name">Foundation 2</div>
+            <div class="workout-desc">A fresh angle on foundational movement patterns</div>
+          </div>
+          <div class="workout-arrow">›</div>
+        </div>
+        <div class="diff-divider">Moderate</div>
+        <div class="workout-card">
+          <div class="diff-pip" style="background:#d97706;"></div>
+          <div class="workout-info">
+            <div class="workout-name">Foundation 3</div>
+            <div class="workout-desc">Hip hinge emphasis &amp; posterior chain loading</div>
+          </div>
+          <div class="workout-arrow">›</div>
+        </div>
+        <div class="workout-card">
+          <div class="diff-pip" style="background:#d97706;"></div>
+          <div class="workout-info">
+            <div class="workout-name">Symmetry &amp; Balance 1</div>
+            <div class="workout-desc">Isolated unilateral work for symmetrical strength</div>
+          </div>
+          <div class="workout-arrow">›</div>
+        </div>
+        <div class="diff-divider">Harder</div>
+        <div class="workout-card">
+          <div class="diff-pip" style="background:#ef4444;"></div>
+          <div class="workout-info">
+            <div class="workout-name">Build 1</div>
+            <div class="workout-desc">High-volume hypertrophy for serious strength gains</div>
+          </div>
+          <div class="workout-arrow">›</div>
+        </div>
+      </div>
+      <div class="phone-footer">
+        <div class="footer-link">Looking for more structure?<br>Follow a 12-week program here!</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:24px; text-align:center;">
+  Three questions: (1) Keep subtle difficulty dividers in the list, or just rely on colored dots?<br>
+  (2) Keep "Resets Monday" sub-label? (3) Thumbs up or down on the goal-hit banner?
+</p>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Outfit:wght@700;800&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #FAF8F5;
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  .phone {
+    width: 100%;
+    max-width: 390px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #FAF8F5;
+  }
+
+  .progress-bar { display: flex; gap: 4px; padding: 8px 4px 0; flex-shrink: 0; }
+  .seg { flex: 1; height: 4px; background: #E8E4E0; border-radius: 2px; overflow: hidden; }
+  .seg-fill { height: 100%; background: #355E3B; border-radius: 2px; }
+
+  .progress-row {
+    display: flex; justify-content: space-between; padding: 10px 24px 0;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .phase-label { color: #355E3B; }
+  .step-label { color: #8A8279; }
+
+  .exercise-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 24px 0;
+  }
+
+  .exercise-img {
+    width: 100%; max-width: 320px; height: 180px;
+    border-radius: 16px; background: #E8E4E0;
+    display: flex; align-items: center; justify-content: center;
+    color: #aaa; font-size: 13px; margin-bottom: 28px;
+  }
+
+  .exercise-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 28px; font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2;
+    color: #2D2A26; text-align: center; margin-bottom: 18px;
+  }
+
+  .rep-badge {
+    display: flex; align-items: baseline; gap: 6px;
+    background: #EAF2EC; border-radius: 14px; padding: 12px 28px;
+    margin-bottom: 20px;
+  }
+  .rep-num { font-family: 'Outfit', sans-serif; font-size: 40px; font-weight: 800; color: #355E3B; line-height: 1; }
+  .rep-label { font-size: 16px; font-weight: 500; color: #355E3B; opacity: 0.8; }
+
+  /* ── Fixed-space modifier block ── */
+  .modifier-block {
+    width: 100%;
+    max-width: 320px;
+    /* Taller to fit 2 lines per tip */
+    min-height: 108px;
+    position: relative;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    border-radius: 12px;
+    background: #F7F5F2;
+    border: 1.5px solid #E8E4E0;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .modifier-block.open {
+    background: #FFFFFF;
+    border-color: #E8E4E0;
+  }
+
+  .modifier-toggle {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: #8A8279;
+    transition: opacity 0.15s ease;
+  }
+  .modifier-block.open .modifier-toggle {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .modifier-panel {
+    position: absolute;
+    inset: 0;
+    padding: 12px 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    border-radius: 12px;
+  }
+  .modifier-block.open .modifier-panel {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modifier-row { display: flex; align-items: flex-start; gap: 8px; }
+  .badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; flex-shrink: 0; white-space: nowrap; margin-top: 1px; }
+  .badge-easier { background: #EAF1FC; color: #2D6BD1; }
+  .badge-harder { background: #FFF0EC; color: #E85D3A; }
+  .modifier-text { font-size: 12px; color: #2D2A26; line-height: 1.5; }
+
+  /* switcher */
+  .switcher { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
+  .switch-btn {
+    font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500;
+    padding: 4px 12px; border-radius: 20px; border: 1px solid #E8E4E0;
+    background: #fff; color: #8A8279; cursor: pointer;
+  }
+  .switch-btn.active { background: #355E3B; color: #fff; border-color: #355E3B; }
+  .hint { font-size: 11px; color: #aaa; text-align: center; margin-top: 6px; }
+
+  .nav {
+    padding: 16px 24px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    flex-shrink: 0;
+  }
+  .btn-prev { font-family: 'DM Sans', sans-serif; background: #fff; color: #2D2A26; border: 1.5px solid #E8E4E0; border-radius: 14px; padding: 16px 24px; font-size: 16px; font-weight: 600; cursor: pointer; min-width: 100px; }
+  .btn-end { font-family: 'DM Sans', sans-serif; background: transparent; color: #8A8279; border: none; padding: 16px 12px; font-size: 14px; font-weight: 500; cursor: pointer; }
+  .btn-next { font-family: 'DM Sans', sans-serif; background: #355E3B; color: #fff; border: none; border-radius: 14px; padding: 16px 24px; font-size: 16px; font-weight: 600; cursor: pointer; min-width: 100px; }
+</style>
+</head>
+<body>
+<div class="phone">
+
+  <div class="progress-bar">
+    <div class="seg"><div class="seg-fill" style="width:40%"></div></div>
+    <div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+  </div>
+  <div class="progress-row">
+    <span class="phase-label">Phase 1 of 5 · Warm Up</span>
+    <span class="step-label">2 of 9</span>
+  </div>
+
+  <div class="exercise-content">
+    <div class="exercise-img">[ exercise image ]</div>
+    <div class="exercise-name" id="exName">Single Leg RDL</div>
+    <div class="rep-badge">
+      <span class="rep-num">6-8</span>
+      <span class="rep-label">reps</span>
+    </div>
+
+    <div class="modifier-block" id="modifierBlock" onclick="toggle()">
+      <div class="modifier-toggle">Make it easier or harder ▾</div>
+      <div class="modifier-panel" id="panel">
+        <div class="modifier-row">
+          <span class="badge badge-easier">Easier</span>
+          <span class="modifier-text" id="easierText">Touch your raised foot down for balance support</span>
+        </div>
+        <div class="modifier-row">
+          <span class="badge badge-harder">Harder</span>
+          <span class="modifier-text" id="harderText">Hold a dumbbell in the opposite hand</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toggle between short and long tip examples -->
+    <div class="switcher">
+      <button class="switch-btn active" onclick="setExample('short')">Short tips</button>
+      <button class="switch-btn" onclick="setExample('long')">Long tips</button>
+    </div>
+    <p class="hint">Try both tip lengths</p>
+
+  </div>
+
+  <div class="nav">
+    <button class="btn-prev">← Prev</button>
+    <button class="btn-end">End</button>
+    <button class="btn-next">Next →</button>
+  </div>
+
+</div>
+
+<script>
+  const examples = {
+    short: {
+      easier: 'Touch your raised foot down for balance support',
+      harder: 'Hold a dumbbell in the opposite hand',
+    },
+    long: {
+      easier: 'Take a shorter hop; reach for your shin or ankle instead of the ground to reduce the range of motion',
+      harder: 'Hover your bent knee off the ground at the bottom of each rep and pause for a full second before standing',
+    }
+  };
+
+  function toggle() {
+    document.getElementById('modifierBlock').classList.toggle('open');
+  }
+
+  function setExample(type) {
+    document.getElementById('easierText').textContent = examples[type].easier;
+    document.getElementById('harderText').textContent = examples[type].harder;
+    document.querySelectorAll('.switch-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+</script>
+</body>
+</html>

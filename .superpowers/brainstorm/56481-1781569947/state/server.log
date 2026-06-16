@@ -1,0 +1,8 @@
+{"type":"server-started","port":51743,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:51743","screen_dir":"/Users/katie/code/workout-app/.superpowers/brainstorm/56481-1781569947/content","state_dir":"/Users/katie/code/workout-app/.superpowers/brainstorm/56481-1781569947/state"}
+{"type":"screen-added","file":"/Users/katie/code/workout-app/.superpowers/brainstorm/56481-1781569947/content/library-screen.html"}
+{"type":"screen-added","file":"/Users/katie/code/workout-app/.superpowers/brainstorm/56481-1781569947/content/tracker-states.html"}
+{"type":"screen-added","file":"/Users/katie/code/workout-app/.superpowers/brainstorm/56481-1781569947/content/waiting-1.html"}
+{"type":"screen-added","file":"/Users/katie/code/workout-app/.superpowers/brainstorm/56481-1781569947/content/library-final.html"}
+{"type":"screen-added","file":"/Users/katie/code/workout-app/.superpowers/brainstorm/56481-1781569947/content/other-screens.html"}
+{"type":"screen-added","file":"/Users/katie/code/workout-app/.superpowers/brainstorm/56481-1781569947/content/section3.html"}
+{"type":"server-stopped","reason":"idle timeout"}
