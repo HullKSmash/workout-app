@@ -293,9 +293,9 @@ export default function WorkoutApp() {
                   No difficulty selected — tap a filter above to show workouts.
                 </p>
               ) : (
-                libraryWorkouts.map((workout, i) => (
+                libraryWorkouts.map((workout) => (
                   <button
-                    key={i}
+                    key={workout.name}
                     style={styles.libraryCard}
                     onClick={() => handleSelectWorkout(workout)}
                   >
