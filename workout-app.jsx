@@ -3,6 +3,7 @@ import { WORKOUTS } from "./workouts";
 import { VARIANTS, resolveVariant } from "./variants";
 import { RIDER_STRENGTH_SCHEDULE } from "./workouts/rider-strength-schedule.js";
 import { slotId, loadProgress, saveProgress, clearProgress } from "./workouts/progress.js";
+import { getThisWeekCount, saveThisWeekCount } from "./workouts/equestrian-weekly-progress.js";
 
 const variant = resolveVariant();
 const isDefaultVariant = variant.audiences === null;
@@ -20,6 +21,19 @@ const variantLinks = Object.entries(VARIANTS)
 const MODIFIER_DEFAULTS = {
   easier: "Reduce your range of motion or use only body weight",
   harder: "Slow the motion down, increase your range of motion, or add more weight",
+};
+
+// ─── Library difficulty config ───────────────────────────────────────────────
+const DIFFICULTY_ORDER = { easier: 0, moderate: 1, harder: 2 };
+const DIFFICULTY_COLORS = {
+  easier: "#22c55e",
+  moderate: "#d97706",
+  harder: "#ef4444",
+};
+const DIFFICULTY_LABELS = {
+  easier: "Easier",
+  moderate: "Moderate",
+  harder: "Harder",
 };
 
 // ─── Flatten workout into linear step list ──────────────────────────────────
@@ -90,9 +104,15 @@ function totalDoneCount(progress) {
 
 // ─── Main App ───────────────────────────────────────────────────────────────
 export default function WorkoutApp() {
-  const [screen, setScreen] = useState(isEquestrian ? "schedule" : "select"); // schedule | select | landing | workout | complete
+  const [screen, setScreen] = useState(isEquestrian ? "library" : "select"); // library | schedule | select | landing | workout | complete
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState(null); // schedule slot id for the open workout, or null (e.g. opened from "View all")
+  // ─── Library state ───────────────────────────────────────────────────────────
+  const ALL_DIFFICULTIES = ["easier", "moderate", "harder"];
+  const [activeFilters, setActiveFilters] = useState(new Set(ALL_DIFFICULTIES));
+  const [weeklyCount, setWeeklyCount] = useState(() =>
+    isEquestrian ? getThisWeekCount() : 0
+  );
   const [completed, setCompleted] = useState(loadProgress);
   const [expandedWeek, setExpandedWeek] = useState(() =>
     isEquestrian ? firstIncompleteWeek(loadProgress()) : null
@@ -108,6 +128,18 @@ export default function WorkoutApp() {
     () => (selectedWorkout ? flattenWorkout(selectedWorkout) : []),
     [selectedWorkout]
   );
+  // Filtered + sorted workout list for the library screen.
+  const libraryWorkouts = useMemo(() => {
+    if (!isEquestrian) return [];
+    return visibleWorkouts
+      .filter((w) => activeFilters.has(w.difficulty))
+      .sort(
+        (a, b) =>
+          (DIFFICULTY_ORDER[a.difficulty] ?? 99) -
+          (DIFFICULTY_ORDER[b.difficulty] ?? 99)
+      );
+  }, [activeFilters]);
+
   const totalSteps = steps.length;
   const currentExercise = steps[currentStep];
 
@@ -243,6 +275,58 @@ export default function WorkoutApp() {
   return (
     <div style={styles.appContainer}>
       <style>{cssAnimations}</style>
+
+      {/* ── Library ──────────────────────────────────────────────────── */}
+      {screen === "library" && (
+        <div style={styles.screenContainer}>
+          <div style={styles.libraryContent}>
+            <h1 style={styles.appTitle}>{variant.brandName}</h1>
+            <p style={styles.selectSubtitle}>{variant.tagline}</p>
+
+            {/* Weekly tracker — added in Task 5 */}
+            {/* Filter chips — added in Task 4 */}
+
+            {/* Workout list */}
+            <div style={styles.workoutList}>
+              {libraryWorkouts.length === 0 ? (
+                <p style={styles.libraryEmptyState}>
+                  No difficulty selected — tap a filter above to show workouts.
+                </p>
+              ) : (
+                libraryWorkouts.map((workout, i) => (
+                  <button
+                    key={i}
+                    style={styles.libraryCard}
+                    onClick={() => handleSelectWorkout(workout)}
+                  >
+                    <span
+                      style={{
+                        ...styles.libraryPip,
+                        background: DIFFICULTY_COLORS[workout.difficulty] ?? "#ccc",
+                      }}
+                    />
+                    <span style={styles.libraryCardBody}>
+                      <span style={styles.libraryCardName}>{workout.name}</span>
+                      <span style={styles.libraryCardDesc}>{workout.description}</span>
+                    </span>
+                    <span style={styles.libraryCardArrow}>›</span>
+                  </button>
+                ))
+              )}
+            </div>
+
+            {/* Guidance & Tips card — added in Task 6 */}
+
+            {/* Footer link to 12-week program */}
+            <button
+              style={styles.viewAllLink}
+              onClick={() => setScreen("schedule")}
+            >
+              Looking for more structure? Follow a 12-week program here!
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* ── Schedule ─────────────────────────────────────────────────── */}
       {screen === "schedule" && (
@@ -1219,6 +1303,64 @@ const styles = {
     color: colors.text,
     lineHeight: 1.5,
     textAlign: "left",
+  },
+
+  libraryContent: {
+    width: "100%",
+    maxWidth: 480,
+    margin: "0 auto",
+    padding: "20px 16px 40px",
+    display: "flex",
+    flexDirection: "column",
+    gap: 12,
+  },
+  libraryCard: {
+    display: "flex",
+    alignItems: "flex-start",
+    gap: 10,
+    background: colors.surface,
+    border: "none",
+    borderRadius: 12,
+    padding: "12px 14px",
+    cursor: "pointer",
+    textAlign: "left",
+    boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
+    width: "100%",
+  },
+  libraryPip: {
+    width: 10,
+    height: 10,
+    borderRadius: "50%",
+    flexShrink: 0,
+    marginTop: 4,
+  },
+  libraryCardBody: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    gap: 3,
+  },
+  libraryCardName: {
+    fontSize: 15,
+    fontWeight: 700,
+    color: colors.text,
+  },
+  libraryCardDesc: {
+    fontSize: 13,
+    color: colors.textSecondary,
+    lineHeight: 1.4,
+  },
+  libraryCardArrow: {
+    fontSize: 20,
+    color: colors.border,
+    fontWeight: 300,
+    alignSelf: "center",
+  },
+  libraryEmptyState: {
+    fontSize: 14,
+    color: colors.textSecondary,
+    textAlign: "center",
+    padding: "24px 0",
   },
 
   // ── Schedule ─────────────────────────────────────────────────────
