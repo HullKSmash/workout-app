@@ -1550,7 +1550,7 @@ const styles = {
   trackerGoalMessage: {
     fontSize: 13,
     fontWeight: 700,
-    color: colors.accent,
+    color: "rgb(45, 42, 38)",
     lineHeight: 1.3,
   },
   trackerDots: {
