@@ -1628,9 +1628,9 @@ const styles = {
     },
   },
   chipInactive: {
-    borderColor: colors.border,
+    borderColor: "#D4CFC9",
     color: colors.textSecondary,
-    background: colors.surface,
+    background: colors.border,
   },
   chipPip: {
     width: 7,
