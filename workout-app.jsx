@@ -195,10 +195,6 @@ export default function WorkoutApp() {
     }
   }, [timerSeconds]);
 
-  // Collapse modifier panel when exercise changes
-  useEffect(() => {
-    setShowModifier(false);
-  }, [currentStep]);
 
   const animateTransition = useCallback((callback) => {
     setFadeClass("step-exit");
