@@ -3,8 +3,8 @@ export default {
   "audiences": [
     "equestrian"
   ],
-  "difficulty": "harder",
-  "description": "Upper/lower alternating supersets for maximum training efficiency",
+  "difficulty": "easier",
+  "description": "Alternating unilateral exercises in supersets.  A fun and lighter take on symmetry work!",
   "phases": [
     {
       "name": "Warm Up",
