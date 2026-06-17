@@ -14,9 +14,7 @@ export default {
           "exercises": [
             {
               "name": "Plié squat and press",
-              "repCount": "6-8",
-              "easier": "Reduce the depth of your squat; use bodyweight only",
-              "harder": "Hold your press overhead throughout the squat"
+              "repCount": "6-8"
             },
             {
               "name": "RDL/row/kickback",
@@ -24,9 +22,7 @@ export default {
             },
             {
               "name": "Alternating Nordic offerings",
-              "repCount": "8-10 per side",
-              "easier": "Reduce your range of movement",
-              "harder": "Don't alternate - work both arms at the same time"
+              "repCount": "8-10 per side"
             }
           ]
         }
