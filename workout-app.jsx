@@ -26,11 +26,9 @@ const variantLinks = Object.entries(VARIANTS)
   .filter(([, v]) => v.audiences !== null)
   .map(([key, v]) => ({ key, ...v }));
 
-// ─── Modifier defaults ───────────────────────────────────────────────────────
-const MODIFIER_DEFAULTS = {
-  easier: "Reduce your range of motion or use only body weight",
-  harder: "Slow the motion down, increase your range of motion, or add more weight",
-};
+// ─── Tips default ────────────────────────────────────────────────────────────
+const TIPS_DEFAULT =
+  "If this is too easy, check your form, slow down, increase your range of motion, and add weight if necessary. If it's too hard, decrease the weight, decrease the number of reps, and reduce your range of motion if necessary.";
 
 // ─── Library difficulty config ───────────────────────────────────────────────
 const DIFFICULTY_ORDER = { easier: 0, moderate: 1, harder: 2 };
@@ -131,8 +129,6 @@ export default function WorkoutApp() {
   const [showEndConfirm, setShowEndConfirm] = useState(false);
   const [timerSeconds, setTimerSeconds] = useState(0);
   const [fadeClass, setFadeClass] = useState("step-enter");
-  const [showModifier, setShowModifier] = useState(false);
-
   const steps = useMemo(
     () => (selectedWorkout ? flattenWorkout(selectedWorkout) : []),
     [selectedWorkout]
@@ -792,44 +788,11 @@ export default function WorkoutApp() {
                   </div>
                 )}
 
-                {/* Modifier block — fixed space, crossfades between label and panel */}
-                <div
-                  style={{
-                    ...styles.modifierBlock,
-                    background: showModifier ? colors.surface : "#F7F5F2",
-                  }}
-                  onClick={() => setShowModifier((v) => !v)}
-                >
-                  <div style={{
-                    ...styles.modifierToggleLabel,
-                    opacity: showModifier ? 0 : 1,
-                    pointerEvents: showModifier ? "none" : "auto",
-                  }}>
-                    <span>Too hard? Too easy?</span>
-                    <span style={{ fontSize: 12, marginTop: 3 }}>Tap to see options.</span>
-                  </div>
-                  <div style={{
-                    ...styles.modifierPanel,
-                    opacity: showModifier ? 1 : 0,
-                    pointerEvents: showModifier ? "auto" : "none",
-                  }}>
-                    <div style={styles.modifierRow}>
-                      <span style={{ ...styles.modifierBadge, ...styles.modifierBadgeEasier }}>
-                        Easier
-                      </span>
-                      <span style={styles.modifierText}>
-                        {currentExercise.easier || MODIFIER_DEFAULTS.easier}
-                      </span>
-                    </div>
-                    <div style={{ ...styles.modifierRow, marginTop: 10 }}>
-                      <span style={{ ...styles.modifierBadge, ...styles.modifierBadgeHarder }}>
-                        Harder
-                      </span>
-                      <span style={styles.modifierText}>
-                        {currentExercise.harder || MODIFIER_DEFAULTS.harder}
-                      </span>
-                    </div>
-                  </div>
+                <div style={styles.tipsBox}>
+                  <span style={styles.tipsIcon}>ℹ️</span>
+                  <span style={styles.tipsText}>
+                    {currentExercise.tips || TIPS_DEFAULT}
+                  </span>
                 </div>
               </div>
             )}
