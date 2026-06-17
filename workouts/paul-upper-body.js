@@ -1,6 +1,8 @@
 export default {
   name: "Paul Upper Body",
   audiences: ["paul"],
+  difficulty: "moderate", // TODO(Katie): set tier — easier | moderate | harder
+  description: "TODO(Katie): one-line library description",
   phases: [
     {
       name: "Circuit",

@@ -10,8 +10,9 @@
     {
       "name": "app",
       "runtimeExecutable": "/bin/bash",
-      "runtimeArgs": ["-c", "export PATH='/Users/katie/.nvm/versions/node/v24.16.0/bin:$PATH' && node ./node_modules/.bin/vite"],
-      "port": 5173
+      "runtimeArgs": ["-c", "export PATH='/Users/katie/.nvm/versions/node/v24.16.0/bin:$PATH' && node ./node_modules/.bin/vite --port $PORT"],
+      "port": 5173,
+      "autoPort": true
     }
   ]
 }

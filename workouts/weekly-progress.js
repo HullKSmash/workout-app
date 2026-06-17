@@ -1,10 +1,10 @@
-// workouts/equestrian-weekly-progress.js
-// ─── Weekly workout count for the equestrian library ─────────────────────────
-// Keyed by ISO week of the Monday that started the week.
+// workouts/weekly-progress.js
+// ─── Weekly workout count for the self-directed library ──────────────────────
+// Each variant stores its own count under "<variant>.weeklyCount"
+// (e.g. equestrian.weeklyCount, run.weeklyCount, paul.weeklyCount), keyed by
+// the ISO week of the Monday that started the week.
 // Stored shape: { "2026-W24": 3, "2026-W25": 1 }
 // The schedule's existing key (riderStrength.completed) is untouched.
-
-const KEY = "equestrian.weeklyCount";
 
 /**
  * Returns the ISO week key for the current Monday, e.g. "2026-W24".
@@ -33,9 +33,9 @@ export function getCurrentWeekKey() {
   return `${year}-W${String(weekNum).padStart(2, "0")}`;
 }
 
-function loadAllCounts() {
+function loadAllCounts(storageKey) {
   try {
-    const parsed = JSON.parse(localStorage.getItem(KEY) || "{}");
+    const parsed = JSON.parse(localStorage.getItem(storageKey) || "{}");
     return parsed && typeof parsed === "object" && !Array.isArray(parsed)
       ? parsed
       : {};
@@ -44,15 +44,15 @@ function loadAllCounts() {
   }
 }
 
-export function getThisWeekCount() {
-  return loadAllCounts()[getCurrentWeekKey()] ?? 0;
+export function getThisWeekCount(storageKey) {
+  return loadAllCounts(storageKey)[getCurrentWeekKey()] ?? 0;
 }
 
-export function saveThisWeekCount(count) {
+export function saveThisWeekCount(storageKey, count) {
   try {
-    const all = loadAllCounts();
+    const all = loadAllCounts(storageKey);
     all[getCurrentWeekKey()] = Math.max(0, count);
-    localStorage.setItem(KEY, JSON.stringify(all));
+    localStorage.setItem(storageKey, JSON.stringify(all));
   } catch {
     // localStorage unavailable — fail silently; in-memory state still works
   }

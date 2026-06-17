@@ -14,6 +14,7 @@ export const VARIANTS = {
     audiences: ["run"],
     accent: "#E85D3A",
     accentLight: "#FFF0EC",
+    library: true, // self-directed workout library is the default screen
   },
   paul: {
     brandName: "Paul Strength",
@@ -21,6 +22,7 @@ export const VARIANTS = {
     audiences: ["paul"],
     accent: "#2D6BD1",
     accentLight: "#EAF1FC",
+    library: true,
   },
   equestrian: {
     brandName: "Equestrian Strength",
@@ -28,6 +30,8 @@ export const VARIANTS = {
     audiences: ["equestrian"],
     accent: "#355E3B",
     accentLight: "#EAF2EC",
+    library: true,
+    schedule: true, // also offers the secondary 12-week program schedule
   },
 };
 

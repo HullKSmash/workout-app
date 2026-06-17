@@ -3,6 +3,8 @@ export default {
   audiences: [
     "run"
   ],
+  difficulty: "moderate", // TODO(Katie): set tier — easier | moderate | harder
+  description: "TODO(Katie): one-line library description",
   phases: [
     {
       name: "Plyometric Warm Up",

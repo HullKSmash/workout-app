@@ -3,11 +3,20 @@ import { WORKOUTS } from "./workouts";
 import { VARIANTS, resolveVariant } from "./variants";
 import { RIDER_STRENGTH_SCHEDULE } from "./workouts/rider-strength-schedule.js";
 import { slotId, loadProgress, saveProgress, clearProgress } from "./workouts/progress.js";
-import { getThisWeekCount, saveThisWeekCount } from "./workouts/equestrian-weekly-progress.js";
+import { getThisWeekCount, saveThisWeekCount } from "./workouts/weekly-progress.js";
 
 const variant = resolveVariant();
+const variantKey =
+  Object.keys(VARIANTS).find((k) => VARIANTS[k] === variant) ?? "default";
 const isDefaultVariant = variant.audiences === null;
-const isEquestrian = variant.audiences?.includes("equestrian") ?? false;
+// Variants flagged `library: true` use the self-directed workout library as
+// their default screen (with the weekly tracker). `schedule: true` variants
+// (equestrian only) additionally expose the secondary 12-week program.
+const hasLibrary = variant.library ?? false;
+const hasSchedule = variant.schedule ?? false;
+// Per-variant localStorage key so counts don't collide across variants when
+// switching via ?variant= locally. Equestrian keeps its existing key.
+const weeklyStorageKey = `${variantKey}.weeklyCount`;
 const visibleWorkouts = isDefaultVariant
   ? []
   : WORKOUTS.filter((w) =>
@@ -104,18 +113,18 @@ function totalDoneCount(progress) {
 
 // ─── Main App ───────────────────────────────────────────────────────────────
 export default function WorkoutApp() {
-  const [screen, setScreen] = useState(isEquestrian ? "library" : "select"); // library | schedule | select | landing | workout | complete
+  const [screen, setScreen] = useState(hasLibrary ? "library" : "select"); // library | schedule | select | landing | workout | complete
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState(null); // schedule slot id for the open workout, or null (e.g. opened from "View all")
   // ─── Library state ───────────────────────────────────────────────────────────
   const ALL_DIFFICULTIES = ["easier", "moderate", "harder"];
   const [activeFilters, setActiveFilters] = useState(new Set(ALL_DIFFICULTIES));
   const [weeklyCount, setWeeklyCount] = useState(() =>
-    isEquestrian ? getThisWeekCount() : 0
+    hasLibrary ? getThisWeekCount(weeklyStorageKey) : 0
   );
   const [completed, setCompleted] = useState(loadProgress);
   const [expandedWeek, setExpandedWeek] = useState(() =>
-    isEquestrian ? firstIncompleteWeek(loadProgress()) : null
+    hasSchedule ? firstIncompleteWeek(loadProgress()) : null
   );
   const [guideOpen, setGuideOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
@@ -130,7 +139,7 @@ export default function WorkoutApp() {
   );
   // Filtered + sorted workout list for the library screen.
   const libraryWorkouts = useMemo(() => {
-    if (!isEquestrian) return [];
+    if (!hasLibrary) return [];
     return visibleWorkouts
       .filter((w) => activeFilters.has(w.difficulty))
       .sort(
@@ -232,11 +241,11 @@ export default function WorkoutApp() {
   const handleResetProgress = () => {
     clearProgress();
     setCompleted({});
-    setExpandedWeek(isEquestrian ? RIDER_STRENGTH_SCHEDULE.weeks[0].week : null);
+    setExpandedWeek(hasSchedule ? RIDER_STRENGTH_SCHEDULE.weeks[0].week : null);
   };
 
   const handleBackFromLanding = () => {
-    setScreen(isEquestrian ? "library" : "select");
+    setScreen(hasLibrary ? "library" : "select");
   };
 
   const handleStart = () => {
@@ -250,10 +259,10 @@ export default function WorkoutApp() {
       // Auto-mark the schedule slot complete on finishing the last step.
       if (selectedSlot && !completed[selectedSlot]) toggleSlot(selectedSlot);
       // Increment weekly count for the library tracker.
-      if (isEquestrian) {
+      if (hasLibrary) {
         const next = weeklyCount + 1;
         setWeeklyCount(next);
-        saveThisWeekCount(next);
+        saveThisWeekCount(weeklyStorageKey, next);
       }
       setScreen("complete");
     } else {
@@ -273,7 +282,7 @@ export default function WorkoutApp() {
 
   const confirmEnd = () => {
     setShowEndConfirm(false);
-    setScreen(isEquestrian ? "library" : "select");
+    setScreen(hasLibrary ? "library" : "select");
   };
 
   const cancelEnd = () => {
@@ -281,7 +290,7 @@ export default function WorkoutApp() {
   };
 
   const handleBackToStart = () => {
-    setScreen(isEquestrian ? "library" : "select");
+    setScreen(hasLibrary ? "library" : "select");
   };
 
   // ─── Timer display formatting ───────────────────────────────────────────
@@ -338,7 +347,7 @@ export default function WorkoutApp() {
                         onClick={() => {
                           const next = filled ? weeklyCount - 1 : weeklyCount + 1;
                           setWeeklyCount(next);
-                          saveThisWeekCount(next);
+                          saveThisWeekCount(weeklyStorageKey, next);
                         }}
                       >
                         {filled ? "✓" : ""}
@@ -426,13 +435,15 @@ export default function WorkoutApp() {
               )}
             </div>
 
-            {/* Footer link to 12-week program */}
-            <button
-              style={styles.viewAllLink}
-              onClick={() => setScreen("schedule")}
-            >
-              Looking for more structure? Follow a 12-week program here!
-            </button>
+            {/* Footer link to 12-week program (variants with a schedule only) */}
+            {hasSchedule && (
+              <button
+                style={styles.viewAllLink}
+                onClick={() => setScreen("schedule")}
+              >
+                Looking for more structure? Follow a 12-week program here!
+              </button>
+            )}
           </div>
         </div>
       )}
@@ -878,7 +889,7 @@ export default function WorkoutApp() {
               Great work finishing {selectedWorkout.name}
             </p>
 
-            {isEquestrian && weeklyProgressMessage && (
+            {hasLibrary && weeklyProgressMessage && (
               <div style={styles.weeklyProgressBlock}>
                 <div style={styles.trackerDots}>
                   {Array.from({ length: Math.max(WEEK_GOAL, weeklyCount) }).map(
