@@ -1369,83 +1369,31 @@ const styles = {
     WebkitTapHighlightColor: "transparent",
   },
 
-  // ── Modifier Panel ───────────────────────────────────────────
-  modifierBlock: {
+  // ── Tips Box ─────────────────────────────────────────────────
+  tipsBox: {
     width: "100%",
     maxWidth: 320,
-    minHeight: 108,
-    position: "relative",
-    cursor: "pointer",
-    WebkitTapHighlightColor: "transparent",
-    userSelect: "none",
     borderRadius: 12,
     border: `1.5px solid ${colors.border}`,
     marginTop: 4,
-    transition: "background 0.15s ease",
-  },
-
-  modifierToggleLabel: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: 13,
-    fontWeight: 500,
-    color: colors.textSecondary,
-    transition: "opacity 0.15s ease",
-  },
-
-  modifierPanel: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
     padding: "12px 14px",
     display: "flex",
-    flexDirection: "column",
-    gap: 10,
-    justifyContent: "center",
-    borderRadius: 12,
-    transition: "opacity 0.15s ease",
-  },
-
-  modifierRow: {
-    display: "flex",
     alignItems: "flex-start",
-    gap: 8,
+    gap: 10,
+    background: colors.surface,
+    boxSizing: "border-box",
   },
 
-  modifierBadge: {
-    fontSize: 11,
-    fontWeight: 600,
-    padding: "2px 8px",
-    borderRadius: 20,
+  tipsIcon: {
+    fontSize: 16,
     flexShrink: 0,
-    whiteSpace: "nowrap",
     marginTop: 1,
   },
 
-  modifierBadgeEasier: {
-    background: "#EAF1FC",
-    color: "#2D6BD1",
-  },
-
-  modifierBadgeHarder: {
-    background: "#FFF0EC",
-    color: "#E85D3A",
-  },
-
-  modifierText: {
+  tipsText: {
     fontSize: 12,
     color: colors.text,
-    lineHeight: 1.5,
-    textAlign: "left",
+    lineHeight: 1.55,
   },
 
   libraryContent: {
