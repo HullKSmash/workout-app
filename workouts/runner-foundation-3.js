@@ -3,8 +3,8 @@ export default {
   audiences: [
     "run"
   ],
-  difficulty: "moderate", // TODO(Katie): set tier — easier | moderate | harder
-  description: "TODO(Katie): one-line library description",
+  difficulty: "moderate",
+  description: "Full-body strength combining compound movements, isolation exercises, and unilateral work.",
   phases: [
     {
       name: "Plyometric Warm Up",
