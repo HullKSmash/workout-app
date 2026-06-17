@@ -341,41 +341,41 @@ export default function WorkoutApp() {
               </div>
             </div>
 
-            {/* Goal-hit banner */}
-            {weeklyCount >= WEEK_GOAL && (
-              <div style={styles.goalBanner}>
-                <span style={styles.goalBannerIcon}>🌿</span>
-                <span style={styles.goalBannerText}>
-                  Weekly goal hit! Keep going if you feel strong!
-                </span>
-              </div>
-            )}
-
-            {/* Filter chips */}
-            <div style={styles.chipBar}>
-              {ALL_DIFFICULTIES.map((d) => {
-                const active = activeFilters.has(d);
-                return (
-                  <button
-                    key={d}
-                    style={{
-                      ...styles.chip,
-                      ...(active ? styles.chipActive[d] : styles.chipInactive),
-                    }}
-                    onClick={() => toggleFilter(d)}
-                  >
-                    <span
+            {/* Sticky: goal banner + filter chips */}
+            <div style={styles.stickyFilterBar}>
+              {weeklyCount >= WEEK_GOAL && (
+                <div style={styles.goalBanner}>
+                  <span style={styles.goalBannerIcon}>🌿</span>
+                  <span style={styles.goalBannerText}>
+                    Weekly goal hit! Keep going if you feel strong!
+                  </span>
+                </div>
+              )}
+              <div style={styles.chipBar}>
+                {ALL_DIFFICULTIES.map((d) => {
+                  const active = activeFilters.has(d);
+                  return (
+                    <button
+                      key={d}
                       style={{
-                        ...styles.chipPip,
-                        background: active
-                          ? DIFFICULTY_COLORS[d]
-                          : colors.textSecondary,
+                        ...styles.chip,
+                        ...(active ? styles.chipActive[d] : styles.chipInactive),
                       }}
-                    />
-                    {DIFFICULTY_LABELS[d]}
-                  </button>
-                );
-              })}
+                      onClick={() => toggleFilter(d)}
+                    >
+                      <span
+                        style={{
+                          ...styles.chipPip,
+                          background: active
+                            ? DIFFICULTY_COLORS[d]
+                            : colors.textSecondary,
+                        }}
+                      />
+                      {DIFFICULTY_LABELS[d]}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Workout list */}
@@ -1593,14 +1593,25 @@ const styles = {
     fontWeight: 600,
     color: "#166534",
   },
+  stickyFilterBar: {
+    position: "sticky",
+    top: 0,
+    zIndex: 9,
+    background: colors.bg,
+    paddingBottom: 8,
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
+  },
   chipBar: {
     display: "flex",
     gap: 8,
-    flexWrap: "wrap",
+    justifyContent: "center",
   },
   chip: {
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
     gap: 6,
     padding: "6px 12px",
     borderRadius: 20,
@@ -1609,6 +1620,8 @@ const styles = {
     cursor: "pointer",
     border: "1.5px solid",
     letterSpacing: 0.2,
+    flex: 1,
+    maxWidth: 130,
   },
   chipActive: {
     easier: {
