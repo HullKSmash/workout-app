@@ -3,8 +3,8 @@ export default {
   "audiences": [
     "equestrian"
   ],
-  "difficulty": "easier",
-  "description": "A second angle on foundational compound movements",
+  "difficulty": "moderate",
+  "description": "Full-body strength combining compound movements, isolation exercises, and unilateral work.",
   "phases": [
     {
       "name": "Warm Up",

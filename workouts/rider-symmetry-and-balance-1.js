@@ -4,7 +4,7 @@ export default {
     "equestrian"
   ],
   "difficulty": "moderate",
-  "description": "Isolated unilateral work to enforce symmetrical strength and neural activation",
+  "description": "Isolated unilateral work to enforce symmetrical strength, proprioception, and balance.",
   "phases": [
     {
       "name": "Activation",

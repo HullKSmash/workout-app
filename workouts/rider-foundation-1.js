@@ -3,8 +3,8 @@ export default {
   "audiences": [
     "equestrian"
   ],
-  "difficulty": "easier",
-  "description": "Full-body compound strength to build your base",
+  "difficulty": "moderate",
+  "description": "Full-body strength combining compound movements, isolation exercises, and unilateral work.",
   "phases": [
     {
       "name": "Warm Up",

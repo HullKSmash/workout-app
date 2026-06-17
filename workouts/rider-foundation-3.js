@@ -4,7 +4,7 @@ export default {
     "equestrian"
   ],
   "difficulty": "moderate",
-  "description": "Hip hinge and posterior chain loading for riding power",
+  "description": "Full-body strength combining compound movements, isolation exercises, and unilateral work.",
   "phases": [
     {
       "name": "Warm Up",

@@ -4,7 +4,7 @@ export default {
     "equestrian"
   ],
   "difficulty": "harder",
-  "description": "Progressive overload targeting the posterior chain and upper back",
+  "description": "Focused training to isolate and build key muscles.",
   "phases": [
     {
       "name": "Compound",

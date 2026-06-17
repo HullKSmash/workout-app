@@ -4,7 +4,7 @@ export default {
     "equestrian"
   ],
   "difficulty": "harder",
-  "description": "High-volume hypertrophy training to build serious riding strength",
+  "description": "Focused training to isolate and build key muscles.",
   "phases": [
     {
       "name": "Compound",

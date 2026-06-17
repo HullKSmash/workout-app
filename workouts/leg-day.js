@@ -1,8 +1,8 @@
 export default {
   name: "Leg Day",
   audiences: ["paul"],
-  difficulty: "moderate", // TODO(Katie): set tier — easier | moderate | harder
-  description: "TODO(Katie): one-line library description",
+  difficulty: "moderate",
+  description: "Key lower body exercises with unilateral focus.",
   phases: [
     {
       name: "Plyometric Warmup",
