@@ -4,7 +4,7 @@ export default {
     "equestrian"
   ],
   "difficulty": "moderate",
-  "description": "Upper pulling and single-leg stability for balanced strength",
+  "description": "Full-body strength combining compound movements, isolation exercises, and unilateral work.",
   "phases": [
     {
       "name": "Warm Up",

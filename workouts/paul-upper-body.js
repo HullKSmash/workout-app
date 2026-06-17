@@ -1,8 +1,8 @@
 export default {
   name: "Paul Upper Body",
   audiences: ["paul"],
-  difficulty: "moderate", // TODO(Katie): set tier — easier | moderate | harder
-  description: "TODO(Katie): one-line library description",
+  difficulty: "moderate",
+  description: "Key upper body exercises - push, pull, and press for chest, shoulders, back, and biceps.",
   phases: [
     {
       name: "Circuit",

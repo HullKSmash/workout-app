@@ -4,7 +4,7 @@ export default {
     "equestrian"
   ],
   "difficulty": "moderate",
-  "description": "Lateral movement and proprioceptive training for rider stability",
+  "description": "Isolated unilateral work to enforce symmetrical strength, proprioception, and balance.",
   "phases": [
     {
       "name": "Activation",
