@@ -311,46 +311,45 @@ export default function WorkoutApp() {
             <h1 style={{ ...styles.appTitle, textAlign: "center" }}>{variant.brandName}</h1>
             <p style={{ ...styles.selectSubtitle, textAlign: "center" }}>{variant.tagline}</p>
 
-            {/* Weekly tracker */}
-            <div style={styles.trackerRow}>
-              <div style={styles.trackerLabel}>
-                This week
-                <span style={styles.trackerSubLabel}>Resets Monday</span>
-              </div>
-              <div style={styles.trackerDots}>
-                {Array.from({ length: weeklyDots }).map((_, i) => {
-                  const filled = i < weeklyCount;
-                  return (
-                    <button
-                      key={i}
-                      aria-label={filled ? "Remove one workout" : "Add one workout"}
-                      style={{
-                        ...styles.trackerDot,
-                        ...(filled ? styles.trackerDotFilled : {}),
-                      }}
-                      onClick={() => {
-                        const next = filled ? weeklyCount - 1 : weeklyCount + 1;
-                        setWeeklyCount(next);
-                        saveThisWeekCount(next);
-                      }}
-                    >
-                      {filled ? "✓" : ""}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Sticky: goal banner + filter chips */}
+            {/* Sticky: weekly tracker + filter chips */}
             <div style={styles.stickyFilterBar}>
-              {weeklyCount >= WEEK_GOAL && (
-                <div style={styles.goalBanner}>
-                  <span style={styles.goalBannerIcon}>🌿</span>
-                  <span style={styles.goalBannerText}>
-                    Weekly goal hit! Keep going if you feel strong!
-                  </span>
+              <div style={styles.trackerRow}>
+                <div style={styles.trackerLabel}>
+                  {weeklyCount >= WEEK_GOAL ? (
+                    <span style={styles.trackerGoalMessage}>
+                      Weekly goal hit! Keep going if you feel strong!
+                    </span>
+                  ) : (
+                    <>
+                      This week
+                      <span style={styles.trackerSubLabel}>Resets Monday</span>
+                    </>
+                  )}
                 </div>
-              )}
+                <div style={styles.trackerDots}>
+                  {Array.from({ length: weeklyDots }).map((_, i) => {
+                    const filled = i < weeklyCount;
+                    return (
+                      <button
+                        key={i}
+                        aria-label={filled ? "Remove one workout" : "Add one workout"}
+                        style={{
+                          ...styles.trackerDot,
+                          ...(filled ? styles.trackerDotFilled : {}),
+                        }}
+                        onClick={() => {
+                          const next = filled ? weeklyCount - 1 : weeklyCount + 1;
+                          setWeeklyCount(next);
+                          saveThisWeekCount(next);
+                        }}
+                      >
+                        {filled ? "✓" : ""}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
               <div style={styles.chipBar}>
                 {ALL_DIFFICULTIES.map((d) => {
                   const active = activeFilters.has(d);
@@ -1550,6 +1549,12 @@ const styles = {
     fontWeight: 400,
     color: colors.textSecondary,
   },
+  trackerGoalMessage: {
+    fontSize: 13,
+    fontWeight: 700,
+    color: colors.accent,
+    lineHeight: 1.3,
+  },
   trackerDots: {
     display: "flex",
     gap: 6,
@@ -1574,23 +1579,6 @@ const styles = {
     background: colors.accent,
     borderColor: colors.accent,
     color: "#fff",
-  },
-  goalBanner: {
-    display: "flex",
-    alignItems: "center",
-    gap: 8,
-    background: "#f0fdf4",
-    border: "1px solid #bbf7d0",
-    borderRadius: 10,
-    padding: "10px 14px",
-  },
-  goalBannerIcon: {
-    fontSize: 16,
-  },
-  goalBannerText: {
-    fontSize: 13,
-    fontWeight: 600,
-    color: "#166534",
   },
   stickyFilterBar: {
     position: "sticky",
