@@ -1580,8 +1580,8 @@ const styles = {
     display: "flex",
     alignItems: "center",
     gap: 8,
-    background: "#f0fdf4",
-    border: "1px solid #bbf7d0",
+    background: "#dcfce7",
+    border: "2px solid #4ade80",
     borderRadius: 10,
     padding: "10px 14px",
   },
@@ -1658,11 +1658,12 @@ const styles = {
 
   guideCard: {
     width: "100%",
-    maxWidth: 400,
     background: colors.accentLight,
     borderRadius: 16,
-    marginBottom: 28,
     overflow: "hidden",
+    position: "sticky",
+    bottom: 0,
+    zIndex: 10,
   },
 
   guideToggle: {
