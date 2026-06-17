@@ -320,11 +320,9 @@ export default function WorkoutApp() {
                       Weekly goal hit! Keep going if you feel strong!
                     </span>
                   ) : (
-                    <>
-                      This week
-                      <span style={styles.trackerSubLabel}>Resets Monday</span>
-                    </>
+                    "This week"
                   )}
+                  <span style={styles.trackerSubLabel}>Resets Monday</span>
                 </div>
                 <div style={styles.trackerDots}>
                   {Array.from({ length: weeklyDots }).map((_, i) => {
