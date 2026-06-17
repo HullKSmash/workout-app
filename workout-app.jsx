@@ -1047,7 +1047,7 @@ const styles = {
     border: "1.5px solid",
     fontSize: 12,
     fontWeight: 700,
-    alignSelf: "flex-start",
+    alignSelf: "center",
     marginBottom: 4,
   },
   diffBadgePip: {
