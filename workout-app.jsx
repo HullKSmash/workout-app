@@ -1383,8 +1383,6 @@ const styles = {
   tipsIcon: {
     fontSize: 16,
     flexShrink: 0,
-    alignSelf: "flex-start",
-    marginTop: 1,
   },
 
   tipsText: {
