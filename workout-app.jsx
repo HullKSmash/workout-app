@@ -159,6 +159,7 @@ export default function WorkoutApp() {
       : null;
 
   const totalSteps = steps.length;
+  const exerciseCount = steps.filter((s) => !s.isRest).length;
   const currentExercise = steps[currentStep];
 
   // Reset timer when landing on a rest step
@@ -512,7 +513,7 @@ export default function WorkoutApp() {
                     {isOpen && (
                       <div style={styles.weekWorkouts}>
                         {workouts.map((workout, i) => {
-                          const stepCount = flattenWorkout(workout).length;
+                          const stepCount = flattenWorkout(workout).filter((s) => !s.isRest).length;
                           const id = slotId(week, i);
                           const isDone = !!completed[id];
                           return (
@@ -600,7 +601,7 @@ export default function WorkoutApp() {
                     </a>
                   ))
                 : visibleWorkouts.map((workout, i) => {
-                    const stepCount = flattenWorkout(workout).length;
+                    const stepCount = flattenWorkout(workout).filter((s) => !s.isRest).length;
                     return (
                       <button
                         key={i}
@@ -656,7 +657,7 @@ export default function WorkoutApp() {
               <p style={styles.workoutDescription}>{selectedWorkout.description}</p>
             )}
             <p style={styles.workoutSubtitle}>
-              {totalSteps} exercises · {selectedWorkout.phases.length} phases
+              {exerciseCount} exercises · {selectedWorkout.phases.length} phases
             </p>
             <button style={styles.startButton} onClick={handleStart}>
               Start Workout
@@ -1397,6 +1398,7 @@ const styles = {
     maxWidth: 480,
     margin: "0 auto",
     padding: "20px 16px 40px",
+    boxSizing: "border-box",
     display: "flex",
     flexDirection: "column",
     gap: 12,
