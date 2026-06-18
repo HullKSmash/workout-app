@@ -18,15 +18,11 @@ export default {
             },
             {
               "name": "Superman sweeps",
-              "repCount": "6-8",
-              "easier": "Bend your elbows; decrease your range of motion",
-              "harder": "Hold a weight in each hand"
+              "repCount": "6-8"
             },
             {
               "name": "Pike push up",
-              "repCount": "6-8",
-              "easier": "Hold a pike; do plank or knee push ups",
-              "harder": "Walk your feet closer to your hands; do a weighted shoulder press instead"
+              "repCount": "6-8"
             }
           ]
         }
@@ -112,21 +108,15 @@ export default {
           "exercises": [
             {
               "name": "Plank toe taps",
-              "repCount": "8-12 per side",
-              "easier": "Lift each foot without stepping to the side; hold plank",
-              "harder": "Place a light weight on your lower back"
+              "repCount": "8-12 per side"
             },
             {
               "name": "Diagonal sit ups",
-              "repCount": "5-10 per side",
-              "easier": "Crunch instead of sitting up all the way",
-              "harder": "Hold a weight"
+              "repCount": "5-10 per side"
             },
             {
               "name": "Reverse crunch",
-              "repCount": "10-15",
-              "easier": "Keep your legs bent; reduce your range of motion",
-              "harder": "Extend your legs; lower them closer to the floor"
+              "repCount": "10-15"
             }
           ]
         }

@@ -26,11 +26,9 @@ const variantLinks = Object.entries(VARIANTS)
   .filter(([, v]) => v.audiences !== null)
   .map(([key, v]) => ({ key, ...v }));
 
-// ─── Modifier defaults ───────────────────────────────────────────────────────
-const MODIFIER_DEFAULTS = {
-  easier: "Reduce your range of motion or use only body weight",
-  harder: "Slow the motion down, increase your range of motion, or add more weight",
-};
+// ─── Tips default ────────────────────────────────────────────────────────────
+const TIPS_DEFAULT =
+  "If this is too easy, check your form, slow down, increase your range of motion, and add weight if necessary. If it's too hard, decrease the weight, decrease the number of reps, and reduce your range of motion if necessary.";
 
 // ─── Library difficulty config ───────────────────────────────────────────────
 const DIFFICULTY_ORDER = { easier: 0, moderate: 1, harder: 2 };
@@ -131,8 +129,6 @@ export default function WorkoutApp() {
   const [showEndConfirm, setShowEndConfirm] = useState(false);
   const [timerSeconds, setTimerSeconds] = useState(0);
   const [fadeClass, setFadeClass] = useState("step-enter");
-  const [showModifier, setShowModifier] = useState(false);
-
   const steps = useMemo(
     () => (selectedWorkout ? flattenWorkout(selectedWorkout) : []),
     [selectedWorkout]
@@ -199,10 +195,6 @@ export default function WorkoutApp() {
     }
   }, [timerSeconds]);
 
-  // Collapse modifier panel when exercise changes
-  useEffect(() => {
-    setShowModifier(false);
-  }, [currentStep]);
 
   const animateTransition = useCallback((callback) => {
     setFadeClass("step-exit");
@@ -792,44 +784,11 @@ export default function WorkoutApp() {
                   </div>
                 )}
 
-                {/* Modifier block — fixed space, crossfades between label and panel */}
-                <div
-                  style={{
-                    ...styles.modifierBlock,
-                    background: showModifier ? colors.surface : "#F7F5F2",
-                  }}
-                  onClick={() => setShowModifier((v) => !v)}
-                >
-                  <div style={{
-                    ...styles.modifierToggleLabel,
-                    opacity: showModifier ? 0 : 1,
-                    pointerEvents: showModifier ? "none" : "auto",
-                  }}>
-                    <span>Too hard? Too easy?</span>
-                    <span style={{ fontSize: 12, marginTop: 3 }}>Tap to see options.</span>
-                  </div>
-                  <div style={{
-                    ...styles.modifierPanel,
-                    opacity: showModifier ? 1 : 0,
-                    pointerEvents: showModifier ? "auto" : "none",
-                  }}>
-                    <div style={styles.modifierRow}>
-                      <span style={{ ...styles.modifierBadge, ...styles.modifierBadgeEasier }}>
-                        Easier
-                      </span>
-                      <span style={styles.modifierText}>
-                        {currentExercise.easier || MODIFIER_DEFAULTS.easier}
-                      </span>
-                    </div>
-                    <div style={{ ...styles.modifierRow, marginTop: 10 }}>
-                      <span style={{ ...styles.modifierBadge, ...styles.modifierBadgeHarder }}>
-                        Harder
-                      </span>
-                      <span style={styles.modifierText}>
-                        {currentExercise.harder || MODIFIER_DEFAULTS.harder}
-                      </span>
-                    </div>
-                  </div>
+                <div style={styles.tipsBox}>
+                  <span style={styles.tipsIcon}>ℹ️</span>
+                  <span style={styles.tipsText}>
+                    {currentExercise.tips || TIPS_DEFAULT}
+                  </span>
                 </div>
               </div>
             )}
@@ -1406,82 +1365,30 @@ const styles = {
     WebkitTapHighlightColor: "transparent",
   },
 
-  // ── Modifier Panel ───────────────────────────────────────────
-  modifierBlock: {
+  // ── Tips Box ─────────────────────────────────────────────────
+  tipsBox: {
     width: "100%",
     maxWidth: 320,
-    minHeight: 108,
-    position: "relative",
-    cursor: "pointer",
-    WebkitTapHighlightColor: "transparent",
-    userSelect: "none",
     borderRadius: 12,
     border: `1.5px solid ${colors.border}`,
     marginTop: 4,
-    transition: "background 0.15s ease",
-  },
-
-  modifierToggleLabel: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: 13,
-    fontWeight: 500,
-    color: colors.textSecondary,
-    transition: "opacity 0.15s ease",
-  },
-
-  modifierPanel: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
     padding: "12px 14px",
     display: "flex",
-    flexDirection: "column",
+    alignItems: "center",
     gap: 10,
-    justifyContent: "center",
-    borderRadius: 12,
-    transition: "opacity 0.15s ease",
+    background: colors.surface,
+    boxSizing: "border-box",
   },
 
-  modifierRow: {
-    display: "flex",
-    alignItems: "flex-start",
-    gap: 8,
-  },
-
-  modifierBadge: {
-    fontSize: 11,
-    fontWeight: 600,
-    padding: "2px 8px",
-    borderRadius: 20,
+  tipsIcon: {
+    fontSize: 16,
     flexShrink: 0,
-    whiteSpace: "nowrap",
-    marginTop: 1,
   },
 
-  modifierBadgeEasier: {
-    background: "#EAF1FC",
-    color: "#2D6BD1",
-  },
-
-  modifierBadgeHarder: {
-    background: "#FFF0EC",
-    color: "#E85D3A",
-  },
-
-  modifierText: {
+  tipsText: {
     fontSize: 12,
     color: colors.text,
-    lineHeight: 1.5,
+    lineHeight: 1.55,
     textAlign: "left",
   },
 
