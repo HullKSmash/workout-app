@@ -1374,7 +1374,7 @@ const styles = {
     marginTop: 4,
     padding: "12px 14px",
     display: "flex",
-    alignItems: "flex-start",
+    alignItems: "center",
     gap: 10,
     background: colors.surface,
     boxSizing: "border-box",
@@ -1383,6 +1383,7 @@ const styles = {
   tipsIcon: {
     fontSize: 16,
     flexShrink: 0,
+    alignSelf: "flex-start",
     marginTop: 1,
   },
 
@@ -1390,6 +1391,7 @@ const styles = {
     fontSize: 12,
     color: colors.text,
     lineHeight: 1.55,
+    textAlign: "left",
   },
 
   libraryContent: {
