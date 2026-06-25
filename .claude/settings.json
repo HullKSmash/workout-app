@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cmd=$(jq -r '.tool_input.command'); branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null); deny(){ printf '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"%s\"}}' \"$1\"; exit 0; }; if echo \"$cmd\" | grep -qE '\\bgit( +-C +[^ ]+)?( +-[A-Za-z]+)* +commit\\b'; then case \"$branch\" in master|main) deny \"You are on $branch. Create a feature branch first (git checkout -b feature/<name>) before committing.\";; esac; fi; if echo \"$cmd\" | grep -qE '\\bgit( +-C +[^ ]+)?( +-[A-Za-z]+)* +push\\b'; then if echo \"$cmd\" | grep -qE '(:|[[:space:]])(master|main)\\b'; then deny \"That pushes directly to master/main. Push a feature branch and open a PR instead.\"; fi; rest=${cmd#*push}; positionals=$(echo \"$rest\" | tr ' ' '\\n' | grep -vcE '^-|^$'); if [ \"$positionals\" -le 1 ]; then case \"$branch\" in master|main) deny \"You are on $branch. Push a feature branch and open a PR instead.\";; esac; fi; fi",
+            "statusMessage": "Checking branch before commit/push"
+          }
+        ]
+      }
+    ]
+  }
+}
