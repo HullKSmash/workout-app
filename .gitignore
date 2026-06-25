@@ -3,7 +3,8 @@ dist
 .vercel
 docs/
 
-# Claude Code: ignore machine-local config, but keep shared skills + launch config
+# Claude Code: ignore machine-local config, but keep shared skills + launch + settings
 .claude/*
 !.claude/skills/
 !.claude/launch.json
+!.claude/settings.json
