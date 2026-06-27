@@ -4,6 +4,7 @@ import { VARIANTS, resolveVariant } from "./variants";
 import { RIDER_STRENGTH_SCHEDULE } from "./workouts/rider-strength-schedule.js";
 import { slotId, loadProgress, saveProgress, clearProgress } from "./workouts/progress.js";
 import { getThisWeekCount, saveThisWeekCount } from "./workouts/weekly-progress.js";
+import { useWakeLock } from "./hooks/useWakeLock";
 
 const variant = resolveVariant();
 const variantKey =
@@ -112,6 +113,8 @@ function totalDoneCount(progress) {
 // ─── Main App ───────────────────────────────────────────────────────────────
 export default function WorkoutApp() {
   const [screen, setScreen] = useState(hasLibrary ? "library" : "select"); // library | schedule | select | landing | workout | complete
+  // Keep the screen awake only while actively working out.
+  useWakeLock(screen === "workout");
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState(null); // schedule slot id for the open workout, or null (e.g. opened from "View all")
   // ─── Library state ───────────────────────────────────────────────────────────
