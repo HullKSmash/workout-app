@@ -1,7 +1,10 @@
 node_modules
 dist
 .vercel
-docs/
+# Local-only scratch (todos, unimplemented design notes), but keep durable
+# superpowers specs + plans under source control.
+docs/*
+!docs/superpowers/
 
 # Claude Code: ignore machine-local config, but keep shared skills + launch + settings
 .claude/*
