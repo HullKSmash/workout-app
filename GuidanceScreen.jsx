@@ -9,9 +9,10 @@ const BG = "#FAF8F5";
 
 function Section({ section, nested, accent, accentLight }) {
   const s = makeStyles(accent, accentLight);
+  const Heading = nested ? "h3" : "h2";
   return (
     <div style={nested ? s.subSection : s.section}>
-      <h2 style={nested ? s.subHeading : s.heading}>{section.title}</h2>
+      <Heading style={nested ? s.subHeading : s.heading}>{section.title}</Heading>
       {(section.body ?? []).map((para, i) => (
         <p key={i} style={s.para}>
           {para}
@@ -35,7 +36,7 @@ export default function GuidanceScreen({ guidance, accent, accentLight, onBack }
   return (
     <div style={s.screen}>
       <div style={s.content}>
-        <button style={s.backButton} onClick={onBack}>
+        <button style={s.backButton} onClick={onBack} aria-label="Back">
           ‹ Back
         </button>
         <h1 style={s.title}>Guidance &amp; Tips</h1>
