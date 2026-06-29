@@ -590,7 +590,6 @@ export default function WorkoutApp() {
         </div>
       )}
 
-      {/* ── Workout Selection ────────────────────────────────────────── */}
       {/* ── Guidance & Tips ──────────────────────────────────────────── */}
       {screen === "guidance" && guidance && (
         <GuidanceScreen
@@ -601,6 +600,7 @@ export default function WorkoutApp() {
         />
       )}
 
+      {/* ── Workout Selection ────────────────────────────────────────── */}
       {screen === "select" && (
         <div style={styles.screenContainer}>
           <div style={styles.selectContent}>
