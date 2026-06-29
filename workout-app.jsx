@@ -5,10 +5,14 @@ import { RIDER_STRENGTH_SCHEDULE } from "./workouts/rider-strength-schedule.js";
 import { slotId, loadProgress, saveProgress, clearProgress } from "./workouts/progress.js";
 import { getThisWeekCount, saveThisWeekCount } from "./workouts/weekly-progress.js";
 import { useWakeLock } from "./hooks/useWakeLock";
+import { GUIDANCE } from "./guidance";
+import GuidanceScreen from "./GuidanceScreen";
 
 const variant = resolveVariant();
 const variantKey =
   Object.keys(VARIANTS).find((k) => VARIANTS[k] === variant) ?? "default";
+// Guidance content for this variant, or undefined if none authored yet.
+const guidance = GUIDANCE[variantKey];
 const isDefaultVariant = variant.audiences === null;
 // Variants flagged `library: true` use the self-directed workout library as
 // their default screen (with the weekly tracker). `schedule: true` variants
@@ -112,7 +116,7 @@ function totalDoneCount(progress) {
 
 // ─── Main App ───────────────────────────────────────────────────────────────
 export default function WorkoutApp() {
-  const [screen, setScreen] = useState(hasLibrary ? "library" : "select"); // library | schedule | select | landing | workout | complete
+  const [screen, setScreen] = useState(hasLibrary ? "library" : "select"); // library | schedule | guidance | select | landing | workout | complete
   // Keep the screen awake only while actively working out.
   useWakeLock(screen === "workout");
   const [selectedWorkout, setSelectedWorkout] = useState(null);
@@ -127,7 +131,8 @@ export default function WorkoutApp() {
   const [expandedWeek, setExpandedWeek] = useState(() =>
     hasSchedule ? firstIncompleteWeek(loadProgress()) : null
   );
-  const [guideOpen, setGuideOpen] = useState(false);
+  // Which screen the Guidance & Tips screen returns to (library or schedule).
+  const [guidanceReturn, setGuidanceReturn] = useState("library");
   const [currentStep, setCurrentStep] = useState(0);
   const [showEndConfirm, setShowEndConfirm] = useState(false);
   const [timerSeconds, setTimerSeconds] = useState(0);
@@ -409,27 +414,27 @@ export default function WorkoutApp() {
               )}
             </div>
 
-            {/* Guidance & Tips card */}
-            <div style={styles.guideCard}>
-              <button
-                style={styles.guideToggle}
-                onClick={() => setGuideOpen((v) => !v)}
-              >
-                <div style={styles.guideToggleLeft}>
-                  <span style={styles.guideIcon}>📋</span>
-                  <div>
-                    <div style={styles.guideTitle}>Guidance &amp; Tips</div>
-                    <div style={styles.guideSubtitle}>How to use this library</div>
+            {/* Guidance & Tips card — navigates to the dedicated screen */}
+            {guidance && (
+              <div style={styles.guideCard}>
+                <button
+                  style={styles.guideToggle}
+                  onClick={() => {
+                    setGuidanceReturn("library");
+                    setScreen("guidance");
+                  }}
+                >
+                  <div style={styles.guideToggleLeft}>
+                    <span style={styles.guideIcon}>📋</span>
+                    <div>
+                      <div style={styles.guideTitle}>Guidance &amp; Tips</div>
+                      <div style={styles.guideSubtitle}>How to use this library</div>
+                    </div>
                   </div>
-                </div>
-                <span style={styles.guideChevron}>{guideOpen ? "∧" : "∨"}</span>
-              </button>
-              {guideOpen && (
-                <div style={styles.guideBody}>
-                  <p style={styles.guidePlaceholder}>Guidance coming soon.</p>
-                </div>
-              )}
-            </div>
+                  <span style={styles.guideChevron}>›</span>
+                </button>
+              </div>
+            )}
 
             {/* Footer link to 12-week program (variants with a schedule only) */}
             {hasSchedule && (
@@ -451,27 +456,27 @@ export default function WorkoutApp() {
             <h1 style={styles.appTitle}>{variant.brandName}</h1>
             <p style={styles.selectSubtitle}>{variant.tagline}</p>
 
-            {/* Program guide collapsible */}
-            <div style={styles.guideCard}>
-              <button
-                style={styles.guideToggle}
-                onClick={() => setGuideOpen((v) => !v)}
-              >
-                <div style={styles.guideToggleLeft}>
-                  <span style={styles.guideIcon}>📋</span>
-                  <div>
-                    <div style={styles.guideTitle}>Guidance &amp; Tips</div>
-                    <div style={styles.guideSubtitle}>Schedule, weight guidance, and technique</div>
+            {/* Guidance & Tips card — navigates to the dedicated screen */}
+            {guidance && (
+              <div style={styles.guideCard}>
+                <button
+                  style={styles.guideToggle}
+                  onClick={() => {
+                    setGuidanceReturn("schedule");
+                    setScreen("guidance");
+                  }}
+                >
+                  <div style={styles.guideToggleLeft}>
+                    <span style={styles.guideIcon}>📋</span>
+                    <div>
+                      <div style={styles.guideTitle}>Guidance &amp; Tips</div>
+                      <div style={styles.guideSubtitle}>Schedule, weight guidance, and technique</div>
+                    </div>
                   </div>
-                </div>
-                <span style={styles.guideChevron}>{guideOpen ? "∧" : "∨"}</span>
-              </button>
-              {guideOpen && (
-                <div style={styles.guideBody}>
-                  <p style={styles.guidePlaceholder}>Program guide coming soon.</p>
-                </div>
-              )}
-            </div>
+                  <span style={styles.guideChevron}>›</span>
+                </button>
+              </div>
+            )}
 
             {/* Week list */}
             <div style={styles.scheduleSectionLabel}>
@@ -586,6 +591,16 @@ export default function WorkoutApp() {
       )}
 
       {/* ── Workout Selection ────────────────────────────────────────── */}
+      {/* ── Guidance & Tips ──────────────────────────────────────────── */}
+      {screen === "guidance" && guidance && (
+        <GuidanceScreen
+          guidance={guidance}
+          accent={variant.accent}
+          accentLight={variant.accentLight}
+          onBack={() => setScreen(guidanceReturn)}
+        />
+      )}
+
       {screen === "select" && (
         <div style={styles.screenContainer}>
           <div style={styles.selectContent}>
@@ -1635,17 +1650,6 @@ const styles = {
     color: colors.textSecondary,
     flexShrink: 0,
     marginLeft: 8,
-  },
-
-  guideBody: {
-    padding: "0 20px 16px",
-  },
-
-  guidePlaceholder: {
-    fontSize: 14,
-    color: colors.textSecondary,
-    margin: 0,
-    fontStyle: "italic",
   },
 
   scheduleSectionLabel: {
