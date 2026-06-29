@@ -27,7 +27,7 @@ export const GUIDANCE = {
           {
             title: "“To Fatigue”",
             body: [
-              "Some exercises are marked as “To Fatigue” instead of having a range of reps. These are generally bodyweight exercises that will have a huge variation in where you start and end up based on your specific musculoskeletal makeup and proportions. To work to fatigue, do as many as you can without compromising correct form. Over time, you’ll add more reps as you get stronger (and your form will tighten up, even if it started out correct); when you can do so many that it’s becoming boring or untenable for your schedule, then it’s time for a harder variation.",
+              "Some exercises are marked as “To Fatigue” instead of having a range of reps. These are generally bodyweight exercises that will have a huge variation in where you start and end up based on your specific musculoskeletal makeup and proportions. To work to fatigue, do as many as you can without compromising correct form. Over time, you'll add more reps as you get stronger (and your form will tighten up, even if it started out correct); when you can do so many that it's becoming boring or untenable for your schedule, then it's time for a harder variation.",
             ],
           },
         ],
