@@ -210,9 +210,16 @@ export default function WorkoutApp() {
 
   const toggleFilter = (difficulty) => {
     setActiveFilters((prev) => {
+      // From "show everything", first tap collapses to just this one.
+      if (prev.size === ALL_DIFFICULTIES.length) return new Set([difficulty]);
       const next = new Set(prev);
-      if (next.has(difficulty)) next.delete(difficulty);
-      else next.add(difficulty);
+      if (next.has(difficulty)) {
+        // Deselecting the sole active chip resets to "show everything".
+        if (next.size === 1) return new Set(ALL_DIFFICULTIES);
+        next.delete(difficulty);
+      } else {
+        next.add(difficulty);
+      }
       return next;
     });
   };
@@ -384,7 +391,7 @@ export default function WorkoutApp() {
             <div style={{ ...styles.workoutList, maxWidth: "none" }}>
               {libraryWorkouts.length === 0 ? (
                 <p style={styles.libraryEmptyState}>
-                  No difficulty selected — tap a filter above to show workouts.
+                  No workouts match this difficulty — tap another filter above.
                 </p>
               ) : (
                 libraryWorkouts.map((workout) => (
