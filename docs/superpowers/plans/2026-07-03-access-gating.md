@@ -17,7 +17,7 @@
 **Create:**
 - `api/_lib/validate.js` — pure request-body validators (`normalizeCode`, `validateUnlockBody`, `validateEventBody`). No deps → unit-testable.
 - `api/_lib/validate.test.js` — `node --test` unit tests for the validators.
-- `api/_lib/redis.js` — Upstash Redis client via `Redis.fromEnv()`.
+- `api/_lib/redis.js` — Upstash Redis client built from the `KV_REST_API_*` env vars.
 - `api/unlock.js` — `POST /api/unlock` handler.
 - `api/event.js` — `POST /api/event` handler.
 - `access.js` — front-end helpers: code `localStorage` I/O + `requestUnlock` + `recordCompletion`.
@@ -28,7 +28,7 @@
 - `workout-app.jsx` — import gate + access helpers; render `GateScreen` until unlocked; fire completion event.
 
 **Manual/config (dashboard, no code):**
-- Add the Upstash Redis integration to the Vercel `workout-app` project; confirm `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` env vars exist.
+- Add the Upstash Redis integration to the Vercel `workout-app` project; confirm the HTTP-REST env vars exist (typically `KV_REST_API_URL` / `KV_REST_API_TOKEN`).
 - Pull env vars locally for `vercel dev`.
 
 ---
@@ -50,8 +50,8 @@ Expected: `package.json` `dependencies` now lists `@upstash/redis`; `package-loc
 
 In the Vercel dashboard → project `workout-app` → **Storage** (or **Integrations** → Marketplace) → add **Upstash Redis** → create a database and connect it to this project.
 
-Then confirm the env vars were created: Vercel → project → Settings → Environment Variables. You should see `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`.
-- If the integration named them differently (e.g. `KV_REST_API_URL` / `KV_REST_API_TOKEN`), add two additional env vars named exactly `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` with the same values, so `Redis.fromEnv()` finds them.
+Then confirm the env vars were created: Vercel → project → Settings → Environment Variables. The Upstash integration injects HTTP-REST credentials — most commonly `KV_REST_API_URL` and `KV_REST_API_TOKEN` (the successor naming to the retired Vercel KV). Some provisions also add `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`.
+- No renaming needed. `api/_lib/redis.js` (Task 3) reads `KV_REST_API_*` first and falls back to `UPSTASH_REDIS_REST_*`, so whichever pair exists will work. You just need at least one REST URL + token pair. (These are sensitive/encrypted values — you do not need to copy or re-enter them.)
 
 - [ ] **Step 3: Pull env vars for local development**
 
@@ -59,7 +59,7 @@ Run:
 ```bash
 npx vercel env pull .env.local
 ```
-(Run `npx vercel login` first if prompted.) Expected: a `.env.local` file containing `UPSTASH_REDIS_REST_URL=...` and `UPSTASH_REDIS_REST_TOKEN=...`.
+(Run `npx vercel login` first if prompted.) Expected: a `.env.local` file containing `KV_REST_API_URL=...` and `KV_REST_API_TOKEN=...` (and possibly `UPSTASH_REDIS_REST_*` too).
 
 - [ ] **Step 4: Confirm `.env.local` is gitignored**
 
@@ -194,12 +194,17 @@ git commit -m "feat: add request-body validators for access-gating API"
 
 Create `api/_lib/redis.js`:
 ```js
-// Shared Upstash Redis client for the API functions. Reads
-// UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN from the environment
-// (provisioned by the Vercel Upstash integration).
+// Shared Upstash Redis client for the API functions. The Vercel Upstash
+// integration injects HTTP-REST credentials as KV_REST_API_URL /
+// KV_REST_API_TOKEN; we read those directly (with UPSTASH_* as a fallback in
+// case a future re-provision uses that naming). `Redis.fromEnv()` is NOT used
+// because it only looks for the UPSTASH_* names.
 import { Redis } from "@upstash/redis";
 
-export const redis = Redis.fromEnv();
+export const redis = new Redis({
+  url: process.env.KV_REST_API_URL ?? process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.KV_REST_API_TOKEN ?? process.env.UPSTASH_REDIS_REST_TOKEN,
+});
 
 export const ALLOWLIST_KEY = "allowlist";
 export const EVENTS_KEY = "events";
@@ -261,8 +266,8 @@ Expected: server listening on `http://localhost:3000`.
 In another terminal, seed a test code into the allowlist via the Upstash REST API:
 ```bash
 set -a && . ./.env.local && set +a
-curl -s -X POST "$UPSTASH_REDIS_REST_URL/sadd/allowlist/testcode" \
-  -H "Authorization: Bearer $UPSTASH_REDIS_REST_TOKEN"
+curl -s -X POST "$KV_REST_API_URL/sadd/allowlist/testcode" \
+  -H "Authorization: Bearer $KV_REST_API_TOKEN"
 ```
 Expected: JSON like `{"result":1}` (1 = added; 0 = already present).
 
@@ -338,8 +343,8 @@ curl -s -X POST http://localhost:3000/api/event \
   -H "Content-Type: application/json" \
   -d '{"code":"testcode","workoutName":"Foundation 1"}'
 echo
-curl -s "$UPSTASH_REDIS_REST_URL/get/count:testcode" \
-  -H "Authorization: Bearer $UPSTASH_REDIS_REST_TOKEN"
+curl -s "$KV_REST_API_URL/get/count:testcode" \
+  -H "Authorization: Bearer $KV_REST_API_TOKEN"
 ```
 Expected: first call `{"ok":true}`; second call `{"result":"1"}` (the counter). Run the first curl again and re-check: the counter becomes `"2"`.
 
@@ -700,13 +705,13 @@ Ensure `testcode` is still in the allowlist (from Task 4; re-seed if needed). Ty
 Note the current count:
 ```bash
 set -a && . ./.env.local && set +a
-curl -s "$UPSTASH_REDIS_REST_URL/get/count:testcode" \
-  -H "Authorization: Bearer $UPSTASH_REDIS_REST_TOKEN"; echo
+curl -s "$KV_REST_API_URL/get/count:testcode" \
+  -H "Authorization: Bearer $KV_REST_API_TOKEN"; echo
 ```
 In the app, open a workout and step through to the complete screen. Then re-run the curl above. Expected: the counter increased by exactly 1. Also check the raw log:
 ```bash
-curl -s "$UPSTASH_REDIS_REST_URL/lrange/events/-1/-1" \
-  -H "Authorization: Bearer $UPSTASH_REDIS_REST_TOKEN"; echo
+curl -s "$KV_REST_API_URL/lrange/events/-1/-1" \
+  -H "Authorization: Bearer $KV_REST_API_TOKEN"; echo
 ```
 Expected: the last `events` entry is JSON with `code:"testcode"`, the workout's `workoutName`, and a `ts`.
 
@@ -723,10 +728,10 @@ Manually set an access code so you skip the gate: open the app, and in the brows
 Remove the test code and its count so real analytics aren't polluted:
 ```bash
 set -a && . ./.env.local && set +a
-curl -s -X POST "$UPSTASH_REDIS_REST_URL/srem/allowlist/testcode" \
-  -H "Authorization: Bearer $UPSTASH_REDIS_REST_TOKEN"; echo
-curl -s -X POST "$UPSTASH_REDIS_REST_URL/del/count:testcode" \
-  -H "Authorization: Bearer $UPSTASH_REDIS_REST_TOKEN"; echo
+curl -s -X POST "$KV_REST_API_URL/srem/allowlist/testcode" \
+  -H "Authorization: Bearer $KV_REST_API_TOKEN"; echo
+curl -s -X POST "$KV_REST_API_URL/del/count:testcode" \
+  -H "Authorization: Bearer $KV_REST_API_TOKEN"; echo
 ```
 (Leave real invitee codes in place. To wipe the `events` test entries entirely for a clean slate, you can `del/events` — only do this before any real usage.)
 
