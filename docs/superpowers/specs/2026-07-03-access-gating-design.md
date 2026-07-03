@@ -21,7 +21,7 @@ Guiding constraint: **collect as little as possible** to minimize liability and 
 - **Analytics detail:** per-person counts ("Paul: 4, rider-jane: 2"). Per-workout detail stored opportunistically (free), but the headline metric is per-person counts.
 - **Gate strength:** **soft gate.** Goal is to control who we *invite* and to attribute usage — not to protect secrets. A determined person can always fetch a static SPA's assets; we are not defending against that. So the gate is client-side UX backed by a server-side allowlist for the *data*, not a content lock.
 - **Identity model:** **per-person access codes double as the gate and the pseudonym.** No email, no password, no name.
-- **Event store:** **Upstash Redis** (provisioned via the Vercel Marketplace integration; this is what "Vercel KV" is now). Queryable via the Upstash console or a short script — sufficient readability at this scale.
+- **Event store:** **Upstash Redis** (provisioned via the Vercel Marketplace Upstash integration — the successor to the retired Vercel KV, which was auto-migrated to Upstash in Dec 2024). It injects HTTP-REST credentials (`UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`, and `KV_REST_API_*` aliases) that the `@upstash/redis` client reads. Queryable via the Upstash console or a short script — sufficient readability at this scale.
 - **Allowlist storage:** **Redis Set**, not an env-var list — so adding/removing a code is one command with no redeploy, and revocation is instant. No new dependency, since unlock already hits the backend and Redis is already in use for events.
 - **Refactor:** the large `workout-app.jsx` (~1,900 lines) is **explicitly out of scope** here. See Future Work.
 
