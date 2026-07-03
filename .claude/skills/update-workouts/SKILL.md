@@ -20,7 +20,7 @@ workout if missed.
 ## The data flow at a glance
 
 ```
-Katie's CSV  ──parseWorkoutCsv()──▶  { name, phases }  ──add audiences + write──▶  workouts/<slug>.js  ──register──▶  workouts/index.js
+Katie's CSV  ──parseWorkoutCsv()──▶  { name, phases }  ──add audiences/difficulty + write──▶  workouts/<slug>.js  ──register──▶  workouts/index.js
 ```
 
 `workouts/parse-csv.js` exports `parseWorkoutCsv(csvString, workoutName) -> { name, phases }`.
@@ -29,57 +29,60 @@ the bundled script `scripts/generate-workout.mjs` to do it consistently.
 
 ## Why you can't just run the parser and stop
 
-The parser's output is **incomplete on purpose** — two things must be handled:
+The parser's output is **incomplete on purpose** — it returns only `{ name, phases }`,
+but the app and the existing workout files expect three more top-level fields:
 
-1. **It does NOT emit `audiences`.** The app filters `WORKOUTS` by audience
-   (`workout-app.jsx`, the `availableWorkouts` filter). A workout with no
-   `audiences` array shows up under **no** variant — it silently vanishes. You
-   must add it. Audience keys: `run`, `paul`, `equestrian`. "Rider" is community
-   slang for the equestrian audience — a "Rider …" workout is `audiences: ["equestrian"]`.
+1. **`audiences`.** The app filters `WORKOUTS` by audience (`workout-app.jsx`, the
+   `availableWorkouts` filter). A workout with no `audiences` array shows up under
+   **no** variant — it silently vanishes. Audience keys: `run`, `paul`,
+   `equestrian`. "Rider" is community slang for the equestrian audience — a
+   "Rider …" workout is `audiences: ["equestrian"]`.
 
-2. **Modifiers must stay flat.** The app reads `currentExercise.easier` and
-   `currentExercise.harder` directly (flat properties). The parser correctly emits
-   them flat. Do NOT nest them under a `modifications: {}` object — older files did
-   that, and the app never read it, so those tips silently fell back to defaults.
-   The bundled script keeps them flat; don't "tidy" them into a nested shape.
+2. **`difficulty`** (`"easier" | "moderate" | "harder"`) and **`description`**
+   (a string; left `""` for Katie to fill later). Difficulty maps from the CSV
+   filename color token — `green→easier`, `yellow→moderate`, `red→harder` (see
+   `DIFFICULTY_COLORS` in `workout-app.jsx`). The landing screen shows this as a
+   badge, so a wrong/missing value is visible.
 
-The bundled script handles both: it adds `audiences` and preserves the flat
-modifiers. Output matches the existing workout files' shape.
+The bundled script handles all three: it adds `audiences` from `--audience`,
+infers `difficulty` from the CSV filename (override with `--difficulty`), and
+writes `description: ""`. Output matches the existing workout files' shape.
 
-## Column-order gotcha (verify every time)
-
-The parser destructures CSV columns as:
-`Phase, Circuit, Rounds, Exercise, RepCount, Easier, Harder` — **Easier before Harder**.
-
-Katie's older template had these two reversed (`Harder, Easier`), which makes the
-parser silently **swap** the tips (your "easier" text ends up as "harder"). She
-fixed the template to `Easier, Harder` (as of 2026-05), so current exports parse
-correctly — but always confirm. The script prints a "Spot-check modifier mapping"
-sample (first exercise that has both tips). Read it: the *easier* text should
-genuinely be the easier variation. If they're swapped, the CSV's columns are in
-the old order — fix the CSV header order (or swap in post) before trusting output.
-
-Check the header line of the CSV first; it tells you the order directly.
+**Tips stay flat.** The app reads `currentExercise.tips` directly (a flat property)
+and renders it under an ℹ️ icon on the exercise screen. The parser emits `tips`
+flat and omits it when the cell is blank. Do NOT nest it under a `modifications: {}`
+or similar object — the app won't read it.
 
 ## CSV format reference
+
+The parser destructures columns as
+`Phase, Circuit, Rounds, Exercise, RepCount, Tips` — a **single `Tips` column**
+(one coaching note per exercise). Check the CSV header line first; it tells you
+the order directly.
+
+> Historical note: an older template used two modifier columns
+> (`Easier, Harder`) instead of `Tips`, and a still-older one had them reversed
+> (`Harder, Easier`) which silently swapped them. Current CSVs use a single
+> `Tips` column, and so does the parser. If you ever see `Easier`/`Harder` header
+> columns, the CSV predates the current format — confirm with Katie before importing.
 
 - Header row, then one row per exercise.
 - `Phase` is filled only on the **first** row of each phase group (blank inherits).
 - `Circuit` and `Rounds` are filled only on the **first** row of each circuit;
   `Rounds` becomes the circuit's `repeatCount`. The circuit *number* is just a
   truthy "new circuit starts here" flag — gaps in numbering (1,2,4,5…) are fine.
-- Blank `Easier`/`Harder` cells are omitted from the exercise (no empty strings).
+- A blank `Tips` cell is omitted from the exercise (no empty string).
 - A `Rest` exercise (Exercise = "Rest") becomes its own single-round circuit with
   `repCount` = seconds. `RepCount` that is purely digits is parsed to a number;
-  anything else (e.g. "8-10 per side") stays a string.
+  anything else (e.g. "8-10 per side", "To Fatigue") stays a string.
 
 ## Data model produced
 
 ```
-Workout: { name, audiences: ["run"|"paul"|"equestrian"], phases: [...] }
+Workout: { name, audiences: ["run"|"paul"|"equestrian"], difficulty, description, phases: [...] }
 Phase:   { name, circuits: [...] }
 Circuit: { repeatCount, exercises: [...] }
-Exercise:{ name, repCount, easier?, harder? }   // repCount: string or number(seconds for Rest)
+Exercise:{ name, repCount, tips? }   // repCount: string or number(seconds for Rest)
 ```
 
 ## Procedure
@@ -90,7 +93,7 @@ Run from the repo root (the script resolves `./workouts/parse-csv.js` relative t
 
 ```bash
 node .claude/skills/update-workouts/scripts/generate-workout.mjs \
-  --csv "/Users/katie/Downloads/RiderBuild1.csv" \
+  --csv "/Users/katie/Downloads/RiderBuild1_Green.csv" \
   --name "Rider Build 1" \
   --audience equestrian \
   --out workouts/rider-build-1.js
@@ -101,6 +104,10 @@ node .claude/skills/update-workouts/scripts/generate-workout.mjs \
   explicit name, use it; if there's an obvious typo, correct it and mention it.
 - **Filename**: kebab-case of the display name, e.g.
   `rider-symmetry-and-balance-1.js`. Read the spot-check output the script prints.
+- **Difficulty**: inferred from the CSV filename color token (green/yellow/red).
+  If the filename has no color token, pass `--difficulty easier|moderate|harder`;
+  otherwise the script defaults to `moderate` and prints the value it chose —
+  check it against the badge you expect.
 
 ### 2. Replacing an existing workout
 
@@ -126,17 +133,18 @@ Don't trust the file shape alone — confirm the workout actually appears and re
   `paul`, or `equestrian` (the `?variant=` query selects the variant locally;
   the bare URL shows the SetGo portal). Use `location.assign(url)` — a plain
   reload of the portal won't pick up the param.
-- Confirm the new workout is in the list with a sensible "N exercises · M phases"
-  count. Optionally step into it (Start Workout → tap "Too hard? Too easy?") and
-  confirm the Easier/Harder tips render with the right text — this is the real
-  test that modifiers are flat and not swapped.
+- Confirm the new workout is in the list, the landing screen shows the expected
+  **difficulty badge**, and the count reads a sensible "N exercises · M phases".
+  Step into it (Start Workout) and confirm an exercise's **tip** renders under the
+  ℹ️ icon with the right text — this is the real test that `tips` is flat and read.
 - Stop the server when done.
 
 ## Quick checklist
 
-- [ ] Checked CSV header column order (Easier before Harder)
-- [ ] Ran generate-workout.mjs with the right `--audience`
-- [ ] Read the spot-check sample — easier/harder not swapped
-- [ ] Removed old file + its index.js entry (if replacing)
-- [ ] Added import + WORKOUTS entry in index.js
-- [ ] Verified in app under the correct `?variant=`
+- [ ] Checked CSV header is `…, RepCount, Tips` (single Tips column)
+- [ ] Ran generate-workout.mjs with the right `--audience` (and `--difficulty` if no color token in the filename)
+- [ ] Read the spot-check sample — the tip landed on the right exercise
+- [ ] Confirmed the printed `difficulty` matches the expected badge
+- [ ] Removed old file + its index.js entry (if replacing and the slug changed)
+- [ ] Added import + WORKOUTS entry in index.js (skip if replacing in place — same slug)
+- [ ] Verified in app under the correct `?variant=` (list, badge, and a tip render)
