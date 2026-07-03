@@ -7,6 +7,8 @@ import { getThisWeekCount, saveThisWeekCount } from "./workouts/weekly-progress.
 import { useWakeLock } from "./hooks/useWakeLock";
 import { GUIDANCE } from "./guidance";
 import GuidanceScreen from "./GuidanceScreen";
+import GateScreen from "./GateScreen";
+import { getAccessCode, setAccessCode, recordCompletion } from "./access";
 
 const variant = resolveVariant();
 const variantKey =
@@ -117,6 +119,8 @@ function totalDoneCount(progress) {
 // ─── Main App ───────────────────────────────────────────────────────────────
 export default function WorkoutApp() {
   const [screen, setScreen] = useState(hasLibrary ? "library" : "select"); // library | schedule | guidance | select | landing | workout | complete
+  // Access gate: unlocked once a code is stored locally (see access.js).
+  const [accessCode, setAccessCodeState] = useState(getAccessCode);
   // Keep the screen awake only while actively working out.
   useWakeLock(screen === "workout");
   const [selectedWorkout, setSelectedWorkout] = useState(null);
@@ -272,6 +276,7 @@ export default function WorkoutApp() {
         setWeeklyCount(next);
         saveThisWeekCount(weeklyStorageKey, next);
       }
+      recordCompletion(accessCode, selectedWorkout?.name);
       setScreen("complete");
     } else {
       animateTransition(() => setCurrentStep((s) => s + 1));
@@ -315,6 +320,21 @@ export default function WorkoutApp() {
   const doneTotal = totalDoneCount(completed);
   const currentWeek = firstIncompleteWeek(completed);
   const programComplete = doneTotal >= TOTAL_SLOTS;
+
+  // Gate everything behind a valid access code.
+  if (!accessCode) {
+    return (
+      <GateScreen
+        brandName={variant.brandName}
+        accent={variant.accent}
+        accentLight={variant.accentLight}
+        onUnlock={(code) => {
+          setAccessCode(code);
+          setAccessCodeState(code);
+        }}
+      />
+    );
+  }
 
   // ─── Render ─────────────────────────────────────────────────────────────
   return (
