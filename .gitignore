@@ -1,6 +1,10 @@
 node_modules
 dist
 .vercel
+# Local env files pulled via `vercel env pull` (contains secrets)
+*.local
+.env
+.env.*
 # Local-only scratch (todos, unimplemented design notes), but keep durable
 # superpowers specs + plans under source control.
 docs/*
