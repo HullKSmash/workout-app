@@ -34,7 +34,7 @@ export default function GateScreen({ brandName, accent, accentLight, onUnlock })
     <div style={s.screen}>
       <form style={s.content} onSubmit={submit}>
         <h1 style={s.title}>{brandName}</h1>
-        <p style={s.subtitle}>Enter your access code to continue.</p>
+        <p style={s.subtitle}>Enter your access code to continue</p>
         <input
           style={s.input}
           type="text"
@@ -50,7 +50,7 @@ export default function GateScreen({ brandName, accent, accentLight, onUnlock })
           aria-label="Access code"
         />
         <button style={s.button} type="submit" disabled={disabled}>
-          {status === "checking" ? "Checking…" : "Enter"}
+          {status === "checking" ? "Checking…" : "Ready, set, go!"}
         </button>
         {status === "invalid" && (
           <p style={s.error}>That code isn't valid. Double-check and try again.</p>
