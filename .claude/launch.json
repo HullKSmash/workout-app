@@ -13,6 +13,13 @@
       "runtimeArgs": ["-c", "export PATH='/Users/katie/.nvm/versions/node/v24.16.0/bin:$PATH' && node ./node_modules/.bin/vite --port $PORT"],
       "port": 5173,
       "autoPort": true
+    },
+    {
+      "name": "vercel-dev",
+      "runtimeExecutable": "/bin/bash",
+      "runtimeArgs": ["-c", "export PATH='/Users/katie/.nvm/versions/node/v24.16.0/bin:/usr/local/bin:/usr/bin:/bin:$PATH' && set -a && . ./.env.local && set +a && npx vercel dev --yes --listen $PORT"],
+      "port": 3000,
+      "autoPort": true
     }
   ]
 }
