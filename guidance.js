@@ -13,7 +13,7 @@ export const GUIDANCE = {
       {
         title: "This is your workout",
         body: [
-          "Above all else, these are YOUR workouts - the objective is to support your riding with targeted strength training, not to detract from it. Consider every workout an opportunity to listen to your body and adjust your plan accordingly. This not only helps you get a more effective workout; paying attention to your body will help your overall coordination, control, balance, and proprioception, all of which will help your riding. Take the chance to practice here!",
+          "Above all else, these are YOUR workouts - the objective is to support your riding with targeted strength training, not to detract from it. Change your weights, change your reps, take an adaptation that you know - listen to your body and adjust accordingly. This not only helps you get a more effective workout; paying attention to your body will help your overall coordination, control, balance, and proprioception, all of which will help your riding. Take the chance to practice here!",
         ],
       },
       {
@@ -67,7 +67,7 @@ export const GUIDANCE = {
       {
         title: "This is your workout",
         body: [
-          "Above all else, these are YOUR workouts - the objective is to support your running with targeted strength training, not to detract from it. Consider every workout an opportunity to listen to your body and adjust your plan accordingly. This not only helps you get a more effective workout; paying attention to your body will help your overall coordination, control, balance, and proprioception, all of which will help your running. Take the chance to practice here!",
+          "Above all else, these are YOUR workouts - the objective is to support your running with targeted strength training, not to detract from it. Change your weights, change your reps, take an adaptation that you know - listen to your body and adjust accordingly. This not only helps you get a more effective workout; paying attention to your body will help your overall coordination, control, balance, and proprioception, all of which will help your running. Take the chance to practice here!",
         ],
       },
       {
@@ -121,7 +121,7 @@ export const GUIDANCE = {
       {
         title: "This is your workout",
         body: [
-          "Above all else, these are YOUR workouts - the objective is to support your primary sport with targeted strength training, not to detract from it. Consider every workout an opportunity to listen to your body and adjust your plan accordingly. This not only helps you get a more effective workout; paying attention to your body will help your overall coordination, control, balance, and proprioception, all of which will help your athleticism. Take the chance to practice here!",
+          "Above all else, these are YOUR workouts - the objective is to support your primary sport with targeted strength training, not to detract from it. Change your weights, change your reps, take an adaptation that you know - listen to your body and adjust accordingly. This not only helps you get a more effective workout; paying attention to your body will help your overall coordination, control, balance, and proprioception, all of which will help your athleticism. Take the chance to practice here!",
         ],
       },
       {
