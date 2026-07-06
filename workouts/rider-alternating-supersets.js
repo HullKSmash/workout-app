@@ -4,13 +4,13 @@ export default {
     "equestrian"
   ],
   "difficulty": "easier",
-  "description": "",
+  "description": "A lighter take on unilateral work",
   "phases": [
     {
       "name": "Warm Up",
       "circuits": [
         {
-          "repeatCount": 2,
+          "repeatCount": 1,
           "exercises": [
             {
               "name": "Standing abduction",
@@ -39,8 +39,8 @@ export default {
           "exercises": [
             {
               "name": "Sumo squat",
-              "repCount": "6-8 per side",
-              "tips": "Engage your glutes as you stand.  This squat is more upright in your torso than a standard squat."
+              "repCount": "8-12",
+              "tips": "Engage your glutes as you stand and keep your shoulders upright throughout."
             },
             {
               "name": "Alternating reverse fly",
@@ -63,9 +63,9 @@ export default {
               "tips": "Pause to find your balance on each step out and back in.  Take a smaller step to make this easier and a bigger step to make it harder."
             },
             {
-              "name": "Knee push up",
-              "repCount": "6-10",
-              "tips": "If you're working on plank push ups, plank for the downward motion only, lift one knee at a time, or hold a plank as long as you can at the end."
+              "name": "Push up (Any kind)!",
+              "repCount": "To Fatigue",
+              "tips": "Take any variant you want here.  Knees, plank, knee assist, jack - anything you want!"
             }
           ]
         }
