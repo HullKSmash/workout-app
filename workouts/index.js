@@ -18,10 +18,10 @@ import riderAlternatingSupersets from "./rider-alternating-supersets.js";
 import riderUnilateralSandwiches1 from "./rider-unilateral-sandwiches-1.js";
 import riderMiniCircuits1 from "./rider-mini-circuits-1.js";
 import riderMiniCircuits2 from "./rider-mini-circuits-2.js";
-import runnerUnilateralSandwiches1 from "./runner-unilateral-sandwiches-1.js";
-import runnerUnilateralSandwiches2 from "./runner-unilateral-sandwiches-2.js";
+import runnerSingleLegSandwiches1 from "./runner-single-leg-sandwiches-1.js";
+import runnerSingleLegSandwiches2 from "./runner-single-leg-sandwiches-2.js";
 import runnerUnilateralMiniCircuits3c3r from "./runner-unilateral-mini-circuits-3c3r.js";
 import runnerUnilateralMiniCircuits4c2r from "./runner-unilateral-mini-circuits-4c2r.js";
 import runnerMiniCircuits1 from "./runner-mini-circuits-1.js";
 
-export const WORKOUTS = [legDay, paulUpperBody, riderSymmetryAndBalance1, riderSymmetryAndBalance2, riderBuild1, riderBuild2, riderAlternatingSupersets, riderUnilateralSandwiches1, riderMiniCircuits1, riderMiniCircuits2, runnerUnilateralSandwiches1, runnerUnilateralSandwiches2, runnerUnilateralMiniCircuits3c3r, runnerUnilateralMiniCircuits4c2r, runnerMiniCircuits1];
+export const WORKOUTS = [legDay, paulUpperBody, riderSymmetryAndBalance1, riderSymmetryAndBalance2, riderBuild1, riderBuild2, riderAlternatingSupersets, riderUnilateralSandwiches1, riderMiniCircuits1, riderMiniCircuits2, runnerSingleLegSandwiches1, runnerSingleLegSandwiches2, runnerUnilateralMiniCircuits3c3r, runnerUnilateralMiniCircuits4c2r, runnerMiniCircuits1];

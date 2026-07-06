@@ -1,5 +1,5 @@
 export default {
-  "name": "Runner Unilateral Sandwiches 1",
+  "name": "Single Leg Sandwiches 1",
   "audiences": [
     "run"
   ],
@@ -14,15 +14,18 @@ export default {
           "exercises": [
             {
               "name": "Single Leg Pogos, Left",
-              "repCount": "10-20"
+              "repCount": "10-20",
+              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
             },
             {
               "name": "Single Leg Pogos, Right",
-              "repCount": "10-20"
+              "repCount": "10-20",
+              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
             },
             {
               "name": "Squat Jumps",
-              "repCount": "8-10"
+              "repCount": "8-10",
+              "tips": "Make your landing soft and fluid to practice absorbing impact."
             }
           ]
         }
@@ -36,7 +39,8 @@ export default {
           "exercises": [
             {
               "name": "RDL & Row",
-              "repCount": "8-10"
+              "repCount": "8-10",
+              "tips": "Make these two distinct movements, fully completing each and checking your form before starting the next."
             }
           ]
         },
@@ -45,11 +49,13 @@ export default {
           "exercises": [
             {
               "name": "Weighted Bird Dogs, Left Arm/Right Leg",
-              "repCount": "8-10"
+              "repCount": "8-10",
+              "tips": "Extend and contract through as much range of motion as you can."
             },
             {
               "name": "Weighted Bird Dogs, Right Arm/Left Leg",
-              "repCount": "8-10"
+              "repCount": "8-10",
+              "tips": "Extend and contract through as much range of motion as you can."
             }
           ]
         },
@@ -58,7 +64,8 @@ export default {
           "exercises": [
             {
               "name": "RDL & Row",
-              "repCount": "8-10"
+              "repCount": "8-10",
+              "tips": "Make these two distinct movements, fully completing each and checking your form before starting the next."
             }
           ]
         }
@@ -72,7 +79,8 @@ export default {
           "exercises": [
             {
               "name": "Hamstring Bridge",
-              "repCount": "8-10"
+              "repCount": "8-12",
+              "tips": "Walk your feet out a step or two from glute bridge position to target your hamstrings."
             }
           ]
         },
@@ -81,11 +89,13 @@ export default {
           "exercises": [
             {
               "name": "Curtsy Lunge, Left",
-              "repCount": "8-10"
+              "repCount": "6-10",
+              "tips": "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright."
             },
             {
               "name": "Curtsy Lunge, Right",
-              "repCount": "10-15"
+              "repCount": "6-10",
+              "tips": "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright."
             }
           ]
         },
@@ -94,7 +104,8 @@ export default {
           "exercises": [
             {
               "name": "Hamstring Bridge",
-              "repCount": "8-10"
+              "repCount": "8-12",
+              "tips": "Walk your feet out a step or two from glute bridge position to target your hamstrings."
             }
           ]
         }
@@ -108,7 +119,8 @@ export default {
           "exercises": [
             {
               "name": "Banded Crab Walks",
-              "repCount": "8-10 per side"
+              "repCount": "8-10 per side",
+              "tips": "When this gets too easy, use a stronger band and take bigger steps."
             }
           ]
         },
@@ -117,11 +129,13 @@ export default {
           "exercises": [
             {
               "name": "Glute Arcs, Left",
-              "repCount": "8-10"
+              "repCount": "8-10",
+              "tips": "Use your full range of motion here and go slow."
             },
             {
               "name": "Glute Arcs, Right",
-              "repCount": "8-10"
+              "repCount": "8-10",
+              "tips": "Use your full range of motion here and go slow."
             }
           ]
         },
@@ -130,7 +144,8 @@ export default {
           "exercises": [
             {
               "name": "Banded Crab Walks",
-              "repCount": "8-10 per side"
+              "repCount": "8-10 per side",
+              "tips": "When this gets too easy, use a stronger band and take bigger steps."
             }
           ]
         }
@@ -144,15 +159,18 @@ export default {
           "exercises": [
             {
               "name": "Lying Adductor Crosses",
-              "repCount": "10-20"
+              "repCount": "10-20",
+              "tips": "This one seems easy, but you might feel it later!  Make sure to work both sides evenly."
             },
             {
               "name": "Russian Twist",
-              "repCount": "10-20"
+              "repCount": "10-20",
+              "tips": "Increase your range of motion and hold a weight as you get stronger."
             },
             {
               "name": "Plank Pike",
-              "repCount": "10-20"
+              "repCount": "10-20",
+              "tips": "Do this on your forearms or hands as you prefer."
             }
           ]
         }
