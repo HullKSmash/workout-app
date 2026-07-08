@@ -20,9 +20,9 @@ clean, reusable dataset — not an app-specific store.
 
 A single source of truth for exercises that:
 
-- lets Katie edit an exercise once and have every consumer stay correct,
-- is queryable with real SQL (Katie is comfortable with SQL and enjoys
-  hand-editing rows),
+- lets an exercise be edited once and have every consumer stay correct,
+- is queryable with real SQL (hand-editing rows directly is an accepted, even
+  preferred, editing workflow),
 - is owned locally and version-controlled (no SaaS dependency, no server),
 - exports a **subset** of the data, reshaped, to this app — through a
   deliberate boundary, so the same source can later feed other outputs.
@@ -36,7 +36,7 @@ git-tracked canonical form.
   of truth. Git history shows every exercise change as a readable diff.
 - A build script produces the queryable `exercises.db` from those text files.
   The `.db` is a build artifact and is **gitignored**.
-- Katie edits `data.sql` like any other source file and rebuilds the `.db` to
+- `data.sql` is edited like any other source file, then the `.db` is rebuilt to
   query it.
 
 Rejected alternatives:
@@ -44,7 +44,8 @@ Rejected alternatives:
 - **Structured JSON/YAML files** — great git history but tedious to hand-edit at
   150 exercises and no relational guarantees.
 - **Airtable / NocoDB** — nicer grid editing, but a SaaS/hosting dependency and
-  querying via their API rather than raw SQL. Not needed given Katie enjoys SQL.
+  querying via their API rather than raw SQL. Not needed given direct SQL
+  editing is an acceptable workflow.
 - **Live `.db` as canonical (edit the binary directly)** — coarser git history
   (diff snapshots rather than readable rows). Rejected in favor of text-first.
 
@@ -101,7 +102,7 @@ Rest is an exercise with `name === "Rest"` and `repCount` = seconds.
 
 ## The Abstraction Layer (Export)
 
-The export step is the boundary between Katie's full library and any single
+The export step is the boundary between the full library and any single
 consumer. Only a **subset** of the library crosses it.
 
 ```
@@ -129,10 +130,10 @@ the app's workout `.js` files directly (retiring the spreadsheet→CSV hop for
 workouts). Output must match the existing `.js` shape consumed by
 `workouts/index.js` and `workout-app.jsx`.
 
-Open implementation detail (resolve in the plan): whether the exporter writes
-the `.js` files directly, or emits CSV and reuses the existing
-`parse-csv.js` / `generate-workout.mjs` path. Prefer whichever keeps one tested
-code path; decide during planning.
+The exporter **writes the `.js` files directly** from the query results — it
+does not emit CSV or route through the existing `parse-csv.js` /
+`generate-workout.mjs` path. The DB is the new authoritative source for
+app-bound workouts, so the CSV import path is bypassed rather than reused.
 
 ### Deferred (explicitly out of scope for the first pass)
 
@@ -148,18 +149,18 @@ automation (which would silently duplicate mis-named exercises) and not pure
 hand-normalization upfront (which would be guesswork before knowing what
 actually mismatches).
 
-1. **Import exercises** from Katie's exercise spreadsheet (CSV export) as the
+1. **Import exercises** from the exercise spreadsheet (CSV export) as the
    canonical `exercises` set.
 2. **Parse existing workout `.js` files** and attempt to link each referenced
    exercise name to the canonical set.
 3. **Emit a reconciliation report** in three buckets:
    - **Exact matches** — auto-linked, nothing to do.
    - **Near matches** — differ only by case / whitespace / punctuation (or close
-     fuzzy match). Listed for Katie to confirm as "same exercise → alias" or
+     fuzzy match). Listed for a human to confirm as "same exercise → alias" or
      "actually different."
-   - **Unmatched** — no candidate. Katie decides: real new exercise, or a typo
+   - **Unmatched** — no candidate. A human decides: real new exercise, or a typo
      to fix.
-4. **Katie resolves** the report (via an alias/mapping file or by fixing names).
+4. **Resolve the report** (via an alias/mapping file or by fixing names).
 5. **Final link** — re-run to produce a clean seed with no accidental
    duplicates.
 
@@ -189,7 +190,7 @@ plan.)
 - One canonical place to change an exercise's name, tip, or video status;
   rebuilding + re-exporting propagates the change to the app with no manual
   copy-paste.
-- Katie can query the full library with SQL.
+- The full library can be queried with SQL.
 - The app's workout `.js` files can be regenerated from the DB and match the
   current app behavior.
 - The exercise dataset is cleanly exportable for future non-app uses.
