@@ -14,15 +14,18 @@ export default {
           "exercises": [
             {
               "name": "Calf raise and curl",
-              "repCount": "6-8"
+              "repCount": "6-8",
+              "tips": "Make these two distinct movements, fully completing each and checking your form before starting the next."
             },
             {
-              "name": "Superman sweeps",
-              "repCount": "6-8"
+              "name": "Superman sweep back",
+              "repCount": "8-12",
+              "tips": "Work in the range of motion you can, focusing on lifting your shoulders higher and reaching further back as you get stronger."
             },
             {
               "name": "Pike push up",
-              "repCount": "6-8"
+              "repCount": "6-8",
+              "tips": "The depth of your push up will increase as you build strength in this exercise."
             }
           ]
         }
@@ -35,12 +38,14 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Bent over row",
-              "repCount": "6-8"
+              "name": "Row",
+              "repCount": "6-8",
+              "tips": "Keep your back flat, your wrists straight, and bring your hand up to your ribs."
             },
             {
-              "name": "Chest press",
-              "repCount": "6-8"
+              "name": "Bench press",
+              "repCount": "6-8",
+              "tips": "If you don't have a bench, you can do these on the ground (your elbow will stop at the ground).  Keep your lower back close to the bench or ground in a neutral position."
             }
           ]
         }
@@ -53,12 +58,14 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Chin lifts",
-              "repCount": "6-8"
+              "name": "To the chin lifts",
+              "repCount": "6-8",
+              "tips": "Your elbows will point to the sides, not down or up."
             },
             {
               "name": "Lat pull over",
-              "repCount": "6-8"
+              "repCount": "6-8",
+              "tips": "You should feel this in your back and sides.  Make sure your elbows and wrists stay straight so that you aren't using your arms instead."
             }
           ]
         }
@@ -72,11 +79,13 @@ export default {
           "exercises": [
             {
               "name": "Sumo squat",
-              "repCount": "6-8"
+              "repCount": "6-8",
+              "tips": "Point your toes out at a 45-degree angle from your body.  Engage your glutes as you stand and keep your shoulders upright throughout."
             },
             {
-              "name": "Seated up & overs",
-              "repCount": "6-8 per side"
+              "name": "Butterfly bridge",
+              "repCount": "8-10",
+              "tips": "If this is too easy, add weight on your hips.  If it's too hard, bring your knees up and closer together while you build strength."
             }
           ]
         }
@@ -89,12 +98,19 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Butterfly thrust",
-              "repCount": "8-10"
+              "name": "Flexor up & overs",
+              "repCount": "6-8 per side",
+              "tips": "Resist the urge to rock your pelvis back to bring your leg higher.  Think about closing the angle between your torso and your femur without rounding your lower back."
             },
             {
-              "name": "Suitcase squat",
-              "repCount": "6-8"
+              "name": "Split squat, left",
+              "repCount": "6-8",
+              "tips": "Your front leg is doing the work here and your back leg is for stability.  Keep your knee aligned between your hip and ankle.  Make sure this is a squatting motion more than a hip hinging motion."
+            },
+            {
+              "name": "Split squat, right",
+              "repCount": "6-8",
+              "tips": "Your front leg is doing the work here and your back leg is for stability.  Keep your knee aligned between your hip and ankle.  Make sure this is a squatting motion more than a hip hinging motion."
             }
           ]
         }
@@ -108,15 +124,18 @@ export default {
           "exercises": [
             {
               "name": "Plank toe taps",
-              "repCount": "8-12 per side"
+              "repCount": "To Fatigue",
+              "tips": "If this is too hard, practice holding a plank or just lifting each foot.  Use your hands or forearms as you prefer."
             },
             {
               "name": "Diagonal sit ups",
-              "repCount": "5-10 per side"
+              "repCount": "To Fatigue",
+              "tips": "If you can't sit up all the way, crunch - or do a mix of sit ups and crunches."
             },
             {
-              "name": "Reverse crunch",
-              "repCount": "10-15"
+              "name": "Plank pike",
+              "repCount": "To Fatigue",
+              "tips": "Do this on your forearms or hands as you prefer."
             }
           ]
         }
