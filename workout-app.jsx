@@ -3,12 +3,19 @@ import { WORKOUTS } from "./workouts";
 import { VARIANTS, resolveVariant } from "./variants";
 import { RIDER_STRENGTH_SCHEDULE } from "./workouts/rider-strength-schedule.js";
 import { slotId, loadProgress, saveProgress, clearProgress } from "./workouts/progress.js";
-import { clearActiveChecklist } from "./workouts/checklist-progress.js";
+import {
+  checklistKey,
+  loadActiveChecklist,
+  saveActiveChecklist,
+  clearActiveChecklist,
+} from "./workouts/checklist-progress.js";
+import { buildChecklist } from "./workouts/build-checklist.js";
 import { getThisWeekCount, saveThisWeekCount } from "./workouts/weekly-progress.js";
 import { useWakeLock } from "./hooks/useWakeLock";
 import { GUIDANCE } from "./guidance";
 import GuidanceScreen from "./GuidanceScreen";
 import GateScreen from "./GateScreen";
+import ChecklistScreen from "./ChecklistScreen";
 import { getAccessCode, setAccessCode, recordCompletion } from "./access";
 import { resolveViewMode, getStoredViewMode, setViewMode } from "./view-mode.js";
 
@@ -129,10 +136,12 @@ export default function WorkoutApp() {
     setViewMode(mode);
     setViewModeState(mode);
   };
+  // Checklist: ticked item ids for the one active checklist (Set for O(1) reads).
+  const [checkedIds, setCheckedIds] = useState(() => new Set());
   // Access gate: unlocked once a code is stored locally (see access.js).
   const [accessCode, setAccessCodeState] = useState(getAccessCode);
   // Keep the screen awake only while actively working out.
-  useWakeLock(screen === "workout");
+  useWakeLock(screen === "workout" || screen === "checklist");
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState(null); // schedule slot id for the open workout, or null (e.g. opened from "View all")
   // ─── Library state ───────────────────────────────────────────────────────────
@@ -155,6 +164,13 @@ export default function WorkoutApp() {
     () => (selectedWorkout ? flattenWorkout(selectedWorkout) : []),
     [selectedWorkout]
   );
+  const checklist = useMemo(
+    () => (selectedWorkout ? buildChecklist(selectedWorkout) : null),
+    [selectedWorkout]
+  );
+  const activeChecklistKey = selectedWorkout
+    ? checklistKey(selectedWorkout.name, selectedSlot)
+    : null;
   // Filtered + sorted workout list for the library screen.
   const libraryWorkouts = useMemo(() => {
     if (!hasLibrary) return [];
@@ -271,9 +287,40 @@ export default function WorkoutApp() {
   };
 
   const handleStart = () => {
+    if (viewMode === "checklist") {
+      const key = checklistKey(selectedWorkout.name, selectedSlot);
+      const saved = loadActiveChecklist();
+      if (saved && saved.key === key) {
+        // Resume an interrupted session for this same workout.
+        setCheckedIds(new Set(saved.checked));
+      } else {
+        // New/different workout — start fresh and reset the stored record.
+        setCheckedIds(new Set());
+        saveActiveChecklist(key, []);
+      }
+      setScreen("checklist");
+      return;
+    }
     setCurrentStep(0);
     setScreen("workout");
     setFadeClass("step-enter");
+  };
+
+  const handleToggleChecklistItem = (id) => {
+    setCheckedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      saveActiveChecklist(activeChecklistKey, [...next]);
+      return next;
+    });
+  };
+
+  // Confirmed leave from the checklist — discard progress and return.
+  const handleLeaveChecklist = () => {
+    clearActiveChecklist();
+    setCheckedIds(new Set());
+    setScreen(hasLibrary ? "library" : "select");
   };
 
   // Shared completion side-effects — called by both the step-through (last step)
@@ -920,6 +967,20 @@ export default function WorkoutApp() {
             </div>
           )}
         </div>
+      )}
+
+      {/* ── Checklist View ───────────────────────────────────────────── */}
+      {screen === "checklist" && selectedWorkout && checklist && (
+        <ChecklistScreen
+          workout={selectedWorkout}
+          checklist={checklist}
+          checked={checkedIds}
+          onToggle={handleToggleChecklistItem}
+          onFinish={completeWorkout}
+          onLeave={handleLeaveChecklist}
+          accent={variant.accent}
+          accentLight={variant.accentLight}
+        />
       )}
 
       {/* ── Completion Page ───────────────────────────────────────────── */}
