@@ -3,6 +3,7 @@ import { WORKOUTS } from "./workouts";
 import { VARIANTS, resolveVariant } from "./variants";
 import { RIDER_STRENGTH_SCHEDULE } from "./workouts/rider-strength-schedule.js";
 import { slotId, loadProgress, saveProgress, clearProgress } from "./workouts/progress.js";
+import { clearActiveChecklist } from "./workouts/checklist-progress.js";
 import { getThisWeekCount, saveThisWeekCount } from "./workouts/weekly-progress.js";
 import { useWakeLock } from "./hooks/useWakeLock";
 import { GUIDANCE } from "./guidance";
@@ -266,18 +267,26 @@ export default function WorkoutApp() {
     setFadeClass("step-enter");
   };
 
+  // Shared completion side-effects — called by both the step-through (last step)
+  // and the checklist (Finish button). Guarantees identical tracking.
+  const completeWorkout = () => {
+    // Auto-mark the schedule slot complete.
+    if (selectedSlot && !completed[selectedSlot]) toggleSlot(selectedSlot);
+    // Increment weekly count for the library tracker.
+    if (hasLibrary) {
+      const next = weeklyCount + 1;
+      setWeeklyCount(next);
+      saveThisWeekCount(weeklyStorageKey, next);
+    }
+    recordCompletion(accessCode, selectedWorkout?.name);
+    // Clear any persisted checklist for this workout (no-op for step-through).
+    clearActiveChecklist();
+    setScreen("complete");
+  };
+
   const handleNext = () => {
     if (currentStep >= totalSteps - 1) {
-      // Auto-mark the schedule slot complete on finishing the last step.
-      if (selectedSlot && !completed[selectedSlot]) toggleSlot(selectedSlot);
-      // Increment weekly count for the library tracker.
-      if (hasLibrary) {
-        const next = weeklyCount + 1;
-        setWeeklyCount(next);
-        saveThisWeekCount(weeklyStorageKey, next);
-      }
-      recordCompletion(accessCode, selectedWorkout?.name);
-      setScreen("complete");
+      completeWorkout();
     } else {
       animateTransition(() => setCurrentStep((s) => s + 1));
     }
