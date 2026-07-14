@@ -10,6 +10,7 @@ import { GUIDANCE } from "./guidance";
 import GuidanceScreen from "./GuidanceScreen";
 import GateScreen from "./GateScreen";
 import { getAccessCode, setAccessCode, recordCompletion } from "./access";
+import { resolveViewMode, getStoredViewMode, setViewMode } from "./view-mode.js";
 
 const variant = resolveVariant();
 const variantKey =
@@ -119,7 +120,15 @@ function totalDoneCount(progress) {
 
 // ─── Main App ───────────────────────────────────────────────────────────────
 export default function WorkoutApp() {
-  const [screen, setScreen] = useState(hasLibrary ? "library" : "select"); // library | schedule | guidance | select | landing | workout | complete
+  const [screen, setScreen] = useState(hasLibrary ? "library" : "select"); // library | schedule | guidance | select | landing | workout | checklist | complete
+  // Step-through vs. checklist view: universal default + per-device override.
+  const [viewMode, setViewModeState] = useState(() =>
+    resolveViewMode(getStoredViewMode())
+  );
+  const selectViewMode = (mode) => {
+    setViewMode(mode);
+    setViewModeState(mode);
+  };
   // Access gate: unlocked once a code is stored locally (see access.js).
   const [accessCode, setAccessCodeState] = useState(getAccessCode);
   // Keep the screen awake only while actively working out.
@@ -713,6 +722,26 @@ export default function WorkoutApp() {
             <p style={styles.workoutSubtitle}>
               {exerciseCount} exercises · {selectedWorkout.phases.length} phases
             </p>
+            <div style={styles.viewToggle}>
+              <button
+                style={{
+                  ...styles.viewToggleOption,
+                  ...(viewMode === "stepthrough" ? styles.viewToggleActive : {}),
+                }}
+                onClick={() => selectViewMode("stepthrough")}
+              >
+                Guided
+              </button>
+              <button
+                style={{
+                  ...styles.viewToggleOption,
+                  ...(viewMode === "checklist" ? styles.viewToggleActive : {}),
+                }}
+                onClick={() => selectViewMode("checklist")}
+              >
+                Checklist
+              </button>
+            </div>
             <button style={styles.startButton} onClick={handleStart}>
               Start Workout
             </button>
@@ -1113,6 +1142,35 @@ const styles = {
     letterSpacing: "0.01em",
     transition: "background 0.2s, transform 0.1s",
     WebkitTapHighlightColor: "transparent",
+  },
+
+  viewToggle: {
+    display: "flex",
+    gap: 4,
+    background: colors.border,
+    borderRadius: 12,
+    padding: 4,
+    marginBottom: 16,
+    width: "100%",
+    maxWidth: 260,
+  },
+  viewToggleOption: {
+    fontFamily: "'DM Sans', sans-serif",
+    flex: 1,
+    background: "none",
+    border: "none",
+    borderRadius: 9,
+    padding: "9px 12px",
+    fontSize: 14,
+    fontWeight: 600,
+    color: colors.textSecondary,
+    cursor: "pointer",
+    WebkitTapHighlightColor: "transparent",
+  },
+  viewToggleActive: {
+    background: colors.surface,
+    color: colors.accent,
+    boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
   },
 
   backLink: {
