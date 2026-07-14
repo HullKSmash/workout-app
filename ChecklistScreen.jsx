@@ -299,7 +299,10 @@ function makeStyles(accent, accentLight) {
       padding: "2px 4px",
       marginBottom: 9,
     },
-    setCurrent: { borderColor: accent, boxShadow: `0 0 0 3px ${accentLight}` },
+    setCurrent: {
+      border: `1.5px solid ${accent}`,
+      boxShadow: `0 0 0 3px ${accentLight}`,
+    },
     setDone: { background: "#f4f1ee", opacity: 0.72 },
     setHeader: {
       fontFamily: "'DM Sans', sans-serif",
@@ -363,7 +366,7 @@ function makeStyles(accent, accentLight) {
       padding: 0,
       WebkitTapHighlightColor: "transparent",
     },
-    boxOn: { background: accent, borderColor: accent },
+    boxOn: { background: accent, border: `2px solid ${accent}` },
     rowName: { flex: 1, fontSize: 13.5, fontWeight: 600, color: TEXT, textAlign: "left" },
     rowNameOn: { color: "#A79F96" },
     rowReps: { fontWeight: 500, color: TEXT_SECONDARY },
