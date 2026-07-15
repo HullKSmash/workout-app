@@ -56,21 +56,29 @@ export default function ChecklistScreen({
   const [detailItem, setDetailItem] = useState(null);
   const [showLeaveConfirm, setShowLeaveConfirm] = useState(false);
 
-  // Auto-advance the open set only when the set the user is working on gets
-  // completed — detected by the "current set" pointer moving forward. Crucially
-  // this must NOT fire when the user manually opens an already-completed set to
-  // review or un-tick it, so we only follow the advance when the open set is the
-  // one that just completed.
-  const prevCurrentRef = useRef(currentSetId);
+  // When the set the user is working in (the expanded one) becomes complete,
+  // collapse it and open the next incomplete set BELOW it — regardless of whether
+  // an earlier set was skipped. If there's no incomplete set below (e.g. they
+  // skipped an earlier set and just finished the last one), collapse without
+  // jumping; the current-set highlight already points at what's left.
+  //
+  // We detect a genuine incomplete→complete transition of the *same* expanded
+  // set, so manually opening an already-completed set to review/un-tick it never
+  // triggers an advance.
+  const prevExpandedRef = useRef({ id: null, complete: false });
   useEffect(() => {
-    const prev = prevCurrentRef.current;
-    if (currentSetId !== prev) {
-      if (expandedSetId === prev && currentSetId) {
-        setExpandedSetId(currentSetId);
-      }
-      prevCurrentRef.current = currentSetId;
+    const idx = sets.findIndex((set) => set.id === expandedSetId);
+    const expanded = idx === -1 ? null : sets[idx];
+    const complete = expanded ? setComplete(expanded, checked) : false;
+    const prev = prevExpandedRef.current;
+    if (complete && prev.id === expandedSetId && !prev.complete) {
+      const nextIncomplete = sets
+        .slice(idx + 1)
+        .find((set) => !setComplete(set, checked));
+      setExpandedSetId(nextIncomplete ? nextIncomplete.id : null);
     }
-  }, [currentSetId, expandedSetId]);
+    prevExpandedRef.current = { id: expandedSetId, complete };
+  }, [checked, expandedSetId, sets]);
 
   return (
     <div style={s.screen}>
