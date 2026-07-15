@@ -3,7 +3,7 @@
 // can be ticked in any order. Presentational: ticked state, persistence, and
 // completion live in the container (workout-app.jsx). This component owns only
 // view state — the expanded set, the open detail sheet, and the leave modal.
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const TEXT = "#2D2A26";
 const TEXT_SECONDARY = "#8A8279";
@@ -56,18 +56,21 @@ export default function ChecklistScreen({
   const [detailItem, setDetailItem] = useState(null);
   const [showLeaveConfirm, setShowLeaveConfirm] = useState(false);
 
-  // Once the open set is fully checked, auto-advance to the next incomplete set.
+  // Auto-advance the open set only when the set the user is working on gets
+  // completed — detected by the "current set" pointer moving forward. Crucially
+  // this must NOT fire when the user manually opens an already-completed set to
+  // review or un-tick it, so we only follow the advance when the open set is the
+  // one that just completed.
+  const prevCurrentRef = useRef(currentSetId);
   useEffect(() => {
-    const expanded = sets.find((set) => set.id === expandedSetId);
-    if (
-      expanded &&
-      setComplete(expanded, checked) &&
-      currentSetId &&
-      currentSetId !== expandedSetId
-    ) {
-      setExpandedSetId(currentSetId);
+    const prev = prevCurrentRef.current;
+    if (currentSetId !== prev) {
+      if (expandedSetId === prev && currentSetId) {
+        setExpandedSetId(currentSetId);
+      }
+      prevCurrentRef.current = currentSetId;
     }
-  }, [checked, expandedSetId, currentSetId, sets]);
+  }, [currentSetId, expandedSetId]);
 
   return (
     <div style={s.screen}>

@@ -73,6 +73,26 @@ test("item ids embed phase/circuit/round/original-exercise index", () => {
   assert.equal(round1.items[1].tips, undefined);
 });
 
+test("restCaption summarizes a single rest value vs. mixed values", () => {
+  const mixed = {
+    name: "W",
+    phases: [
+      {
+        name: "P",
+        circuits: [
+          { repeatCount: 1, exercises: [
+            { name: "A", repCount: "8" },
+            { name: "Rest", repCount: 30 },
+            { name: "B", repCount: "8" },
+            { name: "Rest", repCount: 60 },
+          ] },
+        ],
+      },
+    ],
+  };
+  assert.equal(buildChecklist(mixed).sets[0].restCaption, "Rest as prescribed");
+});
+
 test("multiple circuits in a phase flag multiCircuit", () => {
   const { sets } = buildChecklist(fixture);
   assert.equal(sets[2].multiCircuit, true);
