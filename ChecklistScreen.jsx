@@ -192,14 +192,15 @@ export default function ChecklistScreen({
       </div>
 
       <div style={s.footer}>
-        {allDone && (
+        {allDone ? (
           <button style={s.finishBtn} onClick={onFinish}>
-            Finish workout →
+            Finish
+          </button>
+        ) : (
+          <button style={s.leaveBtn} onClick={() => setShowLeaveConfirm(true)}>
+            End workout
           </button>
         )}
-        <button style={s.leaveBtn} onClick={() => setShowLeaveConfirm(true)}>
-          Leave workout
-        </button>
       </div>
 
       {detailItem && (
