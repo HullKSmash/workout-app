@@ -3,12 +3,22 @@ import { WORKOUTS } from "./workouts";
 import { VARIANTS, resolveVariant } from "./variants";
 import { RIDER_STRENGTH_SCHEDULE } from "./workouts/rider-strength-schedule.js";
 import { slotId, loadProgress, saveProgress, clearProgress } from "./workouts/progress.js";
+import {
+  checklistKey,
+  loadActiveChecklist,
+  saveActiveChecklist,
+  clearActiveChecklist,
+} from "./workouts/checklist-progress.js";
+import { buildChecklist } from "./workouts/build-checklist.js";
 import { getThisWeekCount, saveThisWeekCount } from "./workouts/weekly-progress.js";
 import { useWakeLock } from "./hooks/useWakeLock";
 import { GUIDANCE } from "./guidance";
 import GuidanceScreen from "./GuidanceScreen";
 import GateScreen from "./GateScreen";
+import ChecklistScreen from "./ChecklistScreen";
+import EndWorkoutModal from "./EndWorkoutModal";
 import { getAccessCode, setAccessCode, recordCompletion } from "./access";
+import { resolveViewMode, getStoredViewMode, setViewMode } from "./view-mode.js";
 
 const variant = resolveVariant();
 const variantKey =
@@ -118,11 +128,21 @@ function totalDoneCount(progress) {
 
 // ─── Main App ───────────────────────────────────────────────────────────────
 export default function WorkoutApp() {
-  const [screen, setScreen] = useState(hasLibrary ? "library" : "select"); // library | schedule | guidance | select | landing | workout | complete
+  const [screen, setScreen] = useState(hasLibrary ? "library" : "select"); // library | schedule | guidance | select | landing | workout | checklist | complete
+  // Step-through vs. checklist view: universal default + per-device override.
+  const [viewMode, setViewModeState] = useState(() =>
+    resolveViewMode(getStoredViewMode())
+  );
+  const selectViewMode = (mode) => {
+    setViewMode(mode);
+    setViewModeState(mode);
+  };
+  // Checklist: ticked item ids for the one active checklist (Set for O(1) reads).
+  const [checkedIds, setCheckedIds] = useState(() => new Set());
   // Access gate: unlocked once a code is stored locally (see access.js).
   const [accessCode, setAccessCodeState] = useState(getAccessCode);
   // Keep the screen awake only while actively working out.
-  useWakeLock(screen === "workout");
+  useWakeLock(screen === "workout" || screen === "checklist");
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState(null); // schedule slot id for the open workout, or null (e.g. opened from "View all")
   // ─── Library state ───────────────────────────────────────────────────────────
@@ -145,6 +165,13 @@ export default function WorkoutApp() {
     () => (selectedWorkout ? flattenWorkout(selectedWorkout) : []),
     [selectedWorkout]
   );
+  const checklist = useMemo(
+    () => (selectedWorkout ? buildChecklist(selectedWorkout) : null),
+    [selectedWorkout]
+  );
+  const activeChecklistKey = selectedWorkout
+    ? checklistKey(selectedWorkout.name, selectedSlot)
+    : null;
   // Filtered + sorted workout list for the library screen.
   const libraryWorkouts = useMemo(() => {
     if (!hasLibrary) return [];
@@ -261,23 +288,62 @@ export default function WorkoutApp() {
   };
 
   const handleStart = () => {
+    if (viewMode === "checklist") {
+      const key = checklistKey(selectedWorkout.name, selectedSlot);
+      const saved = loadActiveChecklist();
+      if (saved && saved.key === key) {
+        // Resume an interrupted session for this same workout.
+        setCheckedIds(new Set(saved.checked));
+      } else {
+        // New/different workout — start fresh and reset the stored record.
+        setCheckedIds(new Set());
+        saveActiveChecklist(key, []);
+      }
+      setScreen("checklist");
+      return;
+    }
     setCurrentStep(0);
     setScreen("workout");
     setFadeClass("step-enter");
   };
 
+  const handleToggleChecklistItem = (id) => {
+    setCheckedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      saveActiveChecklist(activeChecklistKey, [...next]);
+      return next;
+    });
+  };
+
+  // Confirmed leave from the checklist — discard progress and return.
+  const handleLeaveChecklist = () => {
+    clearActiveChecklist();
+    setCheckedIds(new Set());
+    setScreen(hasLibrary ? "library" : "select");
+  };
+
+  // Shared completion side-effects — called by both the step-through (last step)
+  // and the checklist (Finish button). Guarantees identical tracking.
+  const completeWorkout = () => {
+    // Auto-mark the schedule slot complete.
+    if (selectedSlot && !completed[selectedSlot]) toggleSlot(selectedSlot);
+    // Increment weekly count for the library tracker.
+    if (hasLibrary) {
+      const next = weeklyCount + 1;
+      setWeeklyCount(next);
+      saveThisWeekCount(weeklyStorageKey, next);
+    }
+    recordCompletion(accessCode, selectedWorkout?.name);
+    // Clear any persisted checklist for this workout (no-op for step-through).
+    clearActiveChecklist();
+    setScreen("complete");
+  };
+
   const handleNext = () => {
     if (currentStep >= totalSteps - 1) {
-      // Auto-mark the schedule slot complete on finishing the last step.
-      if (selectedSlot && !completed[selectedSlot]) toggleSlot(selectedSlot);
-      // Increment weekly count for the library tracker.
-      if (hasLibrary) {
-        const next = weeklyCount + 1;
-        setWeeklyCount(next);
-        saveThisWeekCount(weeklyStorageKey, next);
-      }
-      recordCompletion(accessCode, selectedWorkout?.name);
-      setScreen("complete");
+      completeWorkout();
     } else {
       animateTransition(() => setCurrentStep((s) => s + 1));
     }
@@ -704,6 +770,26 @@ export default function WorkoutApp() {
             <p style={styles.workoutSubtitle}>
               {exerciseCount} exercises · {selectedWorkout.phases.length} phases
             </p>
+            <div style={styles.viewToggle}>
+              <button
+                style={{
+                  ...styles.viewToggleOption,
+                  ...(viewMode === "stepthrough" ? styles.viewToggleActive : {}),
+                }}
+                onClick={() => selectViewMode("stepthrough")}
+              >
+                Guided
+              </button>
+              <button
+                style={{
+                  ...styles.viewToggleOption,
+                  ...(viewMode === "checklist" ? styles.viewToggleActive : {}),
+                }}
+                onClick={() => selectViewMode("checklist")}
+              >
+                Checklist
+              </button>
+            </div>
             <button style={styles.startButton} onClick={handleStart}>
               Start Workout
             </button>
@@ -861,27 +947,29 @@ export default function WorkoutApp() {
             </div>
           </div>
 
-          {/* End workout confirmation modal */}
+          {/* End workout confirmation modal (shared with the checklist view) */}
           {showEndConfirm && (
-            <div style={styles.modalOverlay}>
-              <div style={styles.modal}>
-                <h3 style={styles.modalTitle}>End Workout?</h3>
-                <p style={styles.modalText}>
-                  You'll be taken back to the beginning of the workout. Your
-                  progress won't be saved.
-                </p>
-                <div style={styles.modalButtons}>
-                  <button style={styles.modalCancel} onClick={cancelEnd}>
-                    Keep Going
-                  </button>
-                  <button style={styles.modalConfirm} onClick={confirmEnd}>
-                    End Workout
-                  </button>
-                </div>
-              </div>
-            </div>
+            <EndWorkoutModal
+              accent={variant.accent}
+              onCancel={cancelEnd}
+              onConfirm={confirmEnd}
+            />
           )}
         </div>
+      )}
+
+      {/* ── Checklist View ───────────────────────────────────────────── */}
+      {screen === "checklist" && selectedWorkout && checklist && (
+        <ChecklistScreen
+          workout={selectedWorkout}
+          checklist={checklist}
+          checked={checkedIds}
+          onToggle={handleToggleChecklistItem}
+          onFinish={completeWorkout}
+          onLeave={handleLeaveChecklist}
+          accent={variant.accent}
+          accentLight={variant.accentLight}
+        />
       )}
 
       {/* ── Completion Page ───────────────────────────────────────────── */}
@@ -1104,6 +1192,35 @@ const styles = {
     letterSpacing: "0.01em",
     transition: "background 0.2s, transform 0.1s",
     WebkitTapHighlightColor: "transparent",
+  },
+
+  viewToggle: {
+    display: "flex",
+    gap: 4,
+    background: colors.border,
+    borderRadius: 12,
+    padding: 4,
+    marginBottom: 16,
+    width: "100%",
+    maxWidth: 260,
+  },
+  viewToggleOption: {
+    fontFamily: "'DM Sans', sans-serif",
+    flex: 1,
+    background: "none",
+    border: "none",
+    borderRadius: 9,
+    padding: "9px 12px",
+    fontSize: 14,
+    fontWeight: 600,
+    color: colors.textSecondary,
+    cursor: "pointer",
+    WebkitTapHighlightColor: "transparent",
+  },
+  viewToggleActive: {
+    background: colors.surface,
+    color: colors.accent,
+    boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
   },
 
   backLink: {
@@ -1334,79 +1451,6 @@ const styles = {
     padding: "16px 12px",
     fontSize: 14,
     fontWeight: 500,
-    cursor: "pointer",
-    WebkitTapHighlightColor: "transparent",
-  },
-
-  // ── Modal ────────────────────────────────────────────────────────
-  modalOverlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: "rgba(45,42,38,0.5)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: 100,
-    padding: 24,
-  },
-
-  modal: {
-    background: colors.surface,
-    borderRadius: 20,
-    padding: 32,
-    maxWidth: 340,
-    width: "100%",
-    textAlign: "center",
-  },
-
-  modalTitle: {
-    fontFamily: "'Outfit', sans-serif",
-    fontSize: 22,
-    fontWeight: 700,
-    margin: "0 0 8px 0",
-    color: colors.text,
-  },
-
-  modalText: {
-    fontSize: 15,
-    color: colors.textSecondary,
-    margin: "0 0 28px 0",
-    lineHeight: 1.5,
-    fontWeight: 300,
-  },
-
-  modalButtons: {
-    display: "flex",
-    gap: 12,
-  },
-
-  modalCancel: {
-    fontFamily: "'DM Sans', sans-serif",
-    flex: 1,
-    background: colors.surface,
-    color: colors.text,
-    border: `1.5px solid ${colors.border}`,
-    borderRadius: 14,
-    padding: "14px 16px",
-    fontSize: 15,
-    fontWeight: 600,
-    cursor: "pointer",
-    WebkitTapHighlightColor: "transparent",
-  },
-
-  modalConfirm: {
-    fontFamily: "'DM Sans', sans-serif",
-    flex: 1,
-    background: colors.accent,
-    color: "#fff",
-    border: "none",
-    borderRadius: 14,
-    padding: "14px 16px",
-    fontSize: 15,
-    fontWeight: 600,
     cursor: "pointer",
     WebkitTapHighlightColor: "transparent",
   },
