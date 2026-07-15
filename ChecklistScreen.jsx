@@ -4,6 +4,7 @@
 // completion live in the container (workout-app.jsx). This component owns only
 // view state — the expanded set, the open detail sheet, and the leave modal.
 import { useEffect, useRef, useState } from "react";
+import EndWorkoutModal from "./EndWorkoutModal";
 
 const TEXT = "#2D2A26";
 const TEXT_SECONDARY = "#8A8279";
@@ -219,26 +220,11 @@ export default function ChecklistScreen({
       )}
 
       {showLeaveConfirm && (
-        <div style={s.scrim}>
-          <div style={s.modal}>
-            <div style={s.modalTitle}>End Workout?</div>
-            <div style={s.modalText}>
-              You'll lose your check-offs for this workout. Your progress won't be
-              saved.
-            </div>
-            <div style={s.modalButtons}>
-              <button
-                style={s.modalCancel}
-                onClick={() => setShowLeaveConfirm(false)}
-              >
-                Keep Going
-              </button>
-              <button style={s.modalConfirm} onClick={onLeave}>
-                End Workout
-              </button>
-            </div>
-          </div>
-        </div>
+        <EndWorkoutModal
+          accent={accent}
+          onCancel={() => setShowLeaveConfirm(false)}
+          onConfirm={onLeave}
+        />
       )}
     </div>
   );
@@ -513,54 +499,5 @@ function makeStyles(accent, accentLight) {
       WebkitTapHighlightColor: "transparent",
     },
 
-    modal: {
-      alignSelf: "center",
-      margin: "auto",
-      background: SURFACE,
-      borderRadius: 20,
-      padding: 28,
-      maxWidth: 340,
-      width: "calc(100% - 48px)",
-      textAlign: "center",
-    },
-    modalTitle: {
-      fontFamily: "'Outfit', sans-serif",
-      fontSize: 22,
-      fontWeight: 700,
-      marginBottom: 8,
-    },
-    modalText: {
-      fontSize: 15,
-      color: TEXT_SECONDARY,
-      marginBottom: 24,
-      lineHeight: 1.5,
-    },
-    modalButtons: { display: "flex", gap: 12 },
-    modalCancel: {
-      fontFamily: "'DM Sans', sans-serif",
-      flex: 1,
-      background: SURFACE,
-      color: TEXT,
-      border: `1.5px solid ${BORDER}`,
-      borderRadius: 14,
-      padding: "14px 16px",
-      fontSize: 15,
-      fontWeight: 600,
-      cursor: "pointer",
-      WebkitTapHighlightColor: "transparent",
-    },
-    modalConfirm: {
-      fontFamily: "'DM Sans', sans-serif",
-      flex: 1,
-      background: accent,
-      color: "#fff",
-      border: "none",
-      borderRadius: 14,
-      padding: "14px 16px",
-      fontSize: 15,
-      fontWeight: 600,
-      cursor: "pointer",
-      WebkitTapHighlightColor: "transparent",
-    },
   };
 }

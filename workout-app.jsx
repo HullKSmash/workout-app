@@ -16,6 +16,7 @@ import { GUIDANCE } from "./guidance";
 import GuidanceScreen from "./GuidanceScreen";
 import GateScreen from "./GateScreen";
 import ChecklistScreen from "./ChecklistScreen";
+import EndWorkoutModal from "./EndWorkoutModal";
 import { getAccessCode, setAccessCode, recordCompletion } from "./access";
 import { resolveViewMode, getStoredViewMode, setViewMode } from "./view-mode.js";
 
@@ -946,25 +947,13 @@ export default function WorkoutApp() {
             </div>
           </div>
 
-          {/* End workout confirmation modal */}
+          {/* End workout confirmation modal (shared with the checklist view) */}
           {showEndConfirm && (
-            <div style={styles.modalOverlay}>
-              <div style={styles.modal}>
-                <h3 style={styles.modalTitle}>End Workout?</h3>
-                <p style={styles.modalText}>
-                  You'll be taken back to the beginning of the workout. Your
-                  progress won't be saved.
-                </p>
-                <div style={styles.modalButtons}>
-                  <button style={styles.modalCancel} onClick={cancelEnd}>
-                    Keep Going
-                  </button>
-                  <button style={styles.modalConfirm} onClick={confirmEnd}>
-                    End Workout
-                  </button>
-                </div>
-              </div>
-            </div>
+            <EndWorkoutModal
+              accent={variant.accent}
+              onCancel={cancelEnd}
+              onConfirm={confirmEnd}
+            />
           )}
         </div>
       )}
@@ -1462,79 +1451,6 @@ const styles = {
     padding: "16px 12px",
     fontSize: 14,
     fontWeight: 500,
-    cursor: "pointer",
-    WebkitTapHighlightColor: "transparent",
-  },
-
-  // ── Modal ────────────────────────────────────────────────────────
-  modalOverlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: "rgba(45,42,38,0.5)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: 100,
-    padding: 24,
-  },
-
-  modal: {
-    background: colors.surface,
-    borderRadius: 20,
-    padding: 32,
-    maxWidth: 340,
-    width: "100%",
-    textAlign: "center",
-  },
-
-  modalTitle: {
-    fontFamily: "'Outfit', sans-serif",
-    fontSize: 22,
-    fontWeight: 700,
-    margin: "0 0 8px 0",
-    color: colors.text,
-  },
-
-  modalText: {
-    fontSize: 15,
-    color: colors.textSecondary,
-    margin: "0 0 28px 0",
-    lineHeight: 1.5,
-    fontWeight: 300,
-  },
-
-  modalButtons: {
-    display: "flex",
-    gap: 12,
-  },
-
-  modalCancel: {
-    fontFamily: "'DM Sans', sans-serif",
-    flex: 1,
-    background: colors.surface,
-    color: colors.text,
-    border: `1.5px solid ${colors.border}`,
-    borderRadius: 14,
-    padding: "14px 16px",
-    fontSize: 15,
-    fontWeight: 600,
-    cursor: "pointer",
-    WebkitTapHighlightColor: "transparent",
-  },
-
-  modalConfirm: {
-    fontFamily: "'DM Sans', sans-serif",
-    flex: 1,
-    background: colors.accent,
-    color: "#fff",
-    border: "none",
-    borderRadius: 14,
-    padding: "14px 16px",
-    fontSize: 15,
-    fontWeight: 600,
     cursor: "pointer",
     WebkitTapHighlightColor: "transparent",
   },
