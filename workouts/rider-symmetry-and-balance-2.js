@@ -15,20 +15,17 @@ export default {
             {
               "name": "Ice skaters",
               "repCount": "5-10 per side",
-              "easier": "Take a shorter hop; reach for your shin or ankle instead of the ground",
-              "harder": "Keep your resting leg off the ground with each hop"
+              "tips": "Slow this down as much as you need to to keep your balance.  Speed it up to challenge yourself."
             },
             {
               "name": "Hip Rockers",
-              "repCount": "8-10 per side",
-              "easier": "Hold your hips in a bridge, increasing the height and duration over time",
-              "harder": "Add a weight on your hips"
+              "repCount": "8-12 per side",
+              "tips": "To make this harder, add a weight on your hips."
             },
             {
               "name": "Forward reach squat",
               "repCount": "8-12",
-              "easier": "Reach only as far as you can while keeping your balance and posture",
-              "harder": "Hold your squat while reaching forward and back"
+              "tips": "To make this easier, reach as you squat and retract your arms as you stand or limit your arms' extension to as far as you can go."
             }
           ]
         }
@@ -43,14 +40,12 @@ export default {
             {
               "name": "Single arm top hold row, L",
               "repCount": "6-10",
-              "easier": "Use only one weight, switching it to each working arm",
-              "harder": "Go slower; add more weight"
+              "tips": "Hold the weight right by your ribs and keep your back flat."
             },
             {
               "name": "Single arm top hold row, R",
               "repCount": "6-10",
-              "easier": "Use only one weight, switching it to each working arm",
-              "harder": "Go slower; add more weight"
+              "tips": "Hold the weight right by your ribs and keep your back flat."
             }
           ]
         }
@@ -65,14 +60,12 @@ export default {
             {
               "name": "Single Leg RDL, L",
               "repCount": "6-10",
-              "easier": "Hold a weight with both hands, or in the same hand as your working leg",
-              "harder": "Hold one heavy weight in your opposite hand of your working leg"
+              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
             },
             {
               "name": "Single Leg RDL, R",
-              "repCount": "8-10",
-              "easier": "Hold a weight with both hands, or in the same hand as your working leg",
-              "harder": "Hold one heavy weight in your opposite hand of your working leg"
+              "repCount": "6-10",
+              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
             }
           ]
         }
@@ -87,14 +80,12 @@ export default {
             {
               "name": "Forward lunge w/ twist, L",
               "repCount": "6-10",
-              "easier": "Step back slowly and lower into the lunge quickly",
-              "harder": "Push back with more force and lower more slowly; add weight"
+              "tips": "Don't neglect the twist - pause in the lunge and twist as far as you can."
             },
             {
               "name": "Forward lunge w/ twist, R",
               "repCount": "6-10",
-              "easier": "Step back slowly and lower into the lunge quickly",
-              "harder": "Push back with more force and lower more slowly; add weight"
+              "tips": "Don't neglect the twist - pause in the lunge and twist as far as you can."
             }
           ]
         }
@@ -108,15 +99,13 @@ export default {
           "exercises": [
             {
               "name": "Fire hydrant circles, L",
-              "repCount": "6-8",
-              "easier": "Make a smaller circle",
-              "harder": "Make a bigger circle, keeping hips square; add weight behind your knee"
+              "repCount": "6-10",
+              "tips": "Alignment of your resting leg is very important here - directly under your hip.  Don't cut corners by shifting your hips to your resting side!"
             },
             {
               "name": "Fire hydrant circles, R",
-              "repCount": "6-8",
-              "easier": "Make a smaller circle",
-              "harder": "Make a bigger circle, keeping hips square; add weight behind your knee"
+              "repCount": "6-10",
+              "tips": "Alignment of your resting leg is very important here - directly under your hip.  Don't cut corners by shifting your hips to your resting side!"
             }
           ]
         }
@@ -130,21 +119,18 @@ export default {
           "exercises": [
             {
               "name": "Plank toe taps",
-              "repCount": "8-12 per side",
-              "easier": "Lift each foot without stepping to the side; hold plank",
-              "harder": "Place a light weight on your lower back"
+              "repCount": "To Fatigue",
+              "tips": "If this is too hard, practice holding a plank or just lifting each foot.  Use your hands or forearms as you prefer."
             },
             {
               "name": "Diagonal sit ups",
-              "repCount": "5-10 per side",
-              "easier": "Crunch instead of sitting up all the way",
-              "harder": "Hold a weight"
+              "repCount": "To Fatigue",
+              "tips": "Work both sides evenly.  If you can't sit up all the way, make these crunches while you build strength."
             },
             {
               "name": "Reverse crunch",
-              "repCount": "10-15",
-              "easier": "Keep your legs bent; reduce your range of motion",
-              "harder": "Extend your legs; lower them closer to the floor"
+              "repCount": "To Fatigue",
+              "tips": "Make sure to use your core strength here instead of relying on momentum."
             }
           ]
         }

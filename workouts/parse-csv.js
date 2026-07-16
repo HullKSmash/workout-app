@@ -1,7 +1,7 @@
 /**
  * Parses a workout CSV string into the { name, phases } format.
  *
- * Expected CSV columns: Phase, Circuit, Rounds, Exercise, RepCount, Easier, Harder
+ * Expected CSV columns: Phase, Circuit, Rounds, Exercise, RepCount, Tips
  * - Phase only appears on the first row of each phase group.
  * - Circuit/Rounds only appear on the first row of each circuit.
  * - Rest rows (Exercise = "Rest") become their own single-round circuit.
@@ -13,7 +13,7 @@
  *       {
  *         name,
  *         circuits: [
- *           { repeatCount, exercises: [{ name, repCount, easier?, harder? }, ...] },
+ *           { repeatCount, exercises: [{ name, repCount, tips? }, ...] },
  *           ...
  *         ],
  *       },
@@ -30,7 +30,7 @@ export function parseWorkoutCsv(csvString, workoutName) {
   let currentCircuit = null;
   let currentRounds = 1;
 
-  for (const [phaseName, circuit, rounds, exercise, repCount, easier, harder] of rows) {
+  for (const [phaseName, circuit, rounds, exercise, repCount, tips] of rows) {
     if (phaseName) {
       currentPhase = { name: phaseName, circuits: [] };
       phases.push(currentPhase);
@@ -51,12 +51,12 @@ export function parseWorkoutCsv(csvString, workoutName) {
       } else {
         currentCircuit = {
           repeatCount: currentRounds,
-          exercises: [buildExercise(exercise, rep, easier, harder)],
+          exercises: [buildExercise(exercise, rep, tips)],
         };
         currentPhase.circuits.push(currentCircuit);
       }
     } else {
-      currentCircuit.exercises.push(buildExercise(exercise, rep, easier, harder));
+      currentCircuit.exercises.push(buildExercise(exercise, rep, tips));
     }
   }
 
@@ -84,10 +84,9 @@ function parseCsvLine(line) {
   return fields;
 }
 
-/** Builds an exercise object, omitting easier/harder when blank. */
-function buildExercise(name, repCount, easier, harder) {
+/** Builds an exercise object, omitting tips when blank. */
+function buildExercise(name, repCount, tips) {
   const obj = { name, repCount };
-  if (easier) obj.easier = easier;
-  if (harder) obj.harder = harder;
+  if (tips) obj.tips = tips;
   return obj;
 }

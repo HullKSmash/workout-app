@@ -3,11 +3,28 @@ import { WORKOUTS } from "./workouts";
 import { VARIANTS, resolveVariant } from "./variants";
 import { RIDER_STRENGTH_SCHEDULE } from "./workouts/rider-strength-schedule.js";
 import { slotId, loadProgress, saveProgress, clearProgress } from "./workouts/progress.js";
+import {
+  checklistKey,
+  loadActiveChecklist,
+  saveActiveChecklist,
+  clearActiveChecklist,
+} from "./workouts/checklist-progress.js";
+import { buildChecklist } from "./workouts/build-checklist.js";
 import { getThisWeekCount, saveThisWeekCount } from "./workouts/weekly-progress.js";
+import { useWakeLock } from "./hooks/useWakeLock";
+import { GUIDANCE } from "./guidance";
+import GuidanceScreen from "./GuidanceScreen";
+import GateScreen from "./GateScreen";
+import ChecklistScreen from "./ChecklistScreen";
+import EndWorkoutModal from "./EndWorkoutModal";
+import { getAccessCode, setAccessCode, recordCompletion } from "./access";
+import { resolveViewMode, getStoredViewMode, setViewMode } from "./view-mode.js";
 
 const variant = resolveVariant();
 const variantKey =
   Object.keys(VARIANTS).find((k) => VARIANTS[k] === variant) ?? "default";
+// Guidance content for this variant, or undefined if none authored yet.
+const guidance = GUIDANCE[variantKey];
 const isDefaultVariant = variant.audiences === null;
 // Variants flagged `library: true` use the self-directed workout library as
 // their default screen (with the weekly tracker). `schedule: true` variants
@@ -26,11 +43,9 @@ const variantLinks = Object.entries(VARIANTS)
   .filter(([, v]) => v.audiences !== null)
   .map(([key, v]) => ({ key, ...v }));
 
-// ─── Modifier defaults ───────────────────────────────────────────────────────
-const MODIFIER_DEFAULTS = {
-  easier: "Reduce your range of motion or use only body weight",
-  harder: "Slow the motion down, increase your range of motion, or add more weight",
-};
+// ─── Tips default ────────────────────────────────────────────────────────────
+const TIPS_DEFAULT =
+  "If this is too easy, check your form, slow down, increase your range of motion, and add weight if necessary. If it's too hard, decrease the weight, decrease the number of reps, and reduce your range of motion if necessary.";
 
 // ─── Library difficulty config ───────────────────────────────────────────────
 const DIFFICULTY_ORDER = { easier: 0, moderate: 1, harder: 2 };
@@ -113,7 +128,21 @@ function totalDoneCount(progress) {
 
 // ─── Main App ───────────────────────────────────────────────────────────────
 export default function WorkoutApp() {
-  const [screen, setScreen] = useState(hasLibrary ? "library" : "select"); // library | schedule | select | landing | workout | complete
+  const [screen, setScreen] = useState(hasLibrary ? "library" : "select"); // library | schedule | guidance | select | landing | workout | checklist | complete
+  // Step-through vs. checklist view: universal default + per-device override.
+  const [viewMode, setViewModeState] = useState(() =>
+    resolveViewMode(getStoredViewMode())
+  );
+  const selectViewMode = (mode) => {
+    setViewMode(mode);
+    setViewModeState(mode);
+  };
+  // Checklist: ticked item ids for the one active checklist (Set for O(1) reads).
+  const [checkedIds, setCheckedIds] = useState(() => new Set());
+  // Access gate: unlocked once a code is stored locally (see access.js).
+  const [accessCode, setAccessCodeState] = useState(getAccessCode);
+  // Keep the screen awake only while actively working out.
+  useWakeLock(screen === "workout" || screen === "checklist");
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState(null); // schedule slot id for the open workout, or null (e.g. opened from "View all")
   // ─── Library state ───────────────────────────────────────────────────────────
@@ -126,17 +155,23 @@ export default function WorkoutApp() {
   const [expandedWeek, setExpandedWeek] = useState(() =>
     hasSchedule ? firstIncompleteWeek(loadProgress()) : null
   );
-  const [guideOpen, setGuideOpen] = useState(false);
+  // Which screen the Guidance & Tips screen returns to (library or schedule).
+  const [guidanceReturn, setGuidanceReturn] = useState("library");
   const [currentStep, setCurrentStep] = useState(0);
   const [showEndConfirm, setShowEndConfirm] = useState(false);
   const [timerSeconds, setTimerSeconds] = useState(0);
   const [fadeClass, setFadeClass] = useState("step-enter");
-  const [showModifier, setShowModifier] = useState(false);
-
   const steps = useMemo(
     () => (selectedWorkout ? flattenWorkout(selectedWorkout) : []),
     [selectedWorkout]
   );
+  const checklist = useMemo(
+    () => (selectedWorkout ? buildChecklist(selectedWorkout) : null),
+    [selectedWorkout]
+  );
+  const activeChecklistKey = selectedWorkout
+    ? checklistKey(selectedWorkout.name, selectedSlot)
+    : null;
   // Filtered + sorted workout list for the library screen.
   const libraryWorkouts = useMemo(() => {
     if (!hasLibrary) return [];
@@ -163,6 +198,7 @@ export default function WorkoutApp() {
       : null;
 
   const totalSteps = steps.length;
+  const exerciseCount = steps.filter((s) => !s.isRest).length;
   const currentExercise = steps[currentStep];
 
   // Reset timer when landing on a rest step
@@ -199,10 +235,6 @@ export default function WorkoutApp() {
     }
   }, [timerSeconds]);
 
-  // Collapse modifier panel when exercise changes
-  useEffect(() => {
-    setShowModifier(false);
-  }, [currentStep]);
 
   const animateTransition = useCallback((callback) => {
     setFadeClass("step-exit");
@@ -214,9 +246,16 @@ export default function WorkoutApp() {
 
   const toggleFilter = (difficulty) => {
     setActiveFilters((prev) => {
+      // From "show everything", first tap collapses to just this one.
+      if (prev.size === ALL_DIFFICULTIES.length) return new Set([difficulty]);
       const next = new Set(prev);
-      if (next.has(difficulty)) next.delete(difficulty);
-      else next.add(difficulty);
+      if (next.has(difficulty)) {
+        // Deselecting the sole active chip resets to "show everything".
+        if (next.size === 1) return new Set(ALL_DIFFICULTIES);
+        next.delete(difficulty);
+      } else {
+        next.add(difficulty);
+      }
       return next;
     });
   };
@@ -249,22 +288,62 @@ export default function WorkoutApp() {
   };
 
   const handleStart = () => {
+    if (viewMode === "checklist") {
+      const key = checklistKey(selectedWorkout.name, selectedSlot);
+      const saved = loadActiveChecklist();
+      if (saved && saved.key === key) {
+        // Resume an interrupted session for this same workout.
+        setCheckedIds(new Set(saved.checked));
+      } else {
+        // New/different workout — start fresh and reset the stored record.
+        setCheckedIds(new Set());
+        saveActiveChecklist(key, []);
+      }
+      setScreen("checklist");
+      return;
+    }
     setCurrentStep(0);
     setScreen("workout");
     setFadeClass("step-enter");
   };
 
+  const handleToggleChecklistItem = (id) => {
+    setCheckedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      saveActiveChecklist(activeChecklistKey, [...next]);
+      return next;
+    });
+  };
+
+  // Confirmed leave from the checklist — discard progress and return.
+  const handleLeaveChecklist = () => {
+    clearActiveChecklist();
+    setCheckedIds(new Set());
+    setScreen(hasLibrary ? "library" : "select");
+  };
+
+  // Shared completion side-effects — called by both the step-through (last step)
+  // and the checklist (Finish button). Guarantees identical tracking.
+  const completeWorkout = () => {
+    // Auto-mark the schedule slot complete.
+    if (selectedSlot && !completed[selectedSlot]) toggleSlot(selectedSlot);
+    // Increment weekly count for the library tracker.
+    if (hasLibrary) {
+      const next = weeklyCount + 1;
+      setWeeklyCount(next);
+      saveThisWeekCount(weeklyStorageKey, next);
+    }
+    recordCompletion(accessCode, selectedWorkout?.name);
+    // Clear any persisted checklist for this workout (no-op for step-through).
+    clearActiveChecklist();
+    setScreen("complete");
+  };
+
   const handleNext = () => {
     if (currentStep >= totalSteps - 1) {
-      // Auto-mark the schedule slot complete on finishing the last step.
-      if (selectedSlot && !completed[selectedSlot]) toggleSlot(selectedSlot);
-      // Increment weekly count for the library tracker.
-      if (hasLibrary) {
-        const next = weeklyCount + 1;
-        setWeeklyCount(next);
-        saveThisWeekCount(weeklyStorageKey, next);
-      }
-      setScreen("complete");
+      completeWorkout();
     } else {
       animateTransition(() => setCurrentStep((s) => s + 1));
     }
@@ -307,6 +386,21 @@ export default function WorkoutApp() {
   const doneTotal = totalDoneCount(completed);
   const currentWeek = firstIncompleteWeek(completed);
   const programComplete = doneTotal >= TOTAL_SLOTS;
+
+  // Gate everything behind a valid access code.
+  if (!accessCode) {
+    return (
+      <GateScreen
+        brandName={variant.brandName}
+        accent={variant.accent}
+        accentLight={variant.accentLight}
+        onUnlock={(code) => {
+          setAccessCode(code);
+          setAccessCodeState(code);
+        }}
+      />
+    );
+  }
 
   // ─── Render ─────────────────────────────────────────────────────────────
   return (
@@ -388,7 +482,7 @@ export default function WorkoutApp() {
             <div style={{ ...styles.workoutList, maxWidth: "none" }}>
               {libraryWorkouts.length === 0 ? (
                 <p style={styles.libraryEmptyState}>
-                  No difficulty selected — tap a filter above to show workouts.
+                  No workouts match this difficulty — tap another filter above.
                 </p>
               ) : (
                 libraryWorkouts.map((workout) => (
@@ -413,27 +507,27 @@ export default function WorkoutApp() {
               )}
             </div>
 
-            {/* Guidance & Tips card */}
-            <div style={styles.guideCard}>
-              <button
-                style={styles.guideToggle}
-                onClick={() => setGuideOpen((v) => !v)}
-              >
-                <div style={styles.guideToggleLeft}>
-                  <span style={styles.guideIcon}>📋</span>
-                  <div>
-                    <div style={styles.guideTitle}>Guidance &amp; Tips</div>
-                    <div style={styles.guideSubtitle}>How to use this library</div>
+            {/* Guidance & Tips card — navigates to the dedicated screen */}
+            {guidance && (
+              <div style={styles.guideCard}>
+                <button
+                  style={styles.guideToggle}
+                  onClick={() => {
+                    setGuidanceReturn("library");
+                    setScreen("guidance");
+                  }}
+                >
+                  <div style={styles.guideToggleLeft}>
+                    <span style={styles.guideIcon}>📋</span>
+                    <div>
+                      <div style={styles.guideTitle}>Guidance &amp; Tips</div>
+                      <div style={styles.guideSubtitle}>How to use this library</div>
+                    </div>
                   </div>
-                </div>
-                <span style={styles.guideChevron}>{guideOpen ? "∧" : "∨"}</span>
-              </button>
-              {guideOpen && (
-                <div style={styles.guideBody}>
-                  <p style={styles.guidePlaceholder}>Guidance coming soon.</p>
-                </div>
-              )}
-            </div>
+                  <span style={styles.guideChevron}>›</span>
+                </button>
+              </div>
+            )}
 
             {/* Footer link to 12-week program (variants with a schedule only) */}
             {hasSchedule && (
@@ -455,27 +549,27 @@ export default function WorkoutApp() {
             <h1 style={styles.appTitle}>{variant.brandName}</h1>
             <p style={styles.selectSubtitle}>{variant.tagline}</p>
 
-            {/* Program guide collapsible */}
-            <div style={styles.guideCard}>
-              <button
-                style={styles.guideToggle}
-                onClick={() => setGuideOpen((v) => !v)}
-              >
-                <div style={styles.guideToggleLeft}>
-                  <span style={styles.guideIcon}>📋</span>
-                  <div>
-                    <div style={styles.guideTitle}>Guidance &amp; Tips</div>
-                    <div style={styles.guideSubtitle}>Schedule, weight guidance, and technique</div>
+            {/* Guidance & Tips card — navigates to the dedicated screen */}
+            {guidance && (
+              <div style={styles.guideCard}>
+                <button
+                  style={styles.guideToggle}
+                  onClick={() => {
+                    setGuidanceReturn("schedule");
+                    setScreen("guidance");
+                  }}
+                >
+                  <div style={styles.guideToggleLeft}>
+                    <span style={styles.guideIcon}>📋</span>
+                    <div>
+                      <div style={styles.guideTitle}>Guidance &amp; Tips</div>
+                      <div style={styles.guideSubtitle}>Schedule, weight guidance, and technique</div>
+                    </div>
                   </div>
-                </div>
-                <span style={styles.guideChevron}>{guideOpen ? "∧" : "∨"}</span>
-              </button>
-              {guideOpen && (
-                <div style={styles.guideBody}>
-                  <p style={styles.guidePlaceholder}>Program guide coming soon.</p>
-                </div>
-              )}
-            </div>
+                  <span style={styles.guideChevron}>›</span>
+                </button>
+              </div>
+            )}
 
             {/* Week list */}
             <div style={styles.scheduleSectionLabel}>
@@ -520,7 +614,7 @@ export default function WorkoutApp() {
                     {isOpen && (
                       <div style={styles.weekWorkouts}>
                         {workouts.map((workout, i) => {
-                          const stepCount = flattenWorkout(workout).length;
+                          const stepCount = flattenWorkout(workout).filter((s) => !s.isRest).length;
                           const id = slotId(week, i);
                           const isDone = !!completed[id];
                           return (
@@ -589,6 +683,16 @@ export default function WorkoutApp() {
         </div>
       )}
 
+      {/* ── Guidance & Tips ──────────────────────────────────────────── */}
+      {screen === "guidance" && guidance && (
+        <GuidanceScreen
+          guidance={guidance}
+          accent={variant.accent}
+          accentLight={variant.accentLight}
+          onBack={() => setScreen(guidanceReturn)}
+        />
+      )}
+
       {/* ── Workout Selection ────────────────────────────────────────── */}
       {screen === "select" && (
         <div style={styles.screenContainer}>
@@ -608,7 +712,7 @@ export default function WorkoutApp() {
                     </a>
                   ))
                 : visibleWorkouts.map((workout, i) => {
-                    const stepCount = flattenWorkout(workout).length;
+                    const stepCount = flattenWorkout(workout).filter((s) => !s.isRest).length;
                     return (
                       <button
                         key={i}
@@ -664,8 +768,28 @@ export default function WorkoutApp() {
               <p style={styles.workoutDescription}>{selectedWorkout.description}</p>
             )}
             <p style={styles.workoutSubtitle}>
-              {totalSteps} exercises · {selectedWorkout.phases.length} phases
+              {exerciseCount} exercises · {selectedWorkout.phases.length} phases
             </p>
+            <div style={styles.viewToggle}>
+              <button
+                style={{
+                  ...styles.viewToggleOption,
+                  ...(viewMode === "stepthrough" ? styles.viewToggleActive : {}),
+                }}
+                onClick={() => selectViewMode("stepthrough")}
+              >
+                Guided
+              </button>
+              <button
+                style={{
+                  ...styles.viewToggleOption,
+                  ...(viewMode === "checklist" ? styles.viewToggleActive : {}),
+                }}
+                onClick={() => selectViewMode("checklist")}
+              >
+                Checklist
+              </button>
+            </div>
             <button style={styles.startButton} onClick={handleStart}>
               Start Workout
             </button>
@@ -792,44 +916,11 @@ export default function WorkoutApp() {
                   </div>
                 )}
 
-                {/* Modifier block — fixed space, crossfades between label and panel */}
-                <div
-                  style={{
-                    ...styles.modifierBlock,
-                    background: showModifier ? colors.surface : "#F7F5F2",
-                  }}
-                  onClick={() => setShowModifier((v) => !v)}
-                >
-                  <div style={{
-                    ...styles.modifierToggleLabel,
-                    opacity: showModifier ? 0 : 1,
-                    pointerEvents: showModifier ? "none" : "auto",
-                  }}>
-                    <span>Too hard? Too easy?</span>
-                    <span style={{ fontSize: 12, marginTop: 3 }}>Tap to see options.</span>
-                  </div>
-                  <div style={{
-                    ...styles.modifierPanel,
-                    opacity: showModifier ? 1 : 0,
-                    pointerEvents: showModifier ? "auto" : "none",
-                  }}>
-                    <div style={styles.modifierRow}>
-                      <span style={{ ...styles.modifierBadge, ...styles.modifierBadgeEasier }}>
-                        Easier
-                      </span>
-                      <span style={styles.modifierText}>
-                        {currentExercise.easier || MODIFIER_DEFAULTS.easier}
-                      </span>
-                    </div>
-                    <div style={{ ...styles.modifierRow, marginTop: 10 }}>
-                      <span style={{ ...styles.modifierBadge, ...styles.modifierBadgeHarder }}>
-                        Harder
-                      </span>
-                      <span style={styles.modifierText}>
-                        {currentExercise.harder || MODIFIER_DEFAULTS.harder}
-                      </span>
-                    </div>
-                  </div>
+                <div style={styles.tipsBox}>
+                  <span style={styles.tipsIcon}>ℹ️</span>
+                  <span style={styles.tipsText}>
+                    {currentExercise.tips || TIPS_DEFAULT}
+                  </span>
                 </div>
               </div>
             )}
@@ -856,27 +947,29 @@ export default function WorkoutApp() {
             </div>
           </div>
 
-          {/* End workout confirmation modal */}
+          {/* End workout confirmation modal (shared with the checklist view) */}
           {showEndConfirm && (
-            <div style={styles.modalOverlay}>
-              <div style={styles.modal}>
-                <h3 style={styles.modalTitle}>End Workout?</h3>
-                <p style={styles.modalText}>
-                  You'll be taken back to the beginning of the workout. Your
-                  progress won't be saved.
-                </p>
-                <div style={styles.modalButtons}>
-                  <button style={styles.modalCancel} onClick={cancelEnd}>
-                    Keep Going
-                  </button>
-                  <button style={styles.modalConfirm} onClick={confirmEnd}>
-                    End Workout
-                  </button>
-                </div>
-              </div>
-            </div>
+            <EndWorkoutModal
+              accent={variant.accent}
+              onCancel={cancelEnd}
+              onConfirm={confirmEnd}
+            />
           )}
         </div>
+      )}
+
+      {/* ── Checklist View ───────────────────────────────────────────── */}
+      {screen === "checklist" && selectedWorkout && checklist && (
+        <ChecklistScreen
+          workout={selectedWorkout}
+          checklist={checklist}
+          checked={checkedIds}
+          onToggle={handleToggleChecklistItem}
+          onFinish={completeWorkout}
+          onLeave={handleLeaveChecklist}
+          accent={variant.accent}
+          accentLight={variant.accentLight}
+        />
       )}
 
       {/* ── Completion Page ───────────────────────────────────────────── */}
@@ -1099,6 +1192,35 @@ const styles = {
     letterSpacing: "0.01em",
     transition: "background 0.2s, transform 0.1s",
     WebkitTapHighlightColor: "transparent",
+  },
+
+  viewToggle: {
+    display: "flex",
+    gap: 4,
+    background: colors.border,
+    borderRadius: 12,
+    padding: 4,
+    marginBottom: 16,
+    width: "100%",
+    maxWidth: 260,
+  },
+  viewToggleOption: {
+    fontFamily: "'DM Sans', sans-serif",
+    flex: 1,
+    background: "none",
+    border: "none",
+    borderRadius: 9,
+    padding: "9px 12px",
+    fontSize: 14,
+    fontWeight: 600,
+    color: colors.textSecondary,
+    cursor: "pointer",
+    WebkitTapHighlightColor: "transparent",
+  },
+  viewToggleActive: {
+    background: colors.surface,
+    color: colors.accent,
+    boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
   },
 
   backLink: {
@@ -1333,155 +1455,30 @@ const styles = {
     WebkitTapHighlightColor: "transparent",
   },
 
-  // ── Modal ────────────────────────────────────────────────────────
-  modalOverlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    background: "rgba(45,42,38,0.5)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: 100,
-    padding: 24,
-  },
-
-  modal: {
-    background: colors.surface,
-    borderRadius: 20,
-    padding: 32,
-    maxWidth: 340,
-    width: "100%",
-    textAlign: "center",
-  },
-
-  modalTitle: {
-    fontFamily: "'Outfit', sans-serif",
-    fontSize: 22,
-    fontWeight: 700,
-    margin: "0 0 8px 0",
-    color: colors.text,
-  },
-
-  modalText: {
-    fontSize: 15,
-    color: colors.textSecondary,
-    margin: "0 0 28px 0",
-    lineHeight: 1.5,
-    fontWeight: 300,
-  },
-
-  modalButtons: {
-    display: "flex",
-    gap: 12,
-  },
-
-  modalCancel: {
-    fontFamily: "'DM Sans', sans-serif",
-    flex: 1,
-    background: colors.surface,
-    color: colors.text,
-    border: `1.5px solid ${colors.border}`,
-    borderRadius: 14,
-    padding: "14px 16px",
-    fontSize: 15,
-    fontWeight: 600,
-    cursor: "pointer",
-    WebkitTapHighlightColor: "transparent",
-  },
-
-  modalConfirm: {
-    fontFamily: "'DM Sans', sans-serif",
-    flex: 1,
-    background: colors.accent,
-    color: "#fff",
-    border: "none",
-    borderRadius: 14,
-    padding: "14px 16px",
-    fontSize: 15,
-    fontWeight: 600,
-    cursor: "pointer",
-    WebkitTapHighlightColor: "transparent",
-  },
-
-  // ── Modifier Panel ───────────────────────────────────────────
-  modifierBlock: {
+  // ── Tips Box ─────────────────────────────────────────────────
+  tipsBox: {
     width: "100%",
     maxWidth: 320,
-    minHeight: 108,
-    position: "relative",
-    cursor: "pointer",
-    WebkitTapHighlightColor: "transparent",
-    userSelect: "none",
     borderRadius: 12,
     border: `1.5px solid ${colors.border}`,
     marginTop: 4,
-    transition: "background 0.15s ease",
-  },
-
-  modifierToggleLabel: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: 13,
-    fontWeight: 500,
-    color: colors.textSecondary,
-    transition: "opacity 0.15s ease",
-  },
-
-  modifierPanel: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
     padding: "12px 14px",
     display: "flex",
-    flexDirection: "column",
+    alignItems: "center",
     gap: 10,
-    justifyContent: "center",
-    borderRadius: 12,
-    transition: "opacity 0.15s ease",
+    background: colors.surface,
+    boxSizing: "border-box",
   },
 
-  modifierRow: {
-    display: "flex",
-    alignItems: "flex-start",
-    gap: 8,
-  },
-
-  modifierBadge: {
-    fontSize: 11,
-    fontWeight: 600,
-    padding: "2px 8px",
-    borderRadius: 20,
+  tipsIcon: {
+    fontSize: 16,
     flexShrink: 0,
-    whiteSpace: "nowrap",
-    marginTop: 1,
   },
 
-  modifierBadgeEasier: {
-    background: "#EAF1FC",
-    color: "#2D6BD1",
-  },
-
-  modifierBadgeHarder: {
-    background: "#FFF0EC",
-    color: "#E85D3A",
-  },
-
-  modifierText: {
+  tipsText: {
     fontSize: 12,
     color: colors.text,
-    lineHeight: 1.5,
+    lineHeight: 1.55,
     textAlign: "left",
   },
 
@@ -1490,6 +1487,7 @@ const styles = {
     maxWidth: 480,
     margin: "0 auto",
     padding: "20px 16px 40px",
+    boxSizing: "border-box",
     display: "flex",
     flexDirection: "column",
     gap: 12,
@@ -1723,17 +1721,6 @@ const styles = {
     color: colors.textSecondary,
     flexShrink: 0,
     marginLeft: 8,
-  },
-
-  guideBody: {
-    padding: "0 20px 16px",
-  },
-
-  guidePlaceholder: {
-    fontSize: 14,
-    color: colors.textSecondary,
-    margin: 0,
-    fontStyle: "italic",
   },
 
   scheduleSectionLabel: {
