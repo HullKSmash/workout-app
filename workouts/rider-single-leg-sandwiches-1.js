@@ -1,10 +1,10 @@
 export default {
-  "name": "Rider Unilateral Sandwiches 1",
+  "name": "Rider Single Leg Sandwiches 1",
   "audiences": [
     "equestrian"
   ],
   "difficulty": "moderate",
-  "description": "",
+  "description": "The sandwich format is an especially time-efficient way to get focused unilateral work in.  Compound, left-right-left-right, compound.",
   "phases": [
     {
       "name": "Warm Up",

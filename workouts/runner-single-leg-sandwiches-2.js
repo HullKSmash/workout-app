@@ -4,13 +4,13 @@ export default {
     "run"
   ],
   "difficulty": "moderate",
-  "description": "",
+  "description": "The sandwich format is an especially time-efficient way to get focused unilateral work in.  Each set is compound, left-right-left-right, compound.",
   "phases": [
     {
       "name": "Plyo & Balance Warm Up",
       "circuits": [
         {
-          "repeatCount": 2,
+          "repeatCount": 1,
           "exercises": [
             {
               "name": "Reverse Lunge Taps, Left",

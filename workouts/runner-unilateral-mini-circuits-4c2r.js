@@ -4,13 +4,13 @@ export default {
     "run"
   ],
   "difficulty": "moderate",
-  "description": "",
+  "description": "Unilateral work in a mini-circuit format.  Four circuits, two rounds each.",
   "phases": [
     {
       "name": "Plyometric Warm Up",
       "circuits": [
         {
-          "repeatCount": 2,
+          "repeatCount": 1,
           "exercises": [
             {
               "name": "Runner Hops, Left",

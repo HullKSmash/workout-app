@@ -7,10 +7,10 @@ export default {
   "description": "Isolated unilateral work to enforce symmetrical strength, proprioception, and balance.",
   "phases": [
     {
-      "name": "Activation",
+      "name": "Warm Up",
       "circuits": [
         {
-          "repeatCount": 2,
+          "repeatCount": 1,
           "exercises": [
             {
               "name": "Plank Twist",
