@@ -4,13 +4,13 @@ export default {
     "run"
   ],
   "difficulty": "easier",
-  "description": "",
+  "description": "Short circuits of three exercises, three rounds each.  Approachable compound movements for lighter days or starting out.",
   "phases": [
     {
       "name": "Plyometric Warm Up",
       "circuits": [
         {
-          "repeatCount": 2,
+          "repeatCount": 1,
           "exercises": [
             {
               "name": "Reverse Lunge Taps, Left",

@@ -4,10 +4,10 @@ export default {
     "equestrian"
   ],
   "difficulty": "harder",
-  "description": "Focused training to isolate and build key muscles.",
+  "description": "Focused training to isolate and build key muscles.  Superset format, each with a compound movement and an isolation that build the same muscles.",
   "phases": [
     {
-      "name": "Compound",
+      "name": "Compound Activation",
       "circuits": [
         {
           "repeatCount": 2,

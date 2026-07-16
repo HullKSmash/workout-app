@@ -15,7 +15,7 @@ import riderSymmetryAndBalance2 from "./rider-symmetry-and-balance-2.js";
 import riderBuild1 from "./rider-build-1.js";
 import riderBuild2 from "./rider-build-2.js";
 import riderAlternatingSupersets from "./rider-alternating-supersets.js";
-import riderUnilateralSandwiches1 from "./rider-unilateral-sandwiches-1.js";
+import riderUnilateralSandwiches1 from "./rider-single-leg-sandwiches-1.js";
 import riderMiniCircuits1 from "./rider-mini-circuits-1.js";
 import riderMiniCircuits2 from "./rider-mini-circuits-2.js";
 import runnerSingleLegSandwiches1 from "./runner-single-leg-sandwiches-1.js";

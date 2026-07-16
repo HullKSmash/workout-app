@@ -4,7 +4,7 @@ export default {
     "equestrian"
   ],
   "difficulty": "easier",
-  "description": "A lighter take on unilateral work",
+  "description": "An approachable take on unilateral work for a lighter day or starting out.  Superset format, each with a compound movement and an opposing alternating isolation.",
   "phases": [
     {
       "name": "Warm Up",

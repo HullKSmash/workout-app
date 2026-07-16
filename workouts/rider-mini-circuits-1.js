@@ -4,7 +4,7 @@ export default {
     "equestrian"
   ],
   "difficulty": "easier",
-  "description": "",
+  "description": "Short circuits of three exercises, three rounds each.  Approachable compound movements for lighter days or starting out.",
   "phases": [
     {
       "name": "Warm Up",
