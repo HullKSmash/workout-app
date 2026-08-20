@@ -15,7 +15,7 @@
 - **97 core movements** total (182 raw name strings collapsed). 91 are used by active (library-visible) workouts; 6 appear only in inactive foundation/week-variant files. See companion reference `docs/superpowers/specs/2026-08-19-exercise-video-catalog-movements.md`.
 - **Side is an instance property, not a separate exercise.** `Forward Lunge, Left` / `Forward Lunge, Right` / `Alternating Forward Lunge` → one core `Forward Lunge` with `side` on each instance.
 - **One clip per movement, mirrored for the opposite side.** `scaleX(-1)` is exact for lateral movements and correctly swaps the diagonal for bird dogs.
-- **Alternating gets its own optional clip** (`videoAlternating`); 11 active cores use it. Falls back to the single-side clip if absent.
+- **Alternating gets its own optional clip** (`videoAlternating`); 10 active cores use it (an 11th, Shoulder Press, has an alternating variant only in inactive files, so the active catalog omits it). Falls back to the single-side clip if absent.
 - **Default tips live in the catalog; the workout instance overrides.** Catalog `tips` ships empty (`""`) for now — Katie fills defaults later. Resolution is `instance.tips ?? catalog.tips ?? TIPS_DEFAULT`, so behavior is unchanged until she populates it.
 - **Video files** live in `/public/videos/` served by Vite static (decision from the design chat); the catalog stores the URL string, so moving to external storage later is a find-and-replace.
 - **Auto-play vs tap-to-play is deferred.** This plan ships auto-play muted looping clips (`autoPlay muted loop playsInline`); switching to tap-to-play is a later localized change.
@@ -527,7 +527,7 @@ console.log(`  todo → docs/exercise-todo.md (${needPrimary.length} primary, ${
 - [ ] **Step 10: Generate the catalog and verify it**
 
 Run: `node scripts/generate-catalog.mjs`
-Expected (first run, from the empty stub): `Wrote 91 exercises to workouts/exercises.data.js`, then `  + 91 new: …` (every movement is new the first time), then `  todo → docs/exercise-todo.md (91 primary, 11 alt still needed)`. The `+ N new:` / `! N no longer used` lines print to stdout each run; the same missing-clip list is also written to `docs/exercise-todo.md`.
+Expected (first run, from the empty stub): `Wrote 91 exercises to workouts/exercises.data.js`, then `  + 91 new: …` (every movement is new the first time), then `  todo → docs/exercise-todo.md (91 primary, 10 alt still needed)`. The `+ N new:` / `! N no longer used` lines print to stdout each run; the same missing-clip list is also written to `docs/exercise-todo.md`.
 
 Confirm the worklist wrote: `head -12 docs/exercise-todo.md` → the `# Exercises still needing video` header and the first few unchecked movements.
 
