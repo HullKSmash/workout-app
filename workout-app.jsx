@@ -894,6 +894,7 @@ export default function WorkoutApp() {
                       ...styles.exerciseImage,
                       transform: exerciseMedia.mirror ? "scaleX(-1)" : undefined,
                     }}
+                    aria-label={formatExerciseTitle(currentExercise)}
                     autoPlay
                     muted
                     loop

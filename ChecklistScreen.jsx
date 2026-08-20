@@ -214,7 +214,8 @@ export default function ChecklistScreen({
                   {media.videoSrc ? (
                     <video
                       src={media.videoSrc}
-                      style={{ ...s.sheetMedia, transform: media.mirror ? "scaleX(-1)" : undefined }}
+                      style={{ ...s.sheetMedia, objectFit: "cover", transform: media.mirror ? "scaleX(-1)" : undefined }}
+                      aria-label={formatExerciseTitle(detailItem)}
                       autoPlay
                       muted
                       loop
