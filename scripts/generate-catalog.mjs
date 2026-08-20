@@ -51,7 +51,7 @@ ${body}
 };
 `);
 
-// 4. write a git-tracked worklist of movements still missing a clip
+// 4. write a local-only (gitignored) worklist of movements still missing a clip
 const byName = (a, b) => a[1].name.localeCompare(b[1].name);
 const needPrimary = Object.entries(merged).filter(([, e]) => !e.video).sort(byName);
 const needAlt = Object.entries(merged)

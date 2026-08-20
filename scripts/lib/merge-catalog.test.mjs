@@ -34,3 +34,11 @@ test("includes videoAlternating only for movements with an alternating variant",
   assert.equal(merged["forward-lunge"].videoAlternating, null);
   assert.equal("videoAlternating" in merged["sumo-squat"], false);
 });
+
+test("preserves a hand-entered alternating clip even when no longer flagged alternating", () => {
+  const existing = { "forward-lunge": { name: "Forward Lunge", tips: "", video: "/videos/forward-lunge.mp4", videoAlternating: "/videos/forward-lunge-alt.mp4" } };
+  const required = { "forward-lunge": { name: "Forward Lunge", hasAlt: false } };
+  const { merged } = mergeCatalog(existing, required);
+  assert.equal(merged["forward-lunge"].videoAlternating, "/videos/forward-lunge-alt.mp4");
+  assert.equal(merged["forward-lunge"].video, "/videos/forward-lunge.mp4");
+});
