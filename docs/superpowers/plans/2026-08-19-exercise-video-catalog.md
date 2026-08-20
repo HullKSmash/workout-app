@@ -37,7 +37,7 @@
 - `scripts/generate-catalog.mjs` — **upserts** `workouts/exercises.data.js` from active workouts via `mergeCatalog`, then emits the file and logs the `added`/`orphans` it reports. (Task 2)
 - `scripts/migrate-sides.mjs` — rewrites the 15 active workout files (canonical name + `side`). (Task 3)
 - `scripts/exercise-coverage.mjs` — prints video coverage (informational). (Task 9)
-- `docs/exercise-todo.md` — **generated** by the catalog generator: a git-tracked checklist of movements still missing a clip. (Task 2)
+- `docs/exercise-todo.md` — **generated, local-only** (gitignored — `docs/*` is local scratch per the repo convention, except `docs/superpowers/`): a regenerated checklist of movements still missing a clip. The *tracked* durable record of catalog changes is `workouts/exercises.data.js` itself. (Task 2)
 
 **Modified files:**
 - `workouts/build-checklist.js` — carry `side` onto checklist items. (Task 4)
@@ -537,7 +537,8 @@ Expected: PASS (resolver + merge tests all green against the now-populated catal
 - [ ] **Step 11: Commit**
 
 ```bash
-git add scripts/lib/normalize-exercises.mjs scripts/lib/normalize-exercises.test.mjs scripts/lib/merge-catalog.mjs scripts/lib/merge-catalog.test.mjs scripts/generate-catalog.mjs workouts/exercises.data.js docs/exercise-todo.md
+# docs/exercise-todo.md is intentionally NOT added — it is gitignored/local-only.
+git add scripts/lib/normalize-exercises.mjs scripts/lib/normalize-exercises.test.mjs scripts/lib/merge-catalog.mjs scripts/lib/merge-catalog.test.mjs scripts/generate-catalog.mjs workouts/exercises.data.js
 git commit -m "feat: generate exercise catalog from active workouts (logging upsert + worklist)"
 ```
 
@@ -1210,7 +1211,7 @@ git commit -m "docs: update-workouts skill covers Side column + catalog regen"
 
 ## Self-review
 
-- **Spec coverage:** catalog as source of truth (Task 1–2) ✓; side-as-modifier migration (Task 3) ✓; one-clip-mirrored + alternating clip (Task 1 resolver, Tasks 6–7 render) ✓; default-tips-with-override (resolver + render) ✓; name-consistency enforcement (Task 5 guard) ✓; placeholder fallback until clips exist (Tasks 6–7) ✓; future authoring via `Side` column (Task 8) ✓; catalog upsert with new-movement logging, unit-tested via `mergeCatalog` (Task 2) ✓; durable unfilmed-movement worklist `docs/exercise-todo.md` (Task 2) ✓; coverage auditability (Task 9) ✓; skill documents the new format + requires reporting new movements (Task 10) ✓.
+- **Spec coverage:** catalog as source of truth (Task 1–2) ✓; side-as-modifier migration (Task 3) ✓; one-clip-mirrored + alternating clip (Task 1 resolver, Tasks 6–7 render) ✓; default-tips-with-override (resolver + render) ✓; name-consistency enforcement (Task 5 guard) ✓; placeholder fallback until clips exist (Tasks 6–7) ✓; future authoring via `Side` column (Task 8) ✓; catalog upsert with new-movement logging, unit-tested via `mergeCatalog` (Task 2) ✓; local-only unfilmed-movement worklist `docs/exercise-todo.md` + tracked catalog diff as the durable record (Task 2) ✓; coverage auditability (Task 9) ✓; skill documents the new format + requires reporting new movements (Task 10) ✓.
 - **Type/shape consistency:** `resolveExercise` returns `{ videoSrc, mirror, tips }` — used identically in Tasks 6 and 7. `deriveCore` returns `{ core, side } | null` — used identically in generator and migrator. `normalizeSide` (Task 8) and `deriveCore` (Task 2) both yield exactly `"Left" | "Right" | "Alternating"` or none, matching the `side` values the resolver and `formatExerciseTitle` expect. Catalog entry shape `{ name, tips, video, videoAlternating? }` — produced by the generator, read by the resolver.
 - **Deferred correctly:** auto-play vs tap-to-play (ships auto-play), default-tip authoring (catalog `tips: ""`), inactive-file migration, wiring the generator step into the update-workouts skill.
 - **Known follow-ups (not blockers):** reactivating foundation/week workouts needs a re-run of Tasks 2–3 against them (the upsert generator + migrator handle any workout you point them at).
