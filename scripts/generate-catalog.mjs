@@ -6,26 +6,11 @@ import { writeFileSync, existsSync } from "fs";
 import { pathToFileURL } from "url";
 import path from "path";
 import { WORKOUTS } from "../workouts/index.js";
-import { slugify } from "../workouts/exercises.js";
-import { deriveCore } from "./lib/normalize-exercises.mjs";
+import { collectRequired } from "./lib/collect-required.mjs";
 import { mergeCatalog } from "./lib/merge-catalog.mjs";
 
 // 1. movements the active workouts require: slug -> { name, hasAlt }
-const required = {};
-for (const w of WORKOUTS) {
-  for (const phase of w.phases) {
-    for (const circuit of phase.circuits) {
-      for (const ex of circuit.exercises) {
-        if (ex.name === "Rest") continue;
-        const d = deriveCore(ex.name);
-        if (!d) throw new Error(`Active workout "${w.name}" uses deleted movement "${ex.name}"`);
-        const slug = slugify(d.core);
-        if (!required[slug]) required[slug] = { name: d.core, hasAlt: false };
-        if (d.side === "Alternating") required[slug].hasAlt = true;
-      }
-    }
-  }
-}
+const required = collectRequired(WORKOUTS);
 
 // 2. load existing catalog + merge (upsert)
 const dataPath = path.resolve("workouts/exercises.data.js");
