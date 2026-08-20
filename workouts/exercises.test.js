@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { slugify, resolveExercise, formatExerciseTitle } from "./exercises.js";
+import { slugify, resolveExercise, formatExerciseTitle, EXERCISES } from "./exercises.js";
+import { WORKOUTS } from "./index.js";
 
 test("slugify normalizes punctuation, & and w/", () => {
   assert.equal(slugify("Calf Raise & Curl"), "calf-raise-and-curl");
@@ -55,4 +56,19 @@ test("formatExerciseTitle appends the side", () => {
   assert.equal(formatExerciseTitle({ name: "Forward Lunge" }), "Forward Lunge");
   assert.equal(formatExerciseTitle({ name: "Forward Lunge", side: "Left" }), "Forward Lunge · Left");
   assert.equal(formatExerciseTitle({ name: "Forward Lunge", side: "Alternating" }), "Forward Lunge · Alternating");
+});
+
+test("every active-workout exercise resolves to a catalog entry", () => {
+  const missing = new Set();
+  for (const w of WORKOUTS) {
+    for (const phase of w.phases) {
+      for (const circuit of phase.circuits) {
+        for (const ex of circuit.exercises) {
+          if (ex.name === "Rest") continue;
+          if (!EXERCISES[slugify(ex.name)]) missing.add(`${ex.name} (in ${w.name})`);
+        }
+      }
+    }
+  }
+  assert.deepEqual([...missing], [], `unmapped exercises: ${[...missing].join("; ")}`);
 });
