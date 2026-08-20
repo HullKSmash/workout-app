@@ -1097,7 +1097,7 @@ Add a short section to `README.md` (create `docs/exercise-catalog.md` if the REA
   separate file needed. Alternating uses `videoAlternating`, falling back to
   `video`.
 - `node scripts/exercise-coverage.mjs` reports what still needs filming (stdout),
-  and `docs/exercise-todo.md` (rewritten by the generator) is the git-tracked
+  and `docs/exercise-todo.md` (rewritten by the generator) is a local-only
   checklist of the same.
 - After adding/removing exercises in workouts, run `node scripts/generate-catalog.mjs`.
   It's an **upsert**: your `video`/`tips` values are preserved, new movements are
