@@ -10,6 +10,7 @@ import {
   clearActiveChecklist,
 } from "./workouts/checklist-progress.js";
 import { buildChecklist } from "./workouts/build-checklist.js";
+import { resolveExercise, formatExerciseTitle } from "./workouts/exercises.js";
 import { getThisWeekCount, saveThisWeekCount } from "./workouts/weekly-progress.js";
 import { useWakeLock } from "./hooks/useWakeLock";
 import { GUIDANCE } from "./guidance";
@@ -380,6 +381,8 @@ export default function WorkoutApp() {
   };
 
   const restDuration = currentExercise?.isRest ? currentExercise.repCount : 0;
+  const exerciseMedia =
+    currentExercise && !currentExercise.isRest ? resolveExercise(currentExercise) : null;
   const timerProgress = restDuration > 0 ? timerSeconds / restDuration : 0;
 
   // ─── Schedule progress summary (derived) ────────────────────────────────
@@ -883,14 +886,28 @@ export default function WorkoutApp() {
             ) : (
               /* ── Exercise Display ────────────────────────────────── */
               <div style={styles.exerciseDisplay}>
-                {/* Placeholder image area */}
-                <img
-                  src="/Gemini_muscle_lady.png"
-                  alt="Exercise illustration"
-                  style={styles.exerciseImage}
-                />
+                {/* Exercise media: catalog video (mirrored for the right side) or placeholder */}
+                {exerciseMedia && exerciseMedia.videoSrc ? (
+                  <video
+                    src={exerciseMedia.videoSrc}
+                    style={{
+                      ...styles.exerciseImage,
+                      transform: exerciseMedia.mirror ? "scaleX(-1)" : undefined,
+                    }}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                ) : (
+                  <img
+                    src="/Gemini_muscle_lady.png"
+                    alt="Exercise illustration"
+                    style={styles.exerciseImage}
+                  />
+                )}
 
-                <h2 style={styles.exerciseName}>{currentExercise.name}</h2>
+                <h2 style={styles.exerciseName}>{formatExerciseTitle(currentExercise)}</h2>
                 <div style={styles.repBadge}>
                   {(() => {
                     const raw = String(currentExercise.repCount);
@@ -919,7 +936,7 @@ export default function WorkoutApp() {
                 <div style={styles.tipsBox}>
                   <span style={styles.tipsIcon}>ℹ️</span>
                   <span style={styles.tipsText}>
-                    {currentExercise.tips || TIPS_DEFAULT}
+                    {(exerciseMedia && exerciseMedia.tips) || TIPS_DEFAULT}
                   </span>
                 </div>
               </div>
