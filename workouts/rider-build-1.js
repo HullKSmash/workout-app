@@ -13,17 +13,17 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Squat and press",
+              "name": "Squat and Press",
               "repCount": "6-8",
               "tips": "Make these two distinct movements without relying on momentum to move between them."
             },
             {
-              "name": "RDL - row - kickback",
+              "name": "RDL - Row - Kickback",
               "repCount": "8-12",
               "tips": "Make these three distinct movements, fully completing each and checking your form before starting the next."
             },
             {
-              "name": "Nordic and curl",
+              "name": "Nordic and Curl",
               "repCount": "6-10",
               "tips": "The eccentric contraction of your quads here can create a lot of soreness.  Ease in if you're new to these!"
             }
@@ -38,12 +38,12 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Y scaption",
+              "name": "Y Scaption",
               "repCount": "6-8",
               "tips": "If this bothers your shoulders, sub with a fly (arms straight to your sides) or a W scaption (elbows bent, arms to your sides)."
             },
             {
-              "name": "Front to side raise",
+              "name": "Front to Side Raise",
               "repCount": "6-8",
               "tips": "Make sure to move the weights straight up, then across, without turning the motion into a circle."
             }
@@ -58,12 +58,12 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Skull crushers",
+              "name": "Skull Crushers",
               "repCount": "6-8",
               "tips": "Hinge at the elbow to use your triceps, not your chest, to lift the weight."
             },
             {
-              "name": "Push ups",
+              "name": "Push Ups",
               "repCount": "6-8",
               "tips": "Take a variation using your knees if these are too hard.  If they're too easy, alternate picking up one foot or add a plank jack on each rep."
             }
@@ -78,12 +78,13 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Alternating side lunge",
+              "name": "Side Lunge",
               "repCount": "6-8 per side",
-              "tips": "Move with control and pause to find your balance with each step."
+              "tips": "Move with control and pause to find your balance with each step.",
+              "side": "Alternating"
             },
             {
-              "name": "Sumo squat",
+              "name": "Sumo Squat",
               "repCount": "6-8",
               "tips": "Point your toes out at a 45-degree angle.  Engage your glutes as you stand and keep your shoulders upright throughout."
             }
@@ -98,17 +99,19 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Single leg RDL, left",
+              "name": "Single Leg RDL",
               "repCount": "6-8",
-              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
+              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective.",
+              "side": "Left"
             },
             {
-              "name": "Single leg RDL, right",
+              "name": "Single Leg RDL",
               "repCount": "6-8",
-              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
+              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective.",
+              "side": "Right"
             },
             {
-              "name": "Hamstring bridge",
+              "name": "Hamstring Bridge",
               "repCount": "6-8",
               "tips": "Walk your feet out a step or two from glute bridge position to target your hamstrings."
             }
@@ -123,17 +126,17 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Butterfly sit ups",
+              "name": "Butterfly Sit Ups",
               "repCount": "To Fatigue",
               "tips": "If you can't sit up all the way, make these crunches while you build strength."
             },
             {
-              "name": "Russian twist",
+              "name": "Russian Twist",
               "repCount": "To Fatigue",
               "tips": "Increase your range of motion, add weight, and extend your legs as you get stronger."
             },
             {
-              "name": "Plank pike",
+              "name": "Plank Pikes",
               "repCount": "To Fatigue",
               "tips": "Do this on your forearms or hands as you prefer."
             }

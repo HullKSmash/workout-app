@@ -13,14 +13,16 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Reverse Lunge Taps, Left",
+              "name": "Reverse Lunge Taps",
               "repCount": "6-10",
-              "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights."
+              "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights.",
+              "side": "Left"
             },
             {
-              "name": "Reverse Lunge Taps, Right",
+              "name": "Reverse Lunge Taps",
               "repCount": "6-10",
-              "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights."
+              "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights.",
+              "side": "Right"
             },
             {
               "name": "Lateral Pogos",
@@ -48,14 +50,16 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Unilateral Calf Raise & Curl Hold, Left",
+              "name": "Unilateral Calf Raise & Curl Hold",
               "repCount": "8-10",
-              "tips": "Use the toes of your resting leg to help you balance.  If this is too hard, drop the weights for the calf raise and do curls separately."
+              "tips": "Use the toes of your resting leg to help you balance.  If this is too hard, drop the weights for the calf raise and do curls separately.",
+              "side": "Left"
             },
             {
-              "name": "Unilateral Calf Raise & Curl Hold, Right",
+              "name": "Unilateral Calf Raise & Curl Hold",
               "repCount": "8-10",
-              "tips": "Use the toes of your resting leg to help you balance.  If this is too hard, drop the weights for the calf raise and do curls separately."
+              "tips": "Use the toes of your resting leg to help you balance.  If this is too hard, drop the weights for the calf raise and do curls separately.",
+              "side": "Right"
             }
           ]
         },
@@ -88,14 +92,16 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Side Lying Leg Lift, Left",
+              "name": "Side Lying Leg Lift",
               "repCount": "6-10",
-              "tips": "To make this easier, rest your hips on the ground instead of lifting from your knee.  To make it harder, lift from your bottom foot instead of knee."
+              "tips": "To make this easier, rest your hips on the ground instead of lifting from your knee.  To make it harder, lift from your bottom foot instead of knee.",
+              "side": "Left"
             },
             {
-              "name": "Side Lying Leg Lift, Right",
+              "name": "Side Lying Leg Lift",
               "repCount": "6-10",
-              "tips": "To make this easier, rest your hips on the ground instead of lifting from your knee.  To make it harder, lift from your bottom foot instead of knee."
+              "tips": "To make this easier, rest your hips on the ground instead of lifting from your knee.  To make it harder, lift from your bottom foot instead of knee.",
+              "side": "Right"
             }
           ]
         },
@@ -128,14 +134,16 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Single Leg Glute Bridge, Left",
+              "name": "Single Leg Glute Bridge",
               "repCount": "10-12",
-              "tips": "Stack your knees directly over your ankles and don't let them fall in or out.  Complete the full range of motion - push your hips as high as you can, keep them level, and pause at the top.  If this is too easy, place a weight on your hips."
+              "tips": "Stack your knees directly over your ankles and don't let them fall in or out.  Complete the full range of motion - push your hips as high as you can, keep them level, and pause at the top.  If this is too easy, place a weight on your hips.",
+              "side": "Left"
             },
             {
-              "name": "Single Leg Glute Bridge, Right",
+              "name": "Single Leg Glute Bridge",
               "repCount": "10-12",
-              "tips": "Stack your knees directly over your ankles and don't let them fall in or out.  Complete the full range of motion - push your hips as high as you can, keep them level, and pause at the top.  If this is too easy, place a weight on your hips."
+              "tips": "Stack your knees directly over your ankles and don't let them fall in or out.  Complete the full range of motion - push your hips as high as you can, keep them level, and pause at the top.  If this is too easy, place a weight on your hips.",
+              "side": "Right"
             }
           ]
         },

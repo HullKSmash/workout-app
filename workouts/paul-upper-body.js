@@ -38,14 +38,16 @@ export default {
               "tips": "Pause at the top of the motion and bring the weight down slowly."
             },
             {
-              "name": "Single Arm Row, Left Side",
+              "name": "Single Arm Row",
               "repCount": "8-12",
-              "tips": "Pull the weigh all the way to your ribs and pause briefly at the top of the motion."
+              "tips": "Pull the weigh all the way to your ribs and pause briefly at the top of the motion.",
+              "side": "Left"
             },
             {
-              "name": "Single Arm Row, Right Side",
+              "name": "Single Arm Row",
               "repCount": "8-12",
-              "tips": "Pull the weigh all the way to your ribs and pause briefly at the top of the motion."
+              "tips": "Pull the weigh all the way to your ribs and pause briefly at the top of the motion.",
+              "side": "Right"
             },
             {
               "name": "Rest",

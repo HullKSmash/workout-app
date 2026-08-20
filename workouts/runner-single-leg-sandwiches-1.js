@@ -13,14 +13,16 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Single Leg Pogos, Left",
+              "name": "Single Leg Pogos",
               "repCount": "10-20",
-              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
+              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while.",
+              "side": "Left"
             },
             {
-              "name": "Single Leg Pogos, Right",
+              "name": "Single Leg Pogos",
               "repCount": "10-20",
-              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
+              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while.",
+              "side": "Right"
             },
             {
               "name": "Squat Jumps",
@@ -48,14 +50,16 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Weighted Bird Dogs, Left Arm/Right Leg",
+              "name": "Weighted Bird Dogs",
               "repCount": "8-10",
-              "tips": "Extend and contract through as much range of motion as you can."
+              "tips": "Extend and contract through as much range of motion as you can.",
+              "side": "Left"
             },
             {
-              "name": "Weighted Bird Dogs, Right Arm/Left Leg",
+              "name": "Weighted Bird Dogs",
               "repCount": "8-10",
-              "tips": "Extend and contract through as much range of motion as you can."
+              "tips": "Extend and contract through as much range of motion as you can.",
+              "side": "Right"
             }
           ]
         },
@@ -88,14 +92,16 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Curtsy Lunge, Left",
+              "name": "Curtsy Lunge",
               "repCount": "6-10",
-              "tips": "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright."
+              "tips": "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright.",
+              "side": "Left"
             },
             {
-              "name": "Curtsy Lunge, Right",
+              "name": "Curtsy Lunge",
               "repCount": "6-10",
-              "tips": "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright."
+              "tips": "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright.",
+              "side": "Right"
             }
           ]
         },
@@ -128,14 +134,16 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Glute Arcs, Left",
+              "name": "Glute Arcs",
               "repCount": "8-10",
-              "tips": "Use your full range of motion here and go slow."
+              "tips": "Use your full range of motion here and go slow.",
+              "side": "Left"
             },
             {
-              "name": "Glute Arcs, Right",
+              "name": "Glute Arcs",
               "repCount": "8-10",
-              "tips": "Use your full range of motion here and go slow."
+              "tips": "Use your full range of motion here and go slow.",
+              "side": "Right"
             }
           ]
         },
@@ -168,7 +176,7 @@ export default {
               "tips": "Increase your range of motion and hold a weight as you get stronger."
             },
             {
-              "name": "Plank Pike",
+              "name": "Plank Pikes",
               "repCount": "10-20",
               "tips": "Do this on your forearms or hands as you prefer."
             }

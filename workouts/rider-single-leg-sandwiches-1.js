@@ -13,15 +13,15 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Tabletop cat/cow",
+              "name": "Tabletop Cat/Cow",
               "repCount": "6-8"
             },
             {
-              "name": "Hip circles",
+              "name": "Hip Circles",
               "repCount": "5-10 per side"
             },
             {
-              "name": "Single leg forward hops",
+              "name": "Single Leg Forward Hops",
               "repCount": "8 per side"
             }
           ]
@@ -35,15 +35,16 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Hamstring bridge",
+              "name": "Hamstring Bridge",
               "repCount": "6-8"
             },
             {
-              "name": "Alternating forward lunge",
-              "repCount": "6-8 per side"
+              "name": "Forward Lunge",
+              "repCount": "6-8 per side",
+              "side": "Alternating"
             },
             {
-              "name": "Curl and press",
+              "name": "Curl and Press",
               "repCount": "6-8"
             }
           ]
@@ -57,8 +58,9 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Alternating row w/ top hold",
-              "repCount": "6-8"
+              "name": "Row w/ Top Hold",
+              "repCount": "6-8",
+              "side": "Alternating"
             }
           ]
         },
@@ -66,12 +68,14 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Side lying leg lift, left",
-              "repCount": "6-8"
+              "name": "Side Lying Leg Lift",
+              "repCount": "6-8",
+              "side": "Left"
             },
             {
-              "name": "Side lying leg lift, right",
-              "repCount": "6-8"
+              "name": "Side Lying Leg Lift",
+              "repCount": "6-8",
+              "side": "Right"
             }
           ]
         },
@@ -79,8 +83,9 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Alternating row w/ top hold",
-              "repCount": "6-8"
+              "name": "Row w/ Top Hold",
+              "repCount": "6-8",
+              "side": "Alternating"
             }
           ]
         }
@@ -93,7 +98,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "RDL",
+              "name": "Romanian Dead Lift",
               "repCount": "6-8"
             }
           ]
@@ -102,12 +107,14 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Single leg glute bridge/chest press hold, left",
-              "repCount": "6-8"
+              "name": "Single Leg Glute Bridge/Chest Press Hold",
+              "repCount": "6-8",
+              "side": "Left"
             },
             {
-              "name": "Single leg glute bridge/chest press hold, right",
-              "repCount": "6-8"
+              "name": "Single Leg Glute Bridge/Chest Press Hold",
+              "repCount": "6-8",
+              "side": "Right"
             }
           ]
         },
@@ -115,7 +122,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "RDL",
+              "name": "Romanian Dead Lift",
               "repCount": "6-8"
             }
           ]
@@ -129,15 +136,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Dead bugs",
+              "name": "Dead Bugs",
               "repCount": "10-20"
             },
             {
-              "name": "Plank pikes",
+              "name": "Plank Pikes",
               "repCount": "10-20"
             },
             {
-              "name": "Diagonal sit ups",
+              "name": "Diagonal Sit Ups",
               "repCount": "5-10 per side"
             }
           ]
