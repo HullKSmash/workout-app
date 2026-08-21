@@ -89,10 +89,12 @@ function buildExercise(name, side, repCount, tips) {
   // Display convention: the standalone conjunction "and" renders as "&"
   // (e.g. "Nordic and Curl" -> "Nordic & Curl"). Word-boundaried so it never
   // touches substrings like "Standing" or "Banded".
-  const obj = { name: name.replace(/\band\b/gi, "&"), repCount };
-  if (tips) obj.tips = tips;
+  // Field order is canonical: name, side, repCount, tips.
+  const obj = { name: name.replace(/\band\b/gi, "&") };
   const normalized = normalizeSide(side);
   if (normalized) obj.side = normalized;
+  obj.repCount = repCount;
+  if (tips) obj.tips = tips;
   return obj;
 }
 

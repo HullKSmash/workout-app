@@ -44,9 +44,9 @@ export default {
             },
             {
               "name": "Reverse Fly",
+              "side": "Alternating",
               "repCount": "6-8 per side",
-              "tips": "Go slowly and stop the weight fully at the top and bottom of the movement to ensure you aren't relying on momentum to help you.",
-              "side": "Alternating"
+              "tips": "Go slowly and stop the weight fully at the top and bottom of the movement to ensure you aren't relying on momentum to help you."
             }
           ]
         }
@@ -60,9 +60,9 @@ export default {
           "exercises": [
             {
               "name": "Side Lunge",
+              "side": "Alternating",
               "repCount": "6-8 per side",
-              "tips": "Pause to find your balance on each step out and back in.  Take a smaller step to make this easier and a bigger step to make it harder.",
-              "side": "Alternating"
+              "tips": "Pause to find your balance on each step out and back in.  Take a smaller step to make this easier and a bigger step to make it harder."
             },
             {
               "name": "Push Ups",
@@ -86,9 +86,9 @@ export default {
             },
             {
               "name": "Single Arm Row",
+              "side": "Alternating",
               "repCount": "6-8 per side",
-              "tips": "To make this harder, hold the weight at the top of the motion (with your arm flexed) instead of the bottom.",
-              "side": "Alternating"
+              "tips": "To make this harder, hold the weight at the top of the motion (with your arm flexed) instead of the bottom."
             }
           ]
         }
@@ -102,9 +102,9 @@ export default {
           "exercises": [
             {
               "name": "Reverse Lunge",
+              "side": "Alternating",
               "repCount": "6-8 per side",
-              "tips": "Step back slowly, keeping your balance throughout the motion.",
-              "side": "Alternating"
+              "tips": "Step back slowly, keeping your balance throughout the motion."
             },
             {
               "name": "To-the-Chin Lift",

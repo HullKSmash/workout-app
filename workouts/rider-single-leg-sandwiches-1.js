@@ -40,8 +40,8 @@ export default {
             },
             {
               "name": "Forward Lunge",
-              "repCount": "6-8 per side",
-              "side": "Alternating"
+              "side": "Alternating",
+              "repCount": "6-8 per side"
             },
             {
               "name": "Curl & Press",
@@ -59,8 +59,8 @@ export default {
           "exercises": [
             {
               "name": "Row w/ Top Hold",
-              "repCount": "6-8",
-              "side": "Alternating"
+              "side": "Alternating",
+              "repCount": "6-8"
             }
           ]
         },
@@ -69,13 +69,13 @@ export default {
           "exercises": [
             {
               "name": "Side Lying Leg Lift",
-              "repCount": "6-8",
-              "side": "Left"
+              "side": "Left",
+              "repCount": "6-8"
             },
             {
               "name": "Side Lying Leg Lift",
-              "repCount": "6-8",
-              "side": "Right"
+              "side": "Right",
+              "repCount": "6-8"
             }
           ]
         },
@@ -84,8 +84,8 @@ export default {
           "exercises": [
             {
               "name": "Row w/ Top Hold",
-              "repCount": "6-8",
-              "side": "Alternating"
+              "side": "Alternating",
+              "repCount": "6-8"
             }
           ]
         }
@@ -108,13 +108,13 @@ export default {
           "exercises": [
             {
               "name": "Single Leg Glute Bridge/Chest Press Hold",
-              "repCount": "6-8",
-              "side": "Left"
+              "side": "Left",
+              "repCount": "6-8"
             },
             {
               "name": "Single Leg Glute Bridge/Chest Press Hold",
-              "repCount": "6-8",
-              "side": "Right"
+              "side": "Right",
+              "repCount": "6-8"
             }
           ]
         },

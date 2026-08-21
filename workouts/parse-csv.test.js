@@ -32,6 +32,12 @@ test("an unrecognized Side value throws", () => {
   assert.throws(() => parseWorkoutCsv(bad, "T"), /Unknown Side value/);
 });
 
+test("sided exercise fields are ordered name, side, repCount, tips", () => {
+  const c = "Phase,Circuit,Rounds,Exercise,Side,RepCount,Tips\nP,1,1,Split Squat,L,8,brace";
+  const ex = parseWorkoutCsv(c, "T").phases[0].circuits[0].exercises[0];
+  assert.deepEqual(Object.keys(ex), ["name", "side", "repCount", "tips"]);
+});
+
 test("standalone 'and' in an exercise name is parsed as '&', substrings untouched", () => {
   const c = [
     "Phase,Circuit,Rounds,Exercise,Side,RepCount,Tips",

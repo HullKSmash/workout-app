@@ -79,9 +79,9 @@ export default {
           "exercises": [
             {
               "name": "Side Lunge",
+              "side": "Alternating",
               "repCount": "6-8 per side",
-              "tips": "Move with control and pause to find your balance with each step.",
-              "side": "Alternating"
+              "tips": "Move with control and pause to find your balance with each step."
             },
             {
               "name": "Sumo Squat",
@@ -100,15 +100,15 @@ export default {
           "exercises": [
             {
               "name": "Single Leg RDL",
+              "side": "Left",
               "repCount": "6-8",
-              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective.",
-              "side": "Left"
+              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
             },
             {
               "name": "Single Leg RDL",
+              "side": "Right",
               "repCount": "6-8",
-              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective.",
-              "side": "Right"
+              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
             },
             {
               "name": "Hamstring Bridge",

@@ -104,15 +104,15 @@ export default {
             },
             {
               "name": "Split Squat",
+              "side": "Left",
               "repCount": "6-8",
-              "tips": "Your front leg is doing the work here and your back leg is for stability.  Keep your knee aligned between your hip and ankle.  Make sure this is a squatting motion more than a hip hinging motion.",
-              "side": "Left"
+              "tips": "Your front leg is doing the work here and your back leg is for stability.  Keep your knee aligned between your hip and ankle.  Make sure this is a squatting motion more than a hip hinging motion."
             },
             {
               "name": "Split Squat",
+              "side": "Right",
               "repCount": "6-8",
-              "tips": "Your front leg is doing the work here and your back leg is for stability.  Keep your knee aligned between your hip and ankle.  Make sure this is a squatting motion more than a hip hinging motion.",
-              "side": "Right"
+              "tips": "Your front leg is doing the work here and your back leg is for stability.  Keep your knee aligned between your hip and ankle.  Make sure this is a squatting motion more than a hip hinging motion."
             }
           ]
         }

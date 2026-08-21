@@ -24,9 +24,11 @@ for (const f of files) {
         if (ex.name === "Rest") return ex;
         const d = deriveCore(ex.name);
         if (!d) throw new Error(`${f}: active workout uses deleted movement "${ex.name}"`);
-        const next = { ...ex, name: d.core };
-        if (d.side) next.side = d.side;
-        return next;
+        // Canonical field order: name, side, then the rest (repCount, tips).
+        // `side` comes from the name on first migration, or the existing field on re-run.
+        const side = d.side || ex.side;
+        const { name: _n, side: _s, ...rest } = ex;
+        return { name: d.core, ...(side ? { side } : {}), ...rest };
       });
     }
   }

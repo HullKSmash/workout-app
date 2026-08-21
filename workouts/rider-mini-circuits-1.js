@@ -24,9 +24,9 @@ export default {
             },
             {
               "name": "Standing Abduction",
+              "side": "Alternating",
               "repCount": "5-10 per side",
-              "tips": "Keep your balance as you rotate your knee out, using your glutes to open your hip.",
-              "side": "Alternating"
+              "tips": "Keep your balance as you rotate your knee out, using your glutes to open your hip."
             }
           ]
         }
@@ -95,15 +95,15 @@ export default {
             },
             {
               "name": "Oblique Crunch",
+              "side": "Left",
               "repCount": "To Fatigue",
-              "tips": "This is a precise movement - make sure you're engaging the space between your hip and your ribs to lift.",
-              "side": "Left"
+              "tips": "This is a precise movement - make sure you're engaging the space between your hip and your ribs to lift."
             },
             {
               "name": "Oblique Crunch",
+              "side": "Right",
               "repCount": "To Fatigue",
-              "tips": "This is a precise movement - make sure you're engaging the space between your hip and your ribs to lift.",
-              "side": "Right"
+              "tips": "This is a precise movement - make sure you're engaging the space between your hip and your ribs to lift."
             }
           ]
         }

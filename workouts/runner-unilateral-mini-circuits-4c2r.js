@@ -14,15 +14,15 @@ export default {
           "exercises": [
             {
               "name": "Runner Hops",
+              "side": "Left",
               "repCount": "10-20",
-              "tips": "If you find yourself losing your balance, leave off the hop and make this a slow, fluid motion until you feel balanced throughout.",
-              "side": "Left"
+              "tips": "If you find yourself losing your balance, leave off the hop and make this a slow, fluid motion until you feel balanced throughout."
             },
             {
               "name": "Runner Hops",
+              "side": "Right",
               "repCount": "10-20",
-              "tips": "If you find yourself losing your balance, leave off the hop and make this a slow, fluid motion until you feel balanced throughout.",
-              "side": "Right"
+              "tips": "If you find yourself losing your balance, leave off the hop and make this a slow, fluid motion until you feel balanced throughout."
             },
             {
               "name": "Lateral Pogos",
@@ -51,9 +51,9 @@ export default {
             },
             {
               "name": "Curtsy Lunge",
+              "side": "Alternating",
               "repCount": "8-10",
-              "tips": "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright.  Move slowly as you switch sides.",
-              "side": "Alternating"
+              "tips": "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright.  Move slowly as you switch sides."
             }
           ]
         }
@@ -72,15 +72,15 @@ export default {
             },
             {
               "name": "Single Leg RDL",
+              "side": "Left",
               "repCount": "6-10",
-              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective.",
-              "side": "Left"
+              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
             },
             {
               "name": "Single Leg RDL",
+              "side": "Right",
               "repCount": "6-10",
-              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective.",
-              "side": "Right"
+              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
             }
           ]
         }
@@ -99,15 +99,15 @@ export default {
             },
             {
               "name": "Single Leg Glute Bridge",
+              "side": "Left",
               "repCount": "8-10",
-              "tips": "Stack your knees directly over your ankles and don't let them fall in or out.  Complete the full range of motion - push your hips as high as you can, keep them level, and pause at the top.  If this is too easy, place a weight on your hips.",
-              "side": "Left"
+              "tips": "Stack your knees directly over your ankles and don't let them fall in or out.  Complete the full range of motion - push your hips as high as you can, keep them level, and pause at the top.  If this is too easy, place a weight on your hips."
             },
             {
               "name": "Single Leg Glute Bridge",
+              "side": "Right",
               "repCount": "8-10",
-              "tips": "Stack your knees directly over your ankles and don't let them fall in or out.  Complete the full range of motion - push your hips as high as you can, keep them level, and pause at the top.  If this is too easy, place a weight on your hips.",
-              "side": "Right"
+              "tips": "Stack your knees directly over your ankles and don't let them fall in or out.  Complete the full range of motion - push your hips as high as you can, keep them level, and pause at the top.  If this is too easy, place a weight on your hips."
             }
           ]
         }
@@ -126,15 +126,15 @@ export default {
             },
             {
               "name": "Split Squat",
+              "side": "Left",
               "repCount": "6-10",
-              "tips": "Your front leg is doing the work here and your back leg is for stability.  Keep your knee aligned between your hip and ankle.  Make sure this is a squatting motion more than a hip hinging motion.",
-              "side": "Left"
+              "tips": "Your front leg is doing the work here and your back leg is for stability.  Keep your knee aligned between your hip and ankle.  Make sure this is a squatting motion more than a hip hinging motion."
             },
             {
               "name": "Split Squat",
+              "side": "Right",
               "repCount": "6-10",
-              "tips": "Your front leg is doing the work here and your back leg is for stability.  Keep your knee aligned between your hip and ankle.  Make sure this is a squatting motion more than a hip hinging motion.",
-              "side": "Right"
+              "tips": "Your front leg is doing the work here and your back leg is for stability.  Keep your knee aligned between your hip and ankle.  Make sure this is a squatting motion more than a hip hinging motion."
             }
           ]
         }

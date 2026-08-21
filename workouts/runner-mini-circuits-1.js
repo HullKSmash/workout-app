@@ -14,15 +14,15 @@ export default {
           "exercises": [
             {
               "name": "Reverse Lunge Taps",
+              "side": "Left",
               "repCount": "6-10",
-              "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights.",
-              "side": "Left"
+              "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights."
             },
             {
               "name": "Reverse Lunge Taps",
+              "side": "Right",
               "repCount": "6-10",
-              "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights.",
-              "side": "Right"
+              "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights."
             },
             {
               "name": "Pogos",
@@ -51,9 +51,9 @@ export default {
             },
             {
               "name": "Curtsy Lunge",
+              "side": "Alternating",
               "repCount": "6-10 per side",
-              "tips": "Move slowly and with control.  Add dumbbells if it's too easy.",
-              "side": "Alternating"
+              "tips": "Move slowly and with control.  Add dumbbells if it's too easy."
             }
           ]
         }
@@ -102,9 +102,9 @@ export default {
             },
             {
               "name": "Flexor Lifts",
+              "side": "Alternating",
               "repCount": "5-10 per side",
-              "tips": "Make sure to sit up straight- you want to bring your thigh towards your torso without leaning back.  Work both sides evenly.",
-              "side": "Alternating"
+              "tips": "Make sure to sit up straight- you want to bring your thigh towards your torso without leaning back.  Work both sides evenly."
             }
           ]
         }

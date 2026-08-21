@@ -14,15 +14,15 @@ export default {
           "exercises": [
             {
               "name": "Single Leg Pogos",
+              "side": "Left",
               "repCount": "10-20",
-              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while.",
-              "side": "Left"
+              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
             },
             {
               "name": "Single Leg Pogos",
+              "side": "Right",
               "repCount": "10-20",
-              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while.",
-              "side": "Right"
+              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
             },
             {
               "name": "Squat Jumps",
@@ -71,15 +71,15 @@ export default {
             },
             {
               "name": "Single Leg RDL",
+              "side": "Left",
               "repCount": "6-10",
-              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective.",
-              "side": "Left"
+              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
             },
             {
               "name": "Single Leg RDL",
+              "side": "Right",
               "repCount": "6-10",
-              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective.",
-              "side": "Right"
+              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
             }
           ]
         }
@@ -98,15 +98,15 @@ export default {
             },
             {
               "name": "Forward Lunge",
+              "side": "Left",
               "repCount": "6-10",
-              "tips": "Absorb the impact fluidly as you step forward and keep your balance as you push back.",
-              "side": "Left"
+              "tips": "Absorb the impact fluidly as you step forward and keep your balance as you push back."
             },
             {
               "name": "Forward Lunge",
+              "side": "Right",
               "repCount": "6-10",
-              "tips": "Absorb the impact fluidly as you step forward and keep your balance as you push back.",
-              "side": "Right"
+              "tips": "Absorb the impact fluidly as you step forward and keep your balance as you push back."
             }
           ]
         }

@@ -39,15 +39,15 @@ export default {
           "exercises": [
             {
               "name": "Single Arm Top Hold Row",
+              "side": "Left",
               "repCount": "6-10",
-              "tips": "Hold the weight right by your ribs and keep your back flat.",
-              "side": "Left"
+              "tips": "Hold the weight right by your ribs and keep your back flat."
             },
             {
               "name": "Single Arm Top Hold Row",
+              "side": "Right",
               "repCount": "6-10",
-              "tips": "Hold the weight right by your ribs and keep your back flat.",
-              "side": "Right"
+              "tips": "Hold the weight right by your ribs and keep your back flat."
             }
           ]
         }
@@ -61,15 +61,15 @@ export default {
           "exercises": [
             {
               "name": "Single Leg RDL",
+              "side": "Left",
               "repCount": "6-10",
-              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective.",
-              "side": "Left"
+              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
             },
             {
               "name": "Single Leg RDL",
+              "side": "Right",
               "repCount": "6-10",
-              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective.",
-              "side": "Right"
+              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
             }
           ]
         }
@@ -83,15 +83,15 @@ export default {
           "exercises": [
             {
               "name": "Forward Lunge w/ Twist",
+              "side": "Left",
               "repCount": "6-10",
-              "tips": "Don't neglect the twist - pause in the lunge and twist as far as you can.",
-              "side": "Left"
+              "tips": "Don't neglect the twist - pause in the lunge and twist as far as you can."
             },
             {
               "name": "Forward Lunge w/ Twist",
+              "side": "Right",
               "repCount": "6-10",
-              "tips": "Don't neglect the twist - pause in the lunge and twist as far as you can.",
-              "side": "Right"
+              "tips": "Don't neglect the twist - pause in the lunge and twist as far as you can."
             }
           ]
         }
@@ -105,15 +105,15 @@ export default {
           "exercises": [
             {
               "name": "Fire Hydrant Circles",
+              "side": "Left",
               "repCount": "6-10",
-              "tips": "Alignment of your resting leg is very important here - directly under your hip.  Don't cut corners by shifting your hips to your resting side!",
-              "side": "Left"
+              "tips": "Alignment of your resting leg is very important here - directly under your hip.  Don't cut corners by shifting your hips to your resting side!"
             },
             {
               "name": "Fire Hydrant Circles",
+              "side": "Right",
               "repCount": "6-10",
-              "tips": "Alignment of your resting leg is very important here - directly under your hip.  Don't cut corners by shifting your hips to your resting side!",
-              "side": "Right"
+              "tips": "Alignment of your resting leg is very important here - directly under your hip.  Don't cut corners by shifting your hips to your resting side!"
             }
           ]
         }

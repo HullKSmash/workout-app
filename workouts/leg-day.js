@@ -28,13 +28,13 @@ export default {
           "exercises": [
             {
               "name": "Fire Hydrants",
-              "repCount": 8,
-              "side": "Left"
+              "side": "Left",
+              "repCount": 8
             },
             {
               "name": "Fire Hydrants",
-              "repCount": 8,
-              "side": "Right"
+              "side": "Right",
+              "repCount": 8
             },
             {
               "name": "Mountain Climbers",
@@ -61,13 +61,13 @@ export default {
           "exercises": [
             {
               "name": "Single Leg Glute Bridge",
-              "repCount": 8,
-              "side": "Left"
+              "side": "Left",
+              "repCount": 8
             },
             {
               "name": "Single Leg Glute Bridge",
-              "repCount": 8,
-              "side": "Right"
+              "side": "Right",
+              "repCount": 8
             },
             {
               "name": "Goblet Squat",
@@ -98,13 +98,13 @@ export default {
             },
             {
               "name": "Static Lunge",
-              "repCount": 8,
-              "side": "Left"
+              "side": "Left",
+              "repCount": 8
             },
             {
               "name": "Static Lunge",
-              "repCount": 8,
-              "side": "Right"
+              "side": "Right",
+              "repCount": 8
             },
             {
               "name": "Calf Raise",
@@ -135,13 +135,13 @@ export default {
             },
             {
               "name": "Knee Up",
-              "repCount": 8,
-              "side": "Left"
+              "side": "Left",
+              "repCount": 8
             },
             {
               "name": "Knee Up",
-              "repCount": 8,
-              "side": "Right"
+              "side": "Right",
+              "repCount": 8
             }
           ]
         },
@@ -164,23 +164,23 @@ export default {
           "exercises": [
             {
               "name": "Curtsy Lunge",
-              "repCount": 8,
-              "side": "Left"
+              "side": "Left",
+              "repCount": 8
             },
             {
               "name": "Curtsy Lunge",
-              "repCount": 8,
-              "side": "Right"
+              "side": "Right",
+              "repCount": 8
             },
             {
               "name": "Standing Lateral Leg Lifts",
-              "repCount": 8,
-              "side": "Left"
+              "side": "Left",
+              "repCount": 8
             },
             {
               "name": "Standing Lateral Leg Lifts",
-              "repCount": 8,
-              "side": "Right"
+              "side": "Right",
+              "repCount": 8
             }
           ]
         }

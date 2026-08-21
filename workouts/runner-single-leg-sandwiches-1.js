@@ -14,15 +14,15 @@ export default {
           "exercises": [
             {
               "name": "Single Leg Pogos",
+              "side": "Left",
               "repCount": "10-20",
-              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while.",
-              "side": "Left"
+              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
             },
             {
               "name": "Single Leg Pogos",
+              "side": "Right",
               "repCount": "10-20",
-              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while.",
-              "side": "Right"
+              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
             },
             {
               "name": "Squat Jumps",
@@ -51,15 +51,15 @@ export default {
           "exercises": [
             {
               "name": "Weighted Bird Dogs",
+              "side": "Left",
               "repCount": "8-10",
-              "tips": "Extend and contract through as much range of motion as you can.",
-              "side": "Left"
+              "tips": "Extend and contract through as much range of motion as you can."
             },
             {
               "name": "Weighted Bird Dogs",
+              "side": "Right",
               "repCount": "8-10",
-              "tips": "Extend and contract through as much range of motion as you can.",
-              "side": "Right"
+              "tips": "Extend and contract through as much range of motion as you can."
             }
           ]
         },
@@ -93,15 +93,15 @@ export default {
           "exercises": [
             {
               "name": "Curtsy Lunge",
+              "side": "Left",
               "repCount": "6-10",
-              "tips": "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright.",
-              "side": "Left"
+              "tips": "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright."
             },
             {
               "name": "Curtsy Lunge",
+              "side": "Right",
               "repCount": "6-10",
-              "tips": "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright.",
-              "side": "Right"
+              "tips": "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright."
             }
           ]
         },
@@ -135,15 +135,15 @@ export default {
           "exercises": [
             {
               "name": "Glute Arcs",
+              "side": "Left",
               "repCount": "8-10",
-              "tips": "Use your full range of motion here and go slow.",
-              "side": "Left"
+              "tips": "Use your full range of motion here and go slow."
             },
             {
               "name": "Glute Arcs",
+              "side": "Right",
               "repCount": "8-10",
-              "tips": "Use your full range of motion here and go slow.",
-              "side": "Right"
+              "tips": "Use your full range of motion here and go slow."
             }
           ]
         },

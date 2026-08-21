@@ -39,15 +39,15 @@ export default {
           "exercises": [
             {
               "name": "Weighted Bird Dogs",
+              "side": "Left",
               "repCount": "8-10",
-              "tips": "Drop the weight if this is too hard on your shoulders.  Extend and contract through as much range of motion as you can.",
-              "side": "Left"
+              "tips": "Drop the weight if this is too hard on your shoulders.  Extend and contract through as much range of motion as you can."
             },
             {
               "name": "Weighted Bird Dogs",
+              "side": "Right",
               "repCount": "8-10",
-              "tips": "Drop the weight if this is too hard on your shoulders.  Extend and contract through as much range of motion as you can.",
-              "side": "Right"
+              "tips": "Drop the weight if this is too hard on your shoulders.  Extend and contract through as much range of motion as you can."
             }
           ]
         }
@@ -61,15 +61,15 @@ export default {
           "exercises": [
             {
               "name": "Split Squat",
+              "side": "Left",
               "repCount": "8-10",
-              "tips": "Your front leg is doing the work here and your back leg is for stability.  Keep your knee aligned between your hip and ankle.  Make sure this is a squatting motion more than a hip hinging motion.",
-              "side": "Left"
+              "tips": "Your front leg is doing the work here and your back leg is for stability.  Keep your knee aligned between your hip and ankle.  Make sure this is a squatting motion more than a hip hinging motion."
             },
             {
               "name": "Split Squat",
+              "side": "Right",
               "repCount": "8-10",
-              "tips": "Your front leg is doing the work here and your back leg is for stability.  Keep your knee aligned between your hip and ankle.  Make sure this is a squatting motion more than a hip hinging motion.",
-              "side": "Right"
+              "tips": "Your front leg is doing the work here and your back leg is for stability.  Keep your knee aligned between your hip and ankle.  Make sure this is a squatting motion more than a hip hinging motion."
             }
           ]
         }
@@ -83,15 +83,15 @@ export default {
           "exercises": [
             {
               "name": "Side Lunge w/ Balance Press",
+              "side": "Left",
               "repCount": "8-10",
-              "tips": "Move with control and pause to find your balance with each step.  Make this two distinct and controlled movements.",
-              "side": "Left"
+              "tips": "Move with control and pause to find your balance with each step.  Make this two distinct and controlled movements."
             },
             {
               "name": "Side Lunge w/ Balance Press",
+              "side": "Right",
               "repCount": "8-10",
-              "tips": "Move with control and pause to find your balance with each step.  Make this two distinct and controlled movements.",
-              "side": "Right"
+              "tips": "Move with control and pause to find your balance with each step.  Make this two distinct and controlled movements."
             }
           ]
         }
@@ -105,15 +105,15 @@ export default {
           "exercises": [
             {
               "name": "Glute Arcs",
+              "side": "Left",
               "repCount": "8-10",
-              "tips": "Use your full range of motion here and go slow.",
-              "side": "Left"
+              "tips": "Use your full range of motion here and go slow."
             },
             {
               "name": "Glute Arcs",
+              "side": "Right",
               "repCount": "8-10",
-              "tips": "Use your full range of motion here and go slow.",
-              "side": "Right"
+              "tips": "Use your full range of motion here and go slow."
             }
           ]
         }
