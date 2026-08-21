@@ -13,12 +13,14 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Runner Hops, Left",
+              "name": "Runner Hops",
+              "side": "Left",
               "repCount": "10-20",
               "tips": "If you find yourself losing your balance, leave off the hop and make this a slow, fluid motion until you feel balanced throughout."
             },
             {
-              "name": "Runner Hops, Right",
+              "name": "Runner Hops",
+              "side": "Right",
               "repCount": "10-20",
               "tips": "If you find yourself losing your balance, leave off the hop and make this a slow, fluid motion until you feel balanced throughout."
             },
@@ -48,7 +50,8 @@ export default {
               "tips": "Make these two distinct movements, fully completing each and checking your form before starting the next."
             },
             {
-              "name": "Alternating Curtsy Lunge",
+              "name": "Curtsy Lunge",
+              "side": "Alternating",
               "repCount": "8-10",
               "tips": "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright.  Move slowly as you switch sides."
             }
@@ -68,12 +71,14 @@ export default {
               "tips": "Walk your feet out a step or two from glute bridge position to target your hamstrings."
             },
             {
-              "name": "Single Leg RDL, Left",
+              "name": "Single Leg RDL",
+              "side": "Left",
               "repCount": "6-10",
               "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
             },
             {
-              "name": "Single Leg RDL, Right",
+              "name": "Single Leg RDL",
+              "side": "Right",
               "repCount": "6-10",
               "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
             }
@@ -93,12 +98,14 @@ export default {
               "tips": "Engage your glutes as you stand and keep your shoulders upright throughout."
             },
             {
-              "name": "Single Leg Glute Bridge, Left",
+              "name": "Single Leg Glute Bridge",
+              "side": "Left",
               "repCount": "8-10",
               "tips": "Stack your knees directly over your ankles and don't let them fall in or out.  Complete the full range of motion - push your hips as high as you can, keep them level, and pause at the top.  If this is too easy, place a weight on your hips."
             },
             {
-              "name": "Single Leg Glute Bridge, Right",
+              "name": "Single Leg Glute Bridge",
+              "side": "Right",
               "repCount": "8-10",
               "tips": "Stack your knees directly over your ankles and don't let them fall in or out.  Complete the full range of motion - push your hips as high as you can, keep them level, and pause at the top.  If this is too easy, place a weight on your hips."
             }
@@ -118,12 +125,14 @@ export default {
               "tips": "Resist the urge to rock your pelvis back to bring your leg higher.  Think about closing the angle between your torso and your femur without rounding your lower back."
             },
             {
-              "name": "Split Squat, Left",
+              "name": "Split Squat",
+              "side": "Left",
               "repCount": "6-10",
               "tips": "Your front leg is doing the work here and your back leg is for stability.  Keep your knee aligned between your hip and ankle.  Make sure this is a squatting motion more than a hip hinging motion."
             },
             {
-              "name": "Split Squat, Right",
+              "name": "Split Squat",
+              "side": "Right",
               "repCount": "6-10",
               "tips": "Your front leg is doing the work here and your back leg is for stability.  Keep your knee aligned between your hip and ankle.  Make sure this is a squatting motion more than a hip hinging motion."
             }
@@ -148,7 +157,7 @@ export default {
               "tips": "Increase your range of motion and hold a weight as you get stronger."
             },
             {
-              "name": "Plank Pike",
+              "name": "Plank Pikes",
               "repCount": "10-20",
               "tips": "Do this on your forearms or hands as you prefer."
             }

@@ -13,12 +13,14 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Single Leg Pogos, Left",
+              "name": "Single Leg Pogos",
+              "side": "Left",
               "repCount": "10-20",
               "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
             },
             {
-              "name": "Single Leg Pogos, Right",
+              "name": "Single Leg Pogos",
+              "side": "Right",
               "repCount": "10-20",
               "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
             },
@@ -48,12 +50,14 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Weighted Bird Dogs, Left Arm/Right Leg",
+              "name": "Weighted Bird Dogs",
+              "side": "Left",
               "repCount": "8-10",
               "tips": "Extend and contract through as much range of motion as you can."
             },
             {
-              "name": "Weighted Bird Dogs, Right Arm/Left Leg",
+              "name": "Weighted Bird Dogs",
+              "side": "Right",
               "repCount": "8-10",
               "tips": "Extend and contract through as much range of motion as you can."
             }
@@ -88,12 +92,14 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Curtsy Lunge, Left",
+              "name": "Curtsy Lunge",
+              "side": "Left",
               "repCount": "6-10",
               "tips": "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright."
             },
             {
-              "name": "Curtsy Lunge, Right",
+              "name": "Curtsy Lunge",
+              "side": "Right",
               "repCount": "6-10",
               "tips": "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright."
             }
@@ -128,12 +134,14 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Glute Arcs, Left",
+              "name": "Glute Arcs",
+              "side": "Left",
               "repCount": "8-10",
               "tips": "Use your full range of motion here and go slow."
             },
             {
-              "name": "Glute Arcs, Right",
+              "name": "Glute Arcs",
+              "side": "Right",
               "repCount": "8-10",
               "tips": "Use your full range of motion here and go slow."
             }
@@ -168,7 +176,7 @@ export default {
               "tips": "Increase your range of motion and hold a weight as you get stronger."
             },
             {
-              "name": "Plank Pike",
+              "name": "Plank Pikes",
               "repCount": "10-20",
               "tips": "Do this on your forearms or hands as you prefer."
             }

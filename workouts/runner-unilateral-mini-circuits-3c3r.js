@@ -13,12 +13,14 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Single Leg Pogos, Left",
+              "name": "Single Leg Pogos",
+              "side": "Left",
               "repCount": "10-20",
               "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
             },
             {
-              "name": "Single Leg Pogos, Right",
+              "name": "Single Leg Pogos",
+              "side": "Right",
               "repCount": "10-20",
               "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
             },
@@ -68,12 +70,14 @@ export default {
               "tips": "Walk your feet out a step or two from glute bridge position to target your hamstrings."
             },
             {
-              "name": "Single Leg RDL, Left",
+              "name": "Single Leg RDL",
+              "side": "Left",
               "repCount": "6-10",
               "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
             },
             {
-              "name": "Single Leg RDL, Right",
+              "name": "Single Leg RDL",
+              "side": "Right",
               "repCount": "6-10",
               "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
             }
@@ -93,12 +97,14 @@ export default {
               "tips": "When this gets too easy, use a stronger band and take bigger steps."
             },
             {
-              "name": "Forward Lunge, Left",
+              "name": "Forward Lunge",
+              "side": "Left",
               "repCount": "6-10",
               "tips": "Absorb the impact fluidly as you step forward and keep your balance as you push back."
             },
             {
-              "name": "Forward Lunge, Right",
+              "name": "Forward Lunge",
+              "side": "Right",
               "repCount": "6-10",
               "tips": "Absorb the impact fluidly as you step forward and keep your balance as you push back."
             }
@@ -123,7 +129,7 @@ export default {
               "tips": "Increase your range of motion and hold a weight as you get stronger."
             },
             {
-              "name": "Plank Pike",
+              "name": "Plank Pikes",
               "repCount": "10-20",
               "tips": "Do this on your forearms or hands as you prefer."
             }

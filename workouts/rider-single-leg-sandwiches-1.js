@@ -13,15 +13,15 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Tabletop cat/cow",
+              "name": "Tabletop Cat/Cow",
               "repCount": "6-8"
             },
             {
-              "name": "Hip circles",
+              "name": "Hip Circles",
               "repCount": "5-10 per side"
             },
             {
-              "name": "Single leg forward hops",
+              "name": "Single Leg Forward Hops",
               "repCount": "8 per side"
             }
           ]
@@ -35,15 +35,16 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Hamstring bridge",
+              "name": "Hamstring Bridge",
               "repCount": "6-8"
             },
             {
-              "name": "Alternating forward lunge",
+              "name": "Forward Lunge",
+              "side": "Alternating",
               "repCount": "6-8 per side"
             },
             {
-              "name": "Curl and press",
+              "name": "Curl & Press",
               "repCount": "6-8"
             }
           ]
@@ -57,7 +58,8 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Alternating row w/ top hold",
+              "name": "Row w/ Top Hold",
+              "side": "Alternating",
               "repCount": "6-8"
             }
           ]
@@ -66,11 +68,13 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Side lying leg lift, left",
+              "name": "Side Lying Leg Lift",
+              "side": "Left",
               "repCount": "6-8"
             },
             {
-              "name": "Side lying leg lift, right",
+              "name": "Side Lying Leg Lift",
+              "side": "Right",
               "repCount": "6-8"
             }
           ]
@@ -79,7 +83,8 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Alternating row w/ top hold",
+              "name": "Row w/ Top Hold",
+              "side": "Alternating",
               "repCount": "6-8"
             }
           ]
@@ -93,7 +98,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "RDL",
+              "name": "Romanian Dead Lift",
               "repCount": "6-8"
             }
           ]
@@ -102,11 +107,13 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Single leg glute bridge/chest press hold, left",
+              "name": "Single Leg Glute Bridge/Chest Press Hold",
+              "side": "Left",
               "repCount": "6-8"
             },
             {
-              "name": "Single leg glute bridge/chest press hold, right",
+              "name": "Single Leg Glute Bridge/Chest Press Hold",
+              "side": "Right",
               "repCount": "6-8"
             }
           ]
@@ -115,7 +122,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "RDL",
+              "name": "Romanian Dead Lift",
               "repCount": "6-8"
             }
           ]
@@ -129,15 +136,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Dead bugs",
+              "name": "Dead Bugs",
               "repCount": "10-20"
             },
             {
-              "name": "Plank pikes",
+              "name": "Plank Pikes",
               "repCount": "10-20"
             },
             {
-              "name": "Diagonal sit ups",
+              "name": "Diagonal Sit Ups",
               "repCount": "5-10 per side"
             }
           ]

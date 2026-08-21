@@ -56,7 +56,10 @@ or similar object — the app won't read it.
 ## CSV format reference
 
 The parser destructures columns as
-`Phase, Circuit, Rounds, Exercise, RepCount, Tips` — a **single `Tips` column**
+`Phase, Circuit, Rounds, Exercise, Side, RepCount, Tips`. `Side` sits directly
+after `Exercise` and holds `L` / `R` / `A` (or the full words, or blank for
+bilateral); the parser normalizes it to `"Left"` / `"Right"` / `"Alternating"`
+and throws on any other value. `Tips` remains a **single column**
 (one coaching note per exercise). Check the CSV header line first; it tells you
 the order directly.
 
@@ -75,6 +78,8 @@ the order directly.
 - A `Rest` exercise (Exercise = "Rest") becomes its own single-round circuit with
   `repCount` = seconds. `RepCount` that is purely digits is parsed to a number;
   anything else (e.g. "8-10 per side", "To Fatigue") stays a string.
+- A blank `Side` cell means the movement is bilateral (no `side` on the exercise).
+  Sided movements use `L`/`R`; movements that alternate sides within the set use `A`.
 
 ## Data model produced
 
@@ -82,7 +87,7 @@ the order directly.
 Workout: { name, audiences: ["run"|"paul"|"equestrian"], difficulty, description, phases: [...] }
 Phase:   { name, circuits: [...] }
 Circuit: { repeatCount, exercises: [...] }
-Exercise:{ name, repCount, tips? }   // repCount: string or number(seconds for Rest)
+Exercise:{ name, repCount, tips?, side? }   // side: "Left"|"Right"|"Alternating" (omitted = bilateral)
 ```
 
 ## Procedure
@@ -123,7 +128,26 @@ Add an `import` and append the variable to the `WORKOUTS` array. Variable name i
 camelCase of the slug (`rider-build-1.js` → `riderBuild1`). Keep related workouts
 grouped (e.g. all equestrian ones together) for readability.
 
-### 4. Verify in the running app
+### 4. Regenerate the exercise catalog
+
+The workout may reference a movement the catalog doesn't have yet. Regenerate it:
+
+```bash
+node scripts/generate-catalog.mjs
+```
+
+This is a safe upsert — it preserves existing clip paths and adds any new movement.
+**Read its output and act on it:**
+
+- If it prints `+ N new: …`, **tell Katie explicitly** which new movement(s) it
+  added and that each needs a video clip filmed (they render the placeholder until
+  then). This is the one signal she can't easily recover if you swallow it.
+- If it prints `! N no longer used`, mention which movements are now orphaned (a
+  possible rename/typo to double-check).
+- `git diff workouts/exercises.data.js` shows the exact catalog change; the running
+  checklist of unfilmed movements lives in `docs/exercise-todo.md`.
+
+### 5. Verify in the running app
 
 Don't trust the file shape alone — confirm the workout actually appears and renders:
 
@@ -142,9 +166,11 @@ Don't trust the file shape alone — confirm the workout actually appears and re
 ## Quick checklist
 
 - [ ] Checked CSV header is `…, RepCount, Tips` (single Tips column)
+- [ ] Checked CSV header includes the `Side` column (`…, Exercise, Side, RepCount, Tips`)
 - [ ] Ran generate-workout.mjs with the right `--audience` (and `--difficulty` if no color token in the filename)
 - [ ] Read the spot-check sample — the tip landed on the right exercise
 - [ ] Confirmed the printed `difficulty` matches the expected badge
 - [ ] Removed old file + its index.js entry (if replacing and the slug changed)
 - [ ] Added import + WORKOUTS entry in index.js (skip if replacing in place — same slug)
+- [ ] Ran `node scripts/generate-catalog.mjs`; reported any `+ N new:` movement(s) to Katie as needing a clip
 - [ ] Verified in app under the correct `?variant=` (list, badge, and a tip render)

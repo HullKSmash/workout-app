@@ -100,3 +100,17 @@ test("multiple circuits in a phase flag multiCircuit", () => {
   assert.deepEqual(sets[2].groups.map((g) => g.id), ["p2c0", "p2c1"]);
   assert.equal(sets[0].multiCircuit, false);
 });
+
+test("build-checklist carries the side onto items", () => {
+  const wk = {
+    name: "Sided",
+    phases: [{ name: "P", circuits: [{ repeatCount: 1, exercises: [
+      { name: "Forward Lunge", repCount: "8", side: "Left" },
+      { name: "Sumo Squat", repCount: "10" },
+    ] }] }],
+  };
+  const { sets } = buildChecklist(wk);
+  const items = sets[0].groups[0].rounds[0].items;
+  assert.equal(items[0].side, "Left");
+  assert.equal(items[1].side, undefined);
+});

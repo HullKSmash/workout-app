@@ -13,12 +13,14 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Reverse Lunge Taps, Left",
+              "name": "Reverse Lunge Taps",
+              "side": "Left",
               "repCount": "6-10",
               "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights."
             },
             {
-              "name": "Reverse Lunge Taps, Right",
+              "name": "Reverse Lunge Taps",
+              "side": "Right",
               "repCount": "6-10",
               "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights."
             },
@@ -48,7 +50,8 @@ export default {
               "tips": "If this feels too easy for your calves, slow down both the upward and downward motion of your calf raise and pause at the top."
             },
             {
-              "name": "Alternating Curtsy Lunge",
+              "name": "Curtsy Lunge",
+              "side": "Alternating",
               "repCount": "6-10 per side",
               "tips": "Move slowly and with control.  Add dumbbells if it's too easy."
             }
@@ -98,7 +101,8 @@ export default {
               "tips": "Maintain control and pause at the top of the motion."
             },
             {
-              "name": "Alternating Flexor Lifts",
+              "name": "Flexor Lifts",
+              "side": "Alternating",
               "repCount": "5-10 per side",
               "tips": "Make sure to sit up straight- you want to bring your thigh towards your torso without leaning back.  Work both sides evenly."
             }
@@ -123,7 +127,7 @@ export default {
               "tips": "Move your heels further from your body to make this harder.  Make sure to work both sides evenly."
             },
             {
-              "name": "Plank hold",
+              "name": "Plank Hold",
               "repCount": "To Fatigue",
               "tips": "Rest on your hands or forearms as you choose.  Work from either your knees or toes, or alternate between them as you build strength."
             }

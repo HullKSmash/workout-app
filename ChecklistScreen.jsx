@@ -5,6 +5,7 @@
 // view state — the expanded set, the open detail sheet, and the leave modal.
 import { useEffect, useRef, useState } from "react";
 import EndWorkoutModal from "./EndWorkoutModal";
+import { resolveExercise, formatExerciseTitle } from "./workouts/exercises.js";
 
 const TEXT = "#2D2A26";
 const TEXT_SECONDARY = "#8A8279";
@@ -166,7 +167,7 @@ export default function ChecklistScreen({
                                 <span
                                   style={{ ...s.rowName, ...(on ? s.rowNameOn : {}) }}
                                 >
-                                  {item.name}
+                                  {formatExerciseTitle(item)}
                                   <span style={s.rowReps}> · {item.repCount}</span>
                                 </span>
                                 <button
@@ -206,13 +207,32 @@ export default function ChecklistScreen({
       {detailItem && (
         <div style={s.scrim} onClick={() => setDetailItem(null)}>
           <div style={s.sheet} onClick={(e) => e.stopPropagation()}>
-            <div style={s.sheetMedia}>▶ demo coming soon</div>
-            <div style={s.sheetName}>{detailItem.name}</div>
-            <div style={s.sheetReps}>{detailItem.repCount}</div>
-            <div style={s.tipBox}>
-              <span style={s.tipIcon}>ℹ️</span>
-              <span style={s.tipText}>{detailItem.tips || TIPS_DEFAULT}</span>
-            </div>
+            {(() => {
+              const media = resolveExercise(detailItem);
+              return (
+                <>
+                  {media.videoSrc ? (
+                    <video
+                      src={media.videoSrc}
+                      style={{ ...s.sheetMedia, objectFit: "cover", transform: media.mirror ? "scaleX(-1)" : undefined }}
+                      aria-label={formatExerciseTitle(detailItem)}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    />
+                  ) : (
+                    <div style={s.sheetMedia}>▶ demo coming soon</div>
+                  )}
+                  <div style={s.sheetName}>{formatExerciseTitle(detailItem)}</div>
+                  <div style={s.sheetReps}>{detailItem.repCount}</div>
+                  <div style={s.tipBox}>
+                    <span style={s.tipIcon}>ℹ️</span>
+                    <span style={s.tipText}>{media.tips || TIPS_DEFAULT}</span>
+                  </div>
+                </>
+              );
+            })()}
             <button style={s.sheetClose} onClick={() => setDetailItem(null)}>
               Got it
             </button>

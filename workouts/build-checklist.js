@@ -44,6 +44,7 @@ export function buildChecklist(workout) {
             name: exercise.name,
             repCount: exercise.repCount,
             tips: exercise.tips,
+            side: exercise.side,
           });
           totalItems += 1;
         });

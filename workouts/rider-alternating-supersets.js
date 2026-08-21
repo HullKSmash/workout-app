@@ -13,17 +13,17 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Standing abduction",
+              "name": "Standing Abduction",
               "repCount": "6-8 per side",
               "tips": "Go slow and challenge your balance on each leg."
             },
             {
-              "name": "Squat twist",
+              "name": "Squat Twist",
               "repCount": "5-10 per side",
               "tips": "Squat as deeply or shallowly as feels right for you today."
             },
             {
-              "name": "Adductor & hamstring stretch",
+              "name": "Adductor & Hamstring Stretch",
               "repCount": "5-10 per side",
               "tips": "Focus on the areas that feel like they need the most stretch today.  Feel free to come back for more at the end!"
             }
@@ -38,12 +38,13 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Sumo squat",
+              "name": "Sumo Squat",
               "repCount": "8-12",
               "tips": "Engage your glutes as you stand and keep your shoulders upright throughout."
             },
             {
-              "name": "Alternating reverse fly",
+              "name": "Reverse Fly",
+              "side": "Alternating",
               "repCount": "6-8 per side",
               "tips": "Go slowly and stop the weight fully at the top and bottom of the movement to ensure you aren't relying on momentum to help you."
             }
@@ -58,12 +59,13 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Alternating side lunge",
+              "name": "Side Lunge",
+              "side": "Alternating",
               "repCount": "6-8 per side",
               "tips": "Pause to find your balance on each step out and back in.  Take a smaller step to make this easier and a bigger step to make it harder."
             },
             {
-              "name": "Push up (Any kind)!",
+              "name": "Push Ups",
               "repCount": "To Fatigue",
               "tips": "Take any variant you want here.  Knees, plank, knee assist, jack - anything you want!"
             }
@@ -78,12 +80,13 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Calf raise",
+              "name": "Calf Raise",
               "repCount": "6-10",
               "tips": "As this becomes easier, place the ball of your foot on the edge of a step and let your heels sink down with each rep."
             },
             {
-              "name": "Alternating row",
+              "name": "Single Arm Row",
+              "side": "Alternating",
               "repCount": "6-8 per side",
               "tips": "To make this harder, hold the weight at the top of the motion (with your arm flexed) instead of the bottom."
             }
@@ -98,12 +101,13 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Alternating reverse lunge",
+              "name": "Reverse Lunge",
+              "side": "Alternating",
               "repCount": "6-8 per side",
               "tips": "Step back slowly, keeping your balance throughout the motion."
             },
             {
-              "name": "To-the-chin lift",
+              "name": "To-the-Chin Lift",
               "repCount": "6-10",
               "tips": "Make sure to keep your elbow elevated to shoulder height."
             }
@@ -118,7 +122,7 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Dead bugs",
+              "name": "Dead Bugs",
               "repCount": "To Fatigue",
               "tips": "Add one or two dumbbells in your hands to make this harder.  Keep your knee bent to make it easier."
             },
