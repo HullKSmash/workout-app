@@ -68,7 +68,7 @@ export function deriveCore(name) {
   if (DELETE.has(name)) return null;
   if (REMAP[name]) {
     const r = REMAP[name];
-    return { core: titleCase(r.core), side: r.side };
+    return { core: ampersandize(titleCase(r.core)), side: r.side };
   }
   let s = name;
   let side = null;
@@ -85,5 +85,12 @@ export function deriveCore(name) {
   }
   let core = titleCase(s.trim());
   core = CANON[core.toLowerCase()] || core;
-  return { core, side };
+  return { core: ampersandize(core), side };
+}
+
+// Display convention: the standalone conjunction "and" renders as "&"
+// (e.g. "Nordic and Curl" -> "Nordic & Curl"). Word-boundaried so it never
+// touches substrings like "Standing" or "Banded".
+function ampersandize(name) {
+  return name.replace(/\band\b/gi, "&");
 }

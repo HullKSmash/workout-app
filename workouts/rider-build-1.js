@@ -13,7 +13,7 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Squat and Press",
+              "name": "Squat & Press",
               "repCount": "6-8",
               "tips": "Make these two distinct movements without relying on momentum to move between them."
             },
@@ -23,7 +23,7 @@ export default {
               "tips": "Make these three distinct movements, fully completing each and checking your form before starting the next."
             },
             {
-              "name": "Nordic and Curl",
+              "name": "Nordic & Curl",
               "repCount": "6-10",
               "tips": "The eccentric contraction of your quads here can create a lot of soreness.  Ease in if you're new to these!"
             }

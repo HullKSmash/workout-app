@@ -44,7 +44,7 @@ export default {
               "tips": "Go slowly and stop the weight fully at the top and bottom of the movement to ensure you aren't relying on momentum to help you."
             },
             {
-              "name": "Squat and Press",
+              "name": "Squat & Press",
               "repCount": "6-10",
               "tips": "Make these two distinct movements, coming up fully from the squat before starting your press."
             },

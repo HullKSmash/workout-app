@@ -36,3 +36,12 @@ test("deleted movements return null", () => {
   assert.equal(deriveCore("Lateral Line Jumps"), null);
   assert.equal(deriveCore("Jump squat stabilization"), null);
 });
+
+test("standalone 'and' renders as '&', substrings untouched", () => {
+  assert.equal(deriveCore("Nordic and curl").core, "Nordic & Curl");
+  assert.equal(deriveCore("Curl and press").core, "Curl & Press");
+  assert.equal(deriveCore("Squat and press").core, "Squat & Press");
+  // word-boundaried: "and" inside another word must survive
+  assert.equal(deriveCore("Standing abduction").core, "Standing Abduction");
+  assert.equal(deriveCore("Banded crab walks").core, "Banded Crab Walks");
+});

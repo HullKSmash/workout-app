@@ -44,7 +44,7 @@ export default {
               "side": "Alternating"
             },
             {
-              "name": "Curl and Press",
+              "name": "Curl & Press",
               "repCount": "6-8"
             }
           ]

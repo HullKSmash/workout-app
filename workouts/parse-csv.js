@@ -86,7 +86,10 @@ function parseCsvLine(line) {
 
 /** Builds an exercise object, omitting tips/side when blank. */
 function buildExercise(name, side, repCount, tips) {
-  const obj = { name, repCount };
+  // Display convention: the standalone conjunction "and" renders as "&"
+  // (e.g. "Nordic and Curl" -> "Nordic & Curl"). Word-boundaried so it never
+  // touches substrings like "Standing" or "Banded".
+  const obj = { name: name.replace(/\band\b/gi, "&"), repCount };
   if (tips) obj.tips = tips;
   const normalized = normalizeSide(side);
   if (normalized) obj.side = normalized;

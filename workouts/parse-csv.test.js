@@ -31,3 +31,14 @@ test("an unrecognized Side value throws", () => {
   const bad = "Phase,Circuit,Rounds,Exercise,Side,RepCount,Tips\nP,1,1,Forward Lunge,sideways,8,";
   assert.throws(() => parseWorkoutCsv(bad, "T"), /Unknown Side value/);
 });
+
+test("standalone 'and' in an exercise name is parsed as '&', substrings untouched", () => {
+  const c = [
+    "Phase,Circuit,Rounds,Exercise,Side,RepCount,Tips",
+    "P,1,1,Nordic and Curl,,8,",
+    ",,,Standing Abduction,,10,",
+  ].join("\n");
+  const ex = parseWorkoutCsv(c, "T").phases[0].circuits[0].exercises;
+  assert.equal(ex[0].name, "Nordic & Curl");
+  assert.equal(ex[1].name, "Standing Abduction"); // "and" inside "Standing" survives
+});
