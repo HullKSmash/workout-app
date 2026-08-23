@@ -9,6 +9,7 @@ dist
 # superpowers specs + plans under source control.
 docs/*
 !docs/superpowers/
+!docs/authoring/
 
 # Claude Code: ignore machine-local config, but keep shared skills + launch + settings
 .claude/*

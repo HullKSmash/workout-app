@@ -12,6 +12,12 @@ description: >-
 
 # Updating workouts from CSV
 
+> The canonical human-facing authoring guide lives in `docs/authoring/`
+> (`workouts.md`, `exercises.md`, `videos.md`) — this skill is the operational
+> checklist that executes against it. If something here and there ever
+> disagree, treat the docs as the narrative reference and this file as the
+> step-by-step to follow.
+
 Katie authors workouts in a spreadsheet, exports a CSV, and wants it turned into a
 workout definition file the app loads. This skill captures the full pipeline,
 including the non-obvious gotchas that will silently produce a broken or invisible
