@@ -84,16 +84,22 @@ async function main() {
   git(["fetch", "origin"]);
   const wt = mkdtempSync(path.join(tmpdir(), "video-drops-"));
   const remoteHas = git(["ls-remote", "--heads", "origin", BRANCH]) !== "";
+  let added = false;
+  let pushed = false;
   try {
-    if (remoteHas) {
-      git(["worktree", "add", wt, "-B", BRANCH, `origin/${BRANCH}`]);
-    } else {
-      git(["worktree", "add", wt, "-B", BRANCH, "origin/master"]);
-    }
+    git(["worktree", "add", wt, "-B", BRANCH, remoteHas ? `origin/${BRANCH}` : "origin/master"]);
+    added = true;
 
     // 4. Patch the worktree's catalog and write it.
     let wtCatalog = await loadCatalog(wt);
-    for (const u of uploads) wtCatalog = patchCatalog(wtCatalog, u.slug, u.field, u.url);
+    for (const u of uploads) {
+      if (!wtCatalog[u.slug]) {
+        throw new Error(
+          `"${u.slug}" is not in the ${BRANCH} base catalog. Its workout/exercise must be merged to master before its video can be published.`
+        );
+      }
+      wtCatalog = patchCatalog(wtCatalog, u.slug, u.field, u.url);
+    }
     writeFileSync(path.join(wt, "workouts/exercises.data.js"), serializeCatalog(wtCatalog));
 
     // 5. Commit + push. No-op safely if nothing changed.
@@ -104,12 +110,20 @@ async function main() {
       git(["add", "workouts/exercises.data.js"], wt);
       git(["commit", "-m", `feat: add exercise clips (${names})`], wt);
       git(["push", "-u", "origin", BRANCH], wt);
+      pushed = true;
     }
   } finally {
-    git(["worktree", "remove", wt, "--force"]);
+    if (added) {
+      try { git(["worktree", "remove", wt, "--force"]); }
+      catch (e) { console.warn(`  (could not remove worktree ${wt}: ${e.message})`); }
+    }
   }
 
-  // 6. Ensure a PR exists (idempotent) and clear staging.
+  // 6. Ensure a PR exists (idempotent) and clear staging — only if the branch is on the remote.
+  if (!remoteHas && !pushed) {
+    console.log("\nCatalog already current on master; nothing to publish. Staging left untouched.");
+    return;
+  }
   try {
     execFileSync("gh", ["pr", "view", BRANCH], { cwd: REPO, stdio: "ignore" });
   } catch {
