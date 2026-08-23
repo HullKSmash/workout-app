@@ -91,7 +91,7 @@ workouts (those actually exported by `workouts/index.js`) require:
   with `side: "Alternating"`). Printed as `+ N new: <names>`.
 - **Keeps, but warns about, orphans** — catalog entries no longer referenced
   by any active workout. They're left in the file untouched (in case the
-  movement comes back), printed as `! N no longer used: <names>`. A sudden
+  movement comes back), printed as `! N no longer used (kept): <names>`. A sudden
   orphan is often a rename/typo worth double-checking rather than a real
   removal.
 

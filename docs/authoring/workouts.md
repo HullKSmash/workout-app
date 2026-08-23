@@ -28,7 +28,13 @@ Phase, Circuit, Rounds, Exercise, Side, RepCount, Tips
 - **Exercise** — the movement name. The standalone conjunction "and" is
   automatically rendered as `&` (e.g. "Nordic and Curl" → "Nordic & Curl";
   word-boundaried, so it won't touch "Standing" or "Banded"). `Exercise ===
-  "Rest"` becomes its own single-round rest circuit.
+  "Rest"` becomes its own single-round rest circuit **only when its row opens
+  a new circuit** (it has a `Circuit` value, or it's the first row of the
+  phase). A Rest row placed mid-circuit (no new `Circuit` value, an existing
+  circuit already open) is just appended as the last exercise of that
+  circuit, which may run multiple rounds — e.g. `workouts/paul-upper-body.js`
+  has a 3-round "Circuit" phase ending in a `Rest` exercise, not a separate
+  rest circuit.
 - **Side** — `L` / `R` / `A` (or the full words `Left`/`Right`/`Alternating`),
   blank for a bilateral movement. Normalized to `"Left"` / `"Right"` /
   `"Alternating"`; any other value throws an error at parse time.
