@@ -1,0 +1,131 @@
+<h2>How should the whole workout read?</h2>
+<p class="subtitle">Both use your Option C (a checkbox per round, tap in any order). Both keep the current set obvious and let people look ahead/back. They differ in whether upcoming sets are <strong>collapsed</strong> (focused) or <strong>always fully visible</strong> (true paper-checklist). Real workout shown: Rider Alternating Supersets. Notice Superset 1 has Round 2's squat already ticked before Round 1's fly — out-of-order is fine.</p>
+
+<style>
+  .phone { background:#FAF8F5; border-radius:22px; padding:14px 12px; color:#2D2A26; font-family:-apple-system,system-ui,sans-serif; box-shadow:inset 0 0 0 1px #E8E4E0; height:560px; overflow-y:auto; }
+  .phead { text-align:center; margin-bottom:12px; }
+  .phead h4 { font-size:17px; font-weight:800; letter-spacing:-.02em; margin:0; }
+  .pbar { display:flex; gap:3px; margin:8px 4px 2px; }
+  .pseg { flex:1; height:4px; border-radius:2px; background:#E8E4E0; overflow:hidden; }
+  .pseg i { display:block; height:100%; background:#355E3B; }
+  .pcount { font-size:11px; color:#8A8279; font-weight:600; }
+
+  .set { background:#fff; border:1.5px solid #E8E4E0; border-radius:14px; padding:11px 13px; margin-bottom:9px; }
+  .set.cur { border-color:#355E3B; box-shadow:0 0 0 3px #EAF2EC; }
+  .set.done { background:#f4f1ee; opacity:.72; }
+  .set.up { }
+  .sethdr { display:flex; align-items:center; justify-content:space-between; }
+  .setname { font-size:10px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; color:#355E3B; }
+  .set.done .setname { color:#8A8279; }
+  .setmeta { font-size:11px; color:#8A8279; font-weight:600; }
+  .chev { color:#B7B0A8; font-size:13px; }
+  .rhdr { font-size:10px; font-weight:800; color:#A79F96; letter-spacing:.06em; margin:9px 0 3px; }
+  .ex { display:flex; align-items:center; gap:9px; padding:6px 0; }
+  .ex + .ex { border-top:1px solid #F2EFEB; }
+  .box { width:21px;height:21px;border-radius:6px;border:2px solid #D4CFC9; flex-shrink:0; display:inline-flex;align-items:center;justify-content:center; background:#fff; }
+  .box.on { background:#355E3B;border-color:#355E3B;color:#fff;font-size:12px; }
+  .exn { flex:1; font-size:13.5px; font-weight:600; }
+  .exn s { color:#A79F96; font-weight:500; }
+  .exr { font-size:11px; color:#8A8279; }
+  .info { width:20px;height:20px;border-radius:50%; border:1.5px solid #D4CFC9; color:#8A8279; font-size:11px; display:inline-flex;align-items:center;justify-content:center; flex-shrink:0; }
+  .doneflag { font-size:11px; font-weight:700; color:#3AAE6F; }
+  .rest { text-align:center; font-size:10px; color:#B7B0A8; font-weight:700; letter-spacing:.05em; margin:2px 0 9px; }
+  .colcap { text-align:center; font-size:11px; font-weight:700; color:#8A8279; margin:-2px 0 12px; }
+</style>
+
+<div class="split">
+
+  <!-- ===== A: Accordion / focused ===== -->
+  <div class="mockup">
+    <div class="mockup-header">A · Focused accordion</div>
+    <div class="mockup-body" style="background:#efece8;padding:14px;">
+      <div class="phone">
+        <div class="phead">
+          <h4>Rider Alternating Supersets</h4>
+          <div class="pbar">
+            <span class="pseg"><i style="width:100%"></i></span>
+            <span class="pseg"><i style="width:50%"></i></span>
+            <span class="pseg"><i style="width:0"></i></span>
+            <span class="pseg"><i style="width:0"></i></span>
+            <span class="pseg"><i style="width:0"></i></span>
+            <span class="pseg"><i style="width:0"></i></span>
+          </div>
+          <div class="pcount">4 of 22 exercises done</div>
+        </div>
+
+        <div class="set done">
+          <div class="sethdr"><span class="setname">✓ Warm Up</span><span class="doneflag">done</span></div>
+        </div>
+
+        <div class="set cur">
+          <div class="sethdr"><span class="setname">● Superset 1 · in progress</span><span class="setmeta">2 of 6</span></div>
+          <div class="rhdr">ROUND 1</div>
+          <div class="ex"><span class="box on">✓</span><span class="exn">Sumo squat <span class="exr">· 8–12</span></span><span class="info">ⓘ</span></div>
+          <div class="ex"><span class="box">​</span><span class="exn">Alt. reverse fly <span class="exr">· 6–8/side</span></span><span class="info">ⓘ</span></div>
+          <div class="rhdr">ROUND 2</div>
+          <div class="ex"><span class="box on">✓</span><span class="exn">Sumo squat <span class="exr">· 8–12</span></span><span class="info">ⓘ</span></div>
+          <div class="ex"><span class="box">​</span><span class="exn">Alt. reverse fly <span class="exr">· 6–8/side</span></span><span class="info">ⓘ</span></div>
+          <div class="rhdr">ROUND 3</div>
+          <div class="ex"><span class="box">​</span><span class="exn">Sumo squat <span class="exr">· 8–12</span></span><span class="info">ⓘ</span></div>
+          <div class="ex"><span class="box">​</span><span class="exn">Alt. reverse fly <span class="exr">· 6–8/side</span></span><span class="info">ⓘ</span></div>
+        </div>
+
+        <div class="set up"><div class="sethdr"><span class="setname" style="color:#8A8279">Superset 2</span><span class="chev">2 ex · 3 rounds ›</span></div></div>
+        <div class="set up"><div class="sethdr"><span class="setname" style="color:#8A8279">Superset 3</span><span class="chev">2 ex · 3 rounds ›</span></div></div>
+        <div class="set up"><div class="sethdr"><span class="setname" style="color:#8A8279">Superset 4</span><span class="chev">2 ex · 3 rounds ›</span></div></div>
+        <div class="set up"><div class="sethdr"><span class="setname" style="color:#8A8279">Core Finisher</span><span class="chev">2 ex · 3 rounds ›</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="colcap" style="display:none"></div>
+
+  <!-- ===== B: Continuous / paper checklist ===== -->
+  <div class="mockup">
+    <div class="mockup-header">B · Always-visible list</div>
+    <div class="mockup-body" style="background:#efece8;padding:14px;">
+      <div class="phone">
+        <div class="phead">
+          <h4>Rider Alternating Supersets</h4>
+          <div class="pcount" style="margin-top:6px;">4 of 22 exercises done</div>
+        </div>
+
+        <div class="set done">
+          <div class="sethdr"><span class="setname">✓ Warm Up</span><span class="doneflag">done</span></div>
+          <div class="ex"><span class="box on">✓</span><span class="exn"><s>Standing abduction</s></span></div>
+          <div class="ex"><span class="box on">✓</span><span class="exn"><s>Squat twist</s></span></div>
+          <div class="ex"><span class="box on">✓</span><span class="exn"><s>Adductor & hamstring stretch</s></span></div>
+        </div>
+
+        <div class="set cur">
+          <div class="sethdr"><span class="setname">● Superset 1 · in progress</span><span class="setmeta">2 of 6</span></div>
+          <div class="rhdr">ROUND 1</div>
+          <div class="ex"><span class="box on">✓</span><span class="exn">Sumo squat</span><span class="info">ⓘ</span></div>
+          <div class="ex"><span class="box">​</span><span class="exn">Alt. reverse fly</span><span class="info">ⓘ</span></div>
+          <div class="rhdr">ROUND 2</div>
+          <div class="ex"><span class="box on">✓</span><span class="exn">Sumo squat</span><span class="info">ⓘ</span></div>
+          <div class="ex"><span class="box">​</span><span class="exn">Alt. reverse fly</span><span class="info">ⓘ</span></div>
+          <div class="rhdr">ROUND 3 <span style="font-weight:500;color:#C4BCB3">· 2 more</span></div>
+        </div>
+
+        <div class="set up">
+          <div class="sethdr"><span class="setname" style="color:#8A8279">Superset 2</span><span class="setmeta">0 of 6</span></div>
+          <div class="ex"><span class="box">​</span><span class="exn">Alt. side lunge</span><span class="info">ⓘ</span></div>
+          <div class="ex"><span class="box">​</span><span class="exn">Push up (any kind)</span><span class="info">ⓘ</span></div>
+          <div class="exr" style="margin-left:30px;">…×3 rounds</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="cards" data-multiselect style="margin-top:8px;">
+  <div class="card" data-choice="A" onclick="toggleSelect(this)">
+    <div class="card-body"><h3>A · Focused accordion</h3><p>Only the current set is expanded; done sets collapse to a ✓ header, upcoming sets collapse to a tappable header you can open to peek. Least scrolling, most "where am I" clarity.</p></div>
+  </div>
+  <div class="card" data-choice="B" onclick="toggleSelect(this)">
+    <div class="card-body"><h3>B · Always-visible list</h3><p>Every exercise for every set is on the page in order, like a paper checklist. Current set gets the accent ring; done sets dim with strikethrough. More scrolling, nothing hidden.</p></div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:14px;">Also worth reacting to: the little <strong>ⓘ</strong> on each row is the tap target to open that exercise's demo video / tips. And the top progress readout ("4 of 22 done") is how I'd show completeness. Tell me what feels right and what you'd change.</p>

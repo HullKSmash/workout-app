@@ -1,0 +1,95 @@
+<h2>How should a repeated set be checked off?</h2>
+<p class="subtitle">Your workouts are supersets/circuits done for several rounds. This is the core interaction decision — everything else builds on it. Example below: <strong>Superset 1 — Sumo squat + Alternating reverse fly, 3 rounds</strong>. Tap the option that matches how you'd want people to track it.</p>
+
+<style>
+  .phone { background:#FAF8F5; border-radius:20px; padding:16px; color:#2D2A26; font-family:-apple-system,system-ui,sans-serif; box-shadow:inset 0 0 0 1px #E8E4E0; }
+  .setcard { background:#fff; border:1.5px solid #E8E4E0; border-radius:14px; padding:12px 14px; margin-bottom:10px; }
+  .setcard.active { border-color:#355E3B; box-shadow:0 0 0 3px #EAF2EC; }
+  .setlabel { font-size:10px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:#355E3B; margin-bottom:8px; }
+  .exrow { display:flex; align-items:center; gap:10px; padding:7px 0; }
+  .exrow + .exrow { border-top:1px solid #F0EDE9; }
+  .exname { flex:1; }
+  .exname b { font-size:14px; font-weight:700; display:block; }
+  .exname span { font-size:12px; color:#8A8279; }
+  .dot { width:18px; height:18px; border-radius:50%; border:2px solid #D4CFC9; display:inline-flex; align-items:center;justify-content:center; }
+  .dot.on { background:#355E3B; border-color:#355E3B; color:#fff; font-size:10px; }
+  .box { width:22px;height:22px;border-radius:7px;border:2px solid #D4CFC9; flex-shrink:0; display:inline-flex;align-items:center;justify-content:center; }
+  .box.on { background:#355E3B;border-color:#355E3B;color:#fff;font-size:13px; }
+  .roundhdr { font-size:11px; font-weight:700; color:#8A8279; margin:8px 0 4px; }
+  .pill { font-size:10px; font-weight:700; color:#8A8279; background:#F0EDE9; border-radius:10px; padding:2px 7px; }
+  .cards { gap:14px; }
+  .card-body h3 { margin-bottom:2px; }
+</style>
+
+<div class="cards" data-multiselect>
+
+  <!-- Option A -->
+  <div class="card" data-choice="A" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:14px; background:#f7f5f2;">
+      <div class="phone">
+        <div class="setcard active">
+          <div class="setlabel">Superset 1 · Round 2 of 3</div>
+          <div class="exrow">
+            <div class="exname"><b>Sumo squat</b><span>8–12 reps</span></div>
+            <span class="dot on">✓</span><span class="dot on">✓</span><span class="dot">3</span>
+          </div>
+          <div class="exrow">
+            <div class="exname"><b>Alt. reverse fly</b><span>6–8 / side</span></div>
+            <span class="dot on">✓</span><span class="dot">2</span><span class="dot">3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A · Round dots per exercise</h3>
+      <p>Each exercise shows a dot per round. Tap a dot each time you finish that round. Exercise is done when all dots fill; the set is done when every dot is filled. Compact, matches "cycle the superset 3×."</p>
+    </div>
+  </div>
+
+  <!-- Option B -->
+  <div class="card" data-choice="B" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:14px; background:#f7f5f2;">
+      <div class="phone">
+        <div class="setcard active">
+          <div class="setlabel">Superset 1 <span class="pill">×3 rounds</span></div>
+          <div class="exrow">
+            <span class="box on">✓</span>
+            <div class="exname"><b>Sumo squat</b><span>8–12 reps · 3 rounds</span></div>
+          </div>
+          <div class="exrow">
+            <span class="box"></span>
+            <div class="exname"><b>Alt. reverse fly</b><span>6–8 / side · 3 rounds</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B · One checkbox per exercise</h3>
+      <p>Rounds are shown as a label only ("×3 rounds"). One checkbox per exercise — tick it once you've done all the rounds. Simplest and shortest list, but no per-round tracking.</p>
+    </div>
+  </div>
+
+  <!-- Option C -->
+  <div class="card" data-choice="C" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:14px; background:#f7f5f2;">
+      <div class="phone">
+        <div class="setcard active">
+          <div class="setlabel">Superset 1 · Sumo squat + Alt. reverse fly</div>
+          <div class="roundhdr">ROUND 1</div>
+          <div class="exrow"><span class="box on">✓</span><div class="exname"><b>Sumo squat</b> <span>8–12</span></div></div>
+          <div class="exrow"><span class="box on">✓</span><div class="exname"><b>Alt. reverse fly</b> <span>6–8/side</span></div></div>
+          <div class="roundhdr">ROUND 2</div>
+          <div class="exrow"><span class="box"></span><div class="exname"><b>Sumo squat</b> <span>8–12</span></div></div>
+          <div class="exrow"><span class="box"></span><div class="exname"><b>Alt. reverse fly</b> <span>6–8/side</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C · A checkbox for every round</h3>
+      <p>Each round is spelled out with its own checkboxes (Round 1, Round 2, Round 3). Most explicit and granular — closest to the current step-through — but the longest list to scroll.</p>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:16px;">You can select more than one if you like a hybrid, or just tell me in the terminal. I'm also happy to hear "none of these — here's what I picture."</p>

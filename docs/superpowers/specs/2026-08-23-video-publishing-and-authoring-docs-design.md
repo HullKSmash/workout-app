@@ -46,9 +46,16 @@ Two gaps to close:
 
 ### Storage
 
-Vercel Blob store. One-time manual setup (Katie, account-level):
+Vercel Blob store, **public access**. Clips are uploaded with `access: 'public'` and
+served to the browser as a plain `<video src>` with no auth header — the no-backend design
+requires publicly-readable URLs (a private store would need a backend to mint signed URLs).
+The URLs carry an unguessable random suffix; this is the same posture as the existing
+static-asset placeholder. `BLOB_READ_WRITE_TOKEN` is a **write** credential used only by
+the publish script at publish time — it is not a read gate and never ships to the client.
 
-1. Create a Blob store in the Vercel dashboard.
+One-time manual setup (Katie, account-level):
+
+1. Create a **public** Blob store in the Vercel dashboard.
 2. `vercel env pull` its `BLOB_READ_WRITE_TOKEN` into `.env.local` (already the gitignored
    secrets pattern in this repo).
 
