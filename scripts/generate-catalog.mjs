@@ -8,6 +8,7 @@ import path from "path";
 import { WORKOUTS } from "../workouts/index.js";
 import { collectRequired } from "./lib/collect-required.mjs";
 import { mergeCatalog } from "./lib/merge-catalog.mjs";
+import { serializeCatalog } from "./lib/emit-catalog.mjs";
 
 // 1. movements the active workouts require: slug -> { name, hasAlt }
 const required = collectRequired(WORKOUTS);
@@ -19,22 +20,7 @@ if (existsSync(dataPath)) ({ EXERCISES: existing } = await import(pathToFileURL(
 const { merged, added, orphans } = mergeCatalog(existing, required);
 
 // 3. emit, sorted by display name
-const emit = (e) => {
-  const parts = [`name: ${JSON.stringify(e.name)}`, `tips: ${JSON.stringify(e.tips ?? "")}`, `video: ${JSON.stringify(e.video ?? null)}`];
-  if ("videoAlternating" in e) parts.push(`videoAlternating: ${JSON.stringify(e.videoAlternating ?? null)}`);
-  return `{ ${parts.join(", ")} }`;
-};
-const body = Object.entries(merged)
-  .sort((a, b) => a[1].name.localeCompare(b[1].name))
-  .map(([slug, e]) => `  ${JSON.stringify(slug)}: ${emit(e)},`)
-  .join("\n");
-
-writeFileSync(dataPath, `// GENERATED FILE — regenerate with \`node scripts/generate-catalog.mjs\`.
-// Upsert: keys/names come from active workouts; hand-edit video/videoAlternating/tips.
-export const EXERCISES = {
-${body}
-};
-`);
+writeFileSync(dataPath, serializeCatalog(merged));
 
 // 4. write a local-only (gitignored) worklist of movements still missing a clip
 const byName = (a, b) => a[1].name.localeCompare(b[1].name);
