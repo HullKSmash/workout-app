@@ -7,7 +7,7 @@ export default {
   "description": "Focused training to isolate and build key muscles.  Superset format, each with a compound movement and an isolation that build the same muscles.",
   "phases": [
     {
-      "name": "Compound Activation",
+      "name": "Compound",
       "circuits": [
         {
           "repeatCount": 2,

@@ -1,10 +1,10 @@
 export default {
-  "name": "Rider Single Leg Sandwiches 1",
+  "name": "Rider Single Leg Sandwiches 2",
   "audiences": [
     "equestrian"
   ],
   "difficulty": "moderate",
-  "description": "The sandwich format is an especially time-efficient way to get focused unilateral work in.  Compound, left-right-left-right, compound.",
+  "description": "",
   "phases": [
     {
       "name": "Warm Up",
@@ -21,8 +21,8 @@ export default {
               "repCount": "5-10 per side"
             },
             {
-              "name": "Single Leg Forward Hops",
-              "repCount": "8 per side"
+              "name": "Jump Squat",
+              "repCount": "5-10"
             }
           ]
         }
@@ -35,7 +35,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Calf Raise & Curl",
+              "name": "Hamstring Bridge",
               "repCount": "6-8"
             }
           ]
@@ -44,12 +44,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Split Squat",
+              "name": "Single Arm Row",
               "side": "Left",
               "repCount": "6-8"
             },
             {
-              "name": "Split Squat",
+              "name": "Single Arm Row",
               "side": "Right",
               "repCount": "6-8"
             }
@@ -59,7 +59,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Calf Raise & Curl",
+              "name": "Hamstring Bridge",
               "repCount": "6-8"
             }
           ]
@@ -73,8 +73,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Row w/ Top Hold",
-              "side": "Alternating",
+              "name": "Front to Side Raise",
               "repCount": "6-8"
             }
           ]
@@ -83,12 +82,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Side Lying Leg Lift",
+              "name": "Static Lunge",
               "side": "Left",
               "repCount": "6-8"
             },
             {
-              "name": "Side Lying Leg Lift",
+              "name": "Static Lunge",
               "side": "Right",
               "repCount": "6-8"
             }
@@ -98,8 +97,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Row w/ Top Hold",
-              "side": "Alternating",
+              "name": "Front to Side Raise",
               "repCount": "6-8"
             }
           ]
@@ -113,7 +111,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Romanian Dead Lift",
+              "name": "Sumo Squat",
               "repCount": "6-8"
             }
           ]
@@ -122,12 +120,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Single Leg Glute Bridge/Chest Press Hold",
+              "name": "Single Leg RDL",
               "side": "Left",
               "repCount": "6-8"
             },
             {
-              "name": "Single Leg Glute Bridge/Chest Press Hold",
+              "name": "Single Leg RDL",
               "side": "Right",
               "repCount": "6-8"
             }
@@ -137,7 +135,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Romanian Dead Lift",
+              "name": "Sumo Squat",
               "repCount": "6-8"
             }
           ]
@@ -151,15 +149,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Dead Bugs",
+              "name": "Russian Twist",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Plank Pikes",
+              "name": "Adductor Crosses",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Diagonal Sit Ups",
+              "name": "Plank Toe Taps",
               "repCount": "To Fatigue"
             }
           ]

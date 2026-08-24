@@ -24,7 +24,6 @@ export default {
             },
             {
               "name": "Standing Abduction",
-              "side": "Alternating",
               "repCount": "5-10 per side",
               "tips": "Keep your balance as you rotate your knee out, using your glutes to open your hip."
             }
