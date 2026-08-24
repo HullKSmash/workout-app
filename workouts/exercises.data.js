@@ -15,7 +15,6 @@ export const EXERCISES = {
   "curtsy-lunge": { name: "Curtsy Lunge", tips: "", video: null, videoAlternating: null },
   "dead-bugs": { name: "Dead Bugs", tips: "", video: null },
   "diagonal-sit-ups": { name: "Diagonal Sit Ups", tips: "", video: null },
-  "dumbbell-row": { name: "Dumbbell Row", tips: "", video: null },
   "fire-hydrant-circles": { name: "Fire Hydrant Circles", tips: "", video: null },
   "fire-hydrants": { name: "Fire Hydrants", tips: "", video: null },
   "flexor-lifts": { name: "Flexor Lifts", tips: "", video: null, videoAlternating: null },
