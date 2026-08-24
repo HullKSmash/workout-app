@@ -90,6 +90,6 @@ export const EXERCISES = {
   "to-the-chin-lift": { name: "To-the-Chin Lift", tips: "", video: null },
   "toe-taps": { name: "Toe Taps", tips: "", video: null },
   "unilateral-calf-raise-and-curl-hold": { name: "Unilateral Calf Raise & Curl Hold", tips: "", video: null },
-  "weighted-bird-dogs": { name: "Weighted Bird Dogs", tips: "", video: null },
+  "weighted-bird-dogs": { name: "Weighted Bird Dogs", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/weighted-bird-dogs.mp4" },
   "y-scaption": { name: "Y Scaption", tips: "", video: null },
 };
