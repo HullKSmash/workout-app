@@ -10,7 +10,7 @@ export default {
       "name": "Plyometric Warm Up",
       "circuits": [
         {
-          "repeatCount": 1,
+          "repeatCount": 2,
           "exercises": [
             {
               "name": "Reverse Lunge Taps",
@@ -73,7 +73,7 @@ export default {
             {
               "name": "RDL & Row",
               "repCount": "8-10",
-              "tips": "You may need a lighter weight to be able to do both of these than you would if you did them separately.  That's ok - work with the lighter weight here."
+              "tips": "You can probably RDL more than you can row.  That's ok - work with the lighter weight here."
             },
             {
               "name": "Banded Crab Walks",

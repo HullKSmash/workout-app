@@ -10,7 +10,7 @@ export default {
       "name": "Plyometric Warm Up",
       "circuits": [
         {
-          "repeatCount": 1,
+          "repeatCount": 2,
           "exercises": [
             {
               "name": "Single Leg Pogos",
@@ -92,7 +92,8 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Banded Crab Walks",
+              "name": "Side Lunge",
+              "side": "Alternating",
               "repCount": "8-10 per side",
               "tips": "When this gets too easy, use a stronger band and take bigger steps."
             },
