@@ -32,8 +32,9 @@ scripts/publish-videos.mjs` (see the `publish-videos` script in
 
 Drop finished, correctly-named `.mp4` files into the staging folder:
 
-- Default: `~/exercise-clips/` (outside the repo, so raw/curated footage never
-  risks entering git).
+- Default: an `exercise-clips/` folder alongside the repo — its sibling, i.e.
+  `../exercise-clips` (for this checkout, `~/code/exercise-clips/`). Kept outside
+  the repo so raw/curated footage never risks entering git.
 - Override with the `EXERCISE_CLIPS_DIR` environment variable if you want a
   different location.
 

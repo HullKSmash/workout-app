@@ -6,12 +6,13 @@
 //   npm run publish-videos            # real run
 //   npm run publish-videos -- --dry-run   # validate + show plan, no uploads/git
 //
-// Staging dir: $EXERCISE_CLIPS_DIR or ~/exercise-clips. Clips must be named
+// Staging dir: $EXERCISE_CLIPS_DIR, else an `exercise-clips` folder alongside the
+// repo (its sibling, e.g. ~/code/exercise-clips). Clips must be named
 // "<slug>.mp4" (primary) or "<slug>-alt.mp4" (alternating variant).
 import { readFileSync, readdirSync, writeFileSync, rmSync, mkdtempSync } from "fs";
 import { pathToFileURL } from "url";
 import { execFileSync } from "child_process";
-import { homedir, tmpdir } from "os";
+import { tmpdir } from "os";
 import path from "path";
 import { put } from "@vercel/blob";
 import { parseClipName } from "./lib/parse-clip-name.mjs";
@@ -20,7 +21,7 @@ import { serializeCatalog } from "./lib/emit-catalog.mjs";
 
 const DRY_RUN = process.argv.includes("--dry-run");
 const REPO = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
-const STAGING = process.env.EXERCISE_CLIPS_DIR || path.join(homedir(), "exercise-clips");
+const STAGING = process.env.EXERCISE_CLIPS_DIR || path.resolve(REPO, "..", "exercise-clips");
 const BRANCH = "video-drops";
 const git = (args, cwd = REPO) => execFileSync("git", args, { cwd, encoding: "utf8" }).trim();
 
