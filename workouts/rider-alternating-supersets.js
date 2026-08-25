@@ -15,7 +15,7 @@ export default {
             {
               "name": "Standing Abduction",
               "repCount": "6-8 per side",
-              "tips": "Go slow and challenge your balance on each leg."
+              "tips": "Keep your balance as you rotate your knee out, using your glutes to open your hip."
             },
             {
               "name": "Squat Twist",
@@ -40,7 +40,7 @@ export default {
             {
               "name": "Sumo Squat",
               "repCount": "8-12",
-              "tips": "Engage your glutes as you stand and keep your shoulders upright throughout."
+              "tips": "Point your toes out at a 45-degree angle from your body.  Engage your glutes as you stand and keep your shoulders upright throughout."
             },
             {
               "name": "Reverse Fly",
@@ -85,7 +85,7 @@ export default {
               "tips": "As this becomes easier, place the ball of your foot on the edge of a step and let your heels sink down with each rep."
             },
             {
-              "name": "Single Arm Row",
+              "name": "Row",
               "side": "Alternating",
               "repCount": "6-8 per side",
               "tips": "To make this harder, hold the weight at the top of the motion (with your arm flexed) instead of the bottom."

@@ -10,7 +10,7 @@ export default {
       "name": "Warm Up",
       "circuits": [
         {
-          "repeatCount": 1,
+          "repeatCount": 2,
           "exercises": [
             {
               "name": "Standing Cat/Cow",
@@ -24,7 +24,6 @@ export default {
             },
             {
               "name": "Standing Abduction",
-              "side": "Alternating",
               "repCount": "5-10 per side",
               "tips": "Keep your balance as you rotate your knee out, using your glutes to open your hip."
             }
@@ -92,7 +91,6 @@ export default {
           "exercises": [
             {
               "name": "Knee Assist Plank",
-              "side": "Alternating",
               "repCount": "To Fatigue",
               "tips": "Make this harder by holding a forearm plank for a few seconds and returning to knee assist to build more plank stamina."
             },
