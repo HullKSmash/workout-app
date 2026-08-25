@@ -10,7 +10,7 @@ export default {
       "name": "Plyo & Balance Warm Up",
       "circuits": [
         {
-          "repeatCount": 1,
+          "repeatCount": 2,
           "exercises": [
             {
               "name": "Reverse Lunge Taps",

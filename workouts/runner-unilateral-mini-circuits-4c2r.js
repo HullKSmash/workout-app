@@ -10,7 +10,7 @@ export default {
       "name": "Plyometric Warm Up",
       "circuits": [
         {
-          "repeatCount": 1,
+          "repeatCount": 2,
           "exercises": [
             {
               "name": "Runner Hops",
