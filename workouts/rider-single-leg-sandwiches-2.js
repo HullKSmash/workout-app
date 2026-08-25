@@ -4,7 +4,7 @@ export default {
     "equestrian"
   ],
   "difficulty": "moderate",
-  "description": "",
+  "description": "The sandwich format is an especially time-efficient way to get focused unilateral work in.  Each set is compound, left-right-left-right, compound.",
   "phases": [
     {
       "name": "Warm Up",
