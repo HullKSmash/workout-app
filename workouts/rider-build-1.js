@@ -58,12 +58,12 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Skull Crushers",
+              "name": "Skull Crusher",
               "repCount": "6-8",
               "tips": "Hinge at the elbow to use your triceps, not your chest, to lift the weight."
             },
             {
-              "name": "Push Ups",
+              "name": "Push Up",
               "repCount": "6-8",
               "tips": "Take a variation using your knees if these are too hard.  If they're too easy, alternate picking up one foot or add a plank jack on each rep."
             }
@@ -126,7 +126,7 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Butterfly Sit Ups",
+              "name": "Butterfly Sit Up",
               "repCount": "To Fatigue",
               "tips": "If you can't sit up all the way, make these crunches while you build strength."
             },
@@ -136,7 +136,7 @@ export default {
               "tips": "Increase your range of motion, add weight, and extend your legs as you get stronger."
             },
             {
-              "name": "Plank Pikes",
+              "name": "Plank Pike",
               "repCount": "To Fatigue",
               "tips": "Do this on your forearms or hands as you prefer."
             }

@@ -11,26 +11,28 @@ const DELETE = new Set([
 
 // exact raw name -> { core, side } ; side null means bilateral/unspecified
 const REMAP = {
-  "Adductor crosses": { core: "Lying Adductor Crosses", side: null },
+  "Adductor crosses": { core: "Lying Adductor Cross", side: null },
   "Dumbbell row": { core: "Row", side: null },
   "RDL": { core: "Romanian Dead Lift", side: null },
   "Deadlift": { core: "Romanian Dead Lift", side: null },
   "Plié squat": { core: "Sumo Squat", side: null },
   "Alternating row": { core: "Single Arm Row", side: "Alternating" },
-  "Weighted bird dogs, L/R": { core: "Weighted Bird Dogs", side: "Left" },
-  "Weighted bird dogs, R/L": { core: "Weighted Bird Dogs", side: "Right" },
+  "Weighted bird dogs, L/R": { core: "Weighted Bird Dog", side: "Left" },
+  "Weighted bird dogs, R/L": { core: "Weighted Bird Dog", side: "Right" },
   "Side lunge w/ balance press, L/R": { core: "Side Lunge w/ Balance Press", side: "Left" },
   "Side lunge w/ balance press, R/L": { core: "Side Lunge w/ Balance Press", side: "Right" },
-  "Push up (Any kind)!": { core: "Push Ups", side: null },
+  "Push up (Any kind)!": { core: "Push Up", side: null },
 };
 
-// core-level canonical merges that differ by more than casing
+// core-level canonical merges that differ by more than casing.
+// Exercise names are normalized to singular, so any lingering plural raw
+// form collapses onto the canonical singular here.
 const CANON = {
   "calf raise and curl": "Calf Raise & Curl",
   "row and kickback": "Row & Kickback",
-  "mountain climber": "Mountain Climbers",
-  "plank pike": "Plank Pikes",
-  "runner hop": "Runner Hops",
+  "mountain climbers": "Mountain Climber",
+  "plank pikes": "Plank Pike",
+  "runner hops": "Runner Hop",
   "to the chin lifts": "To-the-Chin Lift",
   "to-the-chin lift": "To-the-Chin Lift",
 };

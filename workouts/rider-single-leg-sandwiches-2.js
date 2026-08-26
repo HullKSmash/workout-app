@@ -17,7 +17,7 @@ export default {
               "repCount": "6-8"
             },
             {
-              "name": "Hip Circles",
+              "name": "Hip Circle",
               "repCount": "5-10 per side"
             },
             {
@@ -153,11 +153,11 @@ export default {
               "repCount": "To Fatigue"
             },
             {
-              "name": "Adductor Crosses",
+              "name": "Adductor Cross",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Plank Toe Taps",
+              "name": "Plank Toe Tap",
               "repCount": "To Fatigue"
             }
           ]

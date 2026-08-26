@@ -13,19 +13,19 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Reverse Lunge Taps",
+              "name": "Reverse Lunge Tap",
               "side": "Left",
               "repCount": "6-10",
               "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights."
             },
             {
-              "name": "Reverse Lunge Taps",
+              "name": "Reverse Lunge Tap",
               "side": "Right",
               "repCount": "6-10",
               "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights."
             },
             {
-              "name": "Lateral Pogos",
+              "name": "Lateral Pogo",
               "repCount": "10-15",
               "tips": "Keep this motion as small as you need to to maintain control.  Turn it into a pogo if the lateral movement is too much."
             }
@@ -166,17 +166,17 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Hip Dip Planks",
+              "name": "Hip Dip Plank",
               "repCount": "10-12",
               "tips": "If you're still working on your forearm plank, start from a knee plank and lift one knee off the ground at a time, alternating, skipping the dip until you can hold a plank for 10+ seconds."
             },
             {
-              "name": "Toe Taps",
+              "name": "Toe Tap",
               "repCount": "10-12",
               "tips": "Don't worry if you can't reach your toes - the point is to add the dynamic movement of the crunch on top of the static hold of keeping your legs up."
             },
             {
-              "name": "Dead Bugs",
+              "name": "Dead Bug",
               "repCount": "6-10 per side",
               "tips": "When this gets too easy, hold a weight or two in your hands."
             }

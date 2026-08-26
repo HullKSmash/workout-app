@@ -27,8 +27,8 @@ test("rejects an unknown slug", () => {
   assert.match(r.reason, /no catalog entry/);
 });
 
-test("rejects an -alt clip when the entry has no alternating variant", () => {
-  const r = parseClipName("bench-press-alt.mp4", catalog);
-  assert.equal(r.ok, false);
-  assert.match(r.reason, /alternating/);
+test("accepts an -alt clip even when the entry has no alternating variant yet", () => {
+  // An -alt clip declares the exercise has an alternating variant; the
+  // videoAlternating field is created on the entry downstream (see patchCatalog).
+  assert.deepEqual(parseClipName("bench-press-alt.mp4", catalog), { ok: true, slug: "bench-press", field: "videoAlternating" });
 });

@@ -98,7 +98,7 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Flexor Up & Overs",
+              "name": "Flexor Up & Over",
               "repCount": "6-8 per side",
               "tips": "Resist the urge to rock your pelvis back to bring your leg higher.  Think about closing the angle between your torso and your femur without rounding your lower back."
             },
@@ -125,17 +125,17 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Plank Toe Taps",
+              "name": "Plank Toe Tap",
               "repCount": "To Fatigue",
               "tips": "If this is too hard, practice holding a plank or just lifting each foot.  Use your hands or forearms as you prefer."
             },
             {
-              "name": "Diagonal Sit Ups",
+              "name": "Diagonal Sit Up",
               "repCount": "To Fatigue",
               "tips": "If you can't sit up all the way, crunch - or do a mix of sit ups and crunches."
             },
             {
-              "name": "Plank Pikes",
+              "name": "Plank Pike",
               "repCount": "To Fatigue",
               "tips": "Do this on your forearms or hands as you prefer."
             }

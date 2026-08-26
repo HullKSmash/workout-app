@@ -89,7 +89,7 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Dead Bugs",
+              "name": "Dead Bug",
               "repCount": "To Fatigue",
               "tips": "Hold weight in your hands if this is too easy."
             },

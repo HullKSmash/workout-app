@@ -143,15 +143,15 @@ export default {
           repeatCount: 2,
           exercises: [
             {
-              name: "Hip Dip Planks",
+              name: "Hip Dip Plank",
               repCount: "10-12",
             },
             {
-              name: "Toe Taps",
+              name: "Toe Tap",
               repCount: "10-12",
             },
             {
-              name: "Dead Bugs",
+              name: "Dead Bug",
               repCount: "6-10 per side",
             }
           ],
