@@ -42,7 +42,9 @@ Drop finished, correctly-named `.mp4` files into the staging folder:
 the filename stem):
 
 - Primary clip: `<slug>.mp4` — e.g. `bench-press.mp4`
-- Alternating-side clip: `<slug>-alt.mp4` — e.g. `curtsy-lunge-alt.mp4`
+- Alternating-side clip: `<slug>-alt.mp4` — e.g. `curtsy-lunge-alt.mp4`. The
+  `-alt` suffix declares the exercise as alternating; the catalog entry's
+  `videoAlternating` field is created on publish if it doesn't exist yet.
 
 Placing an intentionally-named file in this folder is the actual control
 point; the command below just mechanizes what happens next.
@@ -57,12 +59,15 @@ npm run publish-videos -- --dry-run # validates + prints the plan, no uploads/gi
 For every file in the staging folder, `publish-videos.mjs`:
 
 1. **Validates** the filename against the current catalog
-   (`scripts/lib/parse-clip-name.mjs`): it must end in `.mp4`, its slug (minus
-   an optional `-alt` suffix) must exist as a catalog key, and an `-alt` file
-   is only valid if that catalog entry actually has a `videoAlternating`
-   field. Anything that fails is **skipped with a `SKIP <filename>: <reason>`
-   warning** — an unknown or mis-typed slug never blocks the rest of the run.
-   If nothing in the folder validates, the run aborts with an error.
+   (`scripts/lib/parse-clip-name.mjs`): it must end in `.mp4` and its slug
+   (minus an optional `-alt` suffix) must exist as a catalog key. An `-alt`
+   file asserts the exercise has an alternating variant — its
+   `videoAlternating` field is created on the catalog entry if it isn't
+   already present, so you don't need to pre-add the field before publishing
+   an alternating clip. Anything that fails is **skipped with a
+   `SKIP <filename>: <reason>` warning** — an unknown or mis-typed slug never
+   blocks the rest of the run. If nothing in the folder validates, the run
+   aborts with an error.
 2. **Uploads** each valid clip to Blob at a deterministic path
    (`exercises/<slug>.mp4` or `exercises/<slug>-alt.mp4`), public access,
    `allowOverwrite: true` — re-publishing the same slug replaces its blob
