@@ -65,7 +65,7 @@ export default {
               "tips": "Pause to find your balance on each step out and back in.  Take a smaller step to make this easier and a bigger step to make it harder."
             },
             {
-              "name": "Push Ups",
+              "name": "Push Up",
               "repCount": "To Fatigue",
               "tips": "Take any variant you want here.  Knees, plank, knee assist, jack - anything you want!"
             }
@@ -122,7 +122,7 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Dead Bugs",
+              "name": "Dead Bug",
               "repCount": "To Fatigue",
               "tips": "Add one or two dumbbells in your hands to make this harder.  Keep your knee bent to make it easier."
             },

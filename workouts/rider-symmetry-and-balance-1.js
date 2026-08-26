@@ -38,13 +38,13 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Weighted Bird Dogs",
+              "name": "Weighted Bird Dog",
               "side": "Left",
               "repCount": "8-10",
               "tips": "Drop the weight if this is too hard on your shoulders.  Extend and contract through as much range of motion as you can."
             },
             {
-              "name": "Weighted Bird Dogs",
+              "name": "Weighted Bird Dog",
               "side": "Right",
               "repCount": "8-10",
               "tips": "Drop the weight if this is too hard on your shoulders.  Extend and contract through as much range of motion as you can."
@@ -104,13 +104,13 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Glute Arcs",
+              "name": "Glute Arc",
               "side": "Left",
               "repCount": "8-10",
               "tips": "Use your full range of motion here and go slow."
             },
             {
-              "name": "Glute Arcs",
+              "name": "Glute Arc",
               "side": "Right",
               "repCount": "8-10",
               "tips": "Use your full range of motion here and go slow."
@@ -126,17 +126,17 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Mountain Climbers",
+              "name": "Mountain Climber",
               "repCount": "To Fatigue",
               "tips": "Slow this down if the fast motion is uncomfortable.  If this gets too easy, add a push up every few reps."
             },
             {
-              "name": "Heel Taps",
+              "name": "Heel Tap",
               "repCount": "To Fatigue",
               "tips": "Make this harder by walking your feet closer together and further away from you.  Make it easier by doing the opposite."
             },
             {
-              "name": "Butterfly Sit Ups",
+              "name": "Butterfly Sit Up",
               "repCount": "To Fatigue",
               "tips": "If you can't sit up all the way, make these crunches while you build strength."
             }

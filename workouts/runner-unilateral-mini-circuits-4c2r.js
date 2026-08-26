@@ -13,19 +13,19 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Runner Hops",
+              "name": "Runner Hop",
               "side": "Left",
               "repCount": "10-20",
               "tips": "If you find yourself losing your balance, leave off the hop and make this a slow, fluid motion until you feel balanced throughout."
             },
             {
-              "name": "Runner Hops",
+              "name": "Runner Hop",
               "side": "Right",
               "repCount": "10-20",
               "tips": "If you find yourself losing your balance, leave off the hop and make this a slow, fluid motion until you feel balanced throughout."
             },
             {
-              "name": "Lateral Pogos",
+              "name": "Lateral Pogo",
               "repCount": "8-10",
               "tips": "Keep this motion as small as you need to to maintain control.  Turn it into a pogo if the lateral movement is too much."
             }
@@ -120,7 +120,7 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Flexor Lifts",
+              "name": "Flexor Lift",
               "repCount": "6-10 per side",
               "tips": "Resist the urge to rock your pelvis back to bring your leg higher.  Think about closing the angle between your torso and your femur without rounding your lower back."
             },
@@ -147,7 +147,7 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Lying Adductor Crosses",
+              "name": "Lying Adductor Cross",
               "repCount": "10-20",
               "tips": "This one seems easy, but you might feel it later!  Make sure to work both sides evenly."
             },
@@ -157,7 +157,7 @@ export default {
               "tips": "Increase your range of motion and hold a weight as you get stronger."
             },
             {
-              "name": "Plank Pikes",
+              "name": "Plank Pike",
               "repCount": "10-20",
               "tips": "Do this on your forearms or hands as you prefer."
             }

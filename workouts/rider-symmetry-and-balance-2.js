@@ -13,12 +13,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Ice Skaters",
+              "name": "Ice Skater",
               "repCount": "5-10 per side",
               "tips": "Slow this down as much as you need to to keep your balance.  Speed it up to challenge yourself."
             },
             {
-              "name": "Hip Rockers",
+              "name": "Hip Rocker",
               "repCount": "8-12 per side",
               "tips": "To make this harder, add a weight on your hips."
             },
@@ -104,13 +104,13 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Fire Hydrant Circles",
+              "name": "Fire Hydrant Circle",
               "side": "Left",
               "repCount": "6-10",
               "tips": "Alignment of your resting leg is very important here - directly under your hip.  Don't cut corners by shifting your hips to your resting side!"
             },
             {
-              "name": "Fire Hydrant Circles",
+              "name": "Fire Hydrant Circle",
               "side": "Right",
               "repCount": "6-10",
               "tips": "Alignment of your resting leg is very important here - directly under your hip.  Don't cut corners by shifting your hips to your resting side!"
@@ -126,12 +126,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Plank Toe Taps",
+              "name": "Plank Toe Tap",
               "repCount": "To Fatigue",
               "tips": "If this is too hard, practice holding a plank or just lifting each foot.  Use your hands or forearms as you prefer."
             },
             {
-              "name": "Diagonal Sit Ups",
+              "name": "Diagonal Sit Up",
               "repCount": "To Fatigue",
               "tips": "Work both sides evenly.  If you can't sit up all the way, make these crunches while you build strength."
             },

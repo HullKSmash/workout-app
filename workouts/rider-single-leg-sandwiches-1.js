@@ -17,11 +17,11 @@ export default {
               "repCount": "6-8"
             },
             {
-              "name": "Hip Circles",
+              "name": "Hip Circle",
               "repCount": "5-10 per side"
             },
             {
-              "name": "Single Leg Forward Hops",
+              "name": "Single Leg Forward Hop",
               "repCount": "8 per side"
             }
           ]
@@ -151,15 +151,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Dead Bugs",
+              "name": "Dead Bug",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Plank Pikes",
+              "name": "Plank Pike",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Diagonal Sit Ups",
+              "name": "Diagonal Sit Up",
               "repCount": "To Fatigue"
             }
           ]

@@ -13,12 +13,12 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Pull Ups",
+              "name": "Pull Up",
               "repCount": "To Fatigue",
               "tips": "Use extra hang time and slow descents to build strength for more reps."
             },
             {
-              "name": "Bicep Curls",
+              "name": "Bicep Curl",
               "repCount": "8-12",
               "tips": "Try different grip and angle variations if these get too easy or boring: hammer curls, overhand grip, rotating curls (underhand up, overhand down), or side-angle curls."
             },
@@ -28,7 +28,7 @@ export default {
               "tips": "Keep your elbows at a 45-degree angle to avoid excess shoulder strain.  Bring them closer together if you need to."
             },
             {
-              "name": "Push Ups",
+              "name": "Push Up",
               "repCount": "To Fatigue",
               "tips": "When these get easy, try incorcorating some plank jacks: hop your feet apart and together again while holding at the top of each rep."
             },

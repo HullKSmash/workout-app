@@ -13,19 +13,19 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Reverse Lunge Taps",
+              "name": "Reverse Lunge Tap",
               "side": "Left",
               "repCount": "6-10",
               "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights."
             },
             {
-              "name": "Reverse Lunge Taps",
+              "name": "Reverse Lunge Tap",
               "side": "Right",
               "repCount": "6-10",
               "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights."
             },
             {
-              "name": "Pogos",
+              "name": "Pogo",
               "repCount": "10-20",
               "tips": "Keep this motion as small as you need to to maintain control."
             }
@@ -76,7 +76,7 @@ export default {
               "tips": "You can probably RDL more than you can row.  That's ok - work with the lighter weight here."
             },
             {
-              "name": "Banded Crab Walks",
+              "name": "Banded Crab Walk",
               "repCount": "8-10 per side",
               "tips": "If these are too easy, take bigger steps, then more steps."
             }
@@ -101,7 +101,7 @@ export default {
               "tips": "Maintain control and pause at the top of the motion."
             },
             {
-              "name": "Flexor Lifts",
+              "name": "Flexor Lift",
               "side": "Alternating",
               "repCount": "5-10 per side",
               "tips": "Make sure to sit up straight- you want to bring your thigh towards your torso without leaning back.  Work both sides evenly."
@@ -117,12 +117,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Lying Adductor Crosses",
+              "name": "Lying Adductor Cross",
               "repCount": "To Fatigue",
               "tips": "This one seems easy, but you might feel it later!  Make sure to work both sides evenly."
             },
             {
-              "name": "Heel Taps",
+              "name": "Heel Tap",
               "repCount": "To Fatigue",
               "tips": "Move your heels further from your body to make this harder.  Make sure to work both sides evenly."
             },

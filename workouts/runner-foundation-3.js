@@ -21,7 +21,7 @@ export default {
               repCount: "10-21",
             },
             {
-              name: "Squat Jumps",
+              name: "Squat Jump",
               repCount: "8-10",
             }
           ],
@@ -93,7 +93,7 @@ export default {
           repeatCount: 1,
           exercises: [
             {
-              name: "Banded Crab Walks",
+              name: "Banded Crab Walk",
               repCount: "8-10 per side",
             }
           ],
@@ -115,7 +115,7 @@ export default {
           repeatCount: 1,
           exercises: [
             {
-              name: "Banded Crab Walks",
+              name: "Banded Crab Walk",
               repCount: "8-10 per side",
             }
           ],
@@ -129,7 +129,7 @@ export default {
           repeatCount: 2,
           exercises: [
             {
-              name: "Lying Adductor Crosses",
+              name: "Lying Adductor Cross",
               repCount: "10-20",
             },
             {

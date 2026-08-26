@@ -100,7 +100,7 @@ export default {
               "tips": "This is a small movement.  Make sure it comes from your abs!  If your neck gets tired, you can place your hands behind your head while you build strength, but don't pull your head forward."
             },
             {
-              "name": "Heel Taps",
+              "name": "Heel Tap",
               "repCount": "To Fatigue",
               "tips": "Make this harder by walking your feet closer together and further away from you.  Make it easier by doing the opposite."
             }

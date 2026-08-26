@@ -13,7 +13,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Jumping Jacks",
+              "name": "Jumping Jack",
               "repCount": 15
             }
           ]
@@ -27,17 +27,17 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Fire Hydrants",
+              "name": "Fire Hydrant",
               "side": "Left",
               "repCount": 8
             },
             {
-              "name": "Fire Hydrants",
+              "name": "Fire Hydrant",
               "side": "Right",
               "repCount": 8
             },
             {
-              "name": "Mountain Climbers",
+              "name": "Mountain Climber",
               "repCount": 20
             }
           ]
@@ -173,12 +173,12 @@ export default {
               "repCount": 8
             },
             {
-              "name": "Standing Lateral Leg Lifts",
+              "name": "Standing Lateral Leg Lift",
               "side": "Left",
               "repCount": 8
             },
             {
-              "name": "Standing Lateral Leg Lifts",
+              "name": "Standing Lateral Leg Lift",
               "side": "Right",
               "repCount": 8
             }

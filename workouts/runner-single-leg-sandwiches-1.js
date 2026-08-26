@@ -13,19 +13,19 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Single Leg Pogos",
+              "name": "Single Leg Pogo",
               "side": "Left",
               "repCount": "10-20",
               "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
             },
             {
-              "name": "Single Leg Pogos",
+              "name": "Single Leg Pogo",
               "side": "Right",
               "repCount": "10-20",
               "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
             },
             {
-              "name": "Squat Jumps",
+              "name": "Squat Jump",
               "repCount": "8-10",
               "tips": "Make your landing soft and fluid to practice absorbing impact."
             }
@@ -50,13 +50,13 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Weighted Bird Dogs",
+              "name": "Weighted Bird Dog",
               "side": "Left",
               "repCount": "8-10",
               "tips": "Extend and contract through as much range of motion as you can."
             },
             {
-              "name": "Weighted Bird Dogs",
+              "name": "Weighted Bird Dog",
               "side": "Right",
               "repCount": "8-10",
               "tips": "Extend and contract through as much range of motion as you can."
@@ -135,13 +135,13 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Glute Arcs",
+              "name": "Glute Arc",
               "side": "Left",
               "repCount": "8-10",
               "tips": "Use your full range of motion here and go slow."
             },
             {
-              "name": "Glute Arcs",
+              "name": "Glute Arc",
               "side": "Right",
               "repCount": "8-10",
               "tips": "Use your full range of motion here and go slow."
@@ -168,7 +168,7 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Lying Adductor Crosses",
+              "name": "Lying Adductor Cross",
               "repCount": "10-20",
               "tips": "This one seems easy, but you might feel it later!  Make sure to work both sides evenly."
             },
@@ -178,7 +178,7 @@ export default {
               "tips": "Increase your range of motion and hold a weight as you get stronger."
             },
             {
-              "name": "Plank Pikes",
+              "name": "Plank Pike",
               "repCount": "10-20",
               "tips": "Do this on your forearms or hands as you prefer."
             }

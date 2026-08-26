@@ -27,9 +27,9 @@ test("REMAP overrides (RDL, Deadlift, Alternating Row, Plié)", () => {
 test("CANON collapses & vs and / plurals / hyphenation", () => {
   assert.equal(deriveCore("Calf raise and curl").core, "Calf Raise & Curl");
   assert.equal(deriveCore("Row and kickback").core, "Row & Kickback");
-  assert.equal(deriveCore("Mountain climber").core, "Mountain Climbers");
-  assert.equal(deriveCore("Plank pike").core, "Plank Pikes");
-  assert.equal(deriveCore("Runner Hop, Left").core, "Runner Hops");
+  assert.equal(deriveCore("Mountain climbers").core, "Mountain Climber");
+  assert.equal(deriveCore("Plank pikes").core, "Plank Pike");
+  assert.equal(deriveCore("Runner Hops, Left").core, "Runner Hop");
 });
 
 test("deleted movements return null", () => {
