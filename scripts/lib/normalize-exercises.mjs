@@ -35,6 +35,10 @@ const CANON = {
   "runner hops": "Runner Hop",
   "to the chin lifts": "To-the-Chin Lift",
   "to-the-chin lift": "To-the-Chin Lift",
+  "adductor crosses": "Adductor Cross",
+  "dead bugs": "Dead Bug",
+  "flexor lifts": "Flexor Lift",
+  "heel taps": "Heel Tap",
 };
 
 const MINOR = new Set(["and", "or", "the", "to", "of", "a", "an", "w/"]);

@@ -30,6 +30,10 @@ test("CANON collapses & vs and / plurals / hyphenation", () => {
   assert.equal(deriveCore("Mountain climbers").core, "Mountain Climber");
   assert.equal(deriveCore("Plank pikes").core, "Plank Pike");
   assert.equal(deriveCore("Runner Hops, Left").core, "Runner Hop");
+  assert.equal(deriveCore("Dead bugs").core, "Dead Bug");
+  assert.equal(deriveCore("Flexor Lifts").core, "Flexor Lift");
+  assert.equal(deriveCore("Heel taps").core, "Heel Tap");
+  assert.equal(deriveCore("Adductor Crosses").core, "Adductor Cross");
 });
 
 test("deleted movements return null", () => {
