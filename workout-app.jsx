@@ -541,6 +541,14 @@ export default function WorkoutApp() {
                 Looking for more structure? Follow a 12-week program here!
               </button>
             )}
+
+            {/* Footer link back to the portal to switch variants */}
+            <button
+              style={styles.viewAllLink}
+              onClick={() => (window.location.href = "/")}
+            >
+              Choose a different program
+            </button>
           </div>
         </div>
       )}
