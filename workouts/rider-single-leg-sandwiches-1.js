@@ -73,7 +73,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Row w/ Top Hold",
+              "name": "Single Arm Row w/ Top Hold",
               "side": "Alternating",
               "repCount": "6-8"
             }
@@ -98,7 +98,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Row w/ Top Hold",
+              "name": "Single Arm Row w/ Top Hold",
               "side": "Alternating",
               "repCount": "6-8"
             }

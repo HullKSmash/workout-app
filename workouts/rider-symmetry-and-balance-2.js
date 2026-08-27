@@ -38,13 +38,13 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Single Arm Top Hold Row",
+              "name": "Single Arm Row w/ Top Hold",
               "side": "Left",
               "repCount": "6-10",
               "tips": "Hold the weight right by your ribs and keep your back flat."
             },
             {
-              "name": "Single Arm Top Hold Row",
+              "name": "Single Arm Row w/ Top Hold",
               "side": "Right",
               "repCount": "6-10",
               "tips": "Hold the weight right by your ribs and keep your back flat."
