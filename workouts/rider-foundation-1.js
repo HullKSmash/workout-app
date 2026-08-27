@@ -137,7 +137,7 @@ export default {
               "repCount": "10-20"
             },
             {
-              "name": "Adductor crosses",
+              "name": "Adductor Cross",
               "repCount": "10-20"
             }
           ]

@@ -82,7 +82,7 @@ export default {
           "repeatCount": 2,
           "exercises": [
             { "name": "Russian twist", "repCount": "12-22" },
-            { "name": "Adductor crosses", "repCount": "12-22" },
+            { "name": "Adductor Cross", "repCount": "12-22" },
             { "name": "Plank toe taps", "repCount": "12-22" }
           ]
         }

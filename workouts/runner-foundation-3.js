@@ -129,7 +129,7 @@ export default {
           repeatCount: 2,
           exercises: [
             {
-              name: "Lying Adductor Cross",
+              name: "Adductor Cross",
               repCount: "10-20",
             },
             {
