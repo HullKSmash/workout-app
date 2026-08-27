@@ -40,7 +40,7 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Superman Pull Down",
+              "name": "Superman Sweep",
               "repCount": "8-12",
               "tips": "If this gets too easy, lift your shoulders higher, extend your arms out and sweep them all the way back behind you, then add hand weights."
             },
@@ -76,7 +76,8 @@ export default {
               "tips": "You can probably RDL more than you can row.  That's ok - work with the lighter weight here."
             },
             {
-              "name": "Banded Crab Walk",
+              "name": "Side Lunge",
+              "side": "Alternating",
               "repCount": "8-10 per side",
               "tips": "If these are too easy, take bigger steps, then more steps."
             }
@@ -117,7 +118,7 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Lying Adductor Cross",
+              "name": "Adductor Cross",
               "repCount": "To Fatigue",
               "tips": "This one seems easy, but you might feel it later!  Make sure to work both sides evenly."
             },

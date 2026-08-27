@@ -7,19 +7,19 @@ export default {
   "description": "Unilateral work in a mini-circuit format.  Four circuits, two rounds each.",
   "phases": [
     {
-      "name": "Plyometric Warm Up",
+      "name": "Warm Up",
       "circuits": [
         {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Runner Hop",
+              "name": "Reverse Lunge Tap",
               "side": "Left",
               "repCount": "10-20",
               "tips": "If you find yourself losing your balance, leave off the hop and make this a slow, fluid motion until you feel balanced throughout."
             },
             {
-              "name": "Runner Hop",
+              "name": "Reverse Lunge Tap",
               "side": "Right",
               "repCount": "10-20",
               "tips": "If you find yourself losing your balance, leave off the hop and make this a slow, fluid motion until you feel balanced throughout."
@@ -40,7 +40,7 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Superman Sweep Back",
+              "name": "Superman Sweep",
               "repCount": "8-12",
               "tips": "Work in the range of motion you can, focusing on lifting your shoulders higher and reaching further back as you get stronger."
             },
@@ -147,7 +147,7 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Lying Adductor Cross",
+              "name": "Adductor Cross",
               "repCount": "10-20",
               "tips": "This one seems easy, but you might feel it later!  Make sure to work both sides evenly."
             },

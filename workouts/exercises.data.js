@@ -87,6 +87,7 @@ export const EXERCISES = {
   "sumo-squat": { name: "Sumo Squat", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/sumo-squat.mp4" },
   "sumo-squat-curl-press": { name: "Sumo Squat/Curl/Press", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/sumo-squat-curl-press.mp4" },
   "superman-pull-down": { name: "Superman Pull Down", tips: "", video: null },
+  "superman-sweep": { name: "Superman Sweep", tips: "", video: null },
   "superman-sweep-back": { name: "Superman Sweep Back", tips: "", video: null },
   "tabletop-cat-cow": { name: "Tabletop Cat/Cow", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/tabletop-cat-cow.mp4" },
   "to-the-chin-lift": { name: "To-the-Chin Lift", tips: "", video: null },
