@@ -12,7 +12,7 @@ export const EXERCISES = {
   "calf-raise-and-curl": { name: "Calf Raise & Curl", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/calf-raise-and-curl.mp4" },
   "crunch": { name: "Crunch", tips: "", video: null },
   "curl-and-press": { name: "Curl & Press", tips: "", video: null },
-  "curtsy-lunge": { name: "Curtsy Lunge", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/curtsy-lunge.mp4", videoAlternating: null },
+  "curtsy-lunge": { name: "Curtsy Lunge", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/curtsy-lunge.mp4", videoAlternating: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/curtsy-lunge-alt.mp4" },
   "dead-bug": { name: "Dead Bug", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/dead-bugs.mp4" },
   "diagonal-sit-up": { name: "Diagonal Sit Up", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/diagonal-sit-ups.mp4" },
   "fire-hydrant": { name: "Fire Hydrant", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/fire-hydrants.mp4" },
