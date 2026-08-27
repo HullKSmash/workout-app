@@ -39,7 +39,6 @@ export const EXERCISES = {
   "knee-up": { name: "Knee Up", tips: "", video: null },
   "lat-pull-over": { name: "Lat Pull Over", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/lat-pull-over.mp4" },
   "lateral-pogo": { name: "Lateral Pogo", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/lateral-pogos.mp4" },
-  "lying-adductor-cross": { name: "Lying Adductor Cross", tips: "", video: null },
   "mountain-climber": { name: "Mountain Climber", tips: "", video: null },
   "nordic-and-curl": { name: "Nordic & Curl", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/nordic-and-curl.mp4" },
   "oblique-crunch": { name: "Oblique Crunch", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/oblique-crunch.mp4" },

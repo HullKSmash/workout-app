@@ -117,7 +117,7 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Lying Adductor Cross",
+              "name": "Adductor Cross",
               "repCount": "To Fatigue",
               "tips": "This one seems easy, but you might feel it later!  Make sure to work both sides evenly."
             },
