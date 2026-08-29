@@ -727,7 +727,9 @@ export default function WorkoutApp() {
             <p style={styles.selectSubtitle}>{variant.tagline}</p>
             <div style={styles.workoutList}>
               {isDefaultVariant
-                ? variantLinks.map((v) => (
+                ? variantLinks
+                    .filter((v) => !v.unlisted || v.unlockCodes?.includes(accessCode))
+                    .map((v) => (
                     <a
                       key={v.key}
                       href={`?variant=${v.key}`}
