@@ -16,16 +16,19 @@ export default function TermsModal({ accent, accentLight, onAgree }) {
       style={s.backdrop}
       role="dialog"
       aria-modal="true"
-      aria-label="Terms and Conditions"
+      aria-label="Terms and Conditions and Cookie Policy"
     >
       <div style={s.card}>
         <h2 style={s.title}>Before you begin</h2>
         <p style={s.body}>
-          Please review our Terms &amp; Conditions, including the health and
-          injury disclaimer. You must agree to continue.
+          Please review our Terms &amp; Conditions and Cookie Policy, including
+          the health and injury disclaimer. You must agree to continue.
         </p>
         <a style={s.link} href="/terms.html" target="_blank" rel="noopener">
           Read the full Terms &amp; Conditions →
+        </a>
+        <a style={s.link} href="/cookiePolicy.html" target="_blank" rel="noopener">
+          Read the full Cookie Policy →
         </a>
         <label style={s.checkboxRow}>
           <input
@@ -33,10 +36,11 @@ export default function TermsModal({ accent, accentLight, onAgree }) {
             checked={checked}
             onChange={(e) => setChecked(e.target.checked)}
             style={s.checkbox}
-            aria-label="I have read and agree to the Terms and Conditions"
+            aria-label="I have read and agree to the Terms and Conditions and Cookie Policy"
           />
           <span style={s.checkboxLabel}>
-            I have read and agree to the Terms &amp; Conditions.
+            I have read and agree to the Terms &amp; Conditions and Cookie
+            Policy.
           </span>
         </label>
         <button
