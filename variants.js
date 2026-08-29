@@ -23,6 +23,8 @@ export const VARIANTS = {
     accent: "#2D6BD1",
     accentLight: "#EAF1FC",
     library: true,
+    unlisted: true, // hidden from the portal unless a matching code is used; still reachable via ?variant=paul / paul. subdomain
+    unlockCodes: ["paul"], // access codes that reveal it in the portal (normalized, lowercase)
   },
   equestrian: {
     brandName: "Equestrian Strength",
