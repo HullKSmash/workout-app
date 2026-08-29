@@ -20,6 +20,13 @@ import ChecklistScreen from "./ChecklistScreen";
 import EndWorkoutModal from "./EndWorkoutModal";
 import { getAccessCode, setAccessCode, recordCompletion } from "./access";
 import { resolveViewMode, getStoredViewMode, setViewMode } from "./view-mode.js";
+import TermsModal from "./TermsModal";
+import {
+  TERMS_VERSION,
+  needsTermsConsent,
+  getStoredTermsVersion,
+  acceptTerms,
+} from "./terms-consent.js";
 
 const variant = resolveVariant();
 const variantKey =
@@ -142,6 +149,9 @@ export default function WorkoutApp() {
   const [checkedIds, setCheckedIds] = useState(() => new Set());
   // Access gate: unlocked once a code is stored locally (see access.js).
   const [accessCode, setAccessCodeState] = useState(getAccessCode);
+  const [termsAccepted, setTermsAccepted] = useState(
+    () => !needsTermsConsent(getStoredTermsVersion(variantKey), TERMS_VERSION)
+  );
   // Keep the screen awake only while actively working out.
   useWakeLock(screen === "workout" || screen === "checklist");
   const [selectedWorkout, setSelectedWorkout] = useState(null);
@@ -367,6 +377,11 @@ export default function WorkoutApp() {
 
   const cancelEnd = () => {
     setShowEndConfirm(false);
+  };
+
+  const handleAgreeTerms = () => {
+    acceptTerms(variantKey, TERMS_VERSION);
+    setTermsAccepted(true);
   };
 
   const handleBackToStart = () => {
@@ -1035,6 +1050,14 @@ export default function WorkoutApp() {
             </button>
           </div>
         </div>
+      )}
+
+      {!termsAccepted && (
+        <TermsModal
+          accent={variant.accent}
+          accentLight={variant.accentLight}
+          onAgree={handleAgreeTerms}
+        />
       )}
     </div>
   );
