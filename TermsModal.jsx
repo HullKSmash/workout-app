@@ -22,7 +22,7 @@ export default function TermsModal({ accent, accentLight, onAgree }) {
         <h2 style={s.title}>Before you begin</h2>
         <p style={s.body}>
           Please review our Terms &amp; Conditions and Cookie Policy, including
-          the health and injury disclaimer. You must agree to continue.
+          the liability waiver. You must agree to continue.
         </p>
         <a style={s.link} href="/terms.html" target="_blank" rel="noopener">
           Read the full Terms &amp; Conditions →
