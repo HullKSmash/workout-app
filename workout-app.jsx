@@ -150,7 +150,7 @@ export default function WorkoutApp() {
   // Access gate: unlocked once a code is stored locally (see access.js).
   const [accessCode, setAccessCodeState] = useState(getAccessCode);
   const [termsAccepted, setTermsAccepted] = useState(
-    () => !needsTermsConsent(getStoredTermsVersion(variantKey), TERMS_VERSION)
+    () => !needsTermsConsent(getStoredTermsVersion(), TERMS_VERSION)
   );
   // Keep the screen awake only while actively working out.
   useWakeLock(screen === "workout" || screen === "checklist");
@@ -380,7 +380,7 @@ export default function WorkoutApp() {
   };
 
   const handleAgreeTerms = () => {
-    acceptTerms(variantKey, TERMS_VERSION);
+    acceptTerms(TERMS_VERSION);
     setTermsAccepted(true);
   };
 
