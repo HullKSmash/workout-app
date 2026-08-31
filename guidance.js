@@ -68,7 +68,14 @@ export const HOW_TO = [
         label: "On an iPhone (Safari)",
         steps: [
           {
-            text: "Tap the ••• menu, then Share.",
+            text: "Tap the ••• menu.",
+            image: {
+              src: "/guidance/ios-menu.png",
+              alt: "Safari toolbar with the ••• menu button highlighted",
+            },
+          },
+          {
+            text: "Tap Share.",
             image: {
               src: "/guidance/ios-share.png",
               alt: "Safari menu with Share highlighted",
