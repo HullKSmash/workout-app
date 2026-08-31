@@ -1,33 +1,25 @@
 // ─── Access gating: per-person code stored locally + API client ──────────────
-// The code doubles as the user's pseudonym. It is stored in localStorage after
-// the server confirms it is on the allowlist, and skipped on return visits.
+// The code doubles as the user's pseudonym. It is stored after the server
+// confirms it is on the allowlist, and skipped on return visits. Persistence
+// goes through cross-domain-store so the code is shared across the apex and every
+// subdomain (see cross-domain-store.js) rather than living in per-origin
+// localStorage, which would re-gate the user on each subdomain.
+import { readValue, writeValue, removeValue } from "./cross-domain-store.js";
 
 const CODE_KEY = "setgo.accessCode";
 
 const normalize = (code) => (typeof code === "string" ? code.trim().toLowerCase() : "");
 
 export function getAccessCode() {
-  try {
-    return localStorage.getItem(CODE_KEY);
-  } catch {
-    return null;
-  }
+  return readValue(CODE_KEY);
 }
 
 export function setAccessCode(code) {
-  try {
-    localStorage.setItem(CODE_KEY, code);
-  } catch {
-    // localStorage unavailable (private mode/quota) — session still works.
-  }
+  writeValue(CODE_KEY, code);
 }
 
 export function clearAccessCode() {
-  try {
-    localStorage.removeItem(CODE_KEY);
-  } catch {
-    // ignore
-  }
+  removeValue(CODE_KEY);
 }
 
 // Ask the server whether a code is on the allowlist.
