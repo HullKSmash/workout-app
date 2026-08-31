@@ -43,6 +43,14 @@ const HOSTNAME_PREFIXES = {
   "equestrian.": "equestrian",
 };
 
+// Reverse of HOSTNAME_PREFIXES: variant key -> subdomain label (no trailing dot).
+const VARIANT_SUBDOMAINS = Object.fromEntries(
+  Object.entries(HOSTNAME_PREFIXES).map(([prefix, key]) => [
+    key,
+    prefix.replace(/\.$/, ""),
+  ])
+);
+
 export function resolveVariant() {
   const params = new URLSearchParams(window.location.search);
   const fromQuery = params.get("variant");
@@ -53,4 +61,24 @@ export function resolveVariant() {
     if (host.startsWith(prefix)) return VARIANTS[key];
   }
   return VARIANTS.default;
+}
+
+// Build the link a portal card should use to enter a variant. On the production
+// site each variant lives on its own subdomain (run./equestrian./paul.), so we link to
+// the absolute subdomain URL. On hosts without those subdomains — localhost, bare
+// IPs, and Vercel preview builds (*.vercel.app) — we fall back to the ?variant=
+// query string that resolveVariant() also understands.
+export function variantHref(key) {
+  const sub = VARIANT_SUBDOMAINS[key];
+  const host = window.location.hostname;
+  const canUseSubdomain =
+    sub &&
+    host !== "localhost" &&
+    !host.endsWith(".localhost") &&
+    !host.endsWith(".vercel.app") &&
+    !/^\d{1,3}(\.\d{1,3}){3}$/.test(host) &&
+    host.split(".").length >= 2;
+  if (!canUseSubdomain) return `?variant=${key}`;
+  const parent = host.split(".").slice(-2).join(".");
+  return `${window.location.protocol}//${sub}.${parent}/`;
 }
