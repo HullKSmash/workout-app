@@ -14,7 +14,7 @@ export const GUIDANCE = {
         title: "Strength training for riders!",
         body: [
           "These workouts are optimized to hit the muscles and movements you need for effective riding: core strength and control, unilateral isolation for symmetry, light plyometrics for soft impact absorption, proprioception and balance for subtle and responsive body control, and postural strength for strong but relaxed equitation.",
-          "Pick any workouts you like and aim to do 3 sessions a week. Keep in mind that the objective is to support your riding with targeted strength training, not to detract from it. Pick your weights, choose the reps that feel right today, take an adaptation that you know, change your mind whenever you want - listen to your body and adjust accordingly.",
+          "Pick any workouts you like and aim to do 3 sessions a week. Keep in mind that the objective is to support your riding with targeted strength training, not to detract from it. Pick your weights, choose the reps that feel right today, take an adaptation that you know, change your mind whenever you want - listen to your body and adjust accordingly. Your weekly progress tracker will automatically reset every Monday.",
         ],
       },
     ],
@@ -25,7 +25,7 @@ export const GUIDANCE = {
         title: "Strength training for runners!",
         body: [
           "These workouts are designed to hit the muscles and movements you need to optimize your running: posterior chain strength, unilateral isolation for symmetry, plyometrics for impact absorption, proprioception and balance for efficient movement, and overall strength for postural endurance.",
-          "Pick any workouts you like and aim to do 3 sessions a week. Keep in mind that the objective is to support your running with targeted strength training, not to detract from it. Pick your weights, choose the reps that feel right today, take an adaptation that you know, change your mind whenever you want - listen to your body and adjust accordingly.",
+          "Pick any workouts you like and aim to do 3 sessions a week. Keep in mind that the objective is to support your running with targeted strength training, not to detract from it. Pick your weights, choose the reps that feel right today, take an adaptation that you know, change your mind whenever you want - listen to your body and adjust accordingly. Your weekly progress tracker will automatically reset every Monday.",
         ],
       },
     ],
@@ -36,7 +36,7 @@ export const GUIDANCE = {
         title: "Strength training for Paul!",
         body: [
           "These workouts are all of Paul's favorite exercises.",
-          "Pick any workouts you like and aim to do 3 sessions a week. Keep in mind that the objective is to support your life with targeted strength training, not to detract from it. Pick your weights, choose the reps that feel right today, take an adaptation that you know, change your mind whenever you want - listen to your body and adjust accordingly.",
+          "Pick any workouts you like and aim to do 3 sessions a week. Keep in mind that the objective is to support your life with targeted strength training, not to detract from it. Pick your weights, choose the reps that feel right today, take an adaptation that you know, change your mind whenever you want - listen to your body and adjust accordingly. Your weekly progress tracker will automatically reset every Monday.",
         ],
       },
     ],
@@ -55,13 +55,13 @@ export const HOW_TO = [
   {
     title: "Saving your progress",
     body: [
-      "Your weekly progress is saved right here on your device, not on a server — simple and private, but it means it can occasionally reset (say, if you clear your browser data or switch devices). If your checkmarks ever disappear, no problem: just tap the circles at the top of the workout list to mark the sessions you've done this week.",
+      "Your weekly progress is saved locally on your device, not on a server, which means it can occasionally reset (say, if you clear your browser data or switch devices). If your weekly progress checkmarks ever disappear unexpectedly, just tap the circles at the top of the workout list to mark the sessions you've done this week.",
     ],
   },
   {
     title: "Add to your home screen",
     body: [
-      "Add SetGo to your home screen and it opens like an app — full screen, one tap, no address bar.",
+      "For the best experience, add SetGo to your home screen to have it conveniently accessible and open full-screen like an app.",
     ],
     stepGroups: [
       {
