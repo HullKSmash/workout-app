@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { WORKOUTS } from "./workouts";
-import { VARIANTS, resolveVariant } from "./variants";
+import { VARIANTS, resolveVariant, variantHref } from "./variants";
 import { RIDER_STRENGTH_SCHEDULE } from "./workouts/rider-strength-schedule.js";
 import { slotId, loadProgress, saveProgress, clearProgress } from "./workouts/progress.js";
 import {
@@ -750,7 +750,7 @@ export default function WorkoutApp() {
                     .map((v) => (
                     <a
                       key={v.key}
-                      href={`?variant=${v.key}`}
+                      href={variantHref(v.key)}
                       style={{ ...styles.workoutCard, ...styles.variantLink }}
                     >
                       <span style={styles.workoutCardName}>{v.brandName}</span>
