@@ -1375,7 +1375,7 @@ const styles = {
   exerciseImage: {
     width: "100%",
     maxWidth: 320,
-    height: 180,
+    aspectRatio: "1 / 1",
     borderRadius: 16,
     objectFit: "cover",
     marginBottom: 32,
