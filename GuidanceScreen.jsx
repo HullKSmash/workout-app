@@ -62,21 +62,22 @@ function CollapsibleSection({ section, accent, accentLight }) {
   const s = makeStyles(accent, accentLight);
   const [open, setOpen] = useState(false);
   return (
-    <div style={s.collapsible}>
+    <div style={s.card}>
       <button
         style={s.collapsibleHeader}
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
       >
         <span style={s.collapsibleTitle}>{section.title}</span>
-        <span
-          style={{
-            ...s.chevron,
-            transform: open ? "rotate(90deg)" : "rotate(0deg)",
-          }}
-          aria-hidden="true"
-        >
-          {"›"}
+        <span style={s.chevronBadge} aria-hidden="true">
+          <span
+            style={{
+              ...s.chevronGlyph,
+              transform: open ? "rotate(-90deg)" : "rotate(90deg)",
+            }}
+          >
+            {"›"}
+          </span>
         </span>
       </button>
       {open && (
@@ -108,14 +109,15 @@ export default function GuidanceScreen({ guidance, accent, accentLight, onBack }
         <button style={s.backButton} onClick={onBack} aria-label="Back">
           ‹ Back
         </button>
-        <h1 style={s.title}>Guidance &amp; Tips</h1>
+        <h1 style={s.title}>Welcome to SetGo</h1>
         {guidance.sections.map((section, i) => (
-          <Section
-            key={i}
-            section={section}
-            accent={accent}
-            accentLight={accentLight}
-          />
+          <div key={i} style={s.card}>
+            <Section
+              section={section}
+              accent={accent}
+              accentLight={accentLight}
+            />
+          </div>
         ))}
         {HOW_TO.map((section, i) => (
           <CollapsibleSection
@@ -125,6 +127,9 @@ export default function GuidanceScreen({ guidance, accent, accentLight, onBack }
             accentLight={accentLight}
           />
         ))}
+        <button style={s.gotItButton} onClick={onBack}>
+          Got it!
+        </button>
       </div>
     </div>
   );
@@ -162,7 +167,32 @@ function makeStyles(accent, accentLight) {
       margin: "8px 0 16px 0",
     },
     section: {
-      marginBottom: 28,
+      // Inter-section spacing now comes from the surrounding card; this stays
+      // flush so it doesn't add a double gap inside the card.
+      marginBottom: 0,
+    },
+    card: {
+      background: "#FFFFFF",
+      borderRadius: 16,
+      padding: "18px 20px",
+      marginBottom: 16,
+      boxShadow:
+        "0 1px 2px rgba(45,42,38,0.04), 0 6px 20px rgba(45,42,38,0.07)",
+    },
+    gotItButton: {
+      display: "block",
+      width: "100%",
+      marginTop: 8,
+      padding: "16px",
+      background: accent,
+      color: "#FFFFFF",
+      border: "none",
+      borderRadius: 14,
+      fontFamily: "'Outfit', sans-serif",
+      fontSize: 17,
+      fontWeight: 700,
+      cursor: "pointer",
+      WebkitTapHighlightColor: "transparent",
     },
     heading: {
       fontFamily: "'Outfit', sans-serif",
@@ -190,9 +220,6 @@ function makeStyles(accent, accentLight) {
       color: accent,
       margin: "0 0 6px 0",
     },
-    collapsible: {
-      borderTop: `0.5px solid ${accentLight}`,
-    },
     collapsibleHeader: {
       width: "100%",
       display: "flex",
@@ -201,7 +228,7 @@ function makeStyles(accent, accentLight) {
       gap: 12,
       background: "none",
       border: "none",
-      padding: "16px 0",
+      padding: 0,
       cursor: "pointer",
       textAlign: "left",
       fontFamily: "'DM Sans', sans-serif",
@@ -213,14 +240,26 @@ function makeStyles(accent, accentLight) {
       fontWeight: 700,
       color: TEXT,
     },
-    chevron: {
-      fontSize: 22,
+    chevronBadge: {
+      flexShrink: 0,
+      width: 34,
+      height: 34,
+      borderRadius: "50%",
+      background: accentLight,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    chevronGlyph: {
+      display: "inline-block",
+      fontSize: 26,
       lineHeight: 1,
+      fontWeight: 700,
       color: accent,
-      transition: "transform 0.15s ease",
+      transition: "transform 0.2s ease",
     },
     collapsibleBody: {
-      paddingBottom: 12,
+      paddingTop: 14,
     },
     stepGroup: {
       marginTop: 12,
