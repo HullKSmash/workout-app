@@ -27,6 +27,11 @@ import {
   getStoredTermsVersion,
   acceptTerms,
 } from "./terms-consent.js";
+import {
+  needsGuidanceIntro,
+  getStoredGuidanceIntro,
+  markGuidanceIntroSeen,
+} from "./guidance-intro.js";
 
 const variant = resolveVariant();
 const variantKey =
@@ -218,6 +223,19 @@ export default function WorkoutApp() {
       setTimerSeconds(currentExercise.repCount);
     }
   }, [currentStep, screen, currentExercise?.isRest]);
+
+  // First visit: auto-open the Guidance & Tips screen once. Gated on terms
+  // acceptance so it doesn't collide with the consent modal — when the user
+  // accepts, `termsAccepted` flips and this re-runs. Only fires for variants
+  // that actually have a Guidance screen (`guidance` defined).
+  useEffect(() => {
+    if (!termsAccepted) return;
+    if (!guidance) return;
+    if (!needsGuidanceIntro(getStoredGuidanceIntro())) return;
+    markGuidanceIntroSeen();
+    setGuidanceReturn(hasLibrary ? "library" : "select");
+    setScreen("guidance");
+  }, [termsAccepted]);
 
   // Countdown timer for rest
   useEffect(() => {

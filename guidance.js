@@ -42,3 +42,69 @@ export const GUIDANCE = {
     ],
   },
 };
+
+// Shared "how-to" sections shown on every variant's Guidance & Tips screen,
+// below the variant-specific sections, as collapsible rows. Identical across
+// variants, so authored once here rather than duplicated per variant.
+//
+// Section shape: { title, body?, stepGroups? }
+//   - body: array of paragraph strings
+//   - stepGroups: array of { label, steps: [{ text, image? }] }
+//       image: { src, alt } — inline screenshot for a step (iOS only)
+export const HOW_TO = [
+  {
+    title: "Saving your progress",
+    body: [
+      "Your weekly progress is saved right here on your device, not on a server — simple and private, but it means it can occasionally reset (say, if you clear your browser data or switch devices). If your checkmarks ever disappear, no problem: just tap the circles at the top of the workout list to mark the sessions you've done this week.",
+    ],
+  },
+  {
+    title: "Add to your home screen",
+    body: [
+      "Add SetGo to your home screen and it opens like an app — full screen, one tap, no address bar.",
+    ],
+    stepGroups: [
+      {
+        label: "On an iPhone (Safari)",
+        steps: [
+          {
+            text: "Tap the ••• menu.",
+            image: {
+              src: "/guidance/ios-menu.png",
+              alt: "Safari toolbar with the ••• menu button highlighted",
+            },
+          },
+          {
+            text: "Tap Share.",
+            image: {
+              src: "/guidance/ios-share.png",
+              alt: "Safari menu with Share highlighted",
+            },
+          },
+          {
+            text: "Scroll down and tap Add to Home Screen.",
+            image: {
+              src: "/guidance/ios-add.png",
+              alt: "Share sheet with Add to Home Screen highlighted",
+            },
+          },
+          {
+            text: "Tap Add — the SetGo icon lands on your home screen.",
+            image: {
+              src: "/guidance/ios-confirm.png",
+              alt: "Add to Home Screen dialog with the Add button highlighted",
+            },
+          },
+        ],
+      },
+      {
+        label: "On Android (Chrome)",
+        steps: [
+          { text: "Tap the ⋮ menu (top-right)." },
+          { text: "Tap Add to Home screen (or Install app)." },
+          { text: "Tap Add to confirm." },
+        ],
+      },
+    ],
+  },
+];
