@@ -55,7 +55,7 @@ export const HOW_TO = [
   {
     title: "Saving your progress",
     body: [
-      "Your weekly progress is saved locally on your device, not on a server, which means it can occasionally reset (say, if you clear your browser data or switch devices). If your weekly progress checkmarks ever disappear unexpectedly, no problem: just tap the circles at the top of the workout list to mark the sessions you've done this week.",
+      "Your weekly progress is saved locally on your device, not on a server, which means it can occasionally reset (say, if you clear your browser data or switch devices). If your weekly progress checkmarks ever disappear unexpectedly, just tap the circles at the top of the workout list to mark the sessions you've done this week.",
     ],
   },
   {
