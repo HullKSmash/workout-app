@@ -40,7 +40,7 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Superman Sweep Back",
+              "name": "Superman Sweep",
               "repCount": "8-12",
               "tips": "Work in the range of motion you can, focusing on lifting your shoulders higher and reaching further back as you get stronger."
             },
