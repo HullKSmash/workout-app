@@ -19,7 +19,7 @@ export const EXERCISES = {
   "fire-hydrant-circle": { name: "Fire Hydrant Circle", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/fire-hydrant-circles.mp4" },
   "flexor-lift": { name: "Flexor Lift", tips: "", video: null, videoAlternating: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/flexor-lifts-alt.mp4" },
   "flexor-up-and-over": { name: "Flexor Up & Over", tips: "", video: null },
-  "forward-lunge": { name: "Forward Lunge", tips: "", video: null, videoAlternating: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/forward-lunge-alt.mp4" },
+  "forward-lunge": { name: "Forward Lunge", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/forward-lunge.mp4", videoAlternating: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/forward-lunge-alt.mp4" },
   "forward-lunge-with-twist": { name: "Forward Lunge w/ Twist", tips: "", video: null },
   "forward-reach-squat": { name: "Forward Reach Squat", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/forward-reach-squat.mp4" },
   "front-to-side-raise": { name: "Front to Side Raise", tips: "", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/front-to-side-raise.mp4" },
