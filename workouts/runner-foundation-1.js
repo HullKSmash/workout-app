@@ -21,7 +21,7 @@ export default {
               repCount: "10-21",
             },
             {
-              name: "Squat Jump",
+              name: "Jump Squat",
               repCount: "8-10",
             }
           ],

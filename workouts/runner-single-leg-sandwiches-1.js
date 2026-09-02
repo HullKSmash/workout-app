@@ -15,19 +15,16 @@ export default {
             {
               "name": "Single Leg Pogo",
               "side": "Left",
-              "repCount": "10-20",
-              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
+              "repCount": "10-20"
             },
             {
               "name": "Single Leg Pogo",
               "side": "Right",
-              "repCount": "10-20",
-              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
+              "repCount": "10-20"
             },
             {
-              "name": "Squat Jump",
-              "repCount": "8-10",
-              "tips": "Make your landing soft and fluid to practice absorbing impact."
+              "name": "Jump Squat",
+              "repCount": "8-10"
             }
           ]
         }
@@ -41,8 +38,7 @@ export default {
           "exercises": [
             {
               "name": "RDL & Row",
-              "repCount": "8-10",
-              "tips": "Make these two distinct movements, fully completing each and checking your form before starting the next."
+              "repCount": "8-10"
             }
           ]
         },
@@ -52,14 +48,12 @@ export default {
             {
               "name": "Weighted Bird Dog",
               "side": "Left",
-              "repCount": "8-10",
-              "tips": "Extend and contract through as much range of motion as you can."
+              "repCount": "8-10"
             },
             {
               "name": "Weighted Bird Dog",
               "side": "Right",
-              "repCount": "8-10",
-              "tips": "Extend and contract through as much range of motion as you can."
+              "repCount": "8-10"
             }
           ]
         },
@@ -68,8 +62,7 @@ export default {
           "exercises": [
             {
               "name": "RDL & Row",
-              "repCount": "8-10",
-              "tips": "Make these two distinct movements, fully completing each and checking your form before starting the next."
+              "repCount": "8-10"
             }
           ]
         }
@@ -83,8 +76,7 @@ export default {
           "exercises": [
             {
               "name": "Hamstring Bridge",
-              "repCount": "8-12",
-              "tips": "Walk your feet out a step or two from glute bridge position to target your hamstrings."
+              "repCount": "8-12"
             }
           ]
         },
@@ -94,14 +86,12 @@ export default {
             {
               "name": "Curtsy Lunge",
               "side": "Left",
-              "repCount": "6-10",
-              "tips": "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright."
+              "repCount": "6-10"
             },
             {
               "name": "Curtsy Lunge",
               "side": "Right",
-              "repCount": "6-10",
-              "tips": "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright."
+              "repCount": "6-10"
             }
           ]
         },
@@ -110,8 +100,7 @@ export default {
           "exercises": [
             {
               "name": "Hamstring Bridge",
-              "repCount": "8-12",
-              "tips": "Walk your feet out a step or two from glute bridge position to target your hamstrings."
+              "repCount": "8-12"
             }
           ]
         }
@@ -126,8 +115,7 @@ export default {
             {
               "name": "Side Lunge",
               "side": "Alternating",
-              "repCount": "8-10 per side",
-              "tips": "When this gets too easy, use a stronger band and take bigger steps."
+              "repCount": "8-10 per side"
             }
           ]
         },
@@ -137,14 +125,12 @@ export default {
             {
               "name": "Glute Arc",
               "side": "Left",
-              "repCount": "8-10",
-              "tips": "Use your full range of motion here and go slow."
+              "repCount": "8-10"
             },
             {
               "name": "Glute Arc",
               "side": "Right",
-              "repCount": "8-10",
-              "tips": "Use your full range of motion here and go slow."
+              "repCount": "8-10"
             }
           ]
         },
@@ -154,8 +140,7 @@ export default {
             {
               "name": "Side Lunge",
               "side": "Alternating",
-              "repCount": "8-10 per side",
-              "tips": "When this gets too easy, use a stronger band and take bigger steps."
+              "repCount": "8-10 per side"
             }
           ]
         }
@@ -169,18 +154,15 @@ export default {
           "exercises": [
             {
               "name": "Adductor Cross",
-              "repCount": "10-20",
-              "tips": "This one seems easy, but you might feel it later!  Make sure to work both sides evenly."
+              "repCount": "10-20"
             },
             {
               "name": "Russian Twist",
-              "repCount": "10-20",
-              "tips": "Increase your range of motion and hold a weight as you get stronger."
+              "repCount": "10-20"
             },
             {
               "name": "Plank Pike",
-              "repCount": "10-20",
-              "tips": "Do this on your forearms or hands as you prefer."
+              "repCount": "10-20"
             }
           ]
         }

@@ -14,18 +14,15 @@ export default {
           "exercises": [
             {
               "name": "Ice Skater",
-              "repCount": "5-10 per side",
-              "tips": "Slow this down as much as you need to to keep your balance.  Speed it up to challenge yourself."
+              "repCount": "5-10 per side"
             },
             {
               "name": "Hip Rocker",
-              "repCount": "8-12 per side",
-              "tips": "To make this harder, add a weight on your hips."
+              "repCount": "8-12 per side"
             },
             {
               "name": "Forward Reach Squat",
-              "repCount": "8-12",
-              "tips": "To make this easier, reach as you squat and retract your arms as you stand or limit your arms' extension to as far as you can go."
+              "repCount": "8-12"
             }
           ]
         }
@@ -40,14 +37,12 @@ export default {
             {
               "name": "Single Arm Row w/ Top Hold",
               "side": "Left",
-              "repCount": "6-10",
-              "tips": "Hold the weight right by your ribs and keep your back flat."
+              "repCount": "6-10"
             },
             {
               "name": "Single Arm Row w/ Top Hold",
               "side": "Right",
-              "repCount": "6-10",
-              "tips": "Hold the weight right by your ribs and keep your back flat."
+              "repCount": "6-10"
             }
           ]
         }
@@ -62,14 +57,12 @@ export default {
             {
               "name": "Single Leg RDL",
               "side": "Left",
-              "repCount": "6-10",
-              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
+              "repCount": "6-10"
             },
             {
               "name": "Single Leg RDL",
               "side": "Right",
-              "repCount": "6-10",
-              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
+              "repCount": "6-10"
             }
           ]
         }
@@ -84,14 +77,12 @@ export default {
             {
               "name": "Forward Lunge w/ Twist",
               "side": "Left",
-              "repCount": "6-10",
-              "tips": "Don't neglect the twist - pause in the lunge and twist as far as you can."
+              "repCount": "6-10"
             },
             {
               "name": "Forward Lunge w/ Twist",
               "side": "Right",
-              "repCount": "6-10",
-              "tips": "Don't neglect the twist - pause in the lunge and twist as far as you can."
+              "repCount": "6-10"
             }
           ]
         }
@@ -106,14 +97,12 @@ export default {
             {
               "name": "Fire Hydrant Circle",
               "side": "Left",
-              "repCount": "6-10",
-              "tips": "Alignment of your resting leg is very important here - directly under your hip.  Don't cut corners by shifting your hips to your resting side!"
+              "repCount": "6-10"
             },
             {
               "name": "Fire Hydrant Circle",
               "side": "Right",
-              "repCount": "6-10",
-              "tips": "Alignment of your resting leg is very important here - directly under your hip.  Don't cut corners by shifting your hips to your resting side!"
+              "repCount": "6-10"
             }
           ]
         }
@@ -127,18 +116,15 @@ export default {
           "exercises": [
             {
               "name": "Plank Toe Tap",
-              "repCount": "To Fatigue",
-              "tips": "If this is too hard, practice holding a plank or just lifting each foot.  Use your hands or forearms as you prefer."
+              "repCount": "To Fatigue"
             },
             {
               "name": "Diagonal Sit Up",
-              "repCount": "To Fatigue",
-              "tips": "Work both sides evenly.  If you can't sit up all the way, make these crunches while you build strength."
+              "repCount": "To Fatigue"
             },
             {
               "name": "Reverse Crunch",
-              "repCount": "To Fatigue",
-              "tips": "Make sure to use your core strength here instead of relying on momentum."
+              "repCount": "To Fatigue"
             }
           ]
         }

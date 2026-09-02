@@ -15,19 +15,16 @@ export default {
             {
               "name": "Single Leg Pogo",
               "side": "Left",
-              "repCount": "10-20",
-              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
+              "repCount": "10-20"
             },
             {
               "name": "Single Leg Pogo",
               "side": "Right",
-              "repCount": "10-20",
-              "tips": "If this is too hard, start on both legs and add a hop or two on one leg every once in a while."
+              "repCount": "10-20"
             },
             {
-              "name": "Squat Jump",
-              "repCount": "8-10",
-              "tips": "Make your landing soft and fluid to practice absorbing impact."
+              "name": "Jump Squat",
+              "repCount": "8-10"
             }
           ]
         }
@@ -41,18 +38,15 @@ export default {
           "exercises": [
             {
               "name": "Superman Sweep",
-              "repCount": "8-12",
-              "tips": "Work in the range of motion you can, focusing on lifting your shoulders higher and reaching further back as you get stronger."
+              "repCount": "8-12"
             },
             {
               "name": "Calf Raise & Curl",
-              "repCount": "10-12",
-              "tips": "Make these two distinct movements, fully completing each and checking your form before starting the next."
+              "repCount": "10-12"
             },
             {
               "name": "Suitcase Squat",
-              "repCount": "8-10",
-              "tips": "Keep your shoulders upright and your weight in your heels as you squat down."
+              "repCount": "8-10"
             }
           ]
         }
@@ -66,20 +60,17 @@ export default {
           "exercises": [
             {
               "name": "Hamstring Bridge",
-              "repCount": "10-15",
-              "tips": "Walk your feet out a step or two from glute bridge position to target your hamstrings."
+              "repCount": "10-15"
             },
             {
               "name": "Single Leg RDL",
               "side": "Left",
-              "repCount": "6-10",
-              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
+              "repCount": "6-10"
             },
             {
               "name": "Single Leg RDL",
               "side": "Right",
-              "repCount": "6-10",
-              "tips": "Keep your hips and shoulders square as you hinge.  Hold the weight in either or both hands as you find most effective."
+              "repCount": "6-10"
             }
           ]
         }
@@ -94,20 +85,17 @@ export default {
             {
               "name": "Side Lunge",
               "side": "Alternating",
-              "repCount": "8-10 per side",
-              "tips": "When this gets too easy, use a stronger band and take bigger steps."
+              "repCount": "8-10 per side"
             },
             {
               "name": "Forward Lunge",
               "side": "Left",
-              "repCount": "6-10",
-              "tips": "Absorb the impact fluidly as you step forward and keep your balance as you push back."
+              "repCount": "6-10"
             },
             {
               "name": "Forward Lunge",
               "side": "Right",
-              "repCount": "6-10",
-              "tips": "Absorb the impact fluidly as you step forward and keep your balance as you push back."
+              "repCount": "6-10"
             }
           ]
         }
@@ -121,18 +109,15 @@ export default {
           "exercises": [
             {
               "name": "Adductor Cross",
-              "repCount": "10-20",
-              "tips": "This one seems easy, but you might feel it later!  Make sure to work both sides evenly."
+              "repCount": "10-20"
             },
             {
               "name": "Russian Twist",
-              "repCount": "10-20",
-              "tips": "Increase your range of motion and hold a weight as you get stronger."
+              "repCount": "10-20"
             },
             {
               "name": "Plank Pike",
-              "repCount": "10-20",
-              "tips": "Do this on your forearms or hands as you prefer."
+              "repCount": "10-20"
             }
           ]
         }

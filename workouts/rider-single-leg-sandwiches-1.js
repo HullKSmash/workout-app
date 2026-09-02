@@ -122,12 +122,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Single Leg Glute Bridge/Chest Press Hold",
+              "name": "Single Leg Glute Bridge",
               "side": "Left",
               "repCount": "6-8"
             },
             {
-              "name": "Single Leg Glute Bridge/Chest Press Hold",
+              "name": "Single Leg Glute Bridge",
               "side": "Right",
               "repCount": "6-8"
             }

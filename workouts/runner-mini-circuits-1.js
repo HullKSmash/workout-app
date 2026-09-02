@@ -15,19 +15,16 @@ export default {
             {
               "name": "Reverse Lunge Tap",
               "side": "Left",
-              "repCount": "6-10",
-              "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights."
+              "repCount": "6-10"
             },
             {
               "name": "Reverse Lunge Tap",
               "side": "Right",
-              "repCount": "6-10",
-              "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights."
+              "repCount": "6-10"
             },
             {
               "name": "Pogo",
-              "repCount": "10-20",
-              "tips": "Keep this motion as small as you need to to maintain control."
+              "repCount": "10-20"
             }
           ]
         }
@@ -41,19 +38,16 @@ export default {
           "exercises": [
             {
               "name": "Superman Sweep",
-              "repCount": "8-12",
-              "tips": "If this gets too easy, lift your shoulders higher, extend your arms out and sweep them all the way back behind you, then add hand weights."
+              "repCount": "8-12"
             },
             {
               "name": "Calf Raise & Curl",
-              "repCount": "8-12",
-              "tips": "If this feels too easy for your calves, slow down both the upward and downward motion of your calf raise and pause at the top."
+              "repCount": "8-12"
             },
             {
               "name": "Curtsy Lunge",
               "side": "Alternating",
-              "repCount": "6-10 per side",
-              "tips": "Move slowly and with control.  Add dumbbells if it's too easy."
+              "repCount": "6-10 per side"
             }
           ]
         }
@@ -67,19 +61,16 @@ export default {
           "exercises": [
             {
               "name": "Glute Bridge",
-              "repCount": "10-15",
-              "tips": "Move through the full range of motion and pause at the top of the bridge.  Add a weight on your hips if it's too easy."
+              "repCount": "10-15"
             },
             {
               "name": "RDL & Row",
-              "repCount": "8-10",
-              "tips": "You can probably RDL more than you can row.  That's ok - work with the lighter weight here."
+              "repCount": "8-10"
             },
             {
               "name": "Side Lunge",
               "side": "Alternating",
-              "repCount": "8-10 per side",
-              "tips": "If these are too easy, take bigger steps, then more steps."
+              "repCount": "8-10 per side"
             }
           ]
         }
@@ -93,19 +84,16 @@ export default {
           "exercises": [
             {
               "name": "Sumo Goblet Squat",
-              "repCount": "8-10",
-              "tips": "This type of squat will engage both your glutes and your quads."
+              "repCount": "8-10"
             },
             {
               "name": "Butterfly Bridge",
-              "repCount": "8-10",
-              "tips": "Maintain control and pause at the top of the motion."
+              "repCount": "8-10"
             },
             {
               "name": "Flexor Lift",
               "side": "Alternating",
-              "repCount": "5-10 per side",
-              "tips": "Make sure to sit up straight- you want to bring your thigh towards your torso without leaning back.  Work both sides evenly."
+              "repCount": "5-10 per side"
             }
           ]
         }
@@ -119,18 +107,15 @@ export default {
           "exercises": [
             {
               "name": "Adductor Cross",
-              "repCount": "To Fatigue",
-              "tips": "This one seems easy, but you might feel it later!  Make sure to work both sides evenly."
+              "repCount": "To Fatigue"
             },
             {
               "name": "Heel Tap",
-              "repCount": "To Fatigue",
-              "tips": "Move your heels further from your body to make this harder.  Make sure to work both sides evenly."
+              "repCount": "To Fatigue"
             },
             {
               "name": "Plank Hold",
-              "repCount": "To Fatigue",
-              "tips": "Rest on your hands or forearms as you choose.  Work from either your knees or toes, or alternate between them as you build strength."
+              "repCount": "To Fatigue"
             }
           ]
         }
