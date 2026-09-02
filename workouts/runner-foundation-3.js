@@ -21,7 +21,7 @@ export default {
               repCount: "10-21",
             },
             {
-              name: "Squat Jump",
+              name: "Jump Squat",
               repCount: "8-10",
             }
           ],
@@ -35,7 +35,7 @@ export default {
           repeatCount: 2,
           exercises: [
             {
-              name: "Superman Sweep Back",
+              name: "Superman Sweep",
               repCount: "8-12",
             },
             {

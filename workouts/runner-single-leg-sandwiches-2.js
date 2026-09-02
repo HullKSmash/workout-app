@@ -15,19 +15,16 @@ export default {
             {
               "name": "Reverse Lunge Tap",
               "side": "Left",
-              "repCount": "6-10",
-              "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights."
+              "repCount": "6-10"
             },
             {
               "name": "Reverse Lunge Tap",
               "side": "Right",
-              "repCount": "6-10",
-              "tips": "This is a balance exercise - move slowly and pause any time you start to wobble.  When this gets too easy, increase your range of motion and add hand weights."
+              "repCount": "6-10"
             },
             {
               "name": "Lateral Pogo",
-              "repCount": "10-15",
-              "tips": "Keep this motion as small as you need to to maintain control.  Turn it into a pogo if the lateral movement is too much."
+              "repCount": "10-15"
             }
           ]
         }
@@ -41,8 +38,7 @@ export default {
           "exercises": [
             {
               "name": "Row & Kickback",
-              "repCount": "8-10",
-              "tips": "This will probably feel like an easy row and a hard kickback.  Work to straighten out the elbow on the kickback and go slow on the row."
+              "repCount": "8-10"
             }
           ]
         },
@@ -52,14 +48,12 @@ export default {
             {
               "name": "Unilateral Calf Raise & Curl Hold",
               "side": "Left",
-              "repCount": "8-10",
-              "tips": "Use the toes of your resting leg to help you balance.  If this is too hard, drop the weights for the calf raise and do curls separately."
+              "repCount": "8-10"
             },
             {
               "name": "Unilateral Calf Raise & Curl Hold",
               "side": "Right",
-              "repCount": "8-10",
-              "tips": "Use the toes of your resting leg to help you balance.  If this is too hard, drop the weights for the calf raise and do curls separately."
+              "repCount": "8-10"
             }
           ]
         },
@@ -68,8 +62,7 @@ export default {
           "exercises": [
             {
               "name": "Row & Kickback",
-              "repCount": "8-10",
-              "tips": "This will probably feel like an easy row and a hard kickback.  Work to straighten out the elbow on the kickback and go slow on the row."
+              "repCount": "8-10"
             }
           ]
         }
@@ -83,8 +76,7 @@ export default {
           "exercises": [
             {
               "name": "Romanian Dead Lift",
-              "repCount": "8-10",
-              "tips": "Keep the motion slow and controlled.  Think about making a 7 with your body, where your knees bend just a little while you primarily hinge at the hip and keep your back flat."
+              "repCount": "8-10"
             }
           ]
         },
@@ -94,14 +86,12 @@ export default {
             {
               "name": "Side Lying Leg Lift",
               "side": "Left",
-              "repCount": "6-10",
-              "tips": "To make this easier, rest your hips on the ground instead of lifting from your knee.  To make it harder, lift from your bottom foot instead of knee."
+              "repCount": "6-10"
             },
             {
               "name": "Side Lying Leg Lift",
               "side": "Right",
-              "repCount": "6-10",
-              "tips": "To make this easier, rest your hips on the ground instead of lifting from your knee.  To make it harder, lift from your bottom foot instead of knee."
+              "repCount": "6-10"
             }
           ]
         },
@@ -110,8 +100,7 @@ export default {
           "exercises": [
             {
               "name": "Romanian Dead Lift",
-              "repCount": "8-10",
-              "tips": "Keep the motion slow and controlled.  Think about making a 7 with your body, where your knees bend just a little while you primarily hinge at the hip and keep your back flat."
+              "repCount": "8-10"
             }
           ]
         }
@@ -125,8 +114,7 @@ export default {
           "exercises": [
             {
               "name": "Sumo Goblet Squat",
-              "repCount": "8-10",
-              "tips": "Engage your glutes as you stand and keep your shoulders upright throughout."
+              "repCount": "8-10"
             }
           ]
         },
@@ -136,14 +124,12 @@ export default {
             {
               "name": "Single Leg Glute Bridge",
               "side": "Left",
-              "repCount": "10-12",
-              "tips": "Stack your knees directly over your ankles and don't let them fall in or out.  Complete the full range of motion - push your hips as high as you can, keep them level, and pause at the top.  If this is too easy, place a weight on your hips."
+              "repCount": "10-12"
             },
             {
               "name": "Single Leg Glute Bridge",
               "side": "Right",
-              "repCount": "10-12",
-              "tips": "Stack your knees directly over your ankles and don't let them fall in or out.  Complete the full range of motion - push your hips as high as you can, keep them level, and pause at the top.  If this is too easy, place a weight on your hips."
+              "repCount": "10-12"
             }
           ]
         },
@@ -152,8 +138,7 @@ export default {
           "exercises": [
             {
               "name": "Sumo Goblet Squat",
-              "repCount": "8-10",
-              "tips": "Engage your glutes as you stand and keep your shoulders upright throughout."
+              "repCount": "8-10"
             }
           ]
         }
@@ -167,18 +152,15 @@ export default {
           "exercises": [
             {
               "name": "Hip Dip Plank",
-              "repCount": "10-12",
-              "tips": "If you're still working on your forearm plank, start from a knee plank and lift one knee off the ground at a time, alternating, skipping the dip until you can hold a plank for 10+ seconds."
+              "repCount": "10-12"
             },
             {
               "name": "Toe Tap",
-              "repCount": "10-12",
-              "tips": "Don't worry if you can't reach your toes - the point is to add the dynamic movement of the crunch on top of the static hold of keeping your legs up."
+              "repCount": "10-12"
             },
             {
               "name": "Dead Bug",
-              "repCount": "6-10 per side",
-              "tips": "When this gets too easy, hold a weight or two in your hands."
+              "repCount": "6-10 per side"
             }
           ]
         }

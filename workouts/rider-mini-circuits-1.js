@@ -14,19 +14,16 @@ export default {
           "exercises": [
             {
               "name": "Standing Cat/Cow",
-              "repCount": "6-10",
-              "tips": "Practice your range of motion and control over different hip angles - a critical riding skill!"
+              "repCount": "6-10"
             },
             {
               "name": "Squat Twist",
-              "repCount": "5-10 per side",
-              "tips": "Squat as deeply or shallowly as feels right for you today."
+              "repCount": "5-10 per side"
             },
             {
               "name": "Standing Abduction",
               "side": "Alternating",
-              "repCount": "5-10 per side",
-              "tips": "Keep your balance as you rotate your knee out, using your glutes to open your hip."
+              "repCount": "5-10 per side"
             }
           ]
         }
@@ -40,18 +37,15 @@ export default {
           "exercises": [
             {
               "name": "Reverse Fly",
-              "repCount": "6-10",
-              "tips": "Go slowly and stop the weight fully at the top and bottom of the movement to ensure you aren't relying on momentum to help you."
+              "repCount": "6-10"
             },
             {
               "name": "Squat & Press",
-              "repCount": "6-10",
-              "tips": "Make these two distinct movements, coming up fully from the squat before starting your press."
+              "repCount": "6-10"
             },
             {
               "name": "Romanian Dead Lift",
-              "repCount": "6-10",
-              "tips": "Focus on hinging at the hip with a soft bend in your knee - imagine making a 7 with your body.  Move with control and build up your weight slowly."
+              "repCount": "6-10"
             }
           ]
         }
@@ -65,18 +59,15 @@ export default {
           "exercises": [
             {
               "name": "Row",
-              "repCount": "6-10",
-              "tips": "Complete the full range of motion of the row - pull the dumbbell all the way to your ribs and pause on each rep."
+              "repCount": "6-10"
             },
             {
               "name": "Forward Reach Squat",
-              "repCount": "6-10",
-              "tips": "If this is too easy, try holding a weight (or two!) in your hands."
+              "repCount": "6-10"
             },
             {
               "name": "Glute Bridge",
-              "repCount": "6-10",
-              "tips": "Stack your knees directly over your ankles and don't let them fall in or out.  Complete the full range of motion - push your hips as high as you can, keep them level, and pause at the top.  If this is too easy, place a weight on your hips."
+              "repCount": "6-10"
             }
           ]
         }
@@ -90,20 +81,17 @@ export default {
           "exercises": [
             {
               "name": "Dead Bug",
-              "repCount": "To Fatigue",
-              "tips": "Hold weight in your hands if this is too easy."
+              "repCount": "To Fatigue"
             },
             {
               "name": "Oblique Crunch",
               "side": "Left",
-              "repCount": "To Fatigue",
-              "tips": "This is a precise movement - make sure you're engaging the space between your hip and your ribs to lift."
+              "repCount": "To Fatigue"
             },
             {
               "name": "Oblique Crunch",
               "side": "Right",
-              "repCount": "To Fatigue",
-              "tips": "This is a precise movement - make sure you're engaging the space between your hip and your ribs to lift."
+              "repCount": "To Fatigue"
             }
           ]
         }

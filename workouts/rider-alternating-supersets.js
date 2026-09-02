@@ -14,18 +14,15 @@ export default {
           "exercises": [
             {
               "name": "Standing Abduction",
-              "repCount": "6-8 per side",
-              "tips": "Keep your balance as you rotate your knee out, using your glutes to open your hip."
+              "repCount": "6-8 per side"
             },
             {
               "name": "Squat Twist",
-              "repCount": "5-10 per side",
-              "tips": "Squat as deeply or shallowly as feels right for you today."
+              "repCount": "5-10 per side"
             },
             {
               "name": "Adductor & Hamstring Stretch",
-              "repCount": "5-10 per side",
-              "tips": "Focus on the areas that feel like they need the most stretch today.  Feel free to come back for more at the end!"
+              "repCount": "5-10 per side"
             }
           ]
         }
@@ -39,14 +36,12 @@ export default {
           "exercises": [
             {
               "name": "Sumo Squat",
-              "repCount": "8-12",
-              "tips": "Point your toes out at a 45-degree angle from your body.  Engage your glutes as you stand and keep your shoulders upright throughout."
+              "repCount": "8-12"
             },
             {
               "name": "Reverse Fly",
               "side": "Alternating",
-              "repCount": "6-8 per side",
-              "tips": "Go slowly and stop the weight fully at the top and bottom of the movement to ensure you aren't relying on momentum to help you."
+              "repCount": "6-8 per side"
             }
           ]
         }
@@ -61,13 +56,11 @@ export default {
             {
               "name": "Side Lunge",
               "side": "Alternating",
-              "repCount": "6-8 per side",
-              "tips": "Pause to find your balance on each step out and back in.  Take a smaller step to make this easier and a bigger step to make it harder."
+              "repCount": "6-8 per side"
             },
             {
               "name": "Push Up",
-              "repCount": "To Fatigue",
-              "tips": "Take any variant you want here.  Knees, plank, knee assist, jack - anything you want!"
+              "repCount": "To Fatigue"
             }
           ]
         }
@@ -81,14 +74,12 @@ export default {
           "exercises": [
             {
               "name": "Calf Raise",
-              "repCount": "6-10",
-              "tips": "As this becomes easier, place the ball of your foot on the edge of a step and let your heels sink down with each rep."
+              "repCount": "6-10"
             },
             {
               "name": "Row",
               "side": "Alternating",
-              "repCount": "6-8 per side",
-              "tips": "To make this harder, hold the weight at the top of the motion (with your arm flexed) instead of the bottom."
+              "repCount": "6-8 per side"
             }
           ]
         }
@@ -103,13 +94,11 @@ export default {
             {
               "name": "Reverse Lunge",
               "side": "Alternating",
-              "repCount": "6-8 per side",
-              "tips": "Step back slowly, keeping your balance throughout the motion."
+              "repCount": "6-8 per side"
             },
             {
               "name": "To-the-Chin Lift",
-              "repCount": "6-10",
-              "tips": "Make sure to keep your elbow elevated to shoulder height."
+              "repCount": "6-10"
             }
           ]
         }
@@ -123,13 +112,11 @@ export default {
           "exercises": [
             {
               "name": "Dead Bug",
-              "repCount": "To Fatigue",
-              "tips": "Add one or two dumbbells in your hands to make this harder.  Keep your knee bent to make it easier."
+              "repCount": "To Fatigue"
             },
             {
               "name": "Crunch",
-              "repCount": "To Fatigue",
-              "tips": "Support your head in your hands if your neck gets tired in later reps.  Be careful not to pull your head forward if you do this - just rest it in your hands."
+              "repCount": "To Fatigue"
             }
           ]
         }
