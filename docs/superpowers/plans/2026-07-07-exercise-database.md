@@ -839,11 +839,16 @@ Land the exporter CLI, switch the app to resolve exercises by slug, run the expo
 **Files:**
 - Create: `scripts/export-app.mjs`
 - Modify: `package.json` (add `db:export`)
-- Modify: `workouts/exercises.js`
-- Modify: `workout-app.jsx`
+- Modify: `workouts/exercises.js` (resolve by slug; return name)
+- Modify: `workouts/exercises.test.js` (existing — rewrite to slug)
+- Modify: `workouts/build-checklist.js` (resolve name/tips/Rest via catalog by slug)
+- Modify: `workouts/build-checklist.test.js` (existing — rewrite to slug + catalog fixture)
+- Modify: `workout-app.jsx` (isRest by slug)
 - Modify: `scripts/lib/emit-catalog.mjs` (header text)
 - Modify: `scripts/generate-catalog.mjs` (neutralize to a stub)
 - Regenerated: `workouts/*.js` (16 files) + `workouts/exercises.data.js`
+
+**Full app-side blast radius of the slug switch** (verified against the codebase): instances change from `{ name, side?, repCount }` to `{ slug, side?, repCount }`, so every reader of instance `.name`/`.tips`/`"Rest"` must change. Those are exactly: `workout-app.jsx:88` (isRest), `workouts/exercises.js` (resolver — the app's other name/tips reads all go through it), and `workouts/build-checklist.js` (the checklist feature; reads `exercise.name`/`.tips` and Rest). Their two existing test files (`exercises.test.js`, `build-checklist.test.js`) assert the old name-based API and must be rewritten. Other `workouts/` modules (`checklist-progress.js`, `progress.js`, `weekly-progress.js`) key off item ids, not instance names — untouched.
 
 - [ ] **Step 1: Implement `scripts/export-app.mjs`**
 
@@ -880,39 +885,99 @@ In `package.json` `"scripts"`, add:
     "db:export": "node scripts/export-app.mjs",
 ```
 
-- [ ] **Step 3: Switch the app resolver to slug (write the failing test)**
+- [ ] **Step 3: Rewrite the existing `workouts/exercises.test.js` to the slug API**
 
-Create `workouts/exercises.test.mjs`:
+Overwrite `workouts/exercises.test.js` (it currently asserts the old `name`-based resolver) with:
 
 ```js
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { resolveExercise, formatExerciseTitle } from "./exercises.js";
+import { slugify, resolveExercise, formatExerciseTitle, EXERCISES } from "./exercises.js";
+import { WORKOUTS } from "./index.js";
 
-const catalog = {
-  "row": { name: "Row", tips: "Pull to hip", video: "row.mp4" },
-  "side-lunge": { name: "Side Lunge", tips: "Slow", video: "sl.mp4", videoAlternating: "sl-alt.mp4" },
+test("slugify normalizes punctuation, & and w/", () => {
+  assert.equal(slugify("Calf Raise & Curl"), "calf-raise-and-curl");
+  assert.equal(slugify("Forward Lunge w/ Twist"), "forward-lunge-with-twist");
+  assert.equal(slugify("Standing Cat/Cow"), "standing-cat-cow");
+  assert.equal(slugify("To-the-Chin Lift"), "to-the-chin-lift");
+  assert.equal(slugify("RDL & Row"), "rdl-and-row");
+});
+
+const CATALOG = {
+  "forward-lunge": { name: "Forward Lunge", tips: "hips square", video: "/videos/forward-lunge.mp4", videoAlternating: "/videos/forward-lunge-alt.mp4" },
+  "sumo-squat": { name: "Sumo Squat", tips: "", video: null },
+  "single-arm-row": { name: "Single Arm Row", tips: "", video: "/videos/single-arm-row.mp4", videoAlternating: null },
 };
 
-test("resolveExercise looks up by slug and returns the resolved name", () => {
-  assert.deepEqual(resolveExercise({ slug: "row", repCount: "8-10" }, catalog), { name: "Row", videoSrc: "row.mp4", mirror: false, tips: "Pull to hip" });
+test("resolveExercise: looks up by slug and returns the resolved name", () => {
+  assert.equal(resolveExercise({ slug: "forward-lunge" }, CATALOG).name, "Forward Lunge");
 });
 
-test("resolveExercise mirrors Right and picks the alternating clip", () => {
-  assert.equal(resolveExercise({ slug: "row", side: "Right" }, catalog).mirror, true);
-  assert.equal(resolveExercise({ slug: "side-lunge", side: "Alternating" }, catalog).videoSrc, "sl-alt.mp4");
+test("resolveExercise: Left plays the single-side clip un-mirrored", () => {
+  const r = resolveExercise({ slug: "forward-lunge", side: "Left" }, CATALOG);
+  assert.equal(r.videoSrc, "/videos/forward-lunge.mp4");
+  assert.equal(r.mirror, false);
 });
 
-test("formatExerciseTitle resolves the display name and appends side", () => {
-  assert.equal(formatExerciseTitle({ slug: "side-lunge", side: "Left" }, catalog), "Side Lunge · Left");
-  assert.equal(formatExerciseTitle({ slug: "row" }, catalog), "Row");
+test("resolveExercise: Right mirrors the single-side clip", () => {
+  const r = resolveExercise({ slug: "forward-lunge", side: "Right" }, CATALOG);
+  assert.equal(r.videoSrc, "/videos/forward-lunge.mp4");
+  assert.equal(r.mirror, true);
+});
+
+test("resolveExercise: Alternating prefers the alternating clip, never mirrors", () => {
+  const r = resolveExercise({ slug: "forward-lunge", side: "Alternating" }, CATALOG);
+  assert.equal(r.videoSrc, "/videos/forward-lunge-alt.mp4");
+  assert.equal(r.mirror, false);
+});
+
+test("resolveExercise: Alternating falls back to single-side clip when no alt clip", () => {
+  const r = resolveExercise({ slug: "single-arm-row", side: "Alternating" }, CATALOG);
+  assert.equal(r.videoSrc, "/videos/single-arm-row.mp4");
+  assert.equal(r.mirror, false);
+});
+
+test("resolveExercise: missing/no video yields null src (placeholder path)", () => {
+  assert.equal(resolveExercise({ slug: "sumo-squat" }, CATALOG).videoSrc, null);
+  assert.equal(resolveExercise({ slug: "unknown-move" }, CATALOG).videoSrc, null);
+});
+
+test("resolveExercise: instance tips win, else catalog tips, else null", () => {
+  assert.equal(resolveExercise({ slug: "forward-lunge", tips: "override" }, CATALOG).tips, "override");
+  assert.equal(resolveExercise({ slug: "forward-lunge" }, CATALOG).tips, "hips square");
+  assert.equal(resolveExercise({ slug: "sumo-squat" }, CATALOG).tips, null);
+});
+
+test("formatExerciseTitle appends the side", () => {
+  assert.equal(formatExerciseTitle({ slug: "forward-lunge" }, CATALOG), "Forward Lunge");
+  assert.equal(formatExerciseTitle({ slug: "forward-lunge", side: "Left" }, CATALOG), "Forward Lunge · Left");
+  assert.equal(formatExerciseTitle({ slug: "forward-lunge", side: "Alternating" }, CATALOG), "Forward Lunge · Alternating");
+});
+
+// Integration: valid only AFTER the DB export reshapes workout files to slug refs
+// (Step 9). It reads instance.slug, so it fails while files are still name-shaped.
+test("every active-workout exercise resolves to a catalog entry", () => {
+  const missing = new Set();
+  for (const w of WORKOUTS) {
+    for (const phase of w.phases) {
+      for (const circuit of phase.circuits) {
+        for (const ex of circuit.exercises) {
+          if (ex.slug === "rest") continue;
+          if (!EXERCISES[ex.slug]) missing.add(`${ex.slug} (in ${w.name})`);
+        }
+      }
+    }
+  }
+  assert.deepEqual([...missing], [], `unmapped exercises: ${[...missing].join("; ")}`);
 });
 ```
 
-- [ ] **Step 4: Run the test to verify it fails**
+- [ ] **Step 4: Run the resolver unit tests to verify they fail**
 
-Run: `node --test workouts/exercises.test.mjs`
-Expected: FAIL — `resolveExercise` still slugifies `instance.name` and returns no `name`.
+Run only the fixture-based tests (the integration test needs the post-export file shape, so exclude it here):
+
+Run: `node --test --test-name-pattern="slugify|resolveExercise|formatExerciseTitle" workouts/exercises.test.js`
+Expected: FAIL — the old `resolveExercise` slugifies `instance.name` (now undefined) and returns no `name`.
 
 - [ ] **Step 5: Update `workouts/exercises.js`**
 
@@ -947,28 +1012,156 @@ export function formatExerciseTitle(instance, catalog = EXERCISES) {
 }
 ```
 
-Also update the `slugify` doc comment note if present; `slugify` itself stays (used by the seed/build-model), so keep the export unchanged.
+`slugify` itself stays (used by the seed/build-model) — keep it exported unchanged.
 
-- [ ] **Step 6: Update the app's Rest check in `workout-app.jsx`**
+- [ ] **Step 6: Run the resolver unit tests to verify they pass**
 
-At `workout-app.jsx:88`, change:
+Run: `node --test --test-name-pattern="slugify|resolveExercise|formatExerciseTitle" workouts/exercises.test.js`
+Expected: PASS. (The `every active-workout…` integration test is excluded here — it runs in the full suite at Step 12, after the export.)
+
+- [ ] **Step 7: Update `workouts/build-checklist.js` to resolve via the catalog**
+
+The checklist reads `exercise.name`/`.tips` and detects Rest by name — all of which move to slug + catalog resolution. Change the imports and the inner loop so it (a) detects Rest by `slug === "rest"`, (b) resolves display `name`/`tips` from the catalog via `resolveExercise`. Add near the top:
 
 ```js
-            isRest: exercise.name === "Rest",
+import { resolveExercise } from "./exercises.js";
 ```
 
-to:
+Change the signature to accept an optional catalog:
 
 ```js
-            isRest: exercise.slug === "rest",
+export function buildChecklist(workout, catalog) {
 ```
 
-- [ ] **Step 7: Run the resolver test to verify it passes**
+Replace the `circuit.exercises.forEach(...)` body's Rest check and item push with:
 
-Run: `node --test workouts/exercises.test.mjs`
-Expected: PASS (3 tests).
+```js
+        circuit.exercises.forEach((exercise, exIndex) => {
+          if (exercise.slug === "rest") {
+            if (typeof exercise.repCount === "number") {
+              restSeconds.push(exercise.repCount);
+            }
+            return;
+          }
+          const { name, tips } = resolveExercise(exercise, catalog);
+          items.push({
+            id: `p${phaseIndex}c${circuitIndex}r${round}e${exIndex}`,
+            name,
+            repCount: exercise.repCount,
+            tips,
+            side: exercise.side,
+          });
+          totalItems += 1;
+        });
+```
 
-- [ ] **Step 8: Point the catalog header at the new exporter**
+(When `catalog` is undefined — the app calls `buildChecklist(selectedWorkout)` with no second arg — `resolveExercise` falls back to the real `EXERCISES`, so the app call site is unchanged.)
+
+- [ ] **Step 8: Rewrite `workouts/build-checklist.test.js` to slug + a catalog fixture**
+
+Overwrite it with:
+
+```js
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { buildChecklist } from "./build-checklist.js";
+
+const CATALOG = {
+  a: { name: "A", tips: "", video: null },
+  b: { name: "B", tips: "", video: null },
+  c: { name: "C", tips: "", video: null },
+  d: { name: "D", tips: "", video: null },
+  e: { name: "E", tips: "", video: null },
+  f: { name: "F", tips: "", video: null },
+  "forward-lunge": { name: "Forward Lunge", tips: "", video: null },
+  "sumo-squat": { name: "Sumo Squat", tips: "", video: null },
+};
+
+const fixture = {
+  name: "Test Workout",
+  phases: [
+    { name: "Warm Up", circuits: [{ repeatCount: 1, exercises: [{ slug: "a", repCount: "8" }, { slug: "b", repCount: "10" }] }] },
+    { name: "Superset 1", circuits: [{ repeatCount: 2, exercises: [{ slug: "c", repCount: "8", tips: "keep back flat" }, { slug: "rest", repCount: 30 }, { slug: "d", repCount: "6" }] }] },
+    { name: "Mini Circuits", circuits: [{ repeatCount: 1, exercises: [{ slug: "e", repCount: "12" }] }, { repeatCount: 1, exercises: [{ slug: "f", repCount: "12" }] }] },
+  ],
+};
+
+test("totalItems counts checkable items, excluding Rest", () => {
+  assert.equal(buildChecklist(fixture, CATALOG).totalItems, 8);
+});
+
+test("one set per phase, with stable ids and names", () => {
+  const { sets } = buildChecklist(fixture, CATALOG);
+  assert.equal(sets.length, 3);
+  assert.deepEqual(sets.map((s) => s.id), ["p0", "p1", "p2"]);
+  assert.deepEqual(sets.map((s) => s.name), ["Warm Up", "Superset 1", "Mini Circuits"]);
+});
+
+test("single-round circuit exposes one round; multi-round flags multiRound", () => {
+  const { sets } = buildChecklist(fixture, CATALOG);
+  assert.equal(sets[0].groups[0].multiRound, false);
+  assert.equal(sets[0].groups[0].rounds.length, 1);
+  assert.equal(sets[1].groups[0].multiRound, true);
+  assert.equal(sets[1].groups[0].rounds.length, 2);
+});
+
+test("Rest is excluded from items but sets a restCaption on the set", () => {
+  const { sets } = buildChecklist(fixture, CATALOG);
+  const round1 = sets[1].groups[0].rounds[0];
+  assert.deepEqual(round1.items.map((i) => i.name), ["C", "D"]);
+  assert.equal(sets[1].restCaption, "Rest ~30s");
+  assert.equal(sets[0].restCaption, null);
+});
+
+test("item ids embed phase/circuit/round/original-exercise index; tips resolve", () => {
+  const { sets } = buildChecklist(fixture, CATALOG);
+  const round1 = sets[1].groups[0].rounds[0];
+  assert.deepEqual(round1.items.map((i) => i.id), ["p1c0r1e0", "p1c0r1e2"]);
+  assert.equal(round1.items[0].tips, "keep back flat"); // instance override wins
+  assert.equal(round1.items[1].tips, null); // no override, empty catalog tips -> null
+});
+
+test("restCaption summarizes a single rest value vs. mixed values", () => {
+  const mixed = {
+    name: "W",
+    phases: [{ name: "P", circuits: [{ repeatCount: 1, exercises: [
+      { slug: "a", repCount: "8" }, { slug: "rest", repCount: 30 }, { slug: "b", repCount: "8" }, { slug: "rest", repCount: 60 },
+    ] }] }],
+  };
+  assert.equal(buildChecklist(mixed, CATALOG).sets[0].restCaption, "Rest as prescribed");
+});
+
+test("multiple circuits in a phase flag multiCircuit", () => {
+  const { sets } = buildChecklist(fixture, CATALOG);
+  assert.equal(sets[2].multiCircuit, true);
+  assert.equal(sets[2].groups.length, 2);
+  assert.deepEqual(sets[2].groups.map((g) => g.id), ["p2c0", "p2c1"]);
+  assert.equal(sets[0].multiCircuit, false);
+});
+
+test("build-checklist carries the side onto items", () => {
+  const wk = {
+    name: "Sided",
+    phases: [{ name: "P", circuits: [{ repeatCount: 1, exercises: [
+      { slug: "forward-lunge", repCount: "8", side: "Left" },
+      { slug: "sumo-squat", repCount: "10" },
+    ] }] }],
+  };
+  const { sets } = buildChecklist(wk, CATALOG);
+  const items = sets[0].groups[0].rounds[0].items;
+  assert.equal(items[0].side, "Left");
+  assert.equal(items[1].side, undefined);
+});
+```
+
+Run: `node --test workouts/build-checklist.test.js`
+Expected: PASS (this file's fixtures are self-contained, independent of the export).
+
+- [ ] **Step 8b: Update the app's Rest check in `workout-app.jsx`**
+
+At `workout-app.jsx:88`, change `isRest: exercise.name === "Rest",` to `isRest: exercise.slug === "rest",`.
+
+- [ ] **Step 9: Point the catalog header at the new exporter**
 
 In `scripts/lib/emit-catalog.mjs`, change the two header comment lines inside `serializeCatalog` from the `generate-catalog.mjs` wording to:
 
@@ -978,12 +1171,12 @@ In `scripts/lib/emit-catalog.mjs`, change the two header comment lines inside `s
 export const EXERCISES = {
 ```
 
-- [ ] **Step 9: Run the real export**
+- [ ] **Step 10: Run the real export**
 
 Run: `npm run db:export`
 Expected: `Exported 16 workouts + exercises.data.js from the DB.`
 
-- [ ] **Step 10: Inspect the reshape diff**
+- [ ] **Step 11: Inspect the reshape diff**
 
 Run: `git status --short workouts/`
 Expected: all 16 active `workouts/*.js` modified (instances now `{ slug, side?, repCount }`) plus `workouts/exercises.data.js` modified (the 4 orphans removed: banded-crab-walk, curl-and-press, runner-hop, superman-pull-down).
@@ -996,7 +1189,7 @@ git diff workouts/exercises.data.js | grep '^-' | grep -E 'banded-crab-walk|curl
 
 Expected: `4` (each orphan line removed).
 
-- [ ] **Step 11: Neutralize the retired bootstrap `scripts/generate-catalog.mjs`**
+- [ ] **Step 12: Neutralize the retired bootstrap `scripts/generate-catalog.mjs`**
 
 Replace the entire file contents with a stub that fails loudly (it would otherwise crash on slug-shaped instances):
 
@@ -1009,22 +1202,22 @@ console.error("generate-catalog.mjs is retired. Use `npm run db:export` (source:
 process.exit(1);
 ```
 
-- [ ] **Step 12: Verify the app builds and renders**
+- [ ] **Step 13: Run the whole test suite (integration test now valid post-export)**
+
+Run: `npm test`
+Expected: all `node --test` files pass — including the `every active-workout exercise resolves` integration test in `workouts/exercises.test.js`, which is correct only now that the workout files are slug-shaped.
+
+- [ ] **Step 14: Verify the app builds and renders**
 
 Run: `npm run build`
 Expected: Vite build succeeds with no unresolved-import or reference errors.
 
-Then start the dev server and confirm a workout steps through exercises with names, tips, and video/placeholder, and that Rest still counts down. Use the preview tools (`preview_start` with the dev config), load a workout, and read the exercise title + tips off the page.
+Then start the dev server and confirm a workout steps through exercises with names, tips, and video/placeholder; that the **checklist view** lists items with names (Rest excluded, shown as a caption); and that Rest still counts down in the runner. Use the preview tools (`preview_start` with the dev config, name `app`, then navigate to `http://localhost:5173/?variant=equestrian`), load a workout, and read the exercise title + tips off the page.
 
-- [ ] **Step 13: Run the whole test suite**
-
-Run: `npm test`
-Expected: all `node --test` files pass.
-
-- [ ] **Step 14: Commit**
+- [ ] **Step 15: Commit**
 
 ```bash
-git add scripts/export-app.mjs package.json workouts/exercises.js workouts/exercises.test.mjs workout-app.jsx scripts/lib/emit-catalog.mjs scripts/generate-catalog.mjs workouts/*.js
+git add scripts/export-app.mjs package.json workouts/exercises.js workouts/exercises.test.js workouts/build-checklist.js workouts/build-checklist.test.js workout-app.jsx scripts/lib/emit-catalog.mjs scripts/generate-catalog.mjs workouts/*.js
 git commit -m "feat(db): export app files from the DB; app references exercises by slug"
 ```
 
