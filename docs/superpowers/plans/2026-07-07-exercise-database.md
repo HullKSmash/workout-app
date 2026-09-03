@@ -1223,6 +1223,10 @@ git commit -m "feat(db): export app files from the DB; app references exercises 
 
 ---
 
+> **As-built corrections (Task 7, committed `4188fa3`):** Two things the step text above under-scoped, corrected during execution:
+> 1. **`build-checklist.js` layering.** The checklist item must carry the exercise **`slug`** (structural passthrough), NOT a catalog-resolved name — because `ChecklistScreen.jsx` (a third instance-name consumer the original blast-radius analysis missed) already resolves display name/tips/video via `formatExerciseTitle(item)`/`resolveExercise(detailItem)`. Final design: `buildChecklist(workout)` (no catalog param) emits items `{ id, slug, repCount, tips, side }`; `ChecklistScreen.jsx` line 176 changed from `item.name` to `formatExerciseTitle(item)`. `build-checklist.test.js` is structural/slug-based (no catalog fixture). `ChecklistScreen.jsx` was added to the commit.
+> 2. **Retired-bootstrap cleanup.** The slug reshape orphaned the retired bootstrap's tests (`scripts/lib/collect-required.test.mjs` crashed reading name-shaped `WORKOUTS`). Since `collect-required.mjs`/`merge-catalog.mjs` had no remaining importers (only `generate-catalog.mjs`, now stubbed), all four files were **deleted**. `deriveCore` in `normalize-exercises.mjs` stays (used by `build-model`). `scripts/lib/emit-catalog.test.mjs` was updated to assert the new header from Step 9.
+
 ## Task 8: CSV → DB workout importer
 
 Keep CSV authoring working end to end. The importer parses a workout CSV, links its exercises to existing DB rows **by slug** (an unknown movement is a hard error — add it via SQL first), splices the workout into the model (add, or replace an existing slug in place), rewrites `data/data.sql`, rebuilds the `.db`, and re-exports the app files. New *exercises* stay a deliberate SQL insert; new *workouts* stay a CSV drop.
@@ -1631,5 +1635,5 @@ git commit -m "chore(db): verify deterministic export, importer round-trip, and 
   - `scripts/publish-videos.mjs` currently writes video URLs into `exercises.data.js` directly; under the DB model it should update `data/data.sql` (the `video`/`video_alternating` columns) and re-export. Left as-is for now — existing URLs are already seeded, so nothing breaks until the next new clip is published.
   - The CSV importer (Task 8) covers new/replaced *workouts* that reuse existing exercises. Creating a new *exercise* is a deliberate `data/data.sql` SQL insert (the importer errors on an unknown movement, by design). A guided/tooled exercise-creation flow is a possible later convenience, not built here.
   - Dormant foundation `workouts/*.js` files are untouched and keep the old name-shaped format; reactivating one requires importing it into the DB (or seeding it) and re-exporting.
-  - `scripts/lib/collect-required.mjs` and `scripts/lib/merge-catalog.mjs` are now unused (they served the retired generator); leave them or remove in a separate cleanup.
+  - `scripts/lib/collect-required.mjs` and `scripts/lib/merge-catalog.mjs` (and their tests) were **deleted** in Task 7 — they served the retired generator and their tests broke on the slug reshape. `normalize-exercises.mjs` (`deriveCore`) stays (used by `build-model`).
 ```
