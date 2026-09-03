@@ -26,12 +26,14 @@ workout if missed.
 ## The data flow at a glance
 
 ```
-Katie's CSV  ──parseWorkoutCsv()──▶  { name, phases }  ──add audiences/difficulty + write──▶  workouts/<slug>.js  ──register──▶  workouts/index.js
+Katie's CSV ──parseWorkoutCsv()──▶ { name, phases } ──import-workout.mjs──▶ data/data.sql (DB) ──db:export──▶ workouts/<slug>.js + exercises.data.js ──register──▶ workouts/index.js
 ```
 
 `workouts/parse-csv.js` exports `parseWorkoutCsv(csvString, workoutName) -> { name, phases }`.
-Nothing in the repo calls it at runtime — generation is a manual, ad-hoc step. Use
-the bundled script `scripts/generate-workout.mjs` to do it consistently.
+The exercise DB (`data/data.sql`) is the source of truth. `scripts/import-workout.mjs`
+parses the CSV, links exercises by slug, writes the workout into the DB, and
+re-exports the app files. New exercises are a deliberate SQL insert; the importer
+errors on any movement not already in the DB.
 
 ## Why you can't just run the parser and stop
 
@@ -103,12 +105,17 @@ Exercise:{ name, repCount, tips?, side? }   // side: "Left"|"Right"|"Alternating
 Run from the repo root (the script resolves `./workouts/parse-csv.js` relative to cwd):
 
 ```bash
-node .claude/skills/update-workouts/scripts/generate-workout.mjs \
+npm run db:import -- \
   --csv "/Users/katie/Downloads/RiderBuild1_Green.csv" \
   --name "Rider Build 1" \
-  --audience equestrian \
-  --out workouts/rider-build-1.js
+  --slug rider-build-1 \
+  --audience equestrian
 ```
+
+Note: `--slug` is the workout's stable key / filename stem (e.g.
+`runner-single-leg-sandwiches-1`) — it is **not** always `slugify(name)` because
+of the audience prefix, so pass it explicitly. Multiple audiences:
+`--audience run,equestrian`.
 
 - **Name**: match the existing convention — title case, e.g. "Rider Build 1",
   "Rider Symmetry & Balance 2". `&` is fine in display names. If Katie gives an
@@ -122,11 +129,15 @@ node .claude/skills/update-workouts/scripts/generate-workout.mjs \
 
 ### 2. Replacing an existing workout
 
-If this CSV replaces an existing workout:
-- Delete the old workout file (`rm workouts/<old-slug>.js`).
-- Remove its import line and its entry in the `WORKOUTS` array in `index.js`.
-- Then add the new one (below). If the slug changed, the old import must go or the
-  build breaks.
+Replacing **in place** (same `--slug`) needs no file delete and no `index.js`
+change — `npm run db:import` with the existing slug overwrites that workout's
+rows in the DB and re-exports the file in place.
+
+Only a slug **change** needs cleanup:
+- Remove the old workout's import line and its entry in the `WORKOUTS` array in
+  `index.js`.
+- Then add the new one (below) under its new slug. If the slug changed, the old
+  import must go or the build breaks.
 
 ### 3. Register in `workouts/index.js`
 
@@ -134,24 +145,15 @@ Add an `import` and append the variable to the `WORKOUTS` array. Variable name i
 camelCase of the slug (`rider-build-1.js` → `riderBuild1`). Keep related workouts
 grouped (e.g. all equestrian ones together) for readability.
 
-### 4. Regenerate the exercise catalog
+### 4. New movements
 
-The workout may reference a movement the catalog doesn't have yet. Regenerate it:
-
-```bash
-node scripts/generate-catalog.mjs
-```
-
-This is a safe upsert — it preserves existing clip paths and adds any new movement.
-**Read its output and act on it:**
-
-- If it prints `+ N new: …`, **tell Katie explicitly** which new movement(s) it
-  added and that each needs a video clip filmed (they render the placeholder until
-  then). This is the one signal she can't easily recover if you swallow it.
-- If it prints `! N no longer used`, mention which movements are now orphaned (a
-  possible rename/typo to double-check).
-- `git diff workouts/exercises.data.js` shows the exact catalog change; the running
-  checklist of unfilmed movements lives in `docs/exercise-todo.md`.
+The importer **errors** if the CSV uses a movement not already in the DB (it will
+not invent an exercise). If that happens, add the exercise to `data/data.sql`
+(`INSERT INTO exercises (id, slug, name, tips, video, video_alternating) VALUES …`
+— next free id, slug via the app's `slugify`), then re-run the import. The
+exporter regenerates `workouts/exercises.data.js` (the app catalog) automatically;
+a new exercise with `video` NULL renders the placeholder until a clip is filmed —
+tell Katie which movement(s) need one. `docs/exercise-todo.md` no longer applies.
 
 ### 5. Verify in the running app
 
@@ -173,10 +175,10 @@ Don't trust the file shape alone — confirm the workout actually appears and re
 
 - [ ] Checked CSV header is `…, RepCount, Tips` (single Tips column)
 - [ ] Checked CSV header includes the `Side` column (`…, Exercise, Side, RepCount, Tips`)
-- [ ] Ran generate-workout.mjs with the right `--audience` (and `--difficulty` if no color token in the filename)
+- [ ] Ran npm run db:import with the right `--slug` and `--audience` (and `--difficulty` if no color token)
 - [ ] Read the spot-check sample — the tip landed on the right exercise
 - [ ] Confirmed the printed `difficulty` matches the expected badge
 - [ ] Removed old file + its index.js entry (if replacing and the slug changed)
 - [ ] Added import + WORKOUTS entry in index.js (skip if replacing in place — same slug)
-- [ ] Ran `node scripts/generate-catalog.mjs`; reported any `+ N new:` movement(s) to Katie as needing a clip
+- [ ] If the importer errored on an unknown movement, added the exercise to data/data.sql and reported the needed clip to Katie
 - [ ] Verified in app under the correct `?variant=` (list, badge, and a tip render)

@@ -13,17 +13,17 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Reverse Lunge Tap",
+              "slug": "reverse-lunge-tap",
               "side": "Left",
               "repCount": "6-10"
             },
             {
-              "name": "Reverse Lunge Tap",
+              "slug": "reverse-lunge-tap",
               "side": "Right",
               "repCount": "6-10"
             },
             {
-              "name": "Lateral Pogo",
+              "slug": "lateral-pogo",
               "repCount": "10-15"
             }
           ]
@@ -37,7 +37,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Row & Kickback",
+              "slug": "row-and-kickback",
               "repCount": "8-10"
             }
           ]
@@ -46,12 +46,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Unilateral Calf Raise & Curl Hold",
+              "slug": "unilateral-calf-raise-and-curl-hold",
               "side": "Left",
               "repCount": "8-10"
             },
             {
-              "name": "Unilateral Calf Raise & Curl Hold",
+              "slug": "unilateral-calf-raise-and-curl-hold",
               "side": "Right",
               "repCount": "8-10"
             }
@@ -61,7 +61,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Row & Kickback",
+              "slug": "row-and-kickback",
               "repCount": "8-10"
             }
           ]
@@ -75,7 +75,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Romanian Dead Lift",
+              "slug": "romanian-dead-lift",
               "repCount": "8-10"
             }
           ]
@@ -84,12 +84,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Side Lying Leg Lift",
+              "slug": "side-lying-leg-lift",
               "side": "Left",
               "repCount": "6-10"
             },
             {
-              "name": "Side Lying Leg Lift",
+              "slug": "side-lying-leg-lift",
               "side": "Right",
               "repCount": "6-10"
             }
@@ -99,7 +99,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Romanian Dead Lift",
+              "slug": "romanian-dead-lift",
               "repCount": "8-10"
             }
           ]
@@ -113,7 +113,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Sumo Goblet Squat",
+              "slug": "sumo-goblet-squat",
               "repCount": "8-10"
             }
           ]
@@ -122,12 +122,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Single Leg Glute Bridge",
+              "slug": "single-leg-glute-bridge",
               "side": "Left",
               "repCount": "10-12"
             },
             {
-              "name": "Single Leg Glute Bridge",
+              "slug": "single-leg-glute-bridge",
               "side": "Right",
               "repCount": "10-12"
             }
@@ -137,7 +137,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Sumo Goblet Squat",
+              "slug": "sumo-goblet-squat",
               "repCount": "8-10"
             }
           ]
@@ -151,15 +151,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Hip Dip Plank",
+              "slug": "hip-dip-plank",
               "repCount": "10-12"
             },
             {
-              "name": "Toe Tap",
+              "slug": "toe-tap",
               "repCount": "10-12"
             },
             {
-              "name": "Dead Bug",
+              "slug": "dead-bug",
               "repCount": "6-10 per side"
             }
           ]

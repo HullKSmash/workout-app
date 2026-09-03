@@ -9,7 +9,10 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "node --test",
-    "publish-videos": "node --env-file=.env.local scripts/publish-videos.mjs"
+    "publish-videos": "node --env-file=.env.local scripts/publish-videos.mjs",
+    "db:seed": "node scripts/seed-db.mjs",
+    "db:export": "node scripts/export-app.mjs",
+    "db:import": "node scripts/import-workout.mjs"
   },
   "dependencies": {
     "@upstash/redis": "^1.38.0",

@@ -13,15 +13,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Plank Twist",
+              "slug": "plank-twist",
               "repCount": "5-10 per side"
             },
             {
-              "name": "Superman Sweep",
+              "slug": "superman-sweep",
               "repCount": "8-12"
             },
             {
-              "name": "Sumo Squat/Curl/Press",
+              "slug": "sumo-squat-curl-press",
               "repCount": "8-10"
             }
           ]
@@ -35,12 +35,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Weighted Bird Dog",
+              "slug": "weighted-bird-dog",
               "side": "Left",
               "repCount": "8-10"
             },
             {
-              "name": "Weighted Bird Dog",
+              "slug": "weighted-bird-dog",
               "side": "Right",
               "repCount": "8-10"
             }
@@ -55,12 +55,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Split Squat",
+              "slug": "split-squat",
               "side": "Left",
               "repCount": "8-10"
             },
             {
-              "name": "Split Squat",
+              "slug": "split-squat",
               "side": "Right",
               "repCount": "8-10"
             }
@@ -75,12 +75,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Side Lunge w/ Balance Press",
+              "slug": "side-lunge-with-balance-press",
               "side": "Left",
               "repCount": "8-10"
             },
             {
-              "name": "Side Lunge w/ Balance Press",
+              "slug": "side-lunge-with-balance-press",
               "side": "Right",
               "repCount": "8-10"
             }
@@ -95,12 +95,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Glute Arc",
+              "slug": "glute-arc",
               "side": "Left",
               "repCount": "8-10"
             },
             {
-              "name": "Glute Arc",
+              "slug": "glute-arc",
               "side": "Right",
               "repCount": "8-10"
             }
@@ -115,15 +115,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Mountain Climber",
+              "slug": "mountain-climber",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Heel Tap",
+              "slug": "heel-tap",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Butterfly Sit Up",
+              "slug": "butterfly-sit-up",
               "repCount": "To Fatigue"
             }
           ]

@@ -16,11 +16,11 @@ export function slugify(name) {
     .replace(/[\s-]+/g, "-");
 }
 
-// Resolve one workout-instance exercise against the catalog.
-// Returns { videoSrc, mirror, tips } — videoSrc null means "use the placeholder".
+// Resolve one workout-instance exercise (keyed by slug) against the catalog.
+// Returns { name, videoSrc, mirror, tips } — videoSrc null means "placeholder".
 export function resolveExercise(instance, catalog = EXERCISES) {
-  const { name, side, tips } = instance;
-  const entry = catalog[slugify(name)] || null;
+  const { slug, side } = instance;
+  const entry = catalog[slug] || null;
   let videoSrc = null;
   let mirror = false;
   if (entry) {
@@ -31,11 +31,14 @@ export function resolveExercise(instance, catalog = EXERCISES) {
       mirror = side === "Right" && Boolean(videoSrc);
     }
   }
-  const resolvedTips = tips || (entry && entry.tips) || null;
-  return { videoSrc, mirror, tips: resolvedTips };
+  const name = entry ? entry.name : slug;
+  const tips = (instance.tips ?? null) || (entry && entry.tips) || null;
+  return { name, videoSrc, mirror, tips };
 }
 
-// Display title: core name plus a side suffix when the instance is sided.
-export function formatExerciseTitle(instance) {
-  return instance.side ? `${instance.name} · ${instance.side}` : instance.name;
+// Display title: catalog name plus a side suffix when the instance is sided.
+export function formatExerciseTitle(instance, catalog = EXERCISES) {
+  const entry = catalog[instance.slug];
+  const name = entry ? entry.name : instance.slug;
+  return instance.side ? `${name} · ${instance.side}` : name;
 }

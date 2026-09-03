@@ -13,17 +13,17 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Single Leg Pogo",
+              "slug": "single-leg-pogo",
               "side": "Left",
               "repCount": "10-20"
             },
             {
-              "name": "Single Leg Pogo",
+              "slug": "single-leg-pogo",
               "side": "Right",
               "repCount": "10-20"
             },
             {
-              "name": "Jump Squat",
+              "slug": "jump-squat",
               "repCount": "8-10"
             }
           ]
@@ -37,7 +37,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "RDL & Row",
+              "slug": "rdl-and-row",
               "repCount": "8-10"
             }
           ]
@@ -46,12 +46,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Weighted Bird Dog",
+              "slug": "weighted-bird-dog",
               "side": "Left",
               "repCount": "8-10"
             },
             {
-              "name": "Weighted Bird Dog",
+              "slug": "weighted-bird-dog",
               "side": "Right",
               "repCount": "8-10"
             }
@@ -61,7 +61,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "RDL & Row",
+              "slug": "rdl-and-row",
               "repCount": "8-10"
             }
           ]
@@ -75,7 +75,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Hamstring Bridge",
+              "slug": "hamstring-bridge",
               "repCount": "8-12"
             }
           ]
@@ -84,12 +84,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Curtsy Lunge",
+              "slug": "curtsy-lunge",
               "side": "Left",
               "repCount": "6-10"
             },
             {
-              "name": "Curtsy Lunge",
+              "slug": "curtsy-lunge",
               "side": "Right",
               "repCount": "6-10"
             }
@@ -99,7 +99,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Hamstring Bridge",
+              "slug": "hamstring-bridge",
               "repCount": "8-12"
             }
           ]
@@ -113,7 +113,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Side Lunge",
+              "slug": "side-lunge",
               "side": "Alternating",
               "repCount": "8-10 per side"
             }
@@ -123,12 +123,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Glute Arc",
+              "slug": "glute-arc",
               "side": "Left",
               "repCount": "8-10"
             },
             {
-              "name": "Glute Arc",
+              "slug": "glute-arc",
               "side": "Right",
               "repCount": "8-10"
             }
@@ -138,7 +138,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Side Lunge",
+              "slug": "side-lunge",
               "side": "Alternating",
               "repCount": "8-10 per side"
             }
@@ -153,15 +153,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Adductor Cross",
+              "slug": "adductor-cross",
               "repCount": "10-20"
             },
             {
-              "name": "Russian Twist",
+              "slug": "russian-twist",
               "repCount": "10-20"
             },
             {
-              "name": "Plank Pike",
+              "slug": "plank-pike",
               "repCount": "10-20"
             }
           ]

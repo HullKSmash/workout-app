@@ -173,7 +173,7 @@ export default function ChecklistScreen({
                                 <button
                                   style={s.info}
                                   onClick={() => setDetailItem(item)}
-                                  aria-label={`How to do ${item.name}`}
+                                  aria-label={`How to do ${formatExerciseTitle(item)}`}
                                 >
                                   ⓘ
                                 </button>

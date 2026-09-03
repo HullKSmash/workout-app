@@ -17,3 +17,6 @@ docs/*
 !.claude/launch.json
 !.claude/settings.json
 .env*
+
+# Exercise DB build artifact (canonical source is data/data.sql)
+data/exercises.db

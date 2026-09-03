@@ -9,15 +9,17 @@
 // Staging dir: $EXERCISE_CLIPS_DIR, else an `exercise-clips` folder alongside the
 // repo (its sibling, e.g. ~/code/exercise-clips). Clips must be named
 // "<slug>.mp4" (primary) or "<slug>-alt.mp4" (alternating variant).
-import { readFileSync, readdirSync, writeFileSync, rmSync, mkdtempSync } from "fs";
+import { readFileSync, readdirSync, writeFileSync, rmSync, mkdtempSync, existsSync } from "fs";
 import { pathToFileURL } from "url";
 import { execFileSync } from "child_process";
 import { tmpdir } from "os";
 import path from "path";
 import { put } from "@vercel/blob";
 import { parseClipName } from "./lib/parse-clip-name.mjs";
-import { patchCatalog } from "./lib/patch-catalog.mjs";
-import { serializeCatalog } from "./lib/emit-catalog.mjs";
+import { openDb } from "./lib/db.mjs";
+import { readModel } from "./lib/read-model.mjs";
+import { emitDataSql } from "./lib/emit-data-sql.mjs";
+import { applyVideoUrls } from "./lib/apply-video-urls.mjs";
 
 const DRY_RUN = process.argv.includes("--dry-run");
 const REPO = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
@@ -91,24 +93,28 @@ async function main() {
     git(["worktree", "add", wt, "-B", BRANCH, remoteHas ? `origin/${BRANCH}` : "origin/master"]);
     added = true;
 
-    // 4. Patch the worktree's catalog and write it.
-    let wtCatalog = await loadCatalog(wt);
-    for (const u of uploads) {
-      if (!wtCatalog[u.slug]) {
-        throw new Error(
-          `"${u.slug}" is not in the ${BRANCH} base catalog. Its workout/exercise must be merged to master before its video can be published.`
-        );
-      }
-      wtCatalog = patchCatalog(wtCatalog, u.slug, u.field, u.url);
+    // 4. Write the URLs into the worktree's DB source, then re-export the catalog
+    //    from it. exercises.data.js is a generated file — the URL must live in
+    //    data/data.sql or the next `db:export` would wipe it.
+    const dataSqlPath = path.join(wt, "data/data.sql");
+    if (!existsSync(dataSqlPath)) {
+      throw new Error(
+        `${BRANCH} base has no data/data.sql — the exercise DB must be on master before videos can be published. Merge the exercise-database branch first.`
+      );
     }
-    writeFileSync(path.join(wt, "workouts/exercises.data.js"), serializeCatalog(wtCatalog));
+    const db = openDb({ schemaPath: path.join(wt, "data/schema.sql"), dataPath: dataSqlPath });
+    // applyVideoUrls throws if a slug is absent — the exercise must be merged first.
+    const model = applyVideoUrls(readModel(db), uploads);
+    db.close();
+    writeFileSync(dataSqlPath, emitDataSql(model));
+    execFileSync("node", ["scripts/export-app.mjs"], { cwd: wt, stdio: "inherit" });
 
     // 5. Commit + push. No-op safely if nothing changed.
     if (git(["status", "--porcelain"], wt) === "") {
       console.log("Catalog already up to date; nothing to commit.");
     } else {
       const names = uploads.map((u) => u.slug).join(", ");
-      git(["add", "workouts/exercises.data.js"], wt);
+      git(["add", "data/data.sql", "workouts/exercises.data.js"], wt);
       git(["commit", "-m", `feat: add exercise clips (${names})`], wt);
       git(["push", "-u", "origin", BRANCH], wt);
       pushed = true;

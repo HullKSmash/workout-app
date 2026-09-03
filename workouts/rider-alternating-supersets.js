@@ -13,15 +13,15 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Standing Abduction",
+              "slug": "standing-abduction",
               "repCount": "6-8 per side"
             },
             {
-              "name": "Squat Twist",
+              "slug": "squat-twist",
               "repCount": "5-10 per side"
             },
             {
-              "name": "Adductor & Hamstring Stretch",
+              "slug": "adductor-and-hamstring-stretch",
               "repCount": "5-10 per side"
             }
           ]
@@ -35,11 +35,11 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Sumo Squat",
+              "slug": "sumo-squat",
               "repCount": "8-12"
             },
             {
-              "name": "Reverse Fly",
+              "slug": "reverse-fly",
               "side": "Alternating",
               "repCount": "6-8 per side"
             }
@@ -54,12 +54,12 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Side Lunge",
+              "slug": "side-lunge",
               "side": "Alternating",
               "repCount": "6-8 per side"
             },
             {
-              "name": "Push Up",
+              "slug": "push-up",
               "repCount": "To Fatigue"
             }
           ]
@@ -73,11 +73,11 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Calf Raise",
+              "slug": "calf-raise",
               "repCount": "6-10"
             },
             {
-              "name": "Row",
+              "slug": "row",
               "side": "Alternating",
               "repCount": "6-8 per side"
             }
@@ -92,12 +92,12 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Reverse Lunge",
+              "slug": "reverse-lunge",
               "side": "Alternating",
               "repCount": "6-8 per side"
             },
             {
-              "name": "To-the-Chin Lift",
+              "slug": "to-the-chin-lift",
               "repCount": "6-10"
             }
           ]
@@ -111,11 +111,11 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Dead Bug",
+              "slug": "dead-bug",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Crunch",
+              "slug": "crunch",
               "repCount": "To Fatigue"
             }
           ]

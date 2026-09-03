@@ -13,17 +13,17 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Reverse Lunge Tap",
+              "slug": "reverse-lunge-tap",
               "side": "Left",
               "repCount": "6-10"
             },
             {
-              "name": "Reverse Lunge Tap",
+              "slug": "reverse-lunge-tap",
               "side": "Right",
               "repCount": "6-10"
             },
             {
-              "name": "Pogo",
+              "slug": "pogo",
               "repCount": "10-20"
             }
           ]
@@ -37,15 +37,15 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Superman Sweep",
+              "slug": "superman-sweep",
               "repCount": "8-12"
             },
             {
-              "name": "Calf Raise & Curl",
+              "slug": "calf-raise-and-curl",
               "repCount": "8-12"
             },
             {
-              "name": "Curtsy Lunge",
+              "slug": "curtsy-lunge",
               "side": "Alternating",
               "repCount": "6-10 per side"
             }
@@ -60,15 +60,15 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Glute Bridge",
+              "slug": "glute-bridge",
               "repCount": "10-15"
             },
             {
-              "name": "RDL & Row",
+              "slug": "rdl-and-row",
               "repCount": "8-10"
             },
             {
-              "name": "Side Lunge",
+              "slug": "side-lunge",
               "side": "Alternating",
               "repCount": "8-10 per side"
             }
@@ -83,15 +83,15 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Sumo Goblet Squat",
+              "slug": "sumo-goblet-squat",
               "repCount": "8-10"
             },
             {
-              "name": "Butterfly Bridge",
+              "slug": "butterfly-bridge",
               "repCount": "8-10"
             },
             {
-              "name": "Flexor Lift",
+              "slug": "flexor-lift",
               "side": "Alternating",
               "repCount": "5-10 per side"
             }
@@ -106,15 +106,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Adductor Cross",
+              "slug": "adductor-cross",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Heel Tap",
+              "slug": "heel-tap",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Plank Hold",
+              "slug": "plank-hold",
               "repCount": "To Fatigue"
             }
           ]

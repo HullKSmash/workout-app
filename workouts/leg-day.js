@@ -13,8 +13,8 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Jumping Jack",
-              "repCount": 15
+              "slug": "jumping-jack",
+              "repCount": "15"
             }
           ]
         }
@@ -27,18 +27,18 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Fire Hydrant",
+              "slug": "fire-hydrant",
               "side": "Left",
-              "repCount": 8
+              "repCount": "8"
             },
             {
-              "name": "Fire Hydrant",
+              "slug": "fire-hydrant",
               "side": "Right",
-              "repCount": 8
+              "repCount": "8"
             },
             {
-              "name": "Mountain Climber",
-              "repCount": 20
+              "slug": "mountain-climber",
+              "repCount": "20"
             }
           ]
         },
@@ -46,7 +46,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Rest",
+              "slug": "rest",
               "repCount": 30
             }
           ]
@@ -60,18 +60,18 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Single Leg Glute Bridge",
+              "slug": "single-leg-glute-bridge",
               "side": "Left",
-              "repCount": 8
+              "repCount": "8"
             },
             {
-              "name": "Single Leg Glute Bridge",
+              "slug": "single-leg-glute-bridge",
               "side": "Right",
-              "repCount": 8
+              "repCount": "8"
             },
             {
-              "name": "Goblet Squat",
-              "repCount": 8
+              "slug": "goblet-squat",
+              "repCount": "8"
             }
           ]
         },
@@ -79,7 +79,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Rest",
+              "slug": "rest",
               "repCount": 30
             }
           ]
@@ -93,22 +93,22 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Hamstring Bridge",
-              "repCount": 8
+              "slug": "hamstring-bridge",
+              "repCount": "8"
             },
             {
-              "name": "Static Lunge",
+              "slug": "static-lunge",
               "side": "Left",
-              "repCount": 8
+              "repCount": "8"
             },
             {
-              "name": "Static Lunge",
+              "slug": "static-lunge",
               "side": "Right",
-              "repCount": 8
+              "repCount": "8"
             },
             {
-              "name": "Calf Raise",
-              "repCount": 12
+              "slug": "calf-raise",
+              "repCount": "12"
             }
           ]
         },
@@ -116,7 +116,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Rest",
+              "slug": "rest",
               "repCount": 30
             }
           ]
@@ -130,18 +130,18 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Romanian Dead Lift",
-              "repCount": 8
+              "slug": "romanian-dead-lift",
+              "repCount": "8"
             },
             {
-              "name": "Knee Up",
+              "slug": "knee-up",
               "side": "Left",
-              "repCount": 8
+              "repCount": "8"
             },
             {
-              "name": "Knee Up",
+              "slug": "knee-up",
               "side": "Right",
-              "repCount": 8
+              "repCount": "8"
             }
           ]
         },
@@ -149,7 +149,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Rest",
+              "slug": "rest",
               "repCount": 30
             }
           ]
@@ -163,24 +163,24 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Curtsy Lunge",
+              "slug": "curtsy-lunge",
               "side": "Left",
-              "repCount": 8
+              "repCount": "8"
             },
             {
-              "name": "Curtsy Lunge",
+              "slug": "curtsy-lunge",
               "side": "Right",
-              "repCount": 8
+              "repCount": "8"
             },
             {
-              "name": "Standing Lateral Leg Lift",
+              "slug": "standing-lateral-leg-lift",
               "side": "Left",
-              "repCount": 8
+              "repCount": "8"
             },
             {
-              "name": "Standing Lateral Leg Lift",
+              "slug": "standing-lateral-leg-lift",
               "side": "Right",
-              "repCount": 8
+              "repCount": "8"
             }
           ]
         }
