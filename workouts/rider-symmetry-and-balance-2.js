@@ -13,15 +13,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Ice Skater",
+              "slug": "ice-skater",
               "repCount": "5-10 per side"
             },
             {
-              "name": "Hip Rocker",
+              "slug": "hip-rocker",
               "repCount": "8-12 per side"
             },
             {
-              "name": "Forward Reach Squat",
+              "slug": "forward-reach-squat",
               "repCount": "8-12"
             }
           ]
@@ -35,12 +35,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Single Arm Row w/ Top Hold",
+              "slug": "single-arm-row-with-top-hold",
               "side": "Left",
               "repCount": "6-10"
             },
             {
-              "name": "Single Arm Row w/ Top Hold",
+              "slug": "single-arm-row-with-top-hold",
               "side": "Right",
               "repCount": "6-10"
             }
@@ -55,12 +55,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Single Leg RDL",
+              "slug": "single-leg-rdl",
               "side": "Left",
               "repCount": "6-10"
             },
             {
-              "name": "Single Leg RDL",
+              "slug": "single-leg-rdl",
               "side": "Right",
               "repCount": "6-10"
             }
@@ -75,12 +75,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Forward Lunge w/ Twist",
+              "slug": "forward-lunge-with-twist",
               "side": "Left",
               "repCount": "6-10"
             },
             {
-              "name": "Forward Lunge w/ Twist",
+              "slug": "forward-lunge-with-twist",
               "side": "Right",
               "repCount": "6-10"
             }
@@ -95,12 +95,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Fire Hydrant Circle",
+              "slug": "fire-hydrant-circle",
               "side": "Left",
               "repCount": "6-10"
             },
             {
-              "name": "Fire Hydrant Circle",
+              "slug": "fire-hydrant-circle",
               "side": "Right",
               "repCount": "6-10"
             }
@@ -115,15 +115,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Plank Toe Tap",
+              "slug": "plank-toe-tap",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Diagonal Sit Up",
+              "slug": "diagonal-sit-up",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Reverse Crunch",
+              "slug": "reverse-crunch",
               "repCount": "To Fatigue"
             }
           ]

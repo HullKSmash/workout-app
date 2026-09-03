@@ -85,7 +85,7 @@ function flattenWorkout(workout) {
         circuit.exercises.forEach((exercise) => {
           phaseSteps.push({
             ...exercise,
-            isRest: exercise.name === "Rest",
+            isRest: exercise.slug === "rest",
             phaseName: phase.name,
             phaseIndex,
             totalPhases,

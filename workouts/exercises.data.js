@@ -1,9 +1,8 @@
-// GENERATED FILE — regenerate with `node scripts/generate-catalog.mjs`.
-// Upsert: keys/names come from active workouts; hand-edit video/videoAlternating/tips.
+// GENERATED FILE — regenerate with `npm run db:export`.
+// Source of truth is the exercise DB (data/data.sql); edit there, not here.
 export const EXERCISES = {
   "adductor-and-hamstring-stretch": { name: "Adductor & Hamstring Stretch", tips: "Focus on the areas that feel like they need the most stretch today.  Feel free to come back for more at the end!", video: null },
   "adductor-cross": { name: "Adductor Cross", tips: "This one seems easy, but you might feel it later!  Make sure to work both sides evenly.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/adductor-crosses.mp4" },
-  "banded-crab-walk": { name: "Banded Crab Walk", tips: "", video: null },
   "bench-press": { name: "Bench Press", tips: "If you don't have a bench, you can do these on the ground (your elbow will stop at the ground).  Keep your lower back close to the bench or ground in a neutral position.", video: null },
   "bicep-curl": { name: "Bicep Curl", tips: "Try different grip and angle variations if these get too easy or boring: hammer curls, overhand grip, rotating curls (underhand up, overhand down), or side-angle curls.", video: null },
   "butterfly-bridge": { name: "Butterfly Bridge", tips: "If this is too easy, add weight on your hips.  If it's too hard, bring your knees up and closer together while you build strength.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/butterfly-bridge.mp4" },
@@ -11,7 +10,6 @@ export const EXERCISES = {
   "calf-raise": { name: "Calf Raise", tips: "As this becomes easier, place the ball of your foot on the edge of a step and let your heels sink down with each rep.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/calf-raise.mp4" },
   "calf-raise-and-curl": { name: "Calf Raise & Curl", tips: "Make these two distinct movements, fully completing each and checking your form before starting the next.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/calf-raise-and-curl.mp4" },
   "crunch": { name: "Crunch", tips: "Support your head in your hands if your neck gets tired in later reps.  Be careful not to pull your head forward if you do this - just rest it in your hands.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/crunch.mp4" },
-  "curl-and-press": { name: "Curl & Press", tips: "Make these two distinct movements, fully completing each and checking your form before starting the next.", video: null },
   "curtsy-lunge": { name: "Curtsy Lunge", tips: "Your knee should come down to the ground right behind your opposite foot.  Take care to keep your torso upright.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/curtsy-lunge.mp4", videoAlternating: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/curtsy-lunge-alt.mp4" },
   "dead-bug": { name: "Dead Bug", tips: "Add one or two dumbbells in your hands to make this harder.  Keep your knee bent to make it easier.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/dead-bugs.mp4" },
   "diagonal-sit-up": { name: "Diagonal Sit Up", tips: "Work both sides evenly.  If you can't sit up all the way, make these crunches while you build strength.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/diagonal-sit-ups.mp4" },
@@ -58,7 +56,6 @@ export const EXERCISES = {
   "romanian-dead-lift": { name: "Romanian Dead Lift", tips: "Focus on hinging at the hip with a soft bend in your knee - imagine making a 7 with your body.  Move with control and build up your weight slowly.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/romanian-dead-lift.mp4" },
   "row": { name: "Row", tips: "Make sure to lower the weight slowly and pull it up close to your ribs.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/row.mp4", videoAlternating: null },
   "row-and-kickback": { name: "Row & Kickback", tips: "This will probably feel like an easy row and a hard kickback.  Work to straighten out the elbow on the kickback and go slow on the row.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/row-and-kickback.mp4" },
-  "runner-hop": { name: "Runner Hop", tips: "", video: null },
   "russian-twist": { name: "Russian Twist", tips: "Increase your range of motion, add weight, and extend your legs as you get stronger.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/russian-twist.mp4" },
   "shoulder-press": { name: "Shoulder Press", tips: "Keep your elbows at a 45-degree angle to avoid excess shoulder strain.  Bring them closer together if you need to.", video: null },
   "side-lunge": { name: "Side Lunge", tips: "Pause to find your balance on each step out and back in.  Take a smaller step to make this easier and a bigger step to make it harder.", video: null, videoAlternating: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/side-lunge-alt.mp4" },
@@ -82,7 +79,6 @@ export const EXERCISES = {
   "sumo-goblet-squat": { name: "Sumo Goblet Squat", tips: "Engage your glutes as you stand and keep your shoulders upright throughout.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/sumo-goblet-squat.mp4" },
   "sumo-squat": { name: "Sumo Squat", tips: "Point your toes out at a 45-degree angle from your body.  Engage your glutes as you stand and keep your shoulders upright throughout.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/sumo-squat.mp4" },
   "sumo-squat-curl-press": { name: "Sumo Squat/Curl/Press", tips: "Point your toes out at a 45-degree angle.  Make these three distinct movements without relying on momentum to move between them.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/sumo-squat-curl-press.mp4" },
-  "superman-pull-down": { name: "Superman Pull Down", tips: "", video: null },
   "superman-sweep": { name: "Superman Sweep", tips: "Work in the range of motion you can, focusing on lifting your shoulders higher and reaching further back as you get stronger.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/superman-sweep.mp4" },
   "tabletop-cat-cow": { name: "Tabletop Cat/Cow", tips: "Explore your range of motion in your hip angle and upper back.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/tabletop-cat-cow.mp4" },
   "to-the-chin-lift": { name: "To-the-Chin Lift", tips: "Make sure to keep your elbow elevated to shoulder height.", video: "https://6a94koge7mtrmdjd.public.blob.vercel-storage.com/exercises/to-the-chin-lift.mp4" },

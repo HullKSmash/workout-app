@@ -13,15 +13,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Calf Raise & Curl",
+              "slug": "calf-raise-and-curl",
               "repCount": "6-8"
             },
             {
-              "name": "Superman Sweep",
+              "slug": "superman-sweep",
               "repCount": "8-12"
             },
             {
-              "name": "Pike Push Up",
+              "slug": "pike-push-up",
               "repCount": "6-8"
             }
           ]
@@ -35,11 +35,11 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Row",
+              "slug": "row",
               "repCount": "6-8"
             },
             {
-              "name": "Bench Press",
+              "slug": "bench-press",
               "repCount": "6-8"
             }
           ]
@@ -53,11 +53,11 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "To-the-Chin Lift",
+              "slug": "to-the-chin-lift",
               "repCount": "6-8"
             },
             {
-              "name": "Lat Pull Over",
+              "slug": "lat-pull-over",
               "repCount": "6-8"
             }
           ]
@@ -71,11 +71,11 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Sumo Squat",
+              "slug": "sumo-squat",
               "repCount": "6-8"
             },
             {
-              "name": "Butterfly Bridge",
+              "slug": "butterfly-bridge",
               "repCount": "8-10"
             }
           ]
@@ -89,16 +89,16 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Flexor Up & Over",
+              "slug": "flexor-up-and-over",
               "repCount": "6-8 per side"
             },
             {
-              "name": "Split Squat",
+              "slug": "split-squat",
               "side": "Left",
               "repCount": "6-8"
             },
             {
-              "name": "Split Squat",
+              "slug": "split-squat",
               "side": "Right",
               "repCount": "6-8"
             }
@@ -113,15 +113,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Plank Toe Tap",
+              "slug": "plank-toe-tap",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Diagonal Sit Up",
+              "slug": "diagonal-sit-up",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Plank Pike",
+              "slug": "plank-pike",
               "repCount": "To Fatigue"
             }
           ]

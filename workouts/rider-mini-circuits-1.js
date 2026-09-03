@@ -13,15 +13,15 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Standing Cat/Cow",
+              "slug": "standing-cat-cow",
               "repCount": "6-10"
             },
             {
-              "name": "Squat Twist",
+              "slug": "squat-twist",
               "repCount": "5-10 per side"
             },
             {
-              "name": "Standing Abduction",
+              "slug": "standing-abduction",
               "side": "Alternating",
               "repCount": "5-10 per side"
             }
@@ -36,15 +36,15 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Reverse Fly",
+              "slug": "reverse-fly",
               "repCount": "6-10"
             },
             {
-              "name": "Squat & Press",
+              "slug": "squat-and-press",
               "repCount": "6-10"
             },
             {
-              "name": "Romanian Dead Lift",
+              "slug": "romanian-dead-lift",
               "repCount": "6-10"
             }
           ]
@@ -58,15 +58,15 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Row",
+              "slug": "row",
               "repCount": "6-10"
             },
             {
-              "name": "Forward Reach Squat",
+              "slug": "forward-reach-squat",
               "repCount": "6-10"
             },
             {
-              "name": "Glute Bridge",
+              "slug": "glute-bridge",
               "repCount": "6-10"
             }
           ]
@@ -80,16 +80,16 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Dead Bug",
+              "slug": "dead-bug",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Oblique Crunch",
+              "slug": "oblique-crunch",
               "side": "Left",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Oblique Crunch",
+              "slug": "oblique-crunch",
               "side": "Right",
               "repCount": "To Fatigue"
             }

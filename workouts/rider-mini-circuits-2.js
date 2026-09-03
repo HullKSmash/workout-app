@@ -13,15 +13,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Standing Cat/Cow",
+              "slug": "standing-cat-cow",
               "repCount": "6-8"
             },
             {
-              "name": "Squat Twist",
+              "slug": "squat-twist",
               "repCount": "5-10 per side"
             },
             {
-              "name": "Standing Abduction",
+              "slug": "standing-abduction",
               "side": "Alternating",
               "repCount": "5-10 per side"
             }
@@ -36,15 +36,15 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Row",
+              "slug": "row",
               "repCount": "6-10"
             },
             {
-              "name": "Calf Raise & Curl",
+              "slug": "calf-raise-and-curl",
               "repCount": "6-10"
             },
             {
-              "name": "Side Lunge",
+              "slug": "side-lunge",
               "side": "Alternating",
               "repCount": "6-10 per side"
             }
@@ -59,16 +59,16 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Sumo Squat",
+              "slug": "sumo-squat",
               "repCount": "6-10"
             },
             {
-              "name": "Reverse Lunge",
+              "slug": "reverse-lunge",
               "side": "Alternating",
               "repCount": "6-10 per side"
             },
             {
-              "name": "Glute Bridge",
+              "slug": "glute-bridge",
               "repCount": "6-10"
             }
           ]
@@ -82,15 +82,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Knee Assist Plank",
+              "slug": "knee-assist-plank",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Crunch",
+              "slug": "crunch",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Heel Tap",
+              "slug": "heel-tap",
               "repCount": "To Fatigue"
             }
           ]

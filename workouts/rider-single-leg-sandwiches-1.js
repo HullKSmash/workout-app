@@ -13,15 +13,15 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Tabletop Cat/Cow",
+              "slug": "tabletop-cat-cow",
               "repCount": "6-8"
             },
             {
-              "name": "Hip Circle",
+              "slug": "hip-circle",
               "repCount": "5-10 per side"
             },
             {
-              "name": "Single Leg Forward Hop",
+              "slug": "single-leg-forward-hop",
               "repCount": "8 per side"
             }
           ]
@@ -35,7 +35,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Calf Raise & Curl",
+              "slug": "calf-raise-and-curl",
               "repCount": "6-8"
             }
           ]
@@ -44,12 +44,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Split Squat",
+              "slug": "split-squat",
               "side": "Left",
               "repCount": "6-8"
             },
             {
-              "name": "Split Squat",
+              "slug": "split-squat",
               "side": "Right",
               "repCount": "6-8"
             }
@@ -59,7 +59,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Calf Raise & Curl",
+              "slug": "calf-raise-and-curl",
               "repCount": "6-8"
             }
           ]
@@ -73,7 +73,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Single Arm Row w/ Top Hold",
+              "slug": "single-arm-row-with-top-hold",
               "side": "Alternating",
               "repCount": "6-8"
             }
@@ -83,12 +83,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Side Lying Leg Lift",
+              "slug": "side-lying-leg-lift",
               "side": "Left",
               "repCount": "6-8"
             },
             {
-              "name": "Side Lying Leg Lift",
+              "slug": "side-lying-leg-lift",
               "side": "Right",
               "repCount": "6-8"
             }
@@ -98,7 +98,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Single Arm Row w/ Top Hold",
+              "slug": "single-arm-row-with-top-hold",
               "side": "Alternating",
               "repCount": "6-8"
             }
@@ -113,7 +113,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Romanian Dead Lift",
+              "slug": "romanian-dead-lift",
               "repCount": "6-8"
             }
           ]
@@ -122,12 +122,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Single Leg Glute Bridge",
+              "slug": "single-leg-glute-bridge",
               "side": "Left",
               "repCount": "6-8"
             },
             {
-              "name": "Single Leg Glute Bridge",
+              "slug": "single-leg-glute-bridge",
               "side": "Right",
               "repCount": "6-8"
             }
@@ -137,7 +137,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Romanian Dead Lift",
+              "slug": "romanian-dead-lift",
               "repCount": "6-8"
             }
           ]
@@ -151,15 +151,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Dead Bug",
+              "slug": "dead-bug",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Plank Pike",
+              "slug": "plank-pike",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Diagonal Sit Up",
+              "slug": "diagonal-sit-up",
               "repCount": "To Fatigue"
             }
           ]

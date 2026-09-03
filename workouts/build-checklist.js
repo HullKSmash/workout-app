@@ -5,12 +5,17 @@
 // position (phase/circuit/round/original-exercise index) so they stay stable
 // across reloads — the persistence layer keys ticked state on them.
 //
+// Items carry the exercise `slug` (+ side, repCount, optional instance tips
+// override). Display name / tips / video are resolved from the catalog by the
+// consumer (ChecklistScreen) via resolveExercise/formatExerciseTitle, exactly
+// like the workout runner — build-checklist stays a pure structural transform.
+//
 // Output shape:
 //   {
 //     totalItems,
 //     sets: [{
 //       id, name, multiCircuit, restCaption,
-//       groups: [{ id, multiRound, rounds: [{ round, items: [{ id, name, repCount, tips }] }] }]
+//       groups: [{ id, multiRound, rounds: [{ round, items: [{ id, slug, repCount, tips, side }] }] }]
 //     }]
 //   }
 
@@ -33,7 +38,7 @@ export function buildChecklist(workout) {
       for (let round = 1; round <= circuit.repeatCount; round++) {
         const items = [];
         circuit.exercises.forEach((exercise, exIndex) => {
-          if (exercise.name === "Rest") {
+          if (exercise.slug === "rest") {
             if (typeof exercise.repCount === "number") {
               restSeconds.push(exercise.repCount);
             }
@@ -41,7 +46,7 @@ export function buildChecklist(workout) {
           }
           items.push({
             id: `p${phaseIndex}c${circuitIndex}r${round}e${exIndex}`,
-            name: exercise.name,
+            slug: exercise.slug,
             repCount: exercise.repCount,
             tips: exercise.tips,
             side: exercise.side,

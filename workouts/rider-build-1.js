@@ -13,15 +13,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Squat & Press",
+              "slug": "squat-and-press",
               "repCount": "6-8"
             },
             {
-              "name": "RDL - Row - Kickback",
+              "slug": "rdl-row-kickback",
               "repCount": "8-12"
             },
             {
-              "name": "Nordic & Curl",
+              "slug": "nordic-and-curl",
               "repCount": "6-10"
             }
           ]
@@ -35,11 +35,11 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Y Scaption",
+              "slug": "y-scaption",
               "repCount": "6-8"
             },
             {
-              "name": "Front to Side Raise",
+              "slug": "front-to-side-raise",
               "repCount": "6-8"
             }
           ]
@@ -53,11 +53,11 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Skull Crusher",
+              "slug": "skull-crusher",
               "repCount": "6-8"
             },
             {
-              "name": "Push Up",
+              "slug": "push-up",
               "repCount": "6-8"
             }
           ]
@@ -71,12 +71,12 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Side Lunge",
+              "slug": "side-lunge",
               "side": "Alternating",
               "repCount": "6-8 per side"
             },
             {
-              "name": "Sumo Squat",
+              "slug": "sumo-squat",
               "repCount": "6-8"
             }
           ]
@@ -90,17 +90,17 @@ export default {
           "repeatCount": 3,
           "exercises": [
             {
-              "name": "Single Leg RDL",
+              "slug": "single-leg-rdl",
               "side": "Left",
               "repCount": "6-8"
             },
             {
-              "name": "Single Leg RDL",
+              "slug": "single-leg-rdl",
               "side": "Right",
               "repCount": "6-8"
             },
             {
-              "name": "Hamstring Bridge",
+              "slug": "hamstring-bridge",
               "repCount": "6-8"
             }
           ]
@@ -114,15 +114,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Butterfly Sit Up",
+              "slug": "butterfly-sit-up",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Russian Twist",
+              "slug": "russian-twist",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Plank Pike",
+              "slug": "plank-pike",
               "repCount": "To Fatigue"
             }
           ]

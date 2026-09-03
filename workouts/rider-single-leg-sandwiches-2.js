@@ -13,15 +13,15 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Tabletop Cat/Cow",
+              "slug": "tabletop-cat-cow",
               "repCount": "6-8"
             },
             {
-              "name": "Hip Circle",
+              "slug": "hip-circle",
               "repCount": "5-10 per side"
             },
             {
-              "name": "Jump Squat",
+              "slug": "jump-squat",
               "repCount": "5-10"
             }
           ]
@@ -35,7 +35,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Hamstring Bridge",
+              "slug": "hamstring-bridge",
               "repCount": "6-8"
             }
           ]
@@ -44,12 +44,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Single Arm Row",
+              "slug": "single-arm-row",
               "side": "Left",
               "repCount": "6-8"
             },
             {
-              "name": "Single Arm Row",
+              "slug": "single-arm-row",
               "side": "Right",
               "repCount": "6-8"
             }
@@ -59,7 +59,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Hamstring Bridge",
+              "slug": "hamstring-bridge",
               "repCount": "6-8"
             }
           ]
@@ -73,7 +73,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Front to Side Raise",
+              "slug": "front-to-side-raise",
               "repCount": "6-8"
             }
           ]
@@ -82,12 +82,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Static Lunge",
+              "slug": "static-lunge",
               "side": "Left",
               "repCount": "6-8"
             },
             {
-              "name": "Static Lunge",
+              "slug": "static-lunge",
               "side": "Right",
               "repCount": "6-8"
             }
@@ -97,7 +97,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Front to Side Raise",
+              "slug": "front-to-side-raise",
               "repCount": "6-8"
             }
           ]
@@ -111,7 +111,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Sumo Squat",
+              "slug": "sumo-squat",
               "repCount": "6-8"
             }
           ]
@@ -120,12 +120,12 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Single Leg RDL",
+              "slug": "single-leg-rdl",
               "side": "Left",
               "repCount": "6-8"
             },
             {
-              "name": "Single Leg RDL",
+              "slug": "single-leg-rdl",
               "side": "Right",
               "repCount": "6-8"
             }
@@ -135,7 +135,7 @@ export default {
           "repeatCount": 1,
           "exercises": [
             {
-              "name": "Sumo Squat",
+              "slug": "sumo-squat",
               "repCount": "6-8"
             }
           ]
@@ -149,15 +149,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Russian Twist",
+              "slug": "russian-twist",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Adductor Cross",
+              "slug": "adductor-cross",
               "repCount": "To Fatigue"
             },
             {
-              "name": "Plank Toe Tap",
+              "slug": "plank-toe-tap",
               "repCount": "To Fatigue"
             }
           ]

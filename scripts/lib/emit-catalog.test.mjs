@@ -4,7 +4,7 @@ import { serializeCatalog } from "./emit-catalog.mjs";
 
 test("emits the generated-file header and export", () => {
   const out = serializeCatalog({ "sumo-squat": { name: "Sumo Squat", tips: "", video: null } });
-  assert.match(out, /^\/\/ GENERATED FILE — regenerate with `node scripts\/generate-catalog\.mjs`\./);
+  assert.match(out, /^\/\/ GENERATED FILE — regenerate with `npm run db:export`\./);
   assert.match(out, /export const EXERCISES = \{/);
   assert.match(out, /\n\};\n$/);
 });

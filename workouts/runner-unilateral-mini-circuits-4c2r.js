@@ -13,17 +13,17 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Reverse Lunge Tap",
+              "slug": "reverse-lunge-tap",
               "side": "Left",
               "repCount": "10-20"
             },
             {
-              "name": "Reverse Lunge Tap",
+              "slug": "reverse-lunge-tap",
               "side": "Right",
               "repCount": "10-20"
             },
             {
-              "name": "Lateral Pogo",
+              "slug": "lateral-pogo",
               "repCount": "8-10"
             }
           ]
@@ -37,15 +37,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Superman Sweep",
+              "slug": "superman-sweep",
               "repCount": "8-12"
             },
             {
-              "name": "Calf Raise & Curl",
+              "slug": "calf-raise-and-curl",
               "repCount": "10-12"
             },
             {
-              "name": "Curtsy Lunge",
+              "slug": "curtsy-lunge",
               "side": "Alternating",
               "repCount": "8-10"
             }
@@ -60,16 +60,16 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Hamstring Bridge",
+              "slug": "hamstring-bridge",
               "repCount": "10-15"
             },
             {
-              "name": "Single Leg RDL",
+              "slug": "single-leg-rdl",
               "side": "Left",
               "repCount": "6-10"
             },
             {
-              "name": "Single Leg RDL",
+              "slug": "single-leg-rdl",
               "side": "Right",
               "repCount": "6-10"
             }
@@ -84,16 +84,16 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Sumo Goblet Squat",
+              "slug": "sumo-goblet-squat",
               "repCount": "8-10 per side"
             },
             {
-              "name": "Single Leg Glute Bridge",
+              "slug": "single-leg-glute-bridge",
               "side": "Left",
               "repCount": "8-10"
             },
             {
-              "name": "Single Leg Glute Bridge",
+              "slug": "single-leg-glute-bridge",
               "side": "Right",
               "repCount": "8-10"
             }
@@ -108,16 +108,16 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Flexor Lift",
+              "slug": "flexor-lift",
               "repCount": "6-10 per side"
             },
             {
-              "name": "Split Squat",
+              "slug": "split-squat",
               "side": "Left",
               "repCount": "6-10"
             },
             {
-              "name": "Split Squat",
+              "slug": "split-squat",
               "side": "Right",
               "repCount": "6-10"
             }
@@ -132,15 +132,15 @@ export default {
           "repeatCount": 2,
           "exercises": [
             {
-              "name": "Adductor Cross",
+              "slug": "adductor-cross",
               "repCount": "10-20"
             },
             {
-              "name": "Russian Twist",
+              "slug": "russian-twist",
               "repCount": "10-20"
             },
             {
-              "name": "Plank Pike",
+              "slug": "plank-pike",
               "repCount": "10-20"
             }
           ]

@@ -16,8 +16,8 @@ export function serializeCatalog(catalog) {
     .sort((a, b) => a[1].name.localeCompare(b[1].name))
     .map(([slug, e]) => `  ${JSON.stringify(slug)}: ${emitEntry(e)},`)
     .join("\n");
-  return `// GENERATED FILE — regenerate with \`node scripts/generate-catalog.mjs\`.
-// Upsert: keys/names come from active workouts; hand-edit video/videoAlternating/tips.
+  return `// GENERATED FILE — regenerate with \`npm run db:export\`.
+// Source of truth is the exercise DB (data/data.sql); edit there, not here.
 export const EXERCISES = {
 ${body}
 };
