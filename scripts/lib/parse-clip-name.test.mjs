@@ -28,7 +28,7 @@ test("rejects an unknown slug", () => {
 });
 
 test("accepts an -alt clip even when the entry has no alternating variant yet", () => {
-  // An -alt clip declares the exercise has an alternating variant; the
-  // videoAlternating field is created on the entry downstream (see patchCatalog).
+  // An -alt clip declares the exercise has an alternating variant; the URL is
+  // written to the DB's video_alternating column downstream (see applyVideoUrls).
   assert.deepEqual(parseClipName("bench-press-alt.mp4", catalog), { ok: true, slug: "bench-press", field: "videoAlternating" });
 });

@@ -1,5 +1,6 @@
 // Sole owner of the workouts/exercises.data.js generated-file format.
-// Shared by generate-catalog.mjs (upsert) and publish-videos.mjs (video URLs).
+// Used by the DB exporter (scripts/lib/export-model.mjs) to render the catalog
+// from the exercise DB (data/data.sql).
 
 function emitEntry(e) {
   const parts = [
